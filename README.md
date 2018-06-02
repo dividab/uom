@@ -1,4 +1,4 @@
-# @promaster/uom
+# uom
 
 ## Introduction
 
@@ -6,14 +6,14 @@ This package has functions to handle unit of measures. It works particulary well
 
 ## Installation
 
-`npm install --save @promaster/uom`
+`npm install --save uom`
 
 The library is compiled to ES5 and no polyfills are required.
 
 ## Usage
 
 ```ts
-import { Amount, Units } from "@promaster/uom";
+import { Amount, Units } from "uom";
 
 const amount = Amount.create(10, Units.Meter);
 const inch = Amount.valueAs(Units.Inch, amount);
