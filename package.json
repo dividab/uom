@@ -29,6 +29,7 @@
     "test:build:clean": "rm -rf test/lib",
     "test:build:parser":
       "mkdirp test/lib/src/property/property-filter-ast/pegjs/ && cp src/property/property-filter-ast/pegjs/generated-parser.* test/lib/src/property/property-filter-ast/pegjs/",
-    "coverage": "rm -rf coverage .nyc_output && nyc yarn test"
+    "coverage": "rm -rf coverage .nyc_output && nyc yarn test",
+    "publish-npm": "yarn test && yarn build && yarn publish"
   }
 }
