@@ -1,0 +1,34 @@
+{
+  "name": "uom",
+  "version": "1.0.0",
+  "main": "lib-cjs/index.js",
+  "module": "lib-esm/index.js",
+  "types": "lib-cjs/index",
+  "description": "Unit of Measure",
+  "author": "jonas.kello@divid.se",
+  "repository": "https://github.com/dividab/uom",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chai": "^4.1.3",
+    "@types/mocha": "^5.2.1",
+    "@types/node": "^10.3.0",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "ts-node": "^6.0.5",
+    "typescript": "^2.9.1"
+  },
+  "scripts": {
+    "build": "yarn build:clean && yarn build:cjs && yarn build:esm",
+    "build:clean": "rm -rf ./lib-cjs ./lib-esm",
+    "build:cjs": "tsc",
+    "build:esm":
+      "tsc --module es2015 --moduleResolution node --outDir ./lib-esm",
+    "test": "yarn test:build:clean && mocha --colors",
+    "testjs": "yarn test:build && mocha \"lib-test/**/*.js\"",
+    "test:build": "cd test && tsc",
+    "test:build:clean": "rm -rf test/lib",
+    "test:build:parser":
+      "mkdirp test/lib/src/property/property-filter-ast/pegjs/ && cp src/property/property-filter-ast/pegjs/generated-parser.* test/lib/src/property/property-filter-ast/pegjs/",
+    "coverage": "rm -rf coverage .nyc_output && nyc yarn test"
+  }
+}

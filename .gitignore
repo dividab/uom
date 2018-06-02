@@ -1,0 +1,12 @@
+# Editor settings
+.vscode/
+.idea/
+.DS_Store
+thumbs.db
+*.log
+node_modules/
+lib/
+lib-*/
+.nyc_output/
+coverage/
+test_out/

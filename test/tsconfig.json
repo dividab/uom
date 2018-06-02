@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig-base.json",
+  "include": ["src/**/*"],
+  "exclude": ["**/*.d.ts"],
+  "compilerOptions": {
+    // Output options
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": true,
+    "outDir": "./lib",
+    "sourceMap": true,
+    // Lib options
+    "lib": ["es5", "es2015"],
+    "types": ["node", "mocha"]
+  }
+}
