@@ -8,7 +8,7 @@ test("amount_duration_test", t => {
     t.test(item.name, st => {
       const amountToTest = Amount.create(item.fromValue, item.fromUnit);
       const actualToValue: number = Amount.valueAs(item.toUnit, amountToTest);
-      st.equal(actualToValue, item.toValue);
+      st.equal(actualToValue, item.toValue, "Conversion valid");
       st.end();
     });
   });

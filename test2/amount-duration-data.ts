@@ -25,5 +25,12 @@ export const tests: ReadonlyArray<ConversionTest<Duration>> = [
     fromValue: 0.0,
     toUnit: Units.Minute,
     toValue: DurationConversion.S2M(0.0)
+  },
+  {
+    name: "ForValue0SecondsWeShouldGetValue0Hours",
+    fromUnit: Units.Second,
+    fromValue: 0.0,
+    toUnit: Units.Minute,
+    toValue: DurationConversion.S2H(0.0)
   }
 ];
