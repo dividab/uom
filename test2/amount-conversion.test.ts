@@ -13,9 +13,40 @@ test("amount_conversion_test", t => {
       t.test(item.name, st => {
         const amountToTest = Amount.create(item.fromValue, item.fromUnit);
         const actualToValue: number = Amount.valueAs(item.toUnit, amountToTest);
-        st.equal(actualToValue, item.toValue, "Conversion valid");
+        if (item.delta) {
+          closeTo(
+            actualToValue,
+            item.toValue,
+            item.delta,
+            () =>
+              st.fail(
+                `Conversion valid, expected: ${
+                  item.toValue
+                }, actual: ${actualToValue}, delta: ${item.delta}`
+              ),
+            () => st.pass("Conversion valid")
+          );
+        } else {
+          st.equal(actualToValue, item.toValue, "Conversion valid");
+        }
         st.end();
       });
     });
   });
 });
+
+function closeTo(
+  actual: number,
+  expected: number,
+  delta: number,
+  fail: () => void,
+  pass: () => void
+) {
+  const actualDelta = Math.abs(actual - expected);
+  if (actualDelta > delta) {
+    fail();
+  } else {
+    pass();
+  }
+  return false;
+}

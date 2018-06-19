@@ -9,4 +9,5 @@ export interface ConversionTest<TQuantity extends Quantity> {
   readonly fromValue: number;
   readonly toUnit: Unit.Unit<TQuantity>;
   readonly toValue: number;
+  readonly delta?: number;
 }
