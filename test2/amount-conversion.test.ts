@@ -6,7 +6,7 @@ import * as Amount from "../src/amount";
 
 const all = [DurationConversion, DeltaTemperatureConversion];
 
-test("amount_duration_test", t => {
+test("amount_conversion_test", t => {
   all.forEach(a => {
     onlySkip(a.tests).forEach(item => {
       t.test(item.name, st => {
