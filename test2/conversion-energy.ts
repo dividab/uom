@@ -1,8 +1,8 @@
 import { ConversionTest } from "./conversion-test";
 import * as Units from "../src/units";
-import { Duration } from "../src/quantity";
+import { Energy } from "../src/quantity";
 
-export const tests: ReadonlyArray<ConversionTest<Duration>> = [
+export const tests: ReadonlyArray<ConversionTest<Energy>> = [
   {
     name: "1Joule_0001Kilojoules",
     fromUnit: Units.Joule,

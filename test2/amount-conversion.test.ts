@@ -3,9 +3,15 @@ import { onlySkip } from "./test-data-utils";
 import * as ConversionDuration from "./conversion-duration";
 import * as ConversionDeltaTemperature from "./conversion-delta-temperature";
 import * as ConversionEnergy from "./conversion-energy";
+import * as ConversionLength from "./conversion-length";
 import * as Amount from "../src/amount";
 
-const all = [ConversionDuration, ConversionDeltaTemperature, ConversionEnergy];
+const all = [
+  ConversionDuration,
+  ConversionDeltaTemperature,
+  ConversionEnergy,
+  ConversionLength
+];
 
 test("amount_conversion_test", t => {
   all.forEach(a => {

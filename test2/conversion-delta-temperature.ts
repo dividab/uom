@@ -1,8 +1,8 @@
 import { ConversionTest } from "./conversion-test";
 import * as Units from "../src/units";
-import { Duration } from "../src/quantity";
+import { DeltaTemperature } from "../src/quantity";
 
-export const tests: ReadonlyArray<ConversionTest<Duration>> = [
+export const tests: ReadonlyArray<ConversionTest<DeltaTemperature>> = [
   {
     name: "0Celsius_0Fahrenheit",
     fromUnit: Units.DeltaCelsius,
