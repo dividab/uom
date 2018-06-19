@@ -1,7 +1,7 @@
 import * as test from "tape";
 import { onlySkip } from "./test-data-utils";
-import * as DurationConversion from "./duration-conversion-data";
-import * as DeltaTemperatureConversion from "./delta-temperature-conversion-data";
+import * as DurationConversion from "./conversion-duration";
+import * as DeltaTemperatureConversion from "./conversion-delta-temperature";
 import * as Amount from "../src/amount";
 
 const all = [DurationConversion, DeltaTemperatureConversion];
