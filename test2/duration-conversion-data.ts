@@ -1,16 +1,6 @@
-import * as Unit from "../src/unit";
+import { ConversionTest } from "./conversion-test";
 import * as Units from "../src/units";
-import { Duration, Quantity } from "../src/quantity";
-
-export interface ConversionTest<TQuantity extends Quantity> {
-  readonly name: string;
-  readonly only?: boolean;
-  readonly skip?: boolean;
-  readonly fromUnit: Unit.Unit<TQuantity>;
-  readonly fromValue: number;
-  readonly toUnit: Unit.Unit<TQuantity>;
-  readonly toValue: number;
-}
+import { Duration } from "../src/quantity";
 
 export const tests: ReadonlyArray<ConversionTest<Duration>> = [
   {
