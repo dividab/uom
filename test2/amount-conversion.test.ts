@@ -1,6 +1,6 @@
 import * as test from "tape";
 import { onlySkip } from "./test-data-utils";
-import * as TestData from "./amount-duration-data";
+import * as TestData from "./amount-duration-conversion-data";
 import * as Amount from "../src/amount";
 
 test("amount_duration_test", t => {
