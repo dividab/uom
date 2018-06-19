@@ -1,10 +1,11 @@
 import * as test from "tape";
 import { onlySkip } from "./test-data-utils";
-import * as DurationConversion from "./conversion-duration";
-import * as DeltaTemperatureConversion from "./conversion-delta-temperature";
+import * as ConversionDuration from "./conversion-duration";
+import * as ConversionDeltaTemperature from "./conversion-delta-temperature";
+import * as ConversionEnergy from "./conversion-energy";
 import * as Amount from "../src/amount";
 
-const all = [DurationConversion, DeltaTemperatureConversion];
+const all = [ConversionDuration, ConversionDeltaTemperature, ConversionEnergy];
 
 test("amount_conversion_test", t => {
   all.forEach(a => {
