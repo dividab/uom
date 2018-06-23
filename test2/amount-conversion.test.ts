@@ -1,10 +1,10 @@
 import * as test from "tape";
 import { onlySkip } from "./test-data-utils";
-import * as ConversionDuration from "./conversion-duration";
-import * as ConversionDeltaTemperature from "./conversion-delta-temperature";
-import * as ConversionEnergy from "./conversion-energy";
-import * as ConversionLength from "./conversion-length";
-import * as ConversionMass from "./conversion-mass";
+import * as ConversionDuration from "./data/conversion-duration";
+import * as ConversionDeltaTemperature from "./data/conversion-delta-temperature";
+import * as ConversionEnergy from "./data/conversion-energy";
+import * as ConversionLength from "./data/conversion-length";
+import * as ConversionMass from "./data/conversion-mass";
 import * as Amount from "../src/amount";
 
 const all = [
