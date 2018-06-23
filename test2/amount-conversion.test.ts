@@ -7,6 +7,7 @@ import * as ConversionEnergy from "./data/conversion-energy";
 import * as ConversionLength from "./data/conversion-length";
 import * as ConversionMass from "./data/conversion-mass";
 import * as ConversionPressure from "./data/conversion-pressure";
+import * as ConversionTemperature from "./data/conversion-temperature";
 
 const all = [
   ConversionDuration,
@@ -14,7 +15,8 @@ const all = [
   ConversionEnergy,
   ConversionLength,
   ConversionMass,
-  ConversionPressure
+  ConversionPressure,
+  ConversionTemperature
 ];
 
 test("amount_conversion_test", t => {
