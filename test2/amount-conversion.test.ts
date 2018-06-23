@@ -4,13 +4,15 @@ import * as ConversionDuration from "./conversion-duration";
 import * as ConversionDeltaTemperature from "./conversion-delta-temperature";
 import * as ConversionEnergy from "./conversion-energy";
 import * as ConversionLength from "./conversion-length";
+import * as ConversionMass from "./conversion-mass";
 import * as Amount from "../src/amount";
 
 const all = [
   ConversionDuration,
   ConversionDeltaTemperature,
   ConversionEnergy,
-  ConversionLength
+  ConversionLength,
+  ConversionMass
 ];
 
 test("amount_conversion_test", t => {
