@@ -1,16 +1,24 @@
 {
-  "extends": "../tsconfig-base.json",
-  "include": ["src/**/*"],
-  "exclude": ["**/*.d.ts"],
   "compilerOptions": {
-    // Output options
-    "target": "es5",
-    "module": "commonjs",
-    "declaration": true,
+    "forceConsistentCasingInFileNames": true,
+    "newLine": "LF",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictNullChecks": true,
     "outDir": "./lib",
     "sourceMap": true,
-    // Lib options
-    "lib": ["es5", "es2015"],
-    "types": ["node", "mocha"]
-  }
+    "declaration": true,
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {},
+    "lib": ["es2015"]
+  },
+  "include": ["**/*"]
 }
