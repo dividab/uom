@@ -20,11 +20,30 @@ The library is compiled to ES5 and no polyfills are required.
 
 ## Usage
 
+### Conversion
+
 ```ts
 import { Amount, Units } from "uom";
 
 const amount = Amount.create(10, Units.Meter);
 const inch = Amount.valueAs(Units.Inch, amount);
+```
+
+### Type safety
+
+```ts
+import { Amount, Units } from "uom";
+
+const length1 = Amount.create(10, Units.Meter);
+const length2 = Amount.create(10, Units.Inch);
+const volume1 = Amount.create(10, Units.CubicMeter);
+
+const result = calculate(length1, length2); // OK
+const result = calculate(volume1, length2); // Compile error
+
+function calculate(Amount<Length> length1, Amount<Length> length2): Amount<Length> {
+    return Amount.plus(length1, length2);
+}
 ```
 
 ## Prior art
