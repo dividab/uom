@@ -9,12 +9,8 @@
   "repository": "https://github.com/dividab/uom",
   "license": "MIT",
   "devDependencies": {
-    "@types/chai": "^4.1.3",
-    "@types/mocha": "^5.2.1",
     "@types/node": "^10.3.0",
     "@types/tape": "^4.2.32",
-    "chai": "^4.1.2",
-    "mocha": "^5.2.0",
     "tap-spec": "^5.0.0",
     "tape": "^4.9.1",
     "ts-node": "^6.1.1",
@@ -23,13 +19,12 @@
   "scripts": {
     "build": "yarn build:clean && yarn build:cjs && yarn build:esm",
     "build:clean": "rm -rf ./lib-cjs ./lib-esm",
-    "build:cjs": "tsc",
-    "build:esm": "tsc --module es2015 --moduleResolution node --outDir ./lib-esm",
-    "test": "yarn test:build:clean && mocha --colors",
-    "testjs": "yarn test:build && mocha \"lib-test/**/*.js\"",
-    "test:build": "cd test && tsc",
+    "build:cjs": "tsc -p src",
+    "build:esm": "tsc -p src --module es2015 --moduleResolution node --outDir ./lib-esm",
+    "test": "tape --require ts-node/register \"test/**/*.ts\" | tap-spec",
+    "testjs": "yarn test:build && tape \"lib-test/**/*.js\"",
+    "test:build": "tsc -p test",
     "test:build:clean": "rm -rf test/lib",
-    "test2": "tape --require ts-node/register \"test2/**/*.ts\" | tap-spec",
     "coverage": "rm -rf coverage .nyc_output && nyc yarn test",
     "publish-npm": "yarn test && yarn build && yarn publish"
   }
