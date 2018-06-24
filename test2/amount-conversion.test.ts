@@ -1,6 +1,6 @@
 import * as test from "tape";
 import * as Amount from "../src/amount";
-import { onlySkip } from "./test-data-utils";
+import { onlySkip, closeTo } from "./test-utils";
 import * as ConversionDuration from "./data/conversion-duration";
 import * as ConversionDeltaTemperature from "./data/conversion-delta-temperature";
 import * as ConversionEnergy from "./data/conversion-energy";
@@ -34,13 +34,11 @@ test("amount_conversion_test", t => {
             actualToValue,
             item.toValue,
             item.delta,
-            () =>
-              st.fail(
-                `Conversion valid, expected: ${
-                  item.toValue
-                }, actual: ${actualToValue}, delta: ${item.delta}`
-              ),
-            () => st.pass("Conversion valid")
+            st
+            // `Conversion valid, expected: ${
+            //   item.toValue
+            // }, actual: ${actualToValue}, delta: ${item.delta}`,
+            // "Conversion valid"
           );
         } else {
           st.equal(actualToValue, item.toValue, "Conversion valid");
@@ -51,18 +49,18 @@ test("amount_conversion_test", t => {
   });
 });
 
-function closeTo(
-  actual: number,
-  expected: number,
-  delta: number,
-  fail: () => void,
-  pass: () => void
-) {
-  const actualDelta = Math.abs(actual - expected);
-  if (actualDelta > delta) {
-    fail();
-  } else {
-    pass();
-  }
-  return false;
-}
+// function closeTo(
+//   actual: number,
+//   expected: number,
+//   delta: number,
+//   fail: () => void,
+//   pass: () => void
+// ) {
+//   const actualDelta = Math.abs(actual - expected);
+//   if (actualDelta > delta) {
+//     fail();
+//   } else {
+//     pass();
+//   }
+//   return false;
+// }

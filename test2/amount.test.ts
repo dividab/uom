@@ -1,6 +1,7 @@
 import * as test from "tape";
 import * as Amount from "../src/amount";
 import * as Units from "../src/units";
+import { closeTo } from "./test-utils";
 
 test("amount_test", t => {
   t.test("should_not_accept_a_string_as_value", st => {
@@ -59,22 +60,6 @@ test("amount_test", t => {
     st.end();
   });
 });
-
-function closeTo(
-  actual: number,
-  expected: number,
-  delta: number,
-  theTest: test.Test,
-  msg: string = "closeTo"
-) {
-  const actualDelta = Math.abs(actual - expected);
-  if (actualDelta > delta) {
-    theTest.fail(msg);
-  } else {
-    theTest.pass(msg);
-  }
-  return false;
-}
 
 /*
 
