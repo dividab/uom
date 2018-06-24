@@ -99,7 +99,7 @@ export const tests: ReadonlyArray<ConversionTest<Length>> = [
     delta: 0.00001
   },
   {
-    name: "For_Value_10_centimeter_we_should_get_value_3_937_inch",
+    name: "10centimeter_3_937inch",
     fromUnit: Units.CentiMeter,
     fromValue: 10.0,
     toUnit: Units.Inch,
