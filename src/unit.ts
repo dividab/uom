@@ -1,3 +1,5 @@
+// tslint:disable:max-file-line-count
+
 import { Quantity, Dimensionless } from "./quantity";
 import { exhaustiveCheck } from "./utils/exhaustive-check";
 
@@ -455,8 +457,8 @@ function fromProduct<T extends Quantity>(
   return createProductUnit(quantity, resultElements);
 }
 
-function createElement(unit: Unit<Quantity>, pow: number): Element {
-  return { unit, pow };
+function createElement(unit: Unit<Quantity>, power: number): Element {
+  return { unit, pow: power };
 }
 
 function product<T extends Quantity>(
@@ -517,12 +519,12 @@ function productUnitToStandardUnit<T extends Quantity>(
   let converter = identityConverter;
   for (let element of getElements(unit)) {
     let conv = toStandardUnitConverter(element.unit);
-    let pow = element.pow;
-    if (pow < 0) {
-      pow = -pow;
+    let power = element.pow;
+    if (power < 0) {
+      power = -power;
       conv = inverseConverter(conv);
     }
-    for (let i = 1; i <= pow; i++) {
+    for (let i = 1; i <= power; i++) {
       converter = concatenateConverters(conv, converter);
     }
   }

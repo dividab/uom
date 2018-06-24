@@ -14,9 +14,12 @@
     "tap-spec": "^5.0.0",
     "tape": "^4.9.1",
     "ts-node": "^6.1.1",
+    "tslint": "^5.10.0",
+    "tslint-immutable": "^4.6.0",
     "typescript": "^2.9.1"
   },
   "scripts": {
+    "lint": "tslint --config ./tslint.json -- './{src,test}/**/*.ts{,x}'",
     "build": "yarn build:clean && yarn build:cjs && yarn build:esm",
     "build:clean": "rm -rf ./lib-cjs ./lib-esm",
     "build:cjs": "tsc -p src",
@@ -25,7 +28,9 @@
     "testjs": "yarn test:build && tape \"lib-test/**/*.js\"",
     "test:build": "tsc -p test",
     "test:build:clean": "rm -rf test/lib",
-    "coverage": "rm -rf coverage .nyc_output && nyc yarn test",
+    "verify": "yarn lint && yarn build && yarn coverage",
+    "coverage": "rimraf coverage .nyc_output && nyc yarn test",
+    "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "publish-npm": "yarn test && yarn build && yarn publish"
   }
 }
