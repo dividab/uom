@@ -4,7 +4,7 @@
   "main": "lib-cjs/index.js",
   "module": "lib-esm/index.js",
   "types": "lib-cjs/index",
-  "description": "Unit of Measure",
+  "description": "Extensible unit of measure conversion with type safety for typescript",
   "author": "jonas.kello@divid.se",
   "repository": "https://github.com/dividab/uom",
   "license": "MIT",
