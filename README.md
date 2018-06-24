@@ -22,14 +22,14 @@ The library is compiled to ES5 and no polyfills are required.
 
 ### Conversion
 
-```ts
+```js
 import { Amount, Units } from "uom";
 
 const amount = Amount.create(10, Units.Meter);
 const inch = Amount.valueAs(Units.Inch, amount);
 ```
 
-### Type safety
+### Type safety (typescript)
 
 ```ts
 import { Amount, Units } from "uom";
