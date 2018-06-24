@@ -12,7 +12,10 @@
     "@types/node": "^10.3.0",
     "@types/tape": "^4.2.32",
     "coveralls": "^3.0.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.0",
     "nyc": "^12.0.2",
+    "prettier": "^1.13.5",
     "rimraf": "^2.6.2",
     "tap-spec": "^5.0.0",
     "tape": "^4.9.1",
@@ -32,8 +35,16 @@
     "test:build": "tsc -p test",
     "test:build:clean": "rm -rf test/lib",
     "verify": "yarn lint && yarn build && yarn coverage",
+    "precommit": "lint-staged",
     "coverage": "rimraf coverage .nyc_output && nyc yarn test",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "publish-npm": "yarn test && yarn build && yarn publish"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": "tslint",
+    "*.{ts,tsx,json,css}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
