@@ -1,47 +1,39 @@
-import { assert } from "chai";
-import * as Units from "../../src/units";
-import * as Unit from "../../src/unit";
-import { VolumeFlowConversion } from "./test_utils/conversion_helpers/volume_flow_conversion";
+import * as test from "tape";
+import * as Unit from "../src/unit";
+import * as Units from "../src/units";
+import { closeTo } from "./test-utils";
 
-describe("derived units", () => {
-  it("Meter times Meter should return unit with 1 element of pow 2", () => {
+test("derived units", t => {
+  t.test("Meter times Meter should return unit with 1 element of pow 2", st => {
     const newUnit = Unit.times("Length", Units.Meter, Units.Meter);
     if (newUnit.type === "product") {
-      assert.equal(newUnit.elements.length, 1, "Wrong elements length");
-      assert.equal(newUnit.elements[0].pow, 2, "Wrong pow");
+      st.equal(newUnit.elements.length, 1, "Correct elements length");
+      st.equal(newUnit.elements[0].pow, 2, "Correct pow");
     } else {
-      assert.fail(
-        newUnit.type,
-        "product",
-        "Expected the type of unit to be 'product'"
-      );
+      st.fail("Expected the type of unit to be 'product'");
     }
+    st.end();
   });
-
-  it("CubicMeter by Second should return correct product unit", () => {
+  t.test("CubicMeter by Second should return correct product unit", st => {
     const newUnit = Unit.divide("VolumeFlow", Units.CubicMeter, Units.Second);
     if (newUnit.type === "product") {
-      assert.deepEqual(
+      st.deepEqual(
         newUnit.elements,
         [
           { pow: 3, unit: { quantity: "Length", type: "base", symbol: "m" } },
           { pow: -1, unit: { quantity: "Duration", type: "base", symbol: "s" } }
         ],
-        "Wrong elements"
+        "Correct elements"
       );
     } else {
-      assert.fail(
-        newUnit.type,
-        "product",
-        "Expected the type of unit to be 'product'"
-      );
+      st.fail("Expected the type of unit to be 'product'");
     }
+    st.end();
   });
-
-  it("CubicMeter by Hour should return correct product unit", () => {
+  t.test("CubicMeter by Hour should return correct product unit", st => {
     const newUnit = Unit.divide("VolumeFlow", Units.CubicMeter, Units.Hour);
     if (newUnit.type === "product") {
-      assert.deepEqual(
+      st.deepEqual(
         newUnit.elements,
         [
           { pow: 3, unit: { quantity: "Length", type: "base", symbol: "m" } },
@@ -70,30 +62,24 @@ describe("derived units", () => {
             }
           }
         ],
-        "Wrong elements"
+        "Correct elements"
       );
     } else {
-      assert.fail(
-        newUnit.type,
-        "product",
-        "Expected the type of unit to be 'product'"
-      );
+      st.fail("Expected the type of unit to be 'product'");
     }
+    st.end();
   });
 });
 
-describe("unit conversions", () => {
-  it("For_Value_2_m3persec_we_should_get_value_7200_m3perhour", () => {
+test("unit conversions", t => {
+  t.test("2CubicMeterPerSecond_7200CubicMeterPerHour", st => {
     const value = 2.0;
     const convertedValue: number = Unit.convert(
       value,
       Units.CubicMeterPerSecond,
       Units.CubicMeterPerHour
     );
-    assert.closeTo(
-      convertedValue,
-      VolumeFlowConversion.M3PerSec2M3PerHour(value),
-      0.00001
-    );
+    closeTo(convertedValue, 7200.0, 0.00001, st);
+    st.end();
   });
 });
