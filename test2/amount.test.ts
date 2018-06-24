@@ -27,8 +27,34 @@ test("amount_test", t => {
       valueLeft * valueRight,
       Amount.valueAs(Units.Gram, res1),
       0.000001,
-      st.fail,
-      st.pass
+      st
+    );
+    st.end();
+  });
+  t.test("Divide_amount_by_double", st => {
+    const valueLeft: number = 55.39;
+    const valueRight: number = 58.456;
+    const amountLeft = Amount.create(valueLeft, Units.Inch);
+    const res1 = Amount.divide(amountLeft, valueRight);
+    closeTo(
+      valueLeft / valueRight,
+      Amount.valueAs(Units.Inch, res1),
+      0.00001,
+      st
+    );
+    st.end();
+  });
+  t.test("Subtract_amounts_with_same_unit", st => {
+    const valueLeft: number = 0.8;
+    const valueRight: number = 99.56;
+    const amountLeft = Amount.create(valueLeft, Units.Kilojoule);
+    const amountRight = Amount.create(valueRight, Units.Kilojoule);
+    const res1 = Amount.minus(amountLeft, amountRight);
+    closeTo(
+      valueLeft - valueRight,
+      Amount.valueAs(Units.Kilojoule, res1),
+      0.00001,
+      st
     );
     st.end();
   });
@@ -38,65 +64,19 @@ function closeTo(
   actual: number,
   expected: number,
   delta: number,
-  fail: (msg: string) => void,
-  pass: (msg: string) => void,
+  theTest: test.Test,
   msg: string = "closeTo"
 ) {
   const actualDelta = Math.abs(actual - expected);
   if (actualDelta > delta) {
-    fail(msg);
+    theTest.fail(msg);
   } else {
-    pass(msg);
+    theTest.pass(msg);
   }
   return false;
 }
 
 /*
-
-import { assert, expect } from "chai";
-import { LengthConversion } from "./test_utils/conversion_helpers/length_conversion";
-import { DurationConversion } from "./test_utils/conversion_helpers/duration_conversion";
-import * as Amount from "../../src/amount";
-import * as Units from "../../src/units";
-
-describe("amount_test", () => {
-
-  it("Multiply_double_to_amount", () => {
-    const valueLeft: number = 2.0;
-    const valueRight: number = 5.5;
-    const amountLeft = Amount.create(valueLeft, Units.Gram);
-    const res1 = Amount.times(amountLeft, valueRight);
-    assert.closeTo(
-      valueLeft * valueRight,
-      Amount.valueAs(Units.Gram, res1),
-      0.000001
-    );
-  });
-
-  it("Divide_amount_by_double", () => {
-    const valueLeft: number = 55.39;
-    const valueRight: number = 58.456;
-    const amountLeft = Amount.create(valueLeft, Units.Inch);
-    const res1 = Amount.divide(amountLeft, valueRight);
-    assert.closeTo(
-      valueLeft / valueRight,
-      Amount.valueAs(Units.Inch, res1),
-      0.00001
-    );
-  });
-
-  it("Subtract_amounts_with_same_unit", () => {
-    const valueLeft: number = 0.8;
-    const valueRight: number = 99.56;
-    const amountLeft = Amount.create(valueLeft, Units.Kilojoule);
-    const amountRight = Amount.create(valueRight, Units.Kilojoule);
-    const res1 = Amount.minus(amountLeft, amountRight);
-    assert.closeTo(
-      valueLeft - valueRight,
-      Amount.valueAs(Units.Kilojoule, res1),
-      0.00001
-    );
-  });
 
   it("Add_amounts_with_same_unit", () => {
     const valueLeft: number = 12.8;
