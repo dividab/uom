@@ -1,3 +1,0 @@
---require ./test/ts-node-register
---recursive test/
-test/**/*.ts

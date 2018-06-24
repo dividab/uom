@@ -1,119 +1,100 @@
-//tslint:disable max-file-line-count
+// tslint:disable:max-file-line-count
 
-import { assert } from "chai";
-import * as Amount from "../../src/amount";
+import { ConversionTest } from "./conversion-test";
 import * as Units from "../../src/units";
-import { TemperatureConversion } from "./test_utils/conversion_helpers/temperature_conversion";
+import { Temperature } from "../../src/quantity";
 
-describe("amount_temperature_comparisions_test", () => {
-  it("0.0 Celsius should equal 273.15 Kelvin", () => {
-    // const kelvinInCelsius = Amount.valueAs(
-    //   Units.Celsius,
-    //   Amount.create(273.15, Units.Kelvin)
-    // );
-    // const celsiusInCelsius = Amount.valueAs(
-    //   Units.Celsius,
-    //   Amount.create(0.0, Units.Celsius)
-    // );
+export const tests: ReadonlyArray<ConversionTest<Temperature>> = [
+  {
+    name: "0Celsius_273_15Kelvin",
+    fromUnit: Units.Celsius,
+    fromValue: 0.0,
+    toUnit: Units.Kelvin,
+    toValue: 273.15
+  },
+  {
+    name: "1Celsius_274_15Kelvin",
+    fromUnit: Units.Celsius,
+    fromValue: 1.0,
+    toUnit: Units.Kelvin,
+    toValue: 274.15
+  },
+  {
+    name: "-1Celsius_272_15Kelvin",
+    fromUnit: Units.Celsius,
+    fromValue: -1.0,
+    toUnit: Units.Kelvin,
+    toValue: 272.15
+  },
+  {
+    name: "0_kelvin_0_kelvin",
+    fromUnit: Units.Kelvin,
+    fromValue: 0.0,
+    toUnit: Units.Kelvin,
+    toValue: 0.0
+  },
+  {
+    name: "10_kelvin_10_kelvin",
+    fromUnit: Units.Kelvin,
+    fromValue: 10.0,
+    toUnit: Units.Kelvin,
+    toValue: 10.0
+  },
+  {
+    name: "-5kelvin_-5kelvin",
+    fromUnit: Units.Kelvin,
+    fromValue: -5.0,
+    toUnit: Units.Kelvin,
+    toValue: -5.0
+  },
+  {
+    name: "87_1kelvin_87_1kelvin",
+    fromUnit: Units.Kelvin,
+    fromValue: 87.1,
+    toUnit: Units.Kelvin,
+    toValue: 87.1
+  },
+  {
+    name: "0kelvin_-273_15celsius",
+    fromUnit: Units.Kelvin,
+    fromValue: 0.0,
+    toUnit: Units.Celsius,
+    toValue: -273.15
+  },
+  {
+    name: "354kelvin_80_85celsius",
+    fromUnit: Units.Kelvin,
+    fromValue: 354.0,
+    toUnit: Units.Celsius,
+    toValue: 80.85,
+    delta: 0.00000001
+  },
+  {
+    name: "-56kelvin_-329_15celsius",
+    fromUnit: Units.Kelvin,
+    fromValue: -56.0,
+    toUnit: Units.Celsius,
+    toValue: -329.15
+  },
+  {
+    name: "0kelvin_0rankine",
+    fromUnit: Units.Kelvin,
+    fromValue: 0.0,
+    toUnit: Units.Rankine,
+    toValue: 0.0
+  },
+  {
+    name: "245kelvin_441rankine",
+    fromUnit: Units.Kelvin,
+    fromValue: 245.0,
+    toUnit: Units.Rankine,
+    toValue: 441.0
+  }
+];
 
-    assert.isTrue(
-      Amount.equals(
-        Amount.create(0.0, Units.Celsius),
-        Amount.create(273.15, Units.Kelvin)
-      )
-    );
-  });
+/*
 
-  it("1.0 Celsius should be greater than 273.15 Kelvin", () => {
-    assert.isTrue(
-      Amount.greaterThan(
-        Amount.create(1.0, Units.Celsius),
-        Amount.create(273.15, Units.Kelvin)
-      )
-    );
-  });
 
-  it("-1.0 Celsius should be less than 273.15 Kelvin", () => {
-    assert.isTrue(
-      Amount.lessThan(
-        Amount.create(-1.0, Units.Celsius),
-        Amount.create(273.15, Units.Kelvin)
-      )
-    );
-  });
-});
-
-describe("amount_temperature_conversions_test", () => {
-  //kelvin
-
-  //kelvin 2 kelvin
-
-  it("For_Value_0_kelvin_we_should_get_value_0_kelvin", () => {
-    const value: number = 0.0;
-    const amountToTest = Amount.create(value, Units.Kelvin);
-    const convertedAmount: number = Amount.valueAs(Units.Kelvin, amountToTest);
-    assert.closeTo(convertedAmount, value, 0.00001);
-  });
-
-  it("For_Value_10_kelvin_we_should_get_value_10_kelvin", () => {
-    const value: number = 10.0;
-    const amountToTest = Amount.create(value, Units.Kelvin);
-    const convertedAmount: number = Amount.valueAs(Units.Kelvin, amountToTest);
-    assert.closeTo(convertedAmount, value, 0.00001);
-  });
-
-  it("For_Value_minus_5_kelvin_we_should_get_value_minus_5_kelvin", () => {
-    const value: number = -5.0;
-    const amountToTest = Amount.create(value, Units.Kelvin);
-    const convertedAmount: number = Amount.valueAs(Units.Kelvin, amountToTest);
-    assert.closeTo(convertedAmount, value, 0.00001);
-  });
-
-  it("For_Value_87_1_kelvin_we_should_get_value_87_1_kelvin", () => {
-    const value: number = 87.1;
-    const amountToTest = Amount.create(value, Units.Kelvin);
-    const convertedAmount: number = Amount.valueAs(Units.Kelvin, amountToTest);
-    assert.closeTo(convertedAmount, value, 0.00001);
-  });
-
-  //kelvin 2 celsius
-
-  it("For_Value_0_kelvin_we_should_get_value_minus_273_15_celsius", () => {
-    const value: number = 0.0;
-    const amountToTest = Amount.create(value, Units.Kelvin);
-    const convertedAmount: number = Amount.valueAs(Units.Celsius, amountToTest);
-    assert.closeTo(convertedAmount, TemperatureConversion.K2C(value), 0.00001);
-  });
-
-  it("For_Value_354_kelvin_we_should_get_value_80_85_celsius", () => {
-    const value: number = 354.0;
-    const amountToTest = Amount.create(value, Units.Kelvin);
-    const convertedAmount: number = Amount.valueAs(Units.Celsius, amountToTest);
-    assert.closeTo(convertedAmount, TemperatureConversion.K2C(value), 0.00001);
-  });
-
-  it("For_Value_minus_56_kelvin_we_should_get_value_minus_329_15_celsius", () => {
-    const value: number = -56.0;
-    const amountToTest = Amount.create(value, Units.Kelvin);
-    const convertedAmount: number = Amount.valueAs(Units.Celsius, amountToTest);
-    assert.closeTo(convertedAmount, TemperatureConversion.K2C(value), 0.00001);
-  });
-
-  //kelvin 2 rankine
-
-  it("For_Value_0_kelvin_we_should_get_value_0_rankine", () => {
-    const value: number = 0.0;
-    const amountToTest = Amount.create(value, Units.Kelvin);
-    const convertedAmount: number = Amount.valueAs(Units.Rankine, amountToTest);
-    assert.closeTo(convertedAmount, TemperatureConversion.K2R(value), 0.00001);
-  });
-
-  it("For_Value_245_kelvin_we_should_get_value_441_rankine", () => {
-    const value: number = 245.0;
-    const amountToTest = Amount.create(value, Units.Kelvin);
-    const convertedAmount: number = Amount.valueAs(Units.Rankine, amountToTest);
-    assert.closeTo(convertedAmount, TemperatureConversion.K2R(value), 0.00001);
-  });
 
   it("For_Value_56_8_kelvin_we_should_get_value_102_24_rankine", () => {
     const value: number = 56.8;
@@ -629,3 +610,5 @@ describe("amount_temperature_conversions_test", () => {
     assert.isTrue(result);
   });
 });
+
+*/

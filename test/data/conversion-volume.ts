@@ -1,37 +1,25 @@
-import { assert } from "chai";
-import { VolumeConversion } from "./test_utils/conversion_helpers/volume_conversion";
-import * as Amount from "../../src/amount";
+import { ConversionTest } from "./conversion-test";
 import * as Units from "../../src/units";
 import { Volume } from "../../src/quantity";
 
-describe("amount_volume_test", () => {
-  //liter 2 cubic_meter
+export const tests: ReadonlyArray<ConversionTest<Volume>> = [
+  {
+    name: "0Liter_0CubicMeter",
+    fromUnit: Units.Liter,
+    fromValue: 0.0,
+    toUnit: Units.CubicMeter,
+    toValue: 0.0
+  },
+  {
+    name: "3liter_0_003cubic_meter",
+    fromUnit: Units.Liter,
+    fromValue: 3.0,
+    toUnit: Units.CubicMeter,
+    toValue: 0.003
+  }
+];
 
-  it("For_Value_0_liter_we_should_get_value_0_cubic_meter", () => {
-    const value: number = 0.0;
-    const amountToTest: Amount.Amount<Volume> = Amount.create(
-      value,
-      Units.Liter
-    );
-    const convertedAmount: number = Amount.valueAs(
-      Units.CubicMeter,
-      amountToTest
-    );
-    assert.equal(convertedAmount, VolumeConversion.L2M3(value));
-  });
-
-  it("For_Value_3_liter_we_should_get_value_0_003_cubic_meter", () => {
-    const value: number = 3.0;
-    const amountToTest: Amount.Amount<Volume> = Amount.create(
-      value,
-      Units.Liter
-    );
-    const convertedAmount: number = Amount.valueAs(
-      Units.CubicMeter,
-      amountToTest
-    );
-    assert.equal(convertedAmount, VolumeConversion.L2M3(value));
-  });
+/*
 
   it("For_Value_78945_liter_we_should_get_value_78_945_cubic_meter", () => {
     const value: number = 78945.0;
@@ -187,3 +175,21 @@ describe("amount_volume_test", () => {
     assert.equal(convertedAmount, value);
   });
 });
+
+
+
+  it("For_Value_100_cf_we_should_get_value_2_point_832_m3", () => {
+    // Test values from
+    // http://www.wolframalpha.com/input/?i=100+cf
+
+    // Arrange
+    const a = Amount.create(100.0, Units.CubicFeet);
+
+    // Act
+    const m3: number = Amount.valueAs(Units.CubicMeter, a);
+
+    // Assert
+    assert.closeTo(m3, 2.832, 0.001);
+  });
+
+  */

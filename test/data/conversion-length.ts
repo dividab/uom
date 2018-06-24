@@ -1,134 +1,124 @@
-//tslint:disable max-file-line-count
+// tslint:disable:max-file-line-count
 
-import { assert } from "chai";
+import { ConversionTest } from "./conversion-test";
 import * as Units from "../../src/units";
-import * as Amount from "../../src/amount";
-import { LengthConversion } from "./test_utils/conversion_helpers/length_conversion";
+import { Length } from "../../src/quantity";
 
-describe("amount_length_test", () => {
-  it("For_Value_0_centimeters_we_should_get_value_0_centimeters", () => {
-    const value: number = 0.0;
-    const amountToTest = Amount.create(value, Units.CentiMeter);
-    const convertedAmount: number = Amount.valueAs(
-      Units.CentiMeter,
-      amountToTest
-    );
-    assert.equal(value, convertedAmount);
-  });
+export const tests: ReadonlyArray<ConversionTest<Length>> = [
+  {
+    name: "0centimeters_0centimeters",
+    fromUnit: Units.CentiMeter,
+    fromValue: 0.0,
+    toUnit: Units.CentiMeter,
+    toValue: 0.0
+  },
+  {
+    name: "10centimeters_10centimeters",
+    fromUnit: Units.CentiMeter,
+    fromValue: 10.0,
+    toUnit: Units.CentiMeter,
+    toValue: 10.0
+  },
+  {
+    name: "0centimeters_0meters",
+    fromUnit: Units.CentiMeter,
+    fromValue: 0.0,
+    toUnit: Units.Meter,
+    toValue: 0.0
+  },
+  {
+    name: "1centimeter_0_01_meter",
+    fromUnit: Units.CentiMeter,
+    fromValue: 1.0,
+    toUnit: Units.Meter,
+    toValue: 0.01
+  },
+  {
+    name: "12centimeters_0_12_meters",
+    fromUnit: Units.CentiMeter,
+    fromValue: 12.0,
+    toUnit: Units.Meter,
+    toValue: 0.12
+  },
+  {
+    name: "357centimeter_3_57meter",
+    fromUnit: Units.CentiMeter,
+    fromValue: 357.0,
+    toUnit: Units.Meter,
+    toValue: 3.57,
+    delta: 0.00000001
+  },
+  {
+    name: "0_56centimeters_0_0056meters",
+    fromUnit: Units.CentiMeter,
+    fromValue: 0.56,
+    toUnit: Units.Meter,
+    toValue: 0.0056,
+    delta: 0.00000001
+  },
+  {
+    name: "0centimeters_0kilometers",
+    fromUnit: Units.CentiMeter,
+    fromValue: 0.0,
+    toUnit: Units.Kilometer,
+    toValue: 0.0
+  },
+  {
+    name: "1centimeter_0_00001kilometers",
+    fromUnit: Units.CentiMeter,
+    fromValue: 1.0,
+    toUnit: Units.Kilometer,
+    toValue: 0.00001
+  },
+  {
+    name: "120000centimeters_1_2kilometers",
+    fromUnit: Units.CentiMeter,
+    fromValue: 120000.0,
+    toUnit: Units.Kilometer,
+    toValue: 1.2
+  },
+  {
+    name: "78_centimeters_0_00078kilometers",
+    fromUnit: Units.CentiMeter,
+    fromValue: 78.0,
+    toUnit: Units.Kilometer,
+    toValue: 0.00078,
+    delta: 0.00000001
+  },
+  {
+    name: "0centimeter_0inch",
+    fromUnit: Units.CentiMeter,
+    fromValue: 0.0,
+    toUnit: Units.Inch,
+    toValue: 0.0
+  },
+  {
+    name: "1centimeter_0_3937inch",
+    fromUnit: Units.CentiMeter,
+    fromValue: 1.0,
+    toUnit: Units.Inch,
+    toValue: 0.3937,
+    delta: 0.00001
+  },
+  {
+    name: "10centimeter_3_937inch",
+    fromUnit: Units.CentiMeter,
+    fromValue: 10.0,
+    toUnit: Units.Inch,
+    toValue: 3.937,
+    delta: 0.00001
+  },
+  {
+    name: "0_87centimeter_0_34252inch",
+    fromUnit: Units.CentiMeter,
+    fromValue: 0.87,
+    toUnit: Units.Inch,
+    toValue: 0.34252,
+    delta: 0.000001
+  }
+];
 
-  it("For_Value_10_centimeters_we_should_get_value_10_centimeters", () => {
-    const value: number = 10.0;
-    const amountToTest = Amount.create(value, Units.CentiMeter);
-    const convertedAmount: number = Amount.valueAs(
-      Units.CentiMeter,
-      amountToTest
-    );
-    assert.equal(value, convertedAmount);
-  });
-
-  it("For_Value_0_centimeters_we_should_get_value_0_meters", () => {
-    const value: number = 0.0;
-    const amountToTest = Amount.create(value, Units.CentiMeter);
-    const convertedAmount: number = Amount.valueAs(Units.Meter, amountToTest);
-    assert.equal(value, convertedAmount);
-  });
-
-  it("For_Value_1_centimeter_we_should_get_value_0_01_meter", () => {
-    const value: number = 1.0;
-    const amountToTest = Amount.create(value, Units.CentiMeter);
-    const convertedAmount: number = Amount.valueAs(Units.Meter, amountToTest);
-    //      assert.equal(closeTo(LengthConversion.Cm2M(value), 0.00001), convertedAmount);
-    assert.closeTo(convertedAmount, LengthConversion.Cm2M(value), 0.000001);
-  });
-
-  it("For_Value_12_centimeters_we_should_get_value_0_12_meters", () => {
-    const value: number = 12.0;
-    const amountToTest = Amount.create(value, Units.CentiMeter);
-    const convertedAmount: number = Amount.valueAs(Units.Meter, amountToTest);
-    assert.closeTo(convertedAmount, LengthConversion.Cm2M(value), 0.000001);
-  });
-
-  it("For_Value_357_centimeter_we_should_get_value_3_57_meter", () => {
-    const value: number = 357.0;
-    const amountToTest = Amount.create(value, Units.CentiMeter);
-    const convertedAmount: number = Amount.valueAs(Units.Meter, amountToTest);
-    assert.closeTo(convertedAmount, LengthConversion.Cm2M(value), 0.000001);
-  });
-
-  it("For_Value_0_56_centimeters_we_should_get_value_0_0056_meters", () => {
-    const value: number = 0.56;
-    const amountToTest = Amount.create(value, Units.CentiMeter);
-    const convertedAmount: number = Amount.valueAs(Units.Meter, amountToTest);
-    assert.equal(convertedAmount, LengthConversion.Cm2M(value));
-  });
-
-  it("For_Value_0_centimeters_we_should_get_value_0_kilometers", () => {
-    const value: number = 0.0;
-    const amountToTest = Amount.create(value, Units.CentiMeter);
-    const convertedAmount: number = Amount.valueAs(
-      Units.Kilometer,
-      amountToTest
-    );
-    assert.equal(convertedAmount, value);
-  });
-
-  it("For_Value_1_centimeter_we_should_get_value_0_00001_kilometers", () => {
-    const value: number = 1.0;
-    const amountToTest = Amount.create(value, Units.CentiMeter);
-    const convertedAmount: number = Amount.valueAs(
-      Units.Kilometer,
-      amountToTest
-    );
-    assert.closeTo(convertedAmount, LengthConversion.Cm2Km(value), 0.000001);
-  });
-
-  it("For_Value_120000_centimeters_we_should_get_value_1_2_kilometers", () => {
-    const value: number = 120000.0;
-    const amountToTest = Amount.create(value, Units.CentiMeter);
-    const convertedAmount: number = Amount.valueAs(
-      Units.Kilometer,
-      amountToTest
-    );
-    assert.closeTo(convertedAmount, LengthConversion.Cm2Km(value), 0.00001);
-  });
-
-  it("For_Value_78_centimeters_we_should_get_value_0_00078_kilometers", () => {
-    const value: number = 78.0;
-    const amountToTest = Amount.create(value, Units.CentiMeter);
-    const convertedAmount: number = Amount.valueAs(
-      Units.Kilometer,
-      amountToTest
-    );
-    assert.closeTo(convertedAmount, LengthConversion.Cm2Km(value), 0.00001);
-  });
-
-  it("For_Value_0_centimeter_we_should_get_value_0_inch", () => {
-    const value: number = 0.0;
-    const amountToTest = Amount.create(value, Units.CentiMeter);
-    const convertedAmount: number = Amount.valueAs(Units.Inch, amountToTest);
-    assert.equal(convertedAmount, value);
-  });
-
-  it("For_Value_1_centimeter_we_should_get_value_0_3937_inch", () => {
-    const value: number = 1.0;
-    const amountToTest = Amount.create(value, Units.CentiMeter);
-    const convertedAmount: number = Amount.valueAs(Units.Inch, amountToTest);
-    assert.closeTo(convertedAmount, LengthConversion.Cm2In(value), 0.00001);
-  });
-
-  it("For_Value_10_centimeter_we_should_get_value_3_937_inch", () => {
-    const value: number = 10.0;
-    const amountToTest = Amount.create(value, Units.CentiMeter);
-    const convertedAmount: number = Amount.valueAs(Units.Inch, amountToTest);
-    assert.closeTo(convertedAmount, LengthConversion.Cm2In(value), 0.00001);
-  });
-
-  it("For_Value_0_87_centimeter_we_should_get_value_0_34252_inch", () => {
-    const value: number = 0.87;
-    const amountToTest = Amount.create(value, Units.CentiMeter);
-    const convertedAmount: number = Amount.valueAs(Units.Inch, amountToTest);
-    assert.closeTo(convertedAmount, LengthConversion.Cm2In(value), 0.00001);
-  });
+/*
 
   it("For_Value_245_centimeter_we_should_get_value_96_45669_inch", () => {
     const value: number = 245.0;
@@ -1387,4 +1377,5 @@ describe("amount_length_test", () => {
     const convertedAmount: number = Amount.valueAs(Units.Yard, amountToTest);
     assert.closeTo(convertedAmount, value, 0.000001);
   });
-});
+
+*/

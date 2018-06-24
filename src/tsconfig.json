@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig-base.json",
+  "include": ["**/*"],
+  "compilerOptions": {
+    // Output options
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": true,
+    "outDir": "../lib-cjs",
+    "rootDir": "./",
+    "sourceMap": true,
+    // Lib options
+    "lib": ["es5", "es2015", "dom"]
+  }
+}
