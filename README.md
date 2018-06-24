@@ -68,7 +68,7 @@ Amount.create<T extends Quantity>(
 
 ## Prior art
 
-This library was inspired by [JSR-275](http://download.oracle.com/otn-pub/jcp/untis-0.6-edr-oth-JSpec/Units-v0.6_edr.pdf?AuthParam=1527941513_89b45d975b743c799d22105ff16f961b). See also this [repo](http://code.google.com/p/unitsofmeasure/), this [article](https://www.javaworld.com/article/2077770/core-java/introduction-to-jsr-275--measures-and-units.html). Altough JSR-275 was not accepted but it evolved into [JSR-363](http://www.baeldung.com/javax-measure) which is now accepted.
+This library was inspired by [JSR-275](http://download.oracle.com/otn-pub/jcp/untis-0.6-edr-oth-JSpec/Units-v0.6_edr.pdf?AuthParam=1527941513_89b45d975b743c799d22105ff16f961b). See also this [repo](http://code.google.com/p/unitsofmeasure/), this [article](https://www.javaworld.com/article/2077770/core-java/introduction-to-jsr-275--measures-and-units.html). Altough JSR-275 was not accepted it evolved into [JSR-363](http://www.baeldung.com/javax-measure) which is now accepted.
 
 [version-image]: https://img.shields.io/npm/v/uom.svg?style=flat
 [version-url]: https://www.npmjs.com/package/uom
