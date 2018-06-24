@@ -80,7 +80,3 @@ This library was inspired by [JSR-275](http://download.oracle.com/otn-pub/jcp/un
 [license-url]: https://opensource.org/licenses/MIT
 [prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat
 [prettier-url]: https://github.com/prettier/prettier
-
-```
-
-```
