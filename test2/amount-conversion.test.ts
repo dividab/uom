@@ -9,6 +9,7 @@ import * as ConversionMass from "./data/conversion-mass";
 import * as ConversionPressure from "./data/conversion-pressure";
 import * as ConversionTemperature from "./data/conversion-temperature";
 import * as ConversionVolumeFlow from "./data/conversion-volume-flow";
+import * as ConversionVolume from "./data/conversion-volume";
 
 const all = [
   ConversionDuration,
@@ -18,7 +19,8 @@ const all = [
   ConversionMass,
   ConversionPressure,
   ConversionTemperature,
-  ConversionVolumeFlow
+  ConversionVolumeFlow,
+  ConversionVolume
 ];
 
 test("amount_conversion_test", t => {
