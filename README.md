@@ -64,7 +64,7 @@ function create<T extends Quantity>(
   unit: Unit.Unit<T>,
   decimalCount: number | undefined = undefined
 ): Amount<T>;
-````
+```
 
 ## Prior art
 
