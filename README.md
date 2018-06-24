@@ -48,7 +48,7 @@ function calculate(Amount<Length> length1, Amount<Length> length2): Amount<Lengt
 
 ## API
 
-The API is divided into modules, where each module contains functions that operate on a type that is exported from that module. For example the `Amount` moudle exports the type `Amount.Amount` and has functions like `Amount.plus()`.
+The API is divided into modules, where each module contains functions that operate on a type that is exported from that module. For example the `Amount` module exports the type `Amount.Amount` and has functions like `Amount.plus()`.
 
 ### Amount
 
