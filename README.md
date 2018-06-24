@@ -56,14 +56,14 @@ The API is divided into modules, where each module contains functions that opera
 import { Amount } from "uom";
 ```
 
-##### create
+##### Amount.create
 
 ```ts
-function create<T extends Quantity>(
+Amount.create<T extends Quantity>(
   value: number,
   unit: Unit.Unit<T>,
   decimalCount: number | undefined = undefined
-): Amount<T>;
+): Amount<T>
 ```
 
 ## Prior art
