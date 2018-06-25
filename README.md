@@ -29,7 +29,17 @@ const amount = Amount.create(10, Units.Meter);
 const inch = Amount.valueAs(Units.Inch, amount);
 ```
 
-### Type safety (typescript)
+### Extension (create your own unit)
+
+```js
+import { Amount, Unit, Units } from "uom";
+
+const myInchUnit = Unit.divideNumber(12.0, Units.Foot);
+const amount = Amount.create(10, myInchUnit);
+const meter = Amount.valueAs(Units.Meter, amount);
+```
+
+### Type safety (typescript only)
 
 ```ts
 import { Amount, Units } from "uom";
