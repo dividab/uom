@@ -150,7 +150,10 @@ export interface OffsetConverter {
 /** Holds the dimensionless unit ONE */
 export const One: Unit<Dimensionless> = createOne(); //tslint:disable-line
 
-/** Holds the identity converter (unique). This converter does nothing (ONE.convert(x) == x). */
+/**
+ * Holds the identity converter (unique). This converter does nothing (ONE.convert(x) == x).
+ * @private
+ */
 const identityConverter: UnitConverter = createIdentityConverter();
 
 /**

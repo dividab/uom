@@ -211,21 +211,12 @@ Gets the value of the amount as a number in the specified unit
 ## Unit
 
 * [Unit](#module_Unit)
-    * _static_
-        * [.One](#module_Unit.One)
-        * [.createBase(quantity, symbol)](#module_Unit.createBase)
-        * [.createAlternate(symbol, parent)](#module_Unit.createAlternate)
-        * [.times(quantity, left, right)](#module_Unit.times) ⇒
-        * [.divide(quantity, left, right)](#module_Unit.divide) ⇒
-        * [.convert(value, fromUnit, toUnit)](#module_Unit.convert) ⇒
-    * _inner_
-        * [~identityConverter](#module_Unit..identityConverter)
-        * [~transform(operation, unit)](#module_Unit..transform) ⇒
-        * [~fromProduct(quantity, leftElems, rightElems)](#module_Unit..fromProduct)
-        * [~createCompoundConverter(first, second)](#module_Unit..createCompoundConverter)
-        * [~inverseConverter()](#module_Unit..inverseConverter)
-        * [~concatenateConverters(concatConverter, converter)](#module_Unit..concatenateConverters) ⇒
-        * [~createOne()](#module_Unit..createOne)
+    * [.One](#module_Unit.One)
+    * [.createBase(quantity, symbol)](#module_Unit.createBase)
+    * [.createAlternate(symbol, parent)](#module_Unit.createAlternate)
+    * [.times(quantity, left, right)](#module_Unit.times) ⇒
+    * [.divide(quantity, left, right)](#module_Unit.divide) ⇒
+    * [.convert(value, fromUnit, toUnit)](#module_Unit.convert) ⇒
 
 <a name="module_Unit.One"></a>
 
@@ -293,76 +284,4 @@ Converts numeric values from a unit to another unit.
 | value | The numeric value to convert. |
 | fromUnit | The unit from which to convert the numeric value. |
 | toUnit | The unit to which to convert the numeric value. |
-
-<a name="module_Unit..identityConverter"></a>
-
-### Unit~identityConverter
-Holds the identity converter (unique). This converter does nothing (ONE.convert(x) == x).
-
-<a name="module_Unit..transform"></a>
-
-### Unit~transform(operation, unit) ⇒
-Returns the unit derived from the specified unit using the specified converter.
-The converter does not need to be linear.
-
-**Returns**: The unit after the specified transformation.  
-
-| Param | Description |
-| --- | --- |
-| operation | The converter from the transformed unit to this unit. |
-| unit | The unit. |
-
-<a name="module_Unit..fromProduct"></a>
-
-### Unit~fromProduct(quantity, leftElems, rightElems)
-Creates the unit defined from the product of the specifed elements.
-
-
-| Param | Description |
-| --- | --- |
-| quantity | Quantity of the resulting unit. |
-| leftElems | Left multiplicand elements. |
-| rightElems | Right multiplicand elements. |
-
-<a name="module_Unit..createCompoundConverter"></a>
-
-### Unit~createCompoundConverter(first, second)
-Creates a compound converter resulting from the combined
-transformation of the specified converters.
-
-
-| Param | Description |
-| --- | --- |
-| first | The first converter. |
-| second | Second the second converter. |
-
-<a name="module_Unit..inverseConverter"></a>
-
-### Unit~inverseConverter()
-Returns the inverse of this converter. If x is a valid
-value, then x == inverse().convert(convert(x)) to within
-the accuracy of computer arithmetic.
-
-<a name="module_Unit..concatenateConverters"></a>
-
-### Unit~concatenateConverters(concatConverter, converter) ⇒
-Concatenates this converter with another converter. The resulting
-converter is equivalent to first converting by the specified converter,
-and then converting by this converter.
-
-Note: Implementations must ensure that the IDENTITY instance
-      is returned if the resulting converter is an identity
-      converter.
-
-**Returns**: The concatenation of this converter with the other converter.  
-
-| Param | Description |
-| --- | --- |
-| concatConverter | This converter. |
-| converter | The other converter. |
-
-<a name="module_Unit..createOne"></a>
-
-### Unit~createOne()
-Used solely to create ONE instance.
 
