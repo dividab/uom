@@ -12,8 +12,6 @@
 ## Amount
 
 * [Amount](#module_Amount)
-    * [.lessThan](#module_Amount.lessThan)
-    * [.greaterThan](#module_Amount.greaterThan)
     * [.create(value, unit, decimalCount)](#module_Amount.create) ⇒ <code>Amount.&lt;T&gt;</code>
     * [.toString(amount)](#module_Amount.toString) ⇒ <code>string</code>
     * [.neg(amount)](#module_Amount.neg)
@@ -22,35 +20,13 @@
     * [.minus(left, right)](#module_Amount.minus) ⇒
     * [.times(left, right)](#module_Amount.times)
     * [.divide(left, right)](#module_Amount.divide)
-    * [.equals(left, right)](#module_Amount.equals)
+    * [.equals(left, right)](#module_Amount.equals) ⇒ <code>boolean</code>
+    * [.lessThan(left, right)](#module_Amount.lessThan) ⇒ <code>boolean</code>
+    * [.greaterThan(left, right)](#module_Amount.greaterThan) ⇒ <code>boolean</code>
     * [.roundDown(step, amount)](#module_Amount.roundDown)
     * [.roundUp(step, amount)](#module_Amount.roundUp)
     * [.abs(amount)](#module_Amount.abs)
     * [.valueAs(toUnit, amount)](#module_Amount.valueAs)
-
-<a name="module_Amount.lessThan"></a>
-
-### Amount.lessThan
-Checks if one Amount is less than another.
-
-**Kind**: static property of [<code>Amount</code>](#module_Amount)  
-
-| Param | Description |
-| --- | --- |
-| left | The left-hand Amount. |
-| right | The right-hand Amount. |
-
-<a name="module_Amount.greaterThan"></a>
-
-### Amount.greaterThan
-Checks if one Amount is greater than another.
-
-**Kind**: static property of [<code>Amount</code>](#module_Amount)  
-
-| Param | Description |
-| --- | --- |
-| left | The left-hand Amount. |
-| right | The right-hand Amount. |
 
 <a name="module_Amount.create"></a>
 
@@ -165,15 +141,42 @@ The resulting amount has the same unit and decimal count as the original amount.
 
 <a name="module_Amount.equals"></a>
 
-### Amount.equals(left, right)
+### Amount.equals(left, right) ⇒ <code>boolean</code>
 Compares to amounts for equality
 
 **Kind**: static method of [<code>Amount</code>](#module_Amount)  
+**Returns**: <code>boolean</code> - True if the amounts are equal, false otherwise.  
 
-| Param | Description |
-| --- | --- |
-| left | The left-hand Amount. |
-| right | The right-hand Amount. |
+| Param | Type | Description |
+| --- | --- | --- |
+| left | <code>Amount</code> | The left-hand Amount. |
+| right | <code>Amount</code> | The right-hand Amount. |
+
+<a name="module_Amount.lessThan"></a>
+
+### Amount.lessThan(left, right) ⇒ <code>boolean</code>
+Checks if one Amount is less than another.
+
+**Kind**: static method of [<code>Amount</code>](#module_Amount)  
+**Returns**: <code>boolean</code> - True if the left-hand is less than the right-hand, false otherwise.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| left | <code>Amount</code> | The left-hand Amount. |
+| right | <code>Amount</code> | The right-hand Amount. |
+
+<a name="module_Amount.greaterThan"></a>
+
+### Amount.greaterThan(left, right) ⇒ <code>boolean</code>
+Checks if one Amount is greater than another.
+
+**Kind**: static method of [<code>Amount</code>](#module_Amount)  
+**Returns**: <code>boolean</code> - True if the left-hand is less than the right-hand, false otherwise.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| left | <code>Amount</code> | The left-hand Amount. |
+| right | <code>Amount</code> | The right-hand Amount. |
 
 <a name="module_Amount.roundDown"></a>
 

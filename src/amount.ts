@@ -175,8 +175,9 @@ export function divide<T extends Quantity>(
 
 /**
  * Compares to amounts for equality
- * @param left The left-hand Amount.
- * @param right The right-hand Amount.
+ * @param left {Amount} The left-hand Amount.
+ * @param right {Amount} The right-hand Amount.
+ * @returns {boolean} True if the amounts are equal, false otherwise.
  */
 export function equals<T extends Quantity>(
   left: Amount<T>,
@@ -187,23 +188,29 @@ export function equals<T extends Quantity>(
 
 /**
  * Checks if one Amount is less than another.
- * @param left The left-hand Amount.
- * @param right The right-hand Amount.
+ * @param left {Amount} The left-hand Amount.
+ * @param right {Amount} The right-hand Amount.
+ * @returns {boolean} True if the left-hand is less than the right-hand, false otherwise.
  */
-export const lessThan = <T extends Quantity>(
+export function lessThan<T extends Quantity>(
   left: Amount<T>,
   right: Amount<T>
-): boolean => _comparison(left, right, false) < 0;
+): boolean {
+  return _comparison(left, right, false) < 0;
+}
 
 /**
  * Checks if one Amount is greater than another.
- * @param left The left-hand Amount.
- * @param right The right-hand Amount.
+ * @param left {Amount} The left-hand Amount.
+ * @param right {Amount} The right-hand Amount.
+ * @returns {boolean} True if the left-hand is less than the right-hand, false otherwise.
  */
-export const greaterThan = <T extends Quantity>(
+export function greaterThan<T extends Quantity>(
   left: Amount<T>,
   right: Amount<T>
-): boolean => _comparison(left, right, false) > 0;
+): boolean {
+  return _comparison(left, right, false) > 0;
+}
 
 export const lessOrEqualTo = <T extends Quantity>(
   left: Amount<T>,
