@@ -147,7 +147,8 @@ export interface OffsetConverter {
   readonly offset: number;
 }
 
-/** Holds the dimensionless unit ONE
+/**
+ * Holds the dimensionless unit ONE
  * @type {Unit}
  */
 export const One: Unit<Dimensionless> = createOne(); //tslint:disable-line
