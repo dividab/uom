@@ -12,7 +12,6 @@
 ## Amount
 
 * [Amount](#module_Amount)
-    * [.equals](#module_Amount.equals)
     * [.lessThan](#module_Amount.lessThan)
     * [.greaterThan](#module_Amount.greaterThan)
     * [.create(value, unit, decimalCount)](#module_Amount.create) ⇒ <code>Amount.&lt;T&gt;</code>
@@ -23,22 +22,11 @@
     * [.minus(left, right)](#module_Amount.minus) ⇒
     * [.times(left, right)](#module_Amount.times)
     * [.divide(left, right)](#module_Amount.divide)
+    * [.equals(left, right)](#module_Amount.equals)
     * [.roundDown(step, amount)](#module_Amount.roundDown)
     * [.roundUp(step, amount)](#module_Amount.roundUp)
     * [.abs(amount)](#module_Amount.abs)
     * [.valueAs(toUnit, amount)](#module_Amount.valueAs)
-
-<a name="module_Amount.equals"></a>
-
-### Amount.equals
-Compares to amounts for equality
-
-**Kind**: static property of [<code>Amount</code>](#module_Amount)  
-
-| Param | Description |
-| --- | --- |
-| left | The left-hand Amount. |
-| right | The right-hand Amount. |
 
 <a name="module_Amount.lessThan"></a>
 
@@ -174,6 +162,18 @@ The resulting amount has the same unit and decimal count as the original amount.
 | --- | --- |
 | left | The amount to divide |
 | right | The number to divide by |
+
+<a name="module_Amount.equals"></a>
+
+### Amount.equals(left, right)
+Compares to amounts for equality
+
+**Kind**: static method of [<code>Amount</code>](#module_Amount)  
+
+| Param | Description |
+| --- | --- |
+| left | The left-hand Amount. |
+| right | The right-hand Amount. |
 
 <a name="module_Amount.roundDown"></a>
 
