@@ -330,6 +330,9 @@ function unitConvertersIsEqual(
 /// BEGIN PRIVATE DECLARATIONS
 ///////////////////////////////
 
+/**
+ * @private
+ */
 function getConverter<T extends Quantity>(
   fromUnit: Unit<T>,
   toUnit: Unit<Quantity>
@@ -345,7 +348,10 @@ function getConverter<T extends Quantity>(
   );
 }
 
-// Returns the converter from this unit to its system unit.
+/**
+ * Returns the converter from this unit to its system unit.
+ * @private
+ */
 function toStandardUnitConverter<T extends Quantity>(
   unit: Unit<T>
 ): UnitConverter {
@@ -373,6 +379,7 @@ function toStandardUnitConverter<T extends Quantity>(
  * @param operation The converter from the transformed unit to this unit.
  * @param unit The unit.
  * @returns The unit after the specified transformation.
+ * @private
  */
 function transform<T extends Quantity>(
   operation: UnitConverter,
@@ -384,9 +391,12 @@ function transform<T extends Quantity>(
   return createTransformedUnit(unit, operation);
 }
 
-/// Creates a transformed unit from the specified parent unit.
-/// <param name="parentUnit">the untransformed unit from which this unit is derived.</param>
-/// <param name="toParentUnitConverter">the converter to the parent units.</param>
+/**
+ * Creates a transformed unit from the specified parent unit.
+ * @param parentUnit {Unit} The untransformed unit from which this unit is derived.
+ * @param toParentUnitConverter {UnitConverter} The converter to the parent units.
+ * @private
+ */
 function createTransformedUnit<T extends Quantity>(
   parentUnit: Unit<T>,
   toParentUnitConverter: UnitConverter
@@ -399,15 +409,19 @@ function createTransformedUnit<T extends Quantity>(
   };
 }
 
-// function create<T extends Quantity>(quantity: T, innerUnit: Unit<T>): Unit<T> {
-//   return {quantity, innerUnit}
-// }
+// /**
+//  * @private
+//  */
+// // function create<T extends Quantity>(quantity: T, innerUnit: Unit<T>): Unit<T> {
+// //   return {quantity, innerUnit}
+// // }
 
 /**
  * Creates the unit defined from the product of the specifed elements.
  * @param quantity Quantity of the resulting unit.
  * @param leftElems Left multiplicand elements.
  * @param rightElems Right multiplicand elements.
+ * @private
  */
 function fromProduct<T extends Quantity>(
   quantity: T,
@@ -461,10 +475,16 @@ function fromProduct<T extends Quantity>(
   return createProductUnit(quantity, resultElements);
 }
 
+/**
+ * @private
+ */
 function createElement(unit: Unit<Quantity>, power: number): Element {
   return { unit, pow: power };
 }
 
+/**
+ * @private
+ */
 function product<T extends Quantity>(
   quantity: T,
   left: Unit<Quantity>,
@@ -475,6 +495,9 @@ function product<T extends Quantity>(
   return fromProduct<T>(quantity, leftelements, rightelements);
 }
 
+/**
+ * @private
+ */
 function quotient<T extends Quantity>(
   quantity: T,
   left: Unit<Quantity>,
@@ -488,6 +511,9 @@ function quotient<T extends Quantity>(
   return fromProduct<T>(quantity, leftelements, invertedRightelements);
 }
 
+/**
+ * @private
+ */
 function pow<T extends Quantity>(
   quantity: T,
   unit: Unit<Quantity>,
@@ -502,6 +528,9 @@ function pow<T extends Quantity>(
   return fromProduct<T>(quantity, [], squareRootedRightelements);
 }
 
+/**
+ * @private
+ */
 function getElements(unit: Unit<Quantity>): Array<Element> {
   if (unit.type === "product") {
     return unit.elements;
@@ -517,6 +546,9 @@ function getElements(unit: Unit<Quantity>): Array<Element> {
   }
 }
 
+/**
+ * @private
+ */
 function productUnitToStandardUnit<T extends Quantity>(
   unit: Unit<T>
 ): UnitConverter {
@@ -535,6 +567,9 @@ function productUnitToStandardUnit<T extends Quantity>(
   return converter;
 }
 
+/**
+ * @private
+ */
 function createProductUnit<T extends Quantity>(
   quantity: T,
   elements: Array<Element>
@@ -547,6 +582,7 @@ function createProductUnit<T extends Quantity>(
  * transformation of the specified converters.
  * @param first The first converter.
  * @param second Second the second converter.
+ * @private
  */
 function createCompoundConverter(
   first: UnitConverter,
@@ -555,14 +591,23 @@ function createCompoundConverter(
   return { type: "compound", first, second };
 }
 
+/**
+ * @private
+ */
 function createIdentityConverter(): IdentityConverter {
   return { type: "identity" };
 }
 
+/**
+ * @private
+ */
 function createOffsetConverter(offset: number): OffsetConverter {
   return { type: "offset", offset };
 }
 
+/**
+ * @private
+ */
 function createFactorConverter(factor: number): FactorConverter {
   if (factor === 1.0) {
     throw new Error("Argument: factor " + factor.toString());
@@ -574,6 +619,7 @@ function createFactorConverter(factor: number): FactorConverter {
  * Returns the inverse of this converter. If x is a valid
  * value, then x == inverse().convert(convert(x)) to within
  * the accuracy of computer arithmetic.
+ * @private
  */
 function inverseConverter(converter: UnitConverter): UnitConverter {
   switch (converter.type) {
@@ -594,6 +640,9 @@ function inverseConverter(converter: UnitConverter): UnitConverter {
   // throw new Error("Unknown unit converter");
 }
 
+/**
+ * @private
+ */
 function convertWithConverter(value: number, converter: UnitConverter): number {
   switch (converter.type) {
     case "compound":
@@ -624,6 +673,7 @@ function convertWithConverter(value: number, converter: UnitConverter): number {
  * @param concatConverter This converter.
  * @param converter The other converter.
  * @returns The concatenation of this converter with the other converter.
+ * @private
  */
 function concatenateConverters(
   concatConverter: UnitConverter,
@@ -634,7 +684,10 @@ function concatenateConverters(
     : createCompoundConverter(concatConverter, converter);
 }
 
-/** Used solely to create ONE instance. */
+/**
+ * Used solely to create ONE instance.
+ * @private
+ */
 function createOne(): Unit<Dimensionless> {
   return { quantity: "Dimensionless", type: "product", elements: [] };
 }
