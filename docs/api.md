@@ -211,7 +211,7 @@ Gets the value of the amount as a number in the specified unit
 ## Unit
 
 * [Unit](#module_Unit)
-    * [.One](#module_Unit.One)
+    * [.One](#module_Unit.One) : <code>Unit</code>
     * [.createBase(quantity, symbol)](#module_Unit.createBase)
     * [.createAlternate(symbol, parent)](#module_Unit.createAlternate)
     * [.times(quantity, left, right)](#module_Unit.times) ⇒
@@ -220,7 +220,7 @@ Gets the value of the amount as a number in the specified unit
 
 <a name="module_Unit.One"></a>
 
-### Unit.One
+### Unit.One : <code>Unit</code>
 Holds the dimensionless unit ONE
 
 <a name="module_Unit.createBase"></a>
