@@ -1,3 +1,7 @@
+/**
+ * @module Unit
+ */
+
 // tslint:disable:max-file-line-count
 
 import { Quantity, Dimensionless } from "./quantity";

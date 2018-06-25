@@ -50,25 +50,7 @@ function calculate(Amount<Length> length1, Amount<Length> length2): Amount<Lengt
 
 The API is divided into modules, where each module contains functions that operate on a type that is exported from that module. For example the `Amount` module exports the type `Amount.Amount` and has functions like `Amount.plus()`.
 
-### Amount
-
-```ts
-import { Amount } from "uom";
-```
-
-For full docs, see [amount](docs/amount.md).
-
-##### Amount.create
-
-```ts
-Amount.create<T extends Quantity>(
-  value: number,
-  unit: Unit.Unit<T>,
-  decimalCount: number | undefined = undefined
-): Amount<T>
-```
-
-Creates a new `Amount` object.
+For more information, see the [full API docs](docs/api.md).
 
 ## Prior art
 
