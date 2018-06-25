@@ -178,10 +178,12 @@ export function divide<T extends Quantity>(
  * @param left The left-hand Amount.
  * @param right The right-hand Amount.
  */
-export const equals = <T extends Quantity>(
+export function equals<T extends Quantity>(
   left: Amount<T>,
   right: Amount<T>
-): boolean => _comparison(left, right, true) === 0;
+): boolean {
+  return _comparison(left, right, true) === 0;
+}
 
 /**
  * Checks if one Amount is less than another.
