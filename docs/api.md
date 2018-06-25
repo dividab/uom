@@ -35,7 +35,6 @@ Creates an amount that represents the an exact/absolute value in the specified
 unit. For example if you create an exact amount of 2 degrees Fahrenheit that
 will represent -16.6666667 degrees Celsius.
 
-**Kind**: static method of [<code>Amount</code>](#module_Amount)  
 **Returns**: <code>Amount.&lt;T&gt;</code> - The created amount.  
 
 | Param | Type | Description |
@@ -49,7 +48,6 @@ will represent -16.6666667 degrees Celsius.
 ### Amount.toString(amount) ⇒ <code>string</code>
 Returns a string representation of an Amount.
 
-**Kind**: static method of [<code>Amount</code>](#module_Amount)  
 **Returns**: <code>string</code> - String representation of the Amount.  
 
 | Param | Type | Description |
@@ -61,7 +59,6 @@ Returns a string representation of an Amount.
 ### Amount.neg(amount)
 Negation unary operator.
 
-**Kind**: static method of [<code>Amount</code>](#module_Amount)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -72,7 +69,6 @@ Negation unary operator.
 ### Amount.isQuantity(quantity, amount)
 Determines if an Amount is of a quantity.
 
-**Kind**: static method of [<code>Amount</code>](#module_Amount)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -88,7 +84,6 @@ The resulting amount will be of the same quantity as the two amounts.
 The resulting amount will have it's decimal count set from the
 most granular amount.
 
-**Kind**: static method of [<code>Amount</code>](#module_Amount)  
 **Returns**: left + right  
 
 | Param | Description |
@@ -105,7 +100,6 @@ The resulting amount will be of the same quantity as the two amounts.
 The resulting amount will have it's decimal count set from the
 most granular amount.
 
-**Kind**: static method of [<code>Amount</code>](#module_Amount)  
 **Returns**: left + right  
 
 | Param | Description |
@@ -119,7 +113,6 @@ most granular amount.
 Multiplies an amount with a number.
 The resulting amount has the same unit and decimal count as the original amount.
 
-**Kind**: static method of [<code>Amount</code>](#module_Amount)  
 
 | Param | Description |
 | --- | --- |
@@ -132,7 +125,6 @@ The resulting amount has the same unit and decimal count as the original amount.
 Divides an amount with a number.
 The resulting amount has the same unit and decimal count as the original amount.
 
-**Kind**: static method of [<code>Amount</code>](#module_Amount)  
 
 | Param | Description |
 | --- | --- |
@@ -144,7 +136,6 @@ The resulting amount has the same unit and decimal count as the original amount.
 ### Amount.equals(left, right) ⇒ <code>boolean</code>
 Compares to amounts for equality
 
-**Kind**: static method of [<code>Amount</code>](#module_Amount)  
 **Returns**: <code>boolean</code> - True if the amounts are equal, false otherwise.  
 
 | Param | Type | Description |
@@ -157,7 +148,6 @@ Compares to amounts for equality
 ### Amount.lessThan(left, right) ⇒ <code>boolean</code>
 Checks if one Amount is less than another.
 
-**Kind**: static method of [<code>Amount</code>](#module_Amount)  
 **Returns**: <code>boolean</code> - True if the left-hand is less than the right-hand, false otherwise.  
 
 | Param | Type | Description |
@@ -170,7 +160,6 @@ Checks if one Amount is less than another.
 ### Amount.greaterThan(left, right) ⇒ <code>boolean</code>
 Checks if one Amount is greater than another.
 
-**Kind**: static method of [<code>Amount</code>](#module_Amount)  
 **Returns**: <code>boolean</code> - True if the left-hand is less than the right-hand, false otherwise.  
 
 | Param | Type | Description |
@@ -181,7 +170,6 @@ Checks if one Amount is greater than another.
 <a name="module_Amount.roundDown"></a>
 
 ### Amount.roundDown(step, amount)
-**Kind**: static method of [<code>Amount</code>](#module_Amount)  
 
 | Param | Description |
 | --- | --- |
@@ -191,7 +179,6 @@ Checks if one Amount is greater than another.
 <a name="module_Amount.roundUp"></a>
 
 ### Amount.roundUp(step, amount)
-**Kind**: static method of [<code>Amount</code>](#module_Amount)  
 
 | Param | Description |
 | --- | --- |
@@ -203,7 +190,6 @@ Checks if one Amount is greater than another.
 ### Amount.abs(amount)
 Gets the absolute amount (equivalent of Math.Abs())
 
-**Kind**: static method of [<code>Amount</code>](#module_Amount)  
 
 | Param | Description |
 | --- | --- |
@@ -214,7 +200,6 @@ Gets the absolute amount (equivalent of Math.Abs())
 ### Amount.valueAs(toUnit, amount)
 Gets the value of the amount as a number in the specified unit
 
-**Kind**: static method of [<code>Amount</code>](#module_Amount)  
 
 | Param | Description |
 | --- | --- |
@@ -247,13 +232,11 @@ Gets the value of the amount as a number in the specified unit
 ### Unit.One
 Holds the dimensionless unit ONE
 
-**Kind**: static property of [<code>Unit</code>](#module_Unit)  
 <a name="module_Unit.createBase"></a>
 
 ### Unit.createBase(quantity, symbol)
 Creates a base unit having the specified symbol.
 
-**Kind**: static method of [<code>Unit</code>](#module_Unit)  
 
 | Param | Description |
 | --- | --- |
@@ -266,7 +249,6 @@ Creates a base unit having the specified symbol.
 Creates an alternate unit for the specified unit identified by the
 specified symbol.
 
-**Kind**: static method of [<code>Unit</code>](#module_Unit)  
 
 | Param | Description |
 | --- | --- |
@@ -278,7 +260,6 @@ specified symbol.
 ### Unit.times(quantity, left, right) ⇒
 Returns the product of the specified units.
 
-**Kind**: static method of [<code>Unit</code>](#module_Unit)  
 **Returns**: left * right  
 
 | Param | Description |
@@ -292,7 +273,6 @@ Returns the product of the specified units.
 ### Unit.divide(quantity, left, right) ⇒
 Returns the quotient of the specified units.
 
-**Kind**: static method of [<code>Unit</code>](#module_Unit)  
 **Returns**: left / right  
 
 | Param | Description |
@@ -306,7 +286,6 @@ Returns the quotient of the specified units.
 ### Unit.convert(value, fromUnit, toUnit) ⇒
 Converts numeric values from a unit to another unit.
 
-**Kind**: static method of [<code>Unit</code>](#module_Unit)  
 **Returns**: The converted numeric value.  
 
 | Param | Description |
@@ -320,14 +299,12 @@ Converts numeric values from a unit to another unit.
 ### Unit~identityConverter
 Holds the identity converter (unique). This converter does nothing (ONE.convert(x) == x).
 
-**Kind**: inner property of [<code>Unit</code>](#module_Unit)  
 <a name="module_Unit..transform"></a>
 
 ### Unit~transform(operation, unit) ⇒
 Returns the unit derived from the specified unit using the specified converter.
 The converter does not need to be linear.
 
-**Kind**: inner method of [<code>Unit</code>](#module_Unit)  
 **Returns**: The unit after the specified transformation.  
 
 | Param | Description |
@@ -340,7 +317,6 @@ The converter does not need to be linear.
 ### Unit~fromProduct(quantity, leftElems, rightElems)
 Creates the unit defined from the product of the specifed elements.
 
-**Kind**: inner method of [<code>Unit</code>](#module_Unit)  
 
 | Param | Description |
 | --- | --- |
@@ -354,7 +330,6 @@ Creates the unit defined from the product of the specifed elements.
 Creates a compound converter resulting from the combined
 transformation of the specified converters.
 
-**Kind**: inner method of [<code>Unit</code>](#module_Unit)  
 
 | Param | Description |
 | --- | --- |
@@ -368,7 +343,6 @@ Returns the inverse of this converter. If x is a valid
 value, then x == inverse().convert(convert(x)) to within
 the accuracy of computer arithmetic.
 
-**Kind**: inner method of [<code>Unit</code>](#module_Unit)  
 <a name="module_Unit..concatenateConverters"></a>
 
 ### Unit~concatenateConverters(concatConverter, converter) ⇒
@@ -380,7 +354,6 @@ Note: Implementations must ensure that the IDENTITY instance
       is returned if the resulting converter is an identity
       converter.
 
-**Kind**: inner method of [<code>Unit</code>](#module_Unit)  
 **Returns**: The concatenation of this converter with the other converter.  
 
 | Param | Description |
@@ -393,4 +366,3 @@ Note: Implementations must ensure that the IDENTITY instance
 ### Unit~createOne()
 Used solely to create ONE instance.
 
-**Kind**: inner method of [<code>Unit</code>](#module_Unit)  

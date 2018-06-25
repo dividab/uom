@@ -39,7 +39,7 @@
     "precommit": "lint-staged",
     "coverage": "rimraf coverage .nyc_output && nyc yarn test",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
-    "gen-docs": "jsdoc2md lib-esm/amount.js lib-esm/unit.js >docs/api.md",
+    "gen-docs": "jsdoc2md --partial docs/scope.hbs --files lib-esm/amount.js lib-esm/unit.js >docs/api.md",
     "publish-npm": "yarn test && yarn build && yarn publish"
   },
   "lint-staged": {
