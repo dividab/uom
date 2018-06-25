@@ -1,6 +1,8 @@
 {
   "rulesDirectory": ["./node_modules/tslint-immutable/rules"],
   "rules": {
+    // "completed-docs": [true, { "functions": { "visibilities": ["exported"] } }],
+    "jsdoc-format": true,
     "quotemark": false,
     "adjacent-overload-signatures": false,
     "member-access": false,
@@ -78,7 +80,6 @@
     "class-name": true,
     "file-header": [false],
     "interface-name": [false],
-    "jsdoc-format": false,
     "new-parens": true,
     "no-angle-bracket-type-assertion": true,
     "no-consecutive-blank-lines": [false],

@@ -1,3 +1,7 @@
+/**
+ * @module Amount
+ */
+
 import * as Unit from "./unit";
 import * as UnitName from "./unit-name";
 import { Dimensionless, Quantity } from "./quantity";
@@ -36,6 +40,11 @@ export function create<T extends Quantity>(
   return _factory<T>(value, unit, decimalCount);
 }
 
+/**
+ * Returns a string representation of an Amount.
+ * @param amount {Amount} The amount.
+ * @returns {string} String representation of the Amount.
+ */
 export function toString<T extends Quantity>(amount: Amount<T>): string {
   const unitname = UnitName.getName(amount.unit);
   if (unitname.length > 0) {
@@ -44,11 +53,19 @@ export function toString<T extends Quantity>(amount: Amount<T>): string {
   return amount.value.toString();
 }
 
-/** Simulate negation unary operator. */
+/**
+ * Negation unary operator.
+ * @param amount {Amount<T>} The amount.
+ */
 export function neg<T extends Quantity>(amount: Amount<T>): Amount<T> {
   return create<T>(-amount.value, amount.unit);
 }
 
+/**
+ * Determines if an Amount is of a quantity.
+ * @param quantity {Quantity} Quantity to check for.
+ * @param amount {Amount<T>} The amount to check.
+ */
 export function isQuantity<T extends Quantity>(
   quantity: T,
   amount: Amount<T>
@@ -156,16 +173,31 @@ export function divide<T extends Quantity>(
 
 /// Comparsion operators
 
+/**
+ * Compares to amounts for equality
+ * @param left The left-hand Amount.
+ * @param right The right-hand Amount.
+ */
 export const equals = <T extends Quantity>(
   left: Amount<T>,
   right: Amount<T>
 ): boolean => _comparison(left, right, true) === 0;
 
+/**
+ * Checks if one Amount is less than another.
+ * @param left The left-hand Amount.
+ * @param right The right-hand Amount.
+ */
 export const lessThan = <T extends Quantity>(
   left: Amount<T>,
   right: Amount<T>
 ): boolean => _comparison(left, right, false) < 0;
 
+/**
+ * Checks if one Amount is greater than another.
+ * @param left The left-hand Amount.
+ * @param right The right-hand Amount.
+ */
 export const greaterThan = <T extends Quantity>(
   left: Amount<T>,
   right: Amount<T>
@@ -363,6 +395,7 @@ function _comparison<T1 extends Quantity, T2 extends Quantity>(
  * Takes into account both the unit and the decimalCount.
  * @param leftUnit
  * @param rightUnit
+ * @private
  */
 function getMostGranularAmount(
   left: Amount<Quantity>,
@@ -387,6 +420,7 @@ function getMostGranularAmount(
  * @param leftUnit
  * @param rightUnit
  * @returns The most granular unit.
+ * @private
  */
 function getMostGranularUnit(
   leftUnit: Unit.Unit<Quantity>,

@@ -56,6 +56,8 @@ The API is divided into modules, where each module contains functions that opera
 import { Amount } from "uom";
 ```
 
+For full docs, see [amount](docs/amount.md).
+
 ##### Amount.create
 
 ```ts

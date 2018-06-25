@@ -160,7 +160,8 @@ export const Millimeter: Unit.Unit<q.Length> = _register(Milli(Meter), "mm");
  */
 
 /** The derived unit for mass quantities ( <code>g</code> ).
- * The base unit for mass quantity is {@link #Kilogram}. */
+ * The base unit for mass quantity is {@link #Kilogram}.
+ */
 export const Gram: Unit.Unit<q.Mass> = _register(
   Unit.divideNumber(1000.0, Kilogram),
   "g"
