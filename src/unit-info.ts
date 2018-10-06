@@ -1,33 +1,30 @@
 import * as Unit from "./unit";
 import * as Units from "./units";
-import * as Quantity from "./quantity";
 
 export type MeasureSystem = "SI" | "IP";
 
 export interface UnitInfo {
   readonly measureSystem: MeasureSystem | undefined;
   readonly decimalCount: number;
-  readonly coUnit?: Unit.Unit<Quantity.Quantity>;
+  readonly coUnit?: Unit.Unit;
 }
 
 const units: { [key: string]: UnitInfo } = {}; //tslint:disable-line
 
-export function getUnitInfo(
-  unit: Unit.Unit<Quantity.Quantity>
-): UnitInfo | undefined {
+export function getUnitInfo(unit: Unit.Unit): UnitInfo | undefined {
   return units[Units.getStringFromUnit(unit)];
 }
 
 function createUnitInfo(
   measureSystem: MeasureSystem | undefined,
   decimalCount: number,
-  coUnit?: Unit.Unit<Quantity.Quantity>
+  coUnit?: Unit.Unit
 ): UnitInfo {
   return { measureSystem, decimalCount, coUnit };
 }
 
 // The last argument is the corresponding unit which is the closest unit in the other measure system (SI/IP)
-function addUnit<T extends Quantity.Quantity>(
+function addUnit<T extends string>(
   unit: Unit.Unit<T>,
   measureSystem: MeasureSystem | undefined,
   decimalCount: number,

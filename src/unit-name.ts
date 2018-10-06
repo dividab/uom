@@ -1,4 +1,3 @@
-import { Quantity } from "./quantity";
 import * as Unit from "./unit";
 import { exhaustiveCheck } from "./utils/exhaustive-check";
 
@@ -7,14 +6,14 @@ import { exhaustiveCheck } from "./utils/exhaustive-check";
 // const _typeLabels: Map<Unit.Unit<Quantity>, string> = new Map();
 const _typeLabels: { [unit: string]: string } = {}; //tslint:disable-line
 
-export function registerLabel<T extends Quantity>(
+export function registerLabel<T extends string>(
   label: string,
   unit: Unit.Unit<T>
 ): void {
   _typeLabels[JSON.stringify(unit)] = label;
 }
 
-export function getName<T extends Quantity>(unit: Unit.Unit<T>): string {
+export function getName<T extends string>(unit: Unit.Unit<T>): string {
   const label = _typeLabels[JSON.stringify(unit)];
   if (label === undefined) {
     return buildDerivedName(unit);
@@ -22,23 +21,23 @@ export function getName<T extends Quantity>(unit: Unit.Unit<T>): string {
   return label;
 }
 
-function buildDerivedName<T extends Quantity>(unit: Unit.Unit<T>): string {
-  switch (unit.type) {
+function buildDerivedName<T extends string>(unit: Unit.Unit<T>): string {
+  switch (unit.unitInfo.type) {
     case "alternate":
-      return unit.symbol;
+      return unit.unitInfo.symbol;
     case "base":
-      return unit.symbol;
+      return unit.unitInfo.symbol;
     case "product":
       return productUnitBuildDerivedName(unit);
     case "transformed":
       return "";
     default:
-      return exhaustiveCheck(unit, true);
+      return exhaustiveCheck(unit.unitInfo, true);
   }
   // throw new Error(`Unknown innerUnit ${JSON.stringify(unit)}`);
 }
 
-function productUnitBuildDerivedName<T extends Quantity>(
+function productUnitBuildDerivedName<T extends string>(
   unit: Unit.Unit<T>
 ): string {
   const comparePow = (a: Unit.Element, b: Unit.Element) => {
@@ -70,9 +69,9 @@ function productUnitBuildDerivedName<T extends Quantity>(
   return name;
 }
 
-function getElements(unit: Unit.Unit<Quantity>): Array<Unit.Element> {
-  if (unit.type === "product") {
-    return unit.elements;
+function getElements(unit: Unit.Unit): Array<Unit.Element> {
+  if (unit.unitInfo.type === "product") {
+    return unit.unitInfo.elements;
   }
   return [];
 }

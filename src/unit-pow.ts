@@ -1,8 +1,6 @@
 import * as Unit from "./unit";
 import * as q from "./quantity";
 
-export function squareRootPressure(
-  unit: Unit.Unit<q.Pressure>
-): Unit.Unit<q.SquareRootPressure> {
+export function squareRootPressure(unit: q.Pressure): q.SquareRootPressure {
   return Unit.squareRoot("SquareRootPressure", unit);
 }

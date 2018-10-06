@@ -6,9 +6,9 @@ import { closeTo } from "./test-utils";
 test("derived units", t => {
   t.test("Meter times Meter should return unit with 1 element of pow 2", st => {
     const newUnit = Unit.times("Length", Units.Meter, Units.Meter);
-    if (newUnit.type === "product") {
-      st.equal(newUnit.elements.length, 1, "Correct elements length");
-      st.equal(newUnit.elements[0].pow, 2, "Correct pow");
+    if (newUnit.unitInfo.type === "product") {
+      st.equal(newUnit.unitInfo.elements.length, 1, "Correct elements length");
+      st.equal(newUnit.unitInfo.elements[0].pow, 2, "Correct pow");
     } else {
       st.fail("Expected the type of unit to be 'product'");
     }
@@ -16,12 +16,25 @@ test("derived units", t => {
   });
   t.test("CubicMeter by Second should return correct product unit", st => {
     const newUnit = Unit.divide("VolumeFlow", Units.CubicMeter, Units.Second);
-    if (newUnit.type === "product") {
+    if (newUnit.unitInfo.type === "product") {
+      console.log(newUnit.unitInfo.elements);
       st.deepEqual(
-        newUnit.elements,
+        newUnit.unitInfo.elements,
         [
-          { pow: 3, unit: { quantity: "Length", type: "base", symbol: "m" } },
-          { pow: -1, unit: { quantity: "Duration", type: "base", symbol: "s" } }
+          {
+            pow: 3,
+            unit: {
+              quantity: "Length",
+              unitInfo: { quantity: "Length", type: "base", symbol: "m" }
+            }
+          },
+          {
+            pow: -1,
+            unit: {
+              quantity: "Duration",
+              unitInfo: { quantity: "Duration", type: "base", symbol: "s" }
+            }
+          }
         ],
         "Correct elements"
       );
@@ -32,32 +45,47 @@ test("derived units", t => {
   });
   t.test("CubicMeter by Hour should return correct product unit", st => {
     const newUnit = Unit.divide("VolumeFlow", Units.CubicMeter, Units.Hour);
-    if (newUnit.type === "product") {
+    if (newUnit.unitInfo.type === "product") {
       st.deepEqual(
-        newUnit.elements,
+        newUnit.unitInfo.elements,
         [
-          { pow: 3, unit: { quantity: "Length", type: "base", symbol: "m" } },
+          {
+            pow: 3,
+            unit: {
+              quantity: "Length",
+              unitInfo: { quantity: "Length", type: "base", symbol: "m" }
+            }
+          },
           {
             pow: -1,
             unit: {
               quantity: "Duration",
-              type: "transformed",
-              parentUnit: {
+              unitInfo: {
                 quantity: "Duration",
                 type: "transformed",
                 parentUnit: {
                   quantity: "Duration",
-                  type: "base",
-                  symbol: "s"
+                  unitInfo: {
+                    quantity: "Duration",
+                    type: "transformed",
+                    parentUnit: {
+                      quantity: "Duration",
+                      unitInfo: {
+                        quantity: "Duration",
+                        type: "base",
+                        symbol: "s"
+                      }
+                    },
+                    toParentUnitConverter: {
+                      type: "factor",
+                      factor: 60
+                    }
+                  }
                 },
                 toParentUnitConverter: {
                   type: "factor",
                   factor: 60
                 }
-              },
-              toParentUnitConverter: {
-                type: "factor",
-                factor: 60
               }
             }
           }

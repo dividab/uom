@@ -3,6 +3,13 @@ import * as Amount from "../src/amount";
 import * as Units from "../src/units";
 import { closeTo } from "./test-utils";
 
+// TODO: Add typing tests:
+// export const pass: Amount.Amount<"Length"> = Amount.create(
+//   184,
+//   Units.CentiMeter
+// );
+// export const fail: Amount.Amount<"Mass"> = Amount.create(184, Units.CentiMeter);
+
 test("amount_test", t => {
   t.test("should_not_accept_a_string_as_value", st => {
     const a: any = "12.3"; //tslint:disable-line
