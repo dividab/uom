@@ -34,14 +34,14 @@ test("units_test_equals", t => {
     st.end();
   });
   t.test("Product unit should be equal", st => {
-    const unit = Unit.divide("", "Length", Units.Meter, Units.CentiMeter);
-    const unit2 = Unit.divide("", "Length", Units.Meter, Units.CentiMeter);
+    const unit = Unit.divide("u", "Length", Units.Meter, Units.CentiMeter);
+    const unit2 = Unit.divide("u", "Length", Units.Meter, Units.CentiMeter);
     st.true(Unit.equals(unit, unit2));
     st.end();
   });
   t.test("Product unit should not be equal", st => {
-    const unit = Unit.divide("", "Length", Units.Meter, Units.CentiMeter);
-    const unit2 = Unit.divide("", "Length", Units.Meter, Units.Millimeter);
+    const unit = Unit.divide("u1", "Length", Units.Meter, Units.CentiMeter);
+    const unit2 = Unit.divide("u2", "Length", Units.Meter, Units.Millimeter);
     st.false(Unit.equals(unit, unit2));
     st.end();
   });

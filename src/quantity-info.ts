@@ -1,14 +1,15 @@
 import * as Unit from "./unit";
 import * as Units from "./units";
+import { Quantity } from "./quantity";
 
 export interface QuantityInfo {
-  readonly siUnit: Unit.Unit;
-  readonly ipUnit: Unit.Unit;
+  readonly siUnit: Unit.Unit<Quantity>;
+  readonly ipUnit: Unit.Unit<Quantity>;
 }
 
 const quantityInfo: { [key: string]: QuantityInfo } = {}; //tslint:disable-line
 
-export function getQuantityInfo(quantity: string): QuantityInfo | undefined {
+export function getQuantityInfo(quantity: Quantity): QuantityInfo | undefined {
   return quantityInfo[quantity];
 }
 
@@ -20,9 +21,9 @@ export function getQuantityInfo(quantity: string): QuantityInfo | undefined {
 // }
 
 export function addQuantity(
-  quantity: string,
-  siUnit: Unit.Unit,
-  ipUnit: Unit.Unit
+  quantity: Quantity,
+  siUnit: Unit.Unit<Quantity>,
+  ipUnit: Unit.Unit<Quantity>
 ): void {
   quantityInfo[quantity] = { siUnit, ipUnit };
 }

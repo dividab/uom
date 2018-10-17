@@ -6,7 +6,7 @@ import * as Unit from "./unit";
 import * as UnitName from "./unit-name";
 import * as Units from "./units";
 import * as CompareUtils from "./utils/compare-utils";
-import { Quantity } from "./quantity";
+import { Quantity, Dimensionless } from "./quantity";
 
 export interface Amount<T extends Quantity> {
   readonly value: number;
@@ -129,7 +129,7 @@ export function minus<T1 extends Quantity, T2 extends T1>(
  */
 export function times<T extends Quantity>(
   left: Amount<T>,
-  right: number | Amount<"Dimensionless">
+  right: number | Amount<Dimensionless>
 ): Amount<T> {
   if (typeof right === "number") {
     return _factory<T>(left.value * right, left.unit, left.decimalCount);
@@ -154,7 +154,7 @@ export function times<T extends Quantity>(
  */
 export function divide<T extends Quantity>(
   left: Amount<T>,
-  right: number | Amount<"Dimensionless">
+  right: number | Amount<Dimensionless>
 ): Amount<T> {
   if (typeof right === "number") {
     return _factory<T>(left.value / right, left.unit, left.decimalCount);

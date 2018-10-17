@@ -7,12 +7,12 @@ export type MeasureSystem = "SI" | "IP";
 export interface UnitInfo {
   readonly measureSystem: MeasureSystem | undefined;
   readonly decimalCount: number;
-  readonly coUnit?: Unit.Unit;
+  readonly coUnit?: Unit.Unit<Quantity>;
 }
 
 const units: { [key: string]: UnitInfo } = {}; //tslint:disable-line
 
-export function getUnitInfo(unit: Unit.Unit): UnitInfo | undefined {
+export function getUnitInfo(unit: Unit.Unit<Quantity>): UnitInfo | undefined {
   return units[Units.getStringFromUnit(unit)];
 }
 
