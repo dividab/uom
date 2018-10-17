@@ -4,9 +4,9 @@
 
 import * as Unit from "./unit";
 import * as UnitName from "./unit-name";
-import { Dimensionless, Quantity } from "./quantity";
 import * as Units from "./units";
 import * as CompareUtils from "./utils/compare-utils";
+import { Quantity } from "./quantity";
 
 export interface Amount<T extends Quantity> {
   readonly value: number;
@@ -85,12 +85,12 @@ export function isQuantity<T extends Quantity>(
  * @param right The right-hand
  * @returns left + right
  */
-export function plus<T extends Quantity>(
-  left: Amount<T>,
-  right: Amount<T>
-): Amount<T> {
+export function plus<T1 extends Quantity, T2 extends T1>(
+  left: Amount<T1>,
+  right: Amount<T2>
+): Amount<T1> {
   const mostGranularAmount = getMostGranularAmount(left, right);
-  return _factory<T>(
+  return _factory<T1>(
     valueAs(mostGranularAmount.unit, left) +
       valueAs(mostGranularAmount.unit, right),
     mostGranularAmount.unit,
@@ -108,12 +108,12 @@ export function plus<T extends Quantity>(
  * @param right The right-hand
  * @returns left + right
  */
-export function minus<T extends Quantity>(
-  left: Amount<T>,
-  right: Amount<T>
-): Amount<T> {
+export function minus<T1 extends Quantity, T2 extends T1>(
+  left: Amount<T1>,
+  right: Amount<T2>
+): Amount<T1> {
   const mostGranularAmount = getMostGranularAmount(left, right);
-  return _factory<T>(
+  return _factory<T1>(
     valueAs(mostGranularAmount.unit, left) -
       valueAs(mostGranularAmount.unit, right),
     mostGranularAmount.unit,
@@ -129,7 +129,7 @@ export function minus<T extends Quantity>(
  */
 export function times<T extends Quantity>(
   left: Amount<T>,
-  right: number | Amount<Dimensionless>
+  right: number | Amount<"Dimensionless">
 ): Amount<T> {
   if (typeof right === "number") {
     return _factory<T>(left.value * right, left.unit, left.decimalCount);
@@ -154,7 +154,7 @@ export function times<T extends Quantity>(
  */
 export function divide<T extends Quantity>(
   left: Amount<T>,
-  right: number | Amount<Dimensionless>
+  right: number | Amount<"Dimensionless">
 ): Amount<T> {
   if (typeof right === "number") {
     return _factory<T>(left.value / right, left.unit, left.decimalCount);
@@ -179,9 +179,9 @@ export function divide<T extends Quantity>(
  * @param right {Amount} The right-hand Amount.
  * @returns {boolean} True if the amounts are equal, false otherwise.
  */
-export function equals<T extends Quantity>(
-  left: Amount<T>,
-  right: Amount<T>
+export function equals<T1 extends Quantity, T2 extends T1>(
+  left: Amount<T1>,
+  right: Amount<T2>
 ): boolean {
   return _comparison(left, right, true) === 0;
 }
@@ -192,9 +192,9 @@ export function equals<T extends Quantity>(
  * @param right {Amount} The right-hand Amount.
  * @returns {boolean} True if the left-hand is less than the right-hand, false otherwise.
  */
-export function lessThan<T extends Quantity>(
-  left: Amount<T>,
-  right: Amount<T>
+export function lessThan<T1 extends Quantity, T2 extends T1>(
+  left: Amount<T1>,
+  right: Amount<T2>
 ): boolean {
   return _comparison(left, right, false) < 0;
 }
@@ -205,35 +205,35 @@ export function lessThan<T extends Quantity>(
  * @param right {Amount} The right-hand Amount.
  * @returns {boolean} True if the left-hand is less than the right-hand, false otherwise.
  */
-export function greaterThan<T extends Quantity>(
-  left: Amount<T>,
-  right: Amount<T>
+export function greaterThan<T1 extends Quantity, T2 extends T1>(
+  left: Amount<T1>,
+  right: Amount<T2>
 ): boolean {
   return _comparison(left, right, false) > 0;
 }
 
-export const lessOrEqualTo = <T extends Quantity>(
-  left: Amount<T>,
-  right: Amount<T>
+export const lessOrEqualTo = <T1 extends Quantity, T2 extends T1>(
+  left: Amount<T1>,
+  right: Amount<T2>
 ): boolean => _comparison(left, right, false) <= 0;
 
-export const greaterOrEqualTo = <T extends Quantity>(
-  left: Amount<T>,
-  right: Amount<T>
+export const greaterOrEqualTo = <T1 extends Quantity, T2 extends T1>(
+  left: Amount<T1>,
+  right: Amount<T2>
 ): boolean => _comparison(left, right, false) >= 0;
 
-export function clamp<T extends Quantity>(
-  minAmount: Amount<T>,
-  maxAmount: Amount<T>,
-  amount: Amount<T>
-): Amount<T> {
+export function clamp<T1 extends Quantity, T2 extends T1>(
+  minAmount: Amount<T1>,
+  maxAmount: Amount<T1>,
+  amount: Amount<T2>
+): Amount<T1> {
   return min(maxAmount, max(minAmount, amount));
 }
 
-export function max<T extends Quantity>(
-  a1: Amount<T>,
-  a2: Amount<T>
-): Amount<T> {
+export function max<T1 extends Quantity, T2 extends T1>(
+  a1: Amount<T1>,
+  a2: Amount<T2>
+): Amount<T1> {
   if (!a2) {
     return a1;
   }
@@ -243,10 +243,10 @@ export function max<T extends Quantity>(
   return greaterThan(a1, a2) ? a1 : a2;
 }
 
-export function min<T extends Quantity>(
-  a1: Amount<T>,
-  a2: Amount<T>
-): Amount<T> {
+export function min<T1 extends Quantity, T2 extends T1>(
+  a1: Amount<T1>,
+  a2: Amount<T2>
+): Amount<T1> {
   if (!a2) {
     return a1;
   }
@@ -260,12 +260,12 @@ export function min<T extends Quantity>(
  * @param step Rounding step, for example 5.0 Celsius will round 23 to 20.
  * @param amount  Amount to round.
  */
-export function roundDown<T extends Quantity>(
-  step: Amount<T>,
-  amount: Amount<T>
-): Amount<T> {
+export function roundDown<T1 extends Quantity, T2 extends T1>(
+  step: Amount<T1>,
+  amount: Amount<T2>
+): Amount<T1> {
   const div = amount.value / step.value;
-  return _factory<T>(
+  return _factory<T1>(
     Math.floor(div) * step.value,
     amount.unit,
     step.decimalCount
@@ -276,21 +276,21 @@ export function roundDown<T extends Quantity>(
  * @param step Rounding step, for example 5.0 Celsius will round 23 to 25.
  * @param amount  Amount to round.
  */
-export function roundUp<T extends Quantity>(
-  step: Amount<T>,
-  amount: Amount<T>
-): Amount<T> {
+export function roundUp<T1 extends Quantity, T2 extends T1>(
+  step: Amount<T1>,
+  amount: Amount<T2>
+): Amount<T1> {
   const div = amount.value / step.value;
-  return _factory<T>(
+  return _factory<T1>(
     Math.ceil(div) * step.value,
     amount.unit,
     step.decimalCount
   );
 }
 
-export function compareTo<T extends Quantity>(
-  left: Amount<T>,
-  right: Amount<T>
+export function compareTo<T1 extends Quantity, T2 extends T1>(
+  left: Amount<T1>,
+  right: Amount<T2>
 ): number {
   return _comparison(left, right, true);
 }
@@ -308,9 +308,9 @@ export function abs<T extends Quantity>(amount: Amount<T>): Amount<T> {
  * @param toUnit The unit to get the amount in.
  * @param amount The amount to get the value from.
  */
-export function valueAs(
-  toUnit: Unit.Unit<Quantity>,
-  amount: Amount<Quantity>
+export function valueAs<T1 extends Quantity, T2 extends T1>(
+  toUnit: Unit.Unit<T1>,
+  amount: Amount<T2>
 ): number {
   if (Unit.equals(amount.unit, toUnit)) {
     return amount.value;
@@ -344,9 +344,9 @@ function _factory<T extends Quantity>(
   };
 }
 
-function _comparison<T1 extends Quantity, T2 extends Quantity>(
-  left: Amount<T1>,
-  right: Amount<T2>,
+function _comparison<T extends Quantity>(
+  left: Amount<T>,
+  right: Amount<T>,
   allowNullOrUndefined: boolean
 ): number {
   if (!allowNullOrUndefined) {
@@ -406,10 +406,10 @@ function _comparison<T1 extends Quantity, T2 extends Quantity>(
  * @param rightUnit
  * @private
  */
-function getMostGranularAmount(
-  left: Amount<Quantity>,
-  right: Amount<Quantity>
-): Amount<Quantity> {
+function getMostGranularAmount<T extends Quantity>(
+  left: Amount<T>,
+  right: Amount<T>
+): Amount<T> {
   const rightSmallest = create(Math.pow(10, -right.decimalCount), right.unit);
   const rightSmallestInLeftUnit = valueAs(left.unit, rightSmallest);
   const leftSmallestInLeftUnit = Math.pow(10, -left.decimalCount);
@@ -431,10 +431,10 @@ function getMostGranularAmount(
  * @returns The most granular unit.
  * @private
  */
-function getMostGranularUnit(
-  leftUnit: Unit.Unit<Quantity>,
-  rightUnit: Unit.Unit<Quantity>
-): Unit.Unit<Quantity> {
+function getMostGranularUnit<T extends Quantity>(
+  leftUnit: Unit.Unit<T>,
+  rightUnit: Unit.Unit<T>
+): Unit.Unit<T> {
   const rightDelta = valueAs(
     leftUnit,
     minus(create(2, rightUnit), create(1, rightUnit))

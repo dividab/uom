@@ -1,7 +1,7 @@
-import { Quantity } from "../../src/quantity";
 import * as Unit from "../../src/unit";
+import { Quantity } from "../../src/quantity";
 
-export interface ConversionTest<TQuantity extends Quantity> {
+export interface ConversionTest<TQuantity extends Quantity = Quantity> {
   readonly name: string;
   readonly only?: boolean;
   readonly skip?: boolean;
