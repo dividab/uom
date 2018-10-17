@@ -1,5 +1,6 @@
 import * as Unit from "./unit";
 import * as Units from "./units";
+import { Quantity } from "./quantity";
 
 export type MeasureSystem = "SI" | "IP";
 
@@ -16,7 +17,7 @@ export function getUnitInfo(unit: Unit.Unit): UnitInfo | undefined {
 }
 
 // The last argument is the corresponding unit which is the closest unit in the other measure system (SI/IP)
-export function addUnit<T extends string>(
+export function addUnit<T extends Quantity>(
   unit: Unit.Unit<T>,
   measureSystem: MeasureSystem | undefined,
   decimalCount: number,

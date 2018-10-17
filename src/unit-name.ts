@@ -1,19 +1,20 @@
 import * as Unit from "./unit";
 import { exhaustiveCheck } from "./utils/exhaustive-check";
+import { Quantity } from "./quantity";
 
 // We keep a global repository of Labels becasue if a Unit object is derived from arithmetic operations
 // it may still be considered equal to an existing unit and thus should have the same label.
 // const _typeLabels: Map<Unit.Unit<Quantity>, string> = new Map();
 const _typeLabels: { [unit: string]: string } = {}; //tslint:disable-line
 
-export function registerLabel<T extends string>(
+export function registerLabel<T extends Quantity>(
   label: string,
   unit: Unit.Unit<T>
 ): void {
   _typeLabels[unit.name] = label;
 }
 
-export function getName<T extends string>(unit: Unit.Unit<T>): string {
+export function getName<T extends Quantity>(unit: Unit.Unit<T>): string {
   const label = _typeLabels[unit.name];
   if (label === undefined) {
     return buildDerivedName(unit);
@@ -21,7 +22,7 @@ export function getName<T extends string>(unit: Unit.Unit<T>): string {
   return label;
 }
 
-function buildDerivedName<T extends string>(unit: Unit.Unit<T>): string {
+function buildDerivedName<T extends Quantity>(unit: Unit.Unit<T>): string {
   switch (unit.unitInfo.type) {
     case "alternate":
       return unit.unitInfo.symbol;
@@ -37,7 +38,7 @@ function buildDerivedName<T extends string>(unit: Unit.Unit<T>): string {
   // throw new Error(`Unknown innerUnit ${JSON.stringify(unit)}`);
 }
 
-function productUnitBuildDerivedName<T extends string>(
+function productUnitBuildDerivedName<T extends Quantity>(
   unit: Unit.Unit<T>
 ): string {
   const comparePow = (a: Unit.Element, b: Unit.Element) => {
