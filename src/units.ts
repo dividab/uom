@@ -3,6 +3,7 @@ import * as UnitName from "./unit-name";
 import * as UnitDivide from "./unit-divide";
 import * as UnitTimes from "./unit-times";
 import * as q from "./quantity";
+import { Quantity } from "./quantity";
 // import * as UnitPow from "./unit-pow";
 
 // tslint:disable variable-name max-line-length max-file-line-count
@@ -479,11 +480,11 @@ export const Katal = registerUnit(
 /// SI PREFIXES //
 /////////////////
 
-function Giga<T extends string>(name: string, u: Unit.Unit<T>): Unit.Unit<T> {
+function Giga<T extends Quantity>(name: string, u: Unit.Unit<T>): Unit.Unit<T> {
   return Unit.timesNumber(name, Math.pow(10, 9), u);
 }
 
-function Mega<T extends string>(name: string, u: Unit.Unit<T>): Unit.Unit<T> {
+function Mega<T extends Quantity>(name: string, u: Unit.Unit<T>): Unit.Unit<T> {
   return Unit.timesNumber(name, Math.pow(10, 6), u);
 }
 
@@ -492,7 +493,7 @@ function Mega<T extends string>(name: string, u: Unit.Unit<T>): Unit.Unit<T> {
  * @param unit Any unit.
  * @returns <code>unit.multiply(1e3)</code> .
  */
-function Kilo<T extends string>(
+function Kilo<T extends Quantity>(
   name: string,
   unit: Unit.Unit<T>
 ): Unit.Unit<T> {
@@ -504,7 +505,7 @@ function Kilo<T extends string>(
  * @param unit any unit.
  * @returns <code>unit.multiply(1e2)</code> .
  */
-function Hecto<T extends string>(
+function Hecto<T extends Quantity>(
   name: string,
   unit: Unit.Unit<T>
 ): Unit.Unit<T> {
@@ -516,7 +517,7 @@ function Hecto<T extends string>(
  * @param unit any unit.
  * @return <code>unit.multiply(1e-1)</code>.
  */
-function Deci<T extends string>(
+function Deci<T extends Quantity>(
   name: string,
   unit: Unit.Unit<T>
 ): Unit.Unit<T> {
@@ -528,7 +529,7 @@ function Deci<T extends string>(
  * @param unit any unit.
  * @returns <code>unit.multiply(1e-2)</code> .
  */
-function Centi<T extends string>(
+function Centi<T extends Quantity>(
   name: string,
   unit: Unit.Unit<T>
 ): Unit.Unit<T> {
@@ -539,14 +540,14 @@ function Centi<T extends string>(
  * Returns the specified unit multiplied by the factor <code>10<sup>-3</sup></code>.
  * @param unit any unit. @return <code>unit.multiply(1e-3)</code> .
  */
-function Milli<T extends string>(
+function Milli<T extends Quantity>(
   name: string,
   unit: Unit.Unit<T>
 ): Unit.Unit<T> {
   return Unit.timesNumber(name, Math.pow(10, -3), unit);
 }
 
-function Si<T extends string>(toAdd: Unit.Unit<T>): Unit.Unit<T> {
+function Si<T extends Quantity>(toAdd: Unit.Unit<T>): Unit.Unit<T> {
   // TODO
   return toAdd;
 }
@@ -1429,10 +1430,10 @@ export function isUnit(unit: string): boolean {
   return _stringToUnit[unit.trim().toLowerCase()] !== undefined;
 }
 
-export function getUnitFromString(
+export function getUnitFromString<T extends Quantity>(
   unitString: string,
-  onError?: (unitString: string) => Unit.Unit
-): Unit.Unit {
+  onError?: (unitString: string) => Unit.Unit<T>
+): Unit.Unit<T> {
   const unit = _stringToUnit[unitString.trim().toLowerCase()];
   if (unit === undefined) {
     if (!onError) {
@@ -1441,7 +1442,7 @@ export function getUnitFromString(
       return onError(unitString);
     }
   }
-  return unit;
+  return unit as Unit.Unit<T>;
 }
 
 export function getStringFromUnit(unit: Unit.Unit): string {
@@ -1477,7 +1478,7 @@ export function getAllQuantities(): Array<string> {
   return quantityArray;
 }
 
-export function registerUnit<T extends string>(
+export function registerUnit<T extends Quantity>(
   unit: Unit.Unit<T>,
   label?: string
 ): Unit.Unit<T> {
