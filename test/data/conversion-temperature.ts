@@ -2,9 +2,8 @@
 
 import { ConversionTest } from "./conversion-test";
 import * as Units from "../../src/units";
-import { Temperature } from "../../src/quantity";
 
-export const tests: ReadonlyArray<ConversionTest<Temperature>> = [
+export const tests: ReadonlyArray<ConversionTest> = [
   {
     name: "0Celsius_273_15Kelvin",
     fromUnit: Units.Celsius,

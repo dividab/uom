@@ -1,8 +1,7 @@
 import { ConversionTest } from "./conversion-test";
 import * as Units from "../../src/units";
-import { Duration } from "../../src/quantity";
 
-export const tests: ReadonlyArray<ConversionTest<Duration>> = [
+export const tests: ReadonlyArray<ConversionTest> = [
   {
     name: "0Seconds_0Minutes",
     fromUnit: Units.Second,

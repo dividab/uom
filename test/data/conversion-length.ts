@@ -2,9 +2,8 @@
 
 import { ConversionTest } from "./conversion-test";
 import * as Units from "../../src/units";
-import { Length } from "../../src/quantity";
 
-export const tests: ReadonlyArray<ConversionTest<Length>> = [
+export const tests: ReadonlyArray<ConversionTest> = [
   {
     name: "0centimeters_0centimeters",
     fromUnit: Units.CentiMeter,

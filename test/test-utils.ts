@@ -1,17 +1,13 @@
 import * as test from "tape";
-
-export interface UtilsTest {
-  readonly only?: boolean;
-  readonly skip?: boolean;
-}
+import { ConversionTest } from "./data/conversion-test";
 
 /**
  * Helper function to enable only one test to be run
  * in an array of test data
  */
-export function onlySkip<T extends UtilsTest>(
-  tests: ReadonlyArray<T>
-): ReadonlyArray<T> {
+export function onlySkip(
+  tests: ReadonlyArray<ConversionTest>
+): ReadonlyArray<ConversionTest> {
   const skips = tests.filter(t => !!!t.skip);
   const onlys = skips.filter(t => t.only === true);
   if (onlys.length > 0) {

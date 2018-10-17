@@ -15,26 +15,18 @@ export function getUnitInfo(unit: Unit.Unit): UnitInfo | undefined {
   return units[Units.getStringFromUnit(unit)];
 }
 
-function createUnitInfo(
-  measureSystem: MeasureSystem | undefined,
-  decimalCount: number,
-  coUnit?: Unit.Unit
-): UnitInfo {
-  return { measureSystem, decimalCount, coUnit };
-}
-
 // The last argument is the corresponding unit which is the closest unit in the other measure system (SI/IP)
-function addUnit<T extends string>(
+export function addUnit<T extends string>(
   unit: Unit.Unit<T>,
   measureSystem: MeasureSystem | undefined,
   decimalCount: number,
   coUnit?: Unit.Unit<T>
 ): void {
-  units[Units.getStringFromUnit(unit)] = createUnitInfo(
+  units[Units.getStringFromUnit(unit)] = {
     measureSystem,
     decimalCount,
     coUnit
-  );
+  };
 }
 
 addUnit(Units.Ampere, "SI", 2);

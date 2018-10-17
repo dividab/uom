@@ -1,8 +1,7 @@
 import { ConversionTest } from "./conversion-test";
 import * as Units from "../../src/units";
-import { VolumeFlow } from "../../src/quantity";
 
-export const tests: ReadonlyArray<ConversionTest<VolumeFlow>> = [
+export const tests: ReadonlyArray<ConversionTest> = [
   {
     name: "0CubicMeterPerSecond_0CubicMeterPerHour",
     fromUnit: Units.CubicMeterPerSecond,

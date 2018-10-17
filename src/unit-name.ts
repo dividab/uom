@@ -10,11 +10,11 @@ export function registerLabel<T extends string>(
   label: string,
   unit: Unit.Unit<T>
 ): void {
-  _typeLabels[JSON.stringify(unit)] = label;
+  _typeLabels[unit.name] = label;
 }
 
 export function getName<T extends string>(unit: Unit.Unit<T>): string {
-  const label = _typeLabels[JSON.stringify(unit)];
+  const label = _typeLabels[unit.name];
   if (label === undefined) {
     return buildDerivedName(unit);
   }

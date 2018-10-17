@@ -2,225 +2,281 @@ import * as Unit from "./unit";
 import * as q from "./quantity";
 
 export function volumeByDuration(
-  left: q.Volume,
-  right: q.Duration
-): q.VolumeFlow {
-  return Unit.divide("VolumeFlow", left, right);
+  name: string,
+  left: Unit.Unit<q.Volume>,
+  right: Unit.Unit<q.Duration>
+): Unit.Unit<q.VolumeFlow> {
+  return Unit.divide(name, "VolumeFlow", left, right);
 }
 
 export function volumeFlowBySquareRootPressure(
-  left: q.VolumeFlow,
-  right: q.SquareRootPressure
-): q.VolumeFlowPerSquareRootPressure {
-  return Unit.divide("VolumeFlowPerSquareRootPressure", left, right);
+  name: string,
+  left: Unit.Unit<q.VolumeFlow>,
+  right: Unit.Unit<q.SquareRootPressure>
+): Unit.Unit<q.VolumeFlowPerSquareRootPressure> {
+  return Unit.divide(name, "VolumeFlowPerSquareRootPressure", left, right);
 }
 
 export function lengthByDuration(
-  left: q.Length,
-  right: q.Duration
-): q.Velocity {
-  return Unit.divide("Velocity", left, right);
+  name: string,
+  left: Unit.Unit<q.Length>,
+  right: Unit.Unit<q.Duration>
+): Unit.Unit<q.Velocity> {
+  return Unit.divide(name, "Velocity", left, right);
 }
 
 export function velocityBySecond(
-  left: q.Velocity,
-  right: q.Duration
-): q.Acceleration {
-  return Unit.divide("Acceleration", left, right);
+  name: string,
+  left: Unit.Unit<q.Velocity>,
+  right: Unit.Unit<q.Duration>
+): Unit.Unit<q.Acceleration> {
+  return Unit.divide(name, "Acceleration", left, right);
 }
 
 export function amountOfSubstanceByDuration(
-  left: q.AmountOfSubstance,
-  right: q.Duration
-): q.CatalyticActivity {
-  return Unit.divide("CatalyticActivity", left, right);
+  name: string,
+  left: Unit.Unit<q.AmountOfSubstance>,
+  right: Unit.Unit<q.Duration>
+): Unit.Unit<q.CatalyticActivity> {
+  return Unit.divide(name, "CatalyticActivity", left, right);
 }
 
-export function massByVolume(left: q.Mass, right: q.Volume): q.Density {
-  return Unit.divide("Density", left, right);
+export function massByVolume(
+  name: string,
+  left: Unit.Unit<q.Mass>,
+  right: Unit.Unit<q.Volume>
+): Unit.Unit<q.Density> {
+  return Unit.divide(name, "Density", left, right);
 }
 
 export function electricChargeByElectricPotential(
-  left: q.ElectricCharge,
-  right: q.ElectricPotential
-): q.ElectricCapacitance {
-  return Unit.divide("ElectricCapacitance", left, right);
+  name: string,
+  left: Unit.Unit<q.ElectricCharge>,
+  right: Unit.Unit<q.ElectricPotential>
+): Unit.Unit<q.ElectricCapacitance> {
+  return Unit.divide(name, "ElectricCapacitance", left, right);
 }
 
-export function energyByDuration(left: q.Energy, right: q.Duration): q.Power {
-  return Unit.divide("Power", left, right);
+export function energyByDuration(
+  name: string,
+  left: Unit.Unit<q.Energy>,
+  right: Unit.Unit<q.Duration>
+): Unit.Unit<q.Power> {
+  return Unit.divide(name, "Power", left, right);
 }
 
 export function powerByElectricalCurrent(
-  left: q.Power,
-  right: q.ElectricCurrent
-): q.ElectricPotential {
-  return Unit.divide("ElectricPotential", left, right);
+  name: string,
+  left: Unit.Unit<q.Power>,
+  right: Unit.Unit<q.ElectricCurrent>
+): Unit.Unit<q.ElectricPotential> {
+  return Unit.divide(name, "ElectricPotential", left, right);
 }
 
 export function electricalCurrentByElectricalPotential(
-  left: q.ElectricCurrent,
-  right: q.ElectricPotential
-): q.ElectricConductance {
-  return Unit.divide("ElectricConductance", left, right);
+  name: string,
+  left: Unit.Unit<q.ElectricCurrent>,
+  right: Unit.Unit<q.ElectricPotential>
+): Unit.Unit<q.ElectricConductance> {
+  return Unit.divide(name, "ElectricConductance", left, right);
 }
 
 export function magneticFluxByElectricalCurrent(
-  left: q.MagneticFlux,
-  right: q.ElectricCurrent
-): q.ElectricInductance {
-  return Unit.divide("ElectricInductance", left, right);
+  name: string,
+  left: Unit.Unit<q.MagneticFlux>,
+  right: Unit.Unit<q.ElectricCurrent>
+): Unit.Unit<q.ElectricInductance> {
+  return Unit.divide(name, "ElectricInductance", left, right);
 }
 
 export function electricalPotentialByElectricalCurrent(
-  left: q.ElectricPotential,
-  right: q.ElectricCurrent
-): q.ElectricResistance {
-  return Unit.divide("ElectricResistance", left, right);
+  name: string,
+  left: Unit.Unit<q.ElectricPotential>,
+  right: Unit.Unit<q.ElectricCurrent>
+): Unit.Unit<q.ElectricResistance> {
+  return Unit.divide(name, "ElectricResistance", left, right);
 }
 
 export function dimentionlessByDuration(
-  left: q.Dimensionless,
-  right: q.Duration
-): q.Frequency {
-  return Unit.divide("Frequency", left, right);
+  name: string,
+  left: Unit.Unit<q.Dimensionless>,
+  right: Unit.Unit<q.Duration>
+): Unit.Unit<q.Frequency> {
+  return Unit.divide(name, "Frequency", left, right);
 }
 
 export function luminousFluxByArea(
-  left: q.LuminousFlux,
-  right: q.Area
-): q.Illuminance {
-  return Unit.divide("Illuminance", left, right);
+  name: string,
+  left: Unit.Unit<q.LuminousFlux>,
+  right: Unit.Unit<q.Area>
+): Unit.Unit<q.Illuminance> {
+  return Unit.divide(name, "Illuminance", left, right);
 }
 
 export function magneticFluxByArea(
-  left: q.MagneticFlux,
-  right: q.Area
-): q.MagneticFluxDensity {
-  return Unit.divide("MagneticFluxDensity", left, right);
+  name: string,
+  left: Unit.Unit<q.MagneticFlux>,
+  right: Unit.Unit<q.Area>
+): Unit.Unit<q.MagneticFluxDensity> {
+  return Unit.divide(name, "MagneticFluxDensity", left, right);
 }
 
-export function massByDuration(left: q.Mass, right: q.Duration): q.MassFlow {
-  return Unit.divide("MassFlow", left, right);
+export function massByDuration(
+  name: string,
+  left: Unit.Unit<q.Mass>,
+  right: Unit.Unit<q.Duration>
+): Unit.Unit<q.MassFlow> {
+  return Unit.divide(name, "MassFlow", left, right);
 }
 
-export function forceByArea(left: q.Force, right: q.Area): q.Pressure {
-  return Unit.divide("Pressure", left, right);
+export function forceByArea(
+  name: string,
+  left: Unit.Unit<q.Force>,
+  right: Unit.Unit<q.Area>
+): Unit.Unit<q.Pressure> {
+  return Unit.divide(name, "Pressure", left, right);
 }
 
 export function energyByMass(
-  left: q.Energy,
-  right: q.Mass
-): q.SpecificEnthalpy {
-  return Unit.divide("SpecificEnthalpy", left, right);
+  name: string,
+  left: Unit.Unit<q.Energy>,
+  right: Unit.Unit<q.Mass>
+): Unit.Unit<q.SpecificEnthalpy> {
+  return Unit.divide(name, "SpecificEnthalpy", left, right);
 }
 
 export function powerByVolumeFlow(
-  left: q.Power,
-  right: q.VolumeFlow
-): q.SpecificFanPower {
-  return Unit.divide("SpecificFanPower", left, right);
+  name: string,
+  left: Unit.Unit<q.Power>,
+  right: Unit.Unit<q.VolumeFlow>
+): Unit.Unit<q.SpecificFanPower> {
+  return Unit.divide(name, "SpecificFanPower", left, right);
 }
 
 export function powerByTemperature(
-  left: q.Power,
-  right: q.Temperature
-): q.HeatCapacityRate {
-  return Unit.divide("HeatCapacityRate", left, right);
+  name: string,
+  left: Unit.Unit<q.Power>,
+  right: Unit.Unit<q.Temperature>
+): Unit.Unit<q.HeatCapacityRate> {
+  return Unit.divide(name, "HeatCapacityRate", left, right);
 }
 
-export function massByMass(left: q.Mass, right: q.Mass): q.HumidityRatio {
-  return Unit.divide("HumidityRatio", left, right);
+export function massByMass(
+  name: string,
+  left: Unit.Unit<q.Mass>,
+  right: Unit.Unit<q.Mass>
+): Unit.Unit<q.HumidityRatio> {
+  return Unit.divide(name, "HumidityRatio", left, right);
 }
 
 export function dimensionlessByVolume(
-  left: q.Dimensionless,
-  right: q.Volume
-): q.DimensionlessPerVolume {
-  return Unit.divide("DimensionlessPerVolume", left, right);
+  name: string,
+  left: Unit.Unit<q.Dimensionless>,
+  right: Unit.Unit<q.Volume>
+): Unit.Unit<q.DimensionlessPerVolume> {
+  return Unit.divide(name, "DimensionlessPerVolume", left, right);
 }
 
 export function dimensionlessByEnergy(
-  left: q.Dimensionless,
-  right: q.Energy
-): q.DimensionlessPerEnergy {
-  return Unit.divide("DimensionlessPerEnergy", left, right);
+  name: string,
+  left: Unit.Unit<q.Dimensionless>,
+  right: Unit.Unit<q.Energy>
+): Unit.Unit<q.DimensionlessPerEnergy> {
+  return Unit.divide(name, "DimensionlessPerEnergy", left, right);
 }
 
 export function dimensionlessByDuration(
-  left: q.Dimensionless,
-  right: q.Duration
-): q.DimensionlessPerDuration {
-  return Unit.divide("DimensionlessPerDuration", left, right);
+  name: string,
+  left: Unit.Unit<q.Dimensionless>,
+  right: Unit.Unit<q.Duration>
+): Unit.Unit<q.DimensionlessPerDuration> {
+  return Unit.divide(name, "DimensionlessPerDuration", left, right);
 }
 
-export function powerByArea(left: q.Power, right: q.Area): q.Intensity {
-  return Unit.divide("Intensity", left, right);
+export function powerByArea(
+  name: string,
+  left: Unit.Unit<q.Power>,
+  right: Unit.Unit<q.Area>
+): Unit.Unit<q.Intensity> {
+  return Unit.divide(name, "Intensity", left, right);
 }
 
 export function volumeByEnergy(
-  left: q.Volume,
-  right: q.Energy
-): q.WaterUseEfficiency {
-  return Unit.divide("WaterUseEfficiency", left, right);
+  name: string,
+  left: Unit.Unit<q.Volume>,
+  right: Unit.Unit<q.Energy>
+): Unit.Unit<q.WaterUseEfficiency> {
+  return Unit.divide(name, "WaterUseEfficiency", left, right);
 }
 
-export function massByEnergy(left: q.Mass, right: q.Energy): q.Emission {
-  return Unit.divide("Emission", left, right);
+export function massByEnergy(
+  name: string,
+  left: Unit.Unit<q.Mass>,
+  right: Unit.Unit<q.Energy>
+): Unit.Unit<q.Emission> {
+  return Unit.divide(name, "Emission", left, right);
 }
 
 export function massFlowByArea(
-  left: q.MassFlow,
-  right: q.Area
-): q.MassFlowPerArea {
-  return Unit.divide("MassFlowPerArea", left, right);
+  name: string,
+  left: Unit.Unit<q.MassFlow>,
+  right: Unit.Unit<q.Area>
+): Unit.Unit<q.MassFlowPerArea> {
+  return Unit.divide(name, "MassFlowPerArea", left, right);
 }
 
 export function energyByVolume(
-  left: q.Energy,
-  right: q.Volume
-): q.HeatingValue {
-  return Unit.divide("HeatingValue", left, right);
+  name: string,
+  left: Unit.Unit<q.Energy>,
+  right: Unit.Unit<q.Volume>
+): Unit.Unit<q.HeatingValue> {
+  return Unit.divide(name, "HeatingValue", left, right);
 }
 
 export function volumeFlowByPower(
-  left: q.VolumeFlow,
-  right: q.Power
-): q.VolumeFlowPerPower {
-  return Unit.divide("VolumeFlowPerPower", left, right);
+  name: string,
+  left: Unit.Unit<q.VolumeFlow>,
+  right: Unit.Unit<q.Power>
+): Unit.Unit<q.VolumeFlowPerPower> {
+  return Unit.divide(name, "VolumeFlowPerPower", left, right);
 }
 
 export function volumeFlowByArea(
-  left: q.VolumeFlow,
-  right: q.Area
-): q.VolumeFlowPerArea {
-  return Unit.divide("VolumeFlowPerArea", left, right);
+  name: string,
+  left: Unit.Unit<q.VolumeFlow>,
+  right: Unit.Unit<q.Area>
+): Unit.Unit<q.VolumeFlowPerArea> {
+  return Unit.divide(name, "VolumeFlowPerArea", left, right);
 }
 
 export function dimensionlessByMass(
-  left: q.Dimensionless,
-  right: q.Mass
-): q.DimensionlessPerMass {
-  return Unit.divide("DimensionlessPerMass", left, right);
+  name: string,
+  left: Unit.Unit<q.Dimensionless>,
+  right: Unit.Unit<q.Mass>
+): Unit.Unit<q.DimensionlessPerMass> {
+  return Unit.divide(name, "DimensionlessPerMass", left, right);
 }
 
 export function powerByDeltaTemperature(
-  left: q.Power,
-  right: q.DeltaTemperature
-): q.HeatCapacityRate {
-  return Unit.divide("HeatCapacityRate", left, right);
+  name: string,
+  left: Unit.Unit<q.Power>,
+  right: Unit.Unit<q.DeltaTemperature>
+): Unit.Unit<q.HeatCapacityRate> {
+  return Unit.divide(name, "HeatCapacityRate", left, right);
 }
 
 export function intensityByDeltaTemperature(
-  left: q.Intensity,
-  right: q.DeltaTemperature
-): q.ThermalTransmittance {
-  return Unit.divide("ThermalTransmittance", left, right);
+  name: string,
+  left: Unit.Unit<q.Intensity>,
+  right: Unit.Unit<q.DeltaTemperature>
+): Unit.Unit<q.ThermalTransmittance> {
+  return Unit.divide(name, "ThermalTransmittance", left, right);
 }
 
 export function heatCapacityRateByLength(
-  left: q.HeatCapacityRate,
-  right: q.Length
-): q.ThermalConductivity {
-  return Unit.divide("ThermalConductivity", left, right);
+  name: string,
+  left: Unit.Unit<q.HeatCapacityRate>,
+  right: Unit.Unit<q.Length>
+): Unit.Unit<q.ThermalConductivity> {
+  return Unit.divide(name, "ThermalConductivity", left, right);
 }

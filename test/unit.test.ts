@@ -5,7 +5,7 @@ import { closeTo } from "./test-utils";
 
 test("derived units", t => {
   t.test("Meter times Meter should return unit with 1 element of pow 2", st => {
-    const newUnit = Unit.times("Length", Units.Meter, Units.Meter);
+    const newUnit = Unit.times("", "Length", Units.Meter, Units.Meter);
     if (newUnit.unitInfo.type === "product") {
       st.equal(newUnit.unitInfo.elements.length, 1, "Correct elements length");
       st.equal(newUnit.unitInfo.elements[0].pow, 2, "Correct pow");
@@ -15,7 +15,12 @@ test("derived units", t => {
     st.end();
   });
   t.test("CubicMeter by Second should return correct product unit", st => {
-    const newUnit = Unit.divide("VolumeFlow", Units.CubicMeter, Units.Second);
+    const newUnit = Unit.divide(
+      "",
+      "VolumeFlow",
+      Units.CubicMeter,
+      Units.Second
+    );
     if (newUnit.unitInfo.type === "product") {
       console.log(newUnit.unitInfo.elements);
       st.deepEqual(
@@ -24,6 +29,7 @@ test("derived units", t => {
           {
             pow: 3,
             unit: {
+              name: "Meter",
               quantity: "Length",
               unitInfo: { quantity: "Length", type: "base", symbol: "m" }
             }
@@ -31,6 +37,7 @@ test("derived units", t => {
           {
             pow: -1,
             unit: {
+              name: "Second",
               quantity: "Duration",
               unitInfo: { quantity: "Duration", type: "base", symbol: "s" }
             }
@@ -44,7 +51,7 @@ test("derived units", t => {
     st.end();
   });
   t.test("CubicMeter by Hour should return correct product unit", st => {
-    const newUnit = Unit.divide("VolumeFlow", Units.CubicMeter, Units.Hour);
+    const newUnit = Unit.divide("", "VolumeFlow", Units.CubicMeter, Units.Hour);
     if (newUnit.unitInfo.type === "product") {
       st.deepEqual(
         newUnit.unitInfo.elements,
@@ -52,6 +59,7 @@ test("derived units", t => {
           {
             pow: 3,
             unit: {
+              name: "Meter",
               quantity: "Length",
               unitInfo: { quantity: "Length", type: "base", symbol: "m" }
             }
@@ -59,16 +67,19 @@ test("derived units", t => {
           {
             pow: -1,
             unit: {
+              name: "Hour",
               quantity: "Duration",
               unitInfo: {
                 quantity: "Duration",
                 type: "transformed",
                 parentUnit: {
+                  name: "Minute",
                   quantity: "Duration",
                   unitInfo: {
                     quantity: "Duration",
                     type: "transformed",
                     parentUnit: {
+                      name: "Second",
                       quantity: "Duration",
                       unitInfo: {
                         quantity: "Duration",

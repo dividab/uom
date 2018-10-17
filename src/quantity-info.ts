@@ -19,7 +19,7 @@ export function getQuantityInfo(quantity: string): QuantityInfo | undefined {
 //   return { siUnit, ipUnit };
 // }
 
-function addQuantity(
+export function addQuantity(
   quantity: string,
   siUnit: Unit.Unit,
   ipUnit: Unit.Unit

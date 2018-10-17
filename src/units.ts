@@ -11,21 +11,13 @@ const _unitToString: { [key: string]: string } = {}; // tslint:disable-line
 const _stringToUnit: { [key: string]: Unit.Unit } = {}; // tslint:disable-line
 const _quantityToUnits: { [key: string]: Array<Unit.Unit> } = {}; // tslint:disable-line
 
-function _register<T extends string>(
-  unit: Unit.Unit<T>,
-  label: string = ""
-): Unit.Unit<T> {
-  UnitName.registerLabel(label, unit);
-  return unit;
-}
-
-export const One: q.Dimensionless = _register(Unit.One, " "); // tslint:disable-line
-export const Percent: q.Dimensionless = _register(
-  Unit.divideNumber(100.0, One),
+export const One = registerUnit(Unit.One, " "); // tslint:disable-line
+export const Percent = registerUnit(
+  Unit.divideNumber("Percent", 100.0, One),
   "%"
 ); // tslint:disable-line
-export const PPM: q.Dimensionless = _register(
-  Unit.divideNumber(1000000.0, One),
+export const PPM = registerUnit(
+  Unit.divideNumber("PPM", 1000000.0, One),
   "ppm"
 );
 
@@ -53,8 +45,8 @@ export const PPM: q.Dimensionless = _register(
  * would produce between these conductors a force equal to 2 × 10-7 newton per metre of length.
  * It is named after the French physicist Andre Ampere (1775-1836).
  */
-export const Ampere: q.ElectricCurrent = _register(
-  Unit.createBase("ElectricCurrent", "A"),
+export const Ampere = registerUnit(
+  Unit.createBase("Ampere", "ElectricCurrent", "A"),
   "A"
 );
 
@@ -65,8 +57,8 @@ export const Ampere: q.ElectricCurrent = _register(
  * has a radiant intensity in that direction of 1/683 watt per steradian.
  * @see <a href="http://en.wikipedia.org/wiki/Candela">Wikipedia: Candela</a>
  */
-export const Candela: q.LuminousIntensity = _register(
-  Si(Unit.createBase("LuminousIntensity", "cd")),
+export const Candela = registerUnit(
+  Si(Unit.createBase("Candela", "LuminousIntensity", "cd")),
   "cd"
 );
 
@@ -75,8 +67,8 @@ export const Candela: q.LuminousIntensity = _register(
  * The kelvin is the 1/273.16th of the thermodynamic temperature of the triple point of water.
  * It is named after the Scottish mathematician and physicist William Thomson 1st Lord Kelvin (1824-1907).
  */
-export const Kelvin: q.Temperature = _register(
-  Unit.createBase("Temperature", "K"),
+export const Kelvin = registerUnit(
+  Unit.createBase("Kelvin", "Temperature", "K"),
   "K"
 );
 
@@ -87,29 +79,32 @@ export const Kelvin: q.Temperature = _register(
  * of a platinum-iridium cylinder kept at Sevres in France.
  * @see #Gram
  */
-export const Kilogram: q.Mass = _register(Unit.createBase("Mass", "kg"), "kg");
+export const Kilogram = registerUnit(
+  Unit.createBase("Kilogram", "Mass", "kg"),
+  "kg"
+);
 
 /**
  * The base unit for length quantities ( <code>m</code> ).
  * One meter was redefined in 1983 as the distance traveled by light in a vacuum in 1/299,792,458 of a second.
  */
-export const Meter: q.Length = _register(Unit.createBase("Length", "m"), "m");
+export const Meter = registerUnit(Unit.createBase("Meter", "Length", "m"), "m");
 
 /**
  * The base unit for amount of substance quantities ( <code>mol</code> ).
  * The mole is the amount of substance of a system which contains as many elementary
  * entities as there are atoms in 0.012 kilogram of carbon 12.
  */
-export const Mole: q.AmountOfSubstance = _register(
-  Si(Unit.createBase("AmountOfSubstance", "mol")),
+export const Mole = registerUnit(
+  Si(Unit.createBase("Mole", "AmountOfSubstance", "mol")),
   "mol"
 );
 
 /**
  * The base unit for duration quantities ( <code>s</code> ). It is defined as the duration of 9,192,631,770 cycles of radiation corresponding to the transition between two hyperfine levels of the ground state of cesium (1967 Standard).
  */
-export const Second: q.Duration = _register(
-  Unit.createBase("Duration", "s"),
+export const Second = registerUnit(
+  Unit.createBase("Second", "Duration", "s"),
   "s"
 );
 
@@ -118,30 +113,30 @@ export const Second: q.Duration = _register(
 //////////////////////////////
 
 /** The metric unit for velocity quantities ( <code>m/s</code> ). */
-export const MeterPerSecond: q.Velocity = _register(
-  UnitDivide.lengthByDuration(Meter, Second),
+export const MeterPerSecond = registerUnit(
+  UnitDivide.lengthByDuration("MeterPerSecond", Meter, Second),
   "m/s"
 );
 
 /** The metric unit for acceleration quantities ( <code>m/s²</code> ). */
-export const MeterPerSquareSecond: q.Acceleration = _register(
-  UnitDivide.velocityBySecond(MeterPerSecond, Second)
+export const MeterPerSquareSecond = registerUnit(
+  UnitDivide.velocityBySecond("MeterPerSquareSecond", MeterPerSecond, Second)
 );
 
 /** The metric unit for area quantities ( <code>m²</code> ). */
-export const SquareMeter: q.Area = _register(Squared(Meter), "m²");
+export const SquareMeter = registerUnit(Squared("SquareMeter", Meter), "m²");
 
 /** The metric unit for volume quantities ( <code>m³</code> ). */
-export const CubicMeter: q.Volume = _register(Cubed(Meter), "m³");
+export const CubicMeter = registerUnit(Cubed("CubicMeter", Meter), "m³");
 
 /** Equivalent to <code>KILO(METER)</code>. */
-export const Kilometer: q.Length = _register(Kilo(Meter), "km");
+export const Kilometer = registerUnit(Kilo("Kilometer", Meter), "km");
 
 /** Equivalent to <code>CENTI(METRE)</code>. */
-export const CentiMeter: q.Length = _register(Centi(Meter), "cm");
+export const CentiMeter = registerUnit(Centi("CentiMeter", Meter), "cm");
 
 /** Equivalent to <code>MILLI(METRE)</code>. */
-export const Millimeter: q.Length = _register(Milli(Meter), "mm");
+export const Millimeter = registerUnit(Milli("Millimeter", Meter), "mm");
 
 ////////////////////////////////
 /// SI DERIVED ALTERNATE UNITS //
@@ -155,14 +150,17 @@ export const Millimeter: q.Length = _register(Milli(Meter), "mm");
 /** The derived unit for mass quantities ( <code>g</code> ).
  * The base unit for mass quantity is {@link #Kilogram}.
  */
-export const Gram: q.Mass = _register(Unit.divideNumber(1000.0, Kilogram), "g");
+export const Gram = registerUnit(
+  Unit.divideNumber("Gram", 1000.0, Kilogram),
+  "g"
+);
 
 /**
  * The unit for plane angle quantities ( <code>rad</code> ).
  * One radian is the angle between two radii of a circle such that the length of the arc between them is equal to the radius.
  */
-export const Radian: q.Angle = _register(
-  Unit.createAlternate<"Angle">("rad", One as Unit.Unit<any>),
+export const Radian = registerUnit(
+  Unit.createAlternate<"Angle">("Radian", "rad", One as Unit.Unit<any>),
   "rad"
 );
 
@@ -171,16 +169,16 @@ export const Radian: q.Angle = _register(
  * One steradian is the solid angle subtended at the center of a sphere by an area on the
  * surface of the sphere that is equal to the radius squared. The total solid angle of a sphere is 4*Pi steradians.
  */
-export const Steradian: q.SolidAngle = _register(
-  Unit.createAlternate<"SolidAngle">("sr", One as Unit.Unit<any>),
+export const Steradian = registerUnit(
+  Unit.createAlternate<"SolidAngle">("Steradian", "sr", One as Unit.Unit<any>),
   "sr"
 );
 
 /**
  * The unit for binary information ( <code>bit</code> ).
  */
-export const Bit: q.DataAmount = _register(
-  Unit.createAlternate<"DataAmount">("bit", One as Unit.Unit<any>),
+export const Bit = registerUnit(
+  Unit.createAlternate<"DataAmount">("Bit", "bit", One as Unit.Unit<any>),
   "bit"
 );
 
@@ -189,10 +187,11 @@ export const Bit: q.DataAmount = _register(
  * A unit of frequency equal to one cycle per second. After Heinrich Rudolf Hertz (1857-1894),
  * German physicist who was the first to produce radio waves artificially.
  */
-export const Hertz: q.Frequency = _register(
+export const Hertz = registerUnit(
   Unit.createAlternate<"Frequency">(
+    "Hertz",
     "Hz",
-    UnitDivide.dimentionlessByDuration(One, Second)
+    UnitDivide.dimentionlessByDuration("Hertz", One, Second)
   ),
   "Hz"
 );
@@ -202,10 +201,11 @@ export const Hertz: q.Frequency = _register(
  * One newton is the force required to give a mass of 1 kilogram an Force of 1 metre per second per second.
  * It is named after the English mathematician and physicist Sir Isaac Newton (1642-1727).
  */
-export const Newton: q.Force = _register(
+export const Newton = registerUnit(
   Unit.createAlternate<"Force">(
+    "Newton",
     "N",
-    UnitTimes.massByAcceleration(Kilogram, MeterPerSquareSecond)
+    UnitTimes.massByAcceleration("Newton", Kilogram, MeterPerSquareSecond)
   ),
   "N"
 );
@@ -215,10 +215,11 @@ export const Newton: q.Force = _register(
  * One pascal is equal to one newton per square meter.
  * It is named after the French philosopher and mathematician Blaise Pascal (1623-1662).
  */
-export const Pascal: q.Pressure = _register(
+export const Pascal = registerUnit(
   Unit.createAlternate<"Pressure">(
+    "Pascal",
     "Pa",
-    UnitDivide.forceByArea(Newton, Squared(Meter))
+    UnitDivide.forceByArea("Pascal", Newton, SquareMeter)
   ),
   "Pa"
 );
@@ -229,8 +230,12 @@ export const Pascal: q.Pressure = _register(
  * through a distance of 1 metre in the direction of the force.
  * It is named after the English physicist James Prescott Joule (1818-1889).
  */
-export const Joule: q.Energy = _register(
-  Unit.createAlternate<"Energy">("J", UnitTimes.forceByLength(Newton, Meter)),
+export const Joule = registerUnit(
+  Unit.createAlternate<"Energy">(
+    "Joule",
+    "J",
+    UnitTimes.forceByLength("Joule", Newton, Meter)
+  ),
   "J"
 );
 
@@ -239,10 +244,11 @@ export const Joule: q.Energy = _register(
  * One watt is equal to one joule per second.
  * It is named after the British scientist James Watt (1736-1819).
  */
-export const Watt: q.Power = _register(
+export const Watt = registerUnit(
   Unit.createAlternate<"Power">(
+    "Watt",
     "W",
-    UnitDivide.energyByDuration(Joule, Second)
+    UnitDivide.energyByDuration("Watt", Joule, Second)
   ),
   "W"
 );
@@ -252,10 +258,11 @@ export const Watt: q.Power = _register(
  * One Coulomb is equal to the quantity of charge transferred in one second by a steady current of one ampere.
  * It is named after the French physicist Charles Augustin de Coulomb (1736-1806).
  */
-export const Coulomb: q.ElectricCharge = _register(
+export const Coulomb = registerUnit(
   Unit.createAlternate<"ElectricCharge">(
+    "Coulomb",
     "C",
-    UnitTimes.durationByElectricCurrent(Second, Ampere)
+    UnitTimes.durationByElectricCurrent("Coulomb", Second, Ampere)
   ),
   "C"
 );
@@ -266,10 +273,11 @@ export const Coulomb: q.ElectricCharge = _register(
  * wire carrying a export constant current of one ampere when the power dissipated between the points is one watt.
  * It is named after the Italian physicist Count Alessandro Volta (1745-1827).
  */
-export const Volt: q.ElectricPotential = _register(
+export const Volt = registerUnit(
   Unit.createAlternate<"ElectricPotential">(
+    "Volt",
     "V",
-    UnitDivide.powerByElectricalCurrent(Watt, Ampere)
+    UnitDivide.powerByElectricalCurrent("Volt", Watt, Ampere)
   ),
   "V"
 );
@@ -280,10 +288,11 @@ export const Volt: q.ElectricPotential = _register(
  * each plate and a potential difference of 1 volt between the plates.
  * It is named after the British physicist and chemist Michael Faraday (1791-1867).
  */
-export const Farad: q.ElectricCapacitance = _register(
+export const Farad = registerUnit(
   Unit.createAlternate<"ElectricCapacitance">(
+    "Farad",
     "F",
-    UnitDivide.electricChargeByElectricPotential(Coulomb, Volt)
+    UnitDivide.electricChargeByElectricPotential("Farad", Coulomb, Volt)
   ),
   "F"
 );
@@ -294,11 +303,12 @@ export const Farad: q.ElectricCapacitance = _register(
  * by a potential of one volt across its terminals.
  * It is named after the German physicist Georg Simon Ohm (1789-1854).
  */
-export const Ohm: q.ElectricResistance = _register(
+export const Ohm = registerUnit(
   Si(
     Unit.createAlternate<"ElectricResistance">(
+      "Ohm",
       "Ω",
-      UnitDivide.electricalPotentialByElectricalCurrent(Volt, Ampere)
+      UnitDivide.electricalPotentialByElectricalCurrent("Ohm", Volt, Ampere)
     )
   )
 );
@@ -308,11 +318,12 @@ export const Ohm: q.ElectricResistance = _register(
  * One Siemens is equal to one ampere per volt.
  * It is named after the German engineer Ernst Werner von Siemens (1816-1892).
  */
-export const Siemens: q.ElectricConductance = _register(
+export const Siemens = registerUnit(
   Si(
     Unit.createAlternate<"ElectricConductance">(
+      "Siemens",
       "S",
-      UnitDivide.electricalCurrentByElectricalPotential(Ampere, Volt)
+      UnitDivide.electricalCurrentByElectricalPotential("Siemens", Ampere, Volt)
     )
   )
 );
@@ -323,11 +334,12 @@ export const Siemens: q.ElectricConductance = _register(
  * electromotive force of one volt as it is uniformly reduced to zero within one second.
  * It is named after the German physicist Wilhelm Eduard Weber (1804-1891).
  */
-export const Weber: q.MagneticFlux = _register(
+export const Weber = registerUnit(
   Si(
     Unit.createAlternate<"MagneticFlux">(
+      "Weber",
       "Wb",
-      UnitTimes.electricalPotentialByDuration(Volt, Second)
+      UnitTimes.electricalPotentialByDuration("Weber", Volt, Second)
     )
   )
 );
@@ -337,11 +349,12 @@ export const Weber: q.MagneticFlux = _register(
  * One Tesla is equal equal to one weber per square meter.
  * It is named after the Serbian-born American electrical engineer and physicist Nikola Tesla (1856-1943).
  */
-export const Tesla: q.MagneticFluxDensity = _register(
+export const Tesla = registerUnit(
   Si(
     Unit.createAlternate<"MagneticFluxDensity">(
+      "Tesla",
       "T",
-      UnitDivide.magneticFluxByArea(Weber, Squared(Meter))
+      UnitDivide.magneticFluxByArea("Tesla", Weber, SquareMeter)
     )
   )
 );
@@ -352,11 +365,12 @@ export const Tesla: q.MagneticFluxDensity = _register(
  * when the current is varied at the rate of one ampere per second.
  * It is named after the American physicist Joseph Henry (1791-1878).
  */
-export const Henry: q.ElectricInductance = _register(
+export const Henry = registerUnit(
   Si(
     Unit.createAlternate<"ElectricInductance">(
+      "Henry",
       "H",
-      UnitDivide.magneticFluxByElectricalCurrent(Weber, Ampere)
+      UnitDivide.magneticFluxByElectricalCurrent("Henry", Weber, Ampere)
     )
   )
 );
@@ -366,8 +380,8 @@ export const Henry: q.ElectricInductance = _register(
  * This is a unit of temperature such as the freezing point of water (at one atmosphere of pressure)
  * is 0 ℃, while the boiling point is 100 ℃.
  */
-export const Celsius: q.Temperature = _register(
-  Si(Unit.plus(273.15, Kelvin)),
+export const Celsius = registerUnit(
+  Si(Unit.plus("Celsius", 273.15, Kelvin)),
   "°C"
 );
 
@@ -376,11 +390,12 @@ export const Celsius: q.Temperature = _register(
  * One Lumen is equal to the amount of light given out through a solid angle by a source of one
  * candela intensity radiating equally in all directions.
  */
-export const Lumen: q.LuminousFlux = _register(
+export const Lumen = registerUnit(
   Si(
     Unit.createAlternate<"LuminousFlux">(
+      "Lumen",
       "lm",
-      UnitTimes.luminousIntensityBySolidAngle(Candela, Steradian)
+      UnitTimes.luminousIntensityBySolidAngle("Lumen", Candela, Steradian)
     )
   )
 );
@@ -389,11 +404,12 @@ export const Lumen: q.LuminousFlux = _register(
  * The derived unit for illuminance ( <code>lx</code> ).
  * One Lux is equal to one lumen per square meter.
  */
-export const Lux: q.Illuminance = _register(
+export const Lux = registerUnit(
   Si(
     Unit.createAlternate<"Illuminance">(
+      "Lux",
       "lx",
-      UnitDivide.luminousFluxByArea(Lumen, Squared(Meter))
+      UnitDivide.luminousFluxByArea("Lux", Lumen, SquareMeter)
     )
   )
 );
@@ -403,11 +419,14 @@ export const Lux: q.Illuminance = _register(
  * One becquerel is the radiation caused by one disintegration per second.
  * It is named after the French physicist, Antoine-Henri Becquerel (1852-1908).
  */
-export const Becquerel: q.RadioactiveActivity = _register(
+export const Becquerel = registerUnit(
   Si(
     Unit.createAlternate<"RadioactiveActivity">(
+      "Becquerel",
       "Bq",
-      UnitDivide.dimentionlessByDuration(One, Second) as Unit.Unit<any>
+      UnitDivide.dimentionlessByDuration("Becquerel", One, Second) as Unit.Unit<
+        any
+      >
     )
   )
 );
@@ -417,12 +436,13 @@ export const Becquerel: q.RadioactiveActivity = _register(
  * One gray is equal to the dose of one joule of energy absorbed per one kilogram of matter.
  * It is named after the British physician L. H. Gray (1905-1965).
  */
-export const Gray: q.RadiationDoseAbsorbed = _register(
+export const Gray = registerUnit(
   Si(
-    Unit.createAlternate<"RadiationDoseAbsorbed">("Gy", UnitDivide.energyByMass(
-      Joule,
-      Kilogram
-    ) as Unit.Unit<any>)
+    Unit.createAlternate<"RadiationDoseAbsorbed">(
+      "Gray",
+      "Gy",
+      UnitDivide.energyByMass("Gray", Joule, Kilogram) as Unit.Unit<any>
+    )
   )
 );
 
@@ -432,11 +452,12 @@ export const Gray: q.RadiationDoseAbsorbed = _register(
  * larger for more dangerous forms of radiation.
  * It is named after the Swedish physicist Rolf Sievert (1898-1966).
  */
-export const Sievert: q.RadiationDoseEffective = _register(
+export const Sievert = registerUnit(
   Si(
     Unit.createAlternate<"RadiationDoseEffective">(
+      "Sievert",
       "Sv",
-      UnitDivide.energyByMass(Joule, Kilogram) as Unit.Unit<any>
+      UnitDivide.energyByMass("Sievert", Joule, Kilogram) as Unit.Unit<any>
     )
   )
 );
@@ -444,11 +465,12 @@ export const Sievert: q.RadiationDoseEffective = _register(
 /**
  * The derived unit for catalytic activity ( <code>kat</code> ).
  */
-export const Katal: q.CatalyticActivity = _register(
+export const Katal = registerUnit(
   Si(
     Unit.createAlternate<"CatalyticActivity">(
+      "Katal",
       "kat",
-      UnitDivide.amountOfSubstanceByDuration(Mole, Second)
+      UnitDivide.amountOfSubstanceByDuration("Katal", Mole, Second)
     )
   )
 );
@@ -457,12 +479,12 @@ export const Katal: q.CatalyticActivity = _register(
 /// SI PREFIXES //
 /////////////////
 
-function Giga<T extends string>(u: Unit.Unit<T>): Unit.Unit<T> {
-  return Unit.timesNumber(Math.pow(10, 9), u);
+function Giga<T extends string>(name: string, u: Unit.Unit<T>): Unit.Unit<T> {
+  return Unit.timesNumber(name, Math.pow(10, 9), u);
 }
 
-function Mega<T extends string>(u: Unit.Unit<T>): Unit.Unit<T> {
-  return Unit.timesNumber(Math.pow(10, 6), u);
+function Mega<T extends string>(name: string, u: Unit.Unit<T>): Unit.Unit<T> {
+  return Unit.timesNumber(name, Math.pow(10, 6), u);
 }
 
 /**
@@ -470,8 +492,11 @@ function Mega<T extends string>(u: Unit.Unit<T>): Unit.Unit<T> {
  * @param unit Any unit.
  * @returns <code>unit.multiply(1e3)</code> .
  */
-function Kilo<T extends string>(unit: Unit.Unit<T>): Unit.Unit<T> {
-  return Unit.timesNumber(Math.pow(10.0, 3), unit);
+function Kilo<T extends string>(
+  name: string,
+  unit: Unit.Unit<T>
+): Unit.Unit<T> {
+  return Unit.timesNumber(name, Math.pow(10.0, 3), unit);
 }
 
 /**
@@ -479,8 +504,11 @@ function Kilo<T extends string>(unit: Unit.Unit<T>): Unit.Unit<T> {
  * @param unit any unit.
  * @returns <code>unit.multiply(1e2)</code> .
  */
-function Hecto<T extends string>(unit: Unit.Unit<T>): Unit.Unit<T> {
-  return Unit.timesNumber(Math.pow(10, 2), unit);
+function Hecto<T extends string>(
+  name: string,
+  unit: Unit.Unit<T>
+): Unit.Unit<T> {
+  return Unit.timesNumber(name, Math.pow(10, 2), unit);
 }
 
 /**
@@ -488,8 +516,11 @@ function Hecto<T extends string>(unit: Unit.Unit<T>): Unit.Unit<T> {
  * @param unit any unit.
  * @return <code>unit.multiply(1e-1)</code>.
  */
-function Deci<T extends string>(unit: Unit.Unit<T>): Unit.Unit<T> {
-  return Unit.timesNumber(Math.pow(10, -1), unit);
+function Deci<T extends string>(
+  name: string,
+  unit: Unit.Unit<T>
+): Unit.Unit<T> {
+  return Unit.timesNumber(name, Math.pow(10, -1), unit);
 }
 
 /**
@@ -497,16 +528,22 @@ function Deci<T extends string>(unit: Unit.Unit<T>): Unit.Unit<T> {
  * @param unit any unit.
  * @returns <code>unit.multiply(1e-2)</code> .
  */
-function Centi<T extends string>(unit: Unit.Unit<T>): Unit.Unit<T> {
-  return Unit.timesNumber(Math.pow(10, -2), unit);
+function Centi<T extends string>(
+  name: string,
+  unit: Unit.Unit<T>
+): Unit.Unit<T> {
+  return Unit.timesNumber(name, Math.pow(10, -2), unit);
 }
 
 /**
  * Returns the specified unit multiplied by the factor <code>10<sup>-3</sup></code>.
  * @param unit any unit. @return <code>unit.multiply(1e-3)</code> .
  */
-function Milli<T extends string>(unit: Unit.Unit<T>): Unit.Unit<T> {
-  return Unit.timesNumber(Math.pow(10, -3), unit);
+function Milli<T extends string>(
+  name: string,
+  unit: Unit.Unit<T>
+): Unit.Unit<T> {
+  return Unit.timesNumber(name, Math.pow(10, -3), unit);
 }
 
 function Si<T extends string>(toAdd: Unit.Unit<T>): Unit.Unit<T> {
@@ -514,14 +551,14 @@ function Si<T extends string>(toAdd: Unit.Unit<T>): Unit.Unit<T> {
   return toAdd;
 }
 
-function Squared(u: q.Length): q.Area {
-  return UnitTimes.lengthByLength(u, u);
+function Squared(name: string, u: Unit.Unit<q.Length>): Unit.Unit<q.Area> {
+  return UnitTimes.lengthByLength(name, u, u);
   // TODO was return u.Times <q.Area> (u);
 }
 
-function Cubed(u: q.Length): q.Volume {
-  const area = UnitTimes.lengthByLength(u, u);
-  return UnitTimes.areaByLength(area, u);
+function Cubed(name: string, u: Unit.Unit<q.Length>): Unit.Unit<q.Volume> {
+  const area = UnitTimes.lengthByLength(name, u, u);
+  return UnitTimes.areaByLength(name, area, u);
   // TODO was return u.Times < IArea > (u).Times < IVolume > (u);
 }
 
@@ -530,738 +567,873 @@ function Cubed(u: q.Length): q.Volume {
 ////////////////////////////////////////////////////////////////////////////
 
 /// Alternative Quantities for Humidity
-// export const HumidityFactor: q.RelativeHumidity = _register(Unit.createProductUnit<q.RelativeHumidity>("RelativeHumidity", []), "r.H. factor");
-// export const HumidityFactor: q.RelativeHumidity = _register(Unit.createAlternate<"RelativeHumidity">("r.H.", One), "r.H. factor");
-export const HumidityFactor: q.RelativeHumidity = _register(
-  Unit.createBase("RelativeHumidity", "r.H."),
+// export const HumidityFactor = _register(Unit.createProductUnit<q.RelativeHumidity>("RelativeHumidity", []), "r.H. factor");
+// export const HumidityFactor = _register(Unit.createAlternate<"RelativeHumidity">("r.H.", One), "r.H. factor");
+export const HumidityFactor = registerUnit(
+  Unit.createBase("HumidityFactor", "RelativeHumidity", "r.H."),
   "r.H. factor"
 );
 
 /** Factor of humidity, eg., 0.01 means 1% */
-export const PercentHumidity: q.RelativeHumidity = _register(
-  Unit.divideNumber(100.0, HumidityFactor),
+export const PercentHumidity = registerUnit(
+  Unit.divideNumber("PercentHumidity", 100.0, HumidityFactor),
   "% r.H."
 );
 
 /** Percent of humidity, eg., 10.0 means 10% */
-export const CelsiusWet: q.WetTemperature = _register(
-  Unit.createBase("WetTemperature", "wb°C"),
+export const CelsiusWet = registerUnit(
+  Unit.createBase("CelsiusWet", "WetTemperature", "wb°C"),
   "wb°C"
 );
-export const FahrenheitWet: q.WetTemperature = _register(
-  Unit.minus(32.0, Unit.timesNumber(5.0 / 9.0, CelsiusWet)),
+export const FahrenheitWet = registerUnit(
+  Unit.minus(
+    "FahrenheitWet",
+    32.0,
+    Unit.timesNumber("", 5.0 / 9.0, CelsiusWet)
+  ),
   "wb°F"
 );
-export const KelvinWet: q.WetTemperature = _register(
-  Unit.minus(273.15, CelsiusWet),
+export const KelvinWet = registerUnit(
+  Unit.minus("KelvinWet", 273.15, CelsiusWet),
   "wb°K"
 );
-export const CelsiusDewPoint: q.DewPointTemperature = _register(
-  Unit.createBase("DewPointTemperature", "dp°C"),
+export const CelsiusDewPoint = registerUnit(
+  Unit.createBase("CelsiusDewPoint", "DewPointTemperature", "dp°C"),
   "dp°C"
 );
-export const FahrenheitDewPoint: q.DewPointTemperature = _register(
-  Unit.minus(32.0, Unit.timesNumber(5.0 / 9.0, CelsiusDewPoint)),
+export const FahrenheitDewPoint = registerUnit(
+  Unit.minus(
+    "FahrenheitDewPoint",
+    32.0,
+    Unit.timesNumber("", 5.0 / 9.0, CelsiusDewPoint)
+  ),
   "dp°F"
 );
-export const KelvinDewPoint: q.DewPointTemperature = _register(
-  Unit.minus(273.15, CelsiusDewPoint),
+export const KelvinDewPoint = registerUnit(
+  Unit.minus("KelvinDewPoint", 273.15, CelsiusDewPoint),
   "dp°K"
 );
 
 /// Mass
-export const PoundLb: q.Mass = _register(
-  Unit.divideNumber(100000000.0 / 45359237.0, Kilogram),
+export const PoundLb = registerUnit(
+  Unit.divideNumber("PoundLb", 100000000.0 / 45359237.0, Kilogram),
   "lb"
 );
 
 // http://www.wolframalpha.com/input/?i=kg
-export const Grain: q.Mass = _register(
-  Unit.divideNumber(100000000000.0 / 6479891.0, Kilogram),
+export const Grain = registerUnit(
+  Unit.divideNumber("Grain", 100000000000.0 / 6479891.0, Kilogram),
   "gr"
 );
 
 // http://www.wolframalpha.com/input/?i=grain
-export const Slug: q.Mass = _register(
-  Unit.timesNumber(14.5939, Kilogram),
+export const Slug = registerUnit(
+  Unit.timesNumber("Slug", 14.5939, Kilogram),
   "slug"
 );
-export const Tonne: q.Mass = _register(Unit.timesNumber(1000.0, Kilogram), "t");
-export const MilliGram: q.Mass = _register(Milli(Gram), "mg");
+export const Tonne = registerUnit(
+  Unit.timesNumber("Tonne", 1000.0, Kilogram),
+  "t"
+);
+export const MilliGram = registerUnit(Milli("MilliGram", Gram), "mg");
 
 // Per mass
-export const OnePerKilogram: q.DimensionlessPerMass = _register(
-  UnitDivide.dimensionlessByMass(One, Kilogram),
+export const OnePerKilogram = registerUnit(
+  UnitDivide.dimensionlessByMass("OnePerKilogram", One, Kilogram),
   "/kg"
 );
-export const OnePerPoundLb: q.DimensionlessPerMass = _register(
-  UnitDivide.dimensionlessByMass(One, PoundLb),
+export const OnePerPoundLb = registerUnit(
+  UnitDivide.dimensionlessByMass("OnePerPoundLb", One, PoundLb),
   "/lb"
 );
 
 // Length
-export const Foot: q.Length = _register(Unit.timesNumber(0.3048, Meter), "ft");
-export const Yard: q.Length = _register(Unit.timesNumber(3.0, Foot), "yd");
-export const Inch: q.Length = _register(Unit.divideNumber(12.0, Foot), "in");
-export const Mile: q.Length = _register(Unit.timesNumber(5280.0, Foot), "mi");
-export const Decimeter: q.Length = _register(Deci(Meter), "dm");
+export const Foot = registerUnit(Unit.timesNumber("Foot", 0.3048, Meter), "ft");
+export const Yard = registerUnit(Unit.timesNumber("Yard", 3.0, Foot), "yd");
+export const Inch = registerUnit(Unit.divideNumber("Inch", 12.0, Foot), "in");
+export const Mile = registerUnit(Unit.timesNumber("Mile", 5280.0, Foot), "mi");
+export const Decimeter = registerUnit(Deci("Decimeter", Meter), "dm");
 
 // Temperature
-export const Rankine: q.Temperature = _register(
-  Unit.divideNumber(9.0, Unit.timesNumber(5.0, Kelvin)),
+export const Rankine = registerUnit(
+  Unit.divideNumber("Rankine", 9.0, Unit.timesNumber("", 5.0, Kelvin)),
   "Rankine"
 );
-export const Fahrenheit: q.Temperature = _register(
-  Unit.plus(459.67, Unit.divideNumber(9.0, Unit.timesNumber(5.0, Kelvin))),
+export const Fahrenheit = registerUnit(
+  Unit.plus(
+    "Fahrenheit",
+    459.67,
+    Unit.divideNumber("", 9.0, Unit.timesNumber("", 5.0, Kelvin))
+  ),
   "°F"
 );
 
 // Delta temperature
-export const DeltaCelsius: q.DeltaTemperature = _register(
-  Unit.createBase("DeltaTemperature", "°C"),
+export const DeltaCelsius = registerUnit(
+  Unit.createBase("DeltaCelsius", "DeltaTemperature", "°C"),
   "°C"
 );
-export const DeltaFahrenheit: q.DeltaTemperature = _register(
-  Unit.timesNumber(5.0 / 9.0, DeltaCelsius),
+export const DeltaFahrenheit = registerUnit(
+  Unit.timesNumber("DeltaFahrenheit", 5.0 / 9.0, DeltaCelsius),
   "°F"
 );
 
 // Delta temperature
-export const DeltaCelsiusDewPoint: q.DeltaDewPointTemperature = _register(
-  Unit.createBase("DeltaDewPointTemperature", "dp°C"),
+export const DeltaCelsiusDewPoint = registerUnit(
+  Unit.createBase("DeltaCelsiusDewPoint", "DeltaDewPointTemperature", "dp°C"),
   "dp°C"
 );
-export const DeltaFahrenheitDewPoint: q.DeltaDewPointTemperature = _register(
-  Unit.timesNumber(5.0 / 9.0, DeltaCelsiusDewPoint),
+export const DeltaFahrenheitDewPoint = registerUnit(
+  Unit.timesNumber("DeltaFahrenheitDewPoint", 5.0 / 9.0, DeltaCelsiusDewPoint),
   "dp°F"
 );
 
 // Duration / Time
-export const Minute: q.Duration = _register(
-  Unit.timesNumber(60.0, Second),
+export const Minute = registerUnit(
+  Unit.timesNumber("Minute", 60.0, Second),
   "min"
 );
-export const Hour: q.Duration = _register(Unit.timesNumber(60.0, Minute), "h");
-export const Day: q.Duration = _register(Unit.timesNumber(24.0, Hour), "days");
-export const Week: q.Duration = _register(Unit.timesNumber(7.0, Day), "weeks");
-export const Year: q.Duration = _register(
-  Unit.timesNumber(8760.0, Hour),
+export const Hour = registerUnit(Unit.timesNumber("Hour", 60.0, Minute), "h");
+export const Day = registerUnit(Unit.timesNumber("Day", 24.0, Hour), "days");
+export const Week = registerUnit(Unit.timesNumber("Week", 7.0, Day), "weeks");
+export const Year = registerUnit(
+  Unit.timesNumber("Year", 8760.0, Hour),
   "year"
 );
-export const MilliSecond: q.Duration = _register(Milli(Second), "ms");
+export const MilliSecond = registerUnit(Milli("MilliSecond", Second), "ms");
 
 // Frequency
-export const RevolutionsPerMinute: q.Frequency = _register(
+export const RevolutionsPerMinute = registerUnit(
   Unit.createAlternate<"Frequency">(
+    "RevolutionsPerMinute",
     "rpm",
-    UnitDivide.dimentionlessByDuration(One, Minute)
+    UnitDivide.dimentionlessByDuration("", One, Minute)
   ),
   "rpm"
 );
-export const RevolutionsPerHour: q.Frequency = _register(
+export const RevolutionsPerHour = registerUnit(
   Unit.createAlternate<"Frequency">(
+    "RevolutionsPerHour",
     "rph",
-    UnitDivide.dimentionlessByDuration(One, Hour)
+    UnitDivide.dimentionlessByDuration("", One, Hour)
   ),
   "rph"
 );
 
 /// Area
-export const SquareInch: q.Area = _register(Squared(Inch), "in²");
-export const SquareFeet: q.Area = _register(Squared(Foot), "ft²");
-export const SquareMillimeter: q.Area = _register(Squared(Millimeter), "mm²");
-export const SquareCentimeter: q.Area = _register(Squared(CentiMeter), "cm²");
-export const SquareDecimeter: q.Area = _register(Squared(Decimeter), "dm²");
+export const SquareInch = registerUnit(Squared("SquareInch", Inch), "in²");
+export const SquareFeet = registerUnit(Squared("SquareFeet", Foot), "ft²");
+export const SquareMillimeter = registerUnit(
+  Squared("SquareMillimeter", Millimeter),
+  "mm²"
+);
+export const SquareCentimeter = registerUnit(
+  Squared("SquareCentimeter", CentiMeter),
+  "cm²"
+);
+export const SquareDecimeter = registerUnit(
+  Squared("SquareDecimeter", Decimeter),
+  "dm²"
+);
 
 // Angle
-export const Degrees: q.Angle = _register(
-  Unit.timesNumber(Math.PI / 180.0, Radian),
+export const Degrees = registerUnit(
+  Unit.timesNumber("Degrees", Math.PI / 180.0, Radian),
   "°"
 );
 
 // Volume
-export const CubicCentiMeter: q.Volume = _register(Cubed(CentiMeter), "cm³");
-export const CubicInch: q.Volume = _register(Cubed(Inch), "in³");
-export const CubicFeet: q.Volume = _register(Cubed(Foot), "ft³");
-export const HundredCubicFeet: q.Volume = _register(
-  Unit.timesNumber(100.0, CubicFeet),
+export const CubicCentiMeter = registerUnit(
+  Cubed("CubicCentiMeter", CentiMeter),
+  "cm³"
+);
+export const CubicInch = registerUnit(Cubed("CubicInch", Inch), "in³");
+export const CubicFeet = registerUnit(Cubed("CubicFeet", Foot), "ft³");
+export const HundredCubicFeet = registerUnit(
+  Unit.timesNumber("HundredCubicFeet", 100.0, CubicFeet),
   "100 ft³"
 );
-export const Liter: q.Volume = _register(
-  Unit.divideNumber(1000.0, CubicMeter),
+export const Liter = registerUnit(
+  Unit.divideNumber("Liter", 1000.0, CubicMeter),
   "L"
 );
-export const MilliLiter: q.Volume = _register(Milli(Liter), "ml");
-export const Gallon: q.Volume = _register(
-  Unit.timesNumber(3.785, Liter),
+export const MilliLiter = registerUnit(Milli("MilliLiter", Liter), "ml");
+export const Gallon = registerUnit(
+  Unit.timesNumber("Gallon", 3.785, Liter),
   "gal"
 );
 
 // Velocity
-export const FeetPerSecond: q.Velocity = _register(
-  UnitDivide.lengthByDuration(Foot, Second),
+export const FeetPerSecond = registerUnit(
+  UnitDivide.lengthByDuration("FeetPerSecond", Foot, Second),
   "ft/s"
 );
-export const FeetPerMinute: q.Velocity = _register(
-  UnitDivide.lengthByDuration(Foot, Minute),
+export const FeetPerMinute = registerUnit(
+  UnitDivide.lengthByDuration("FeetPerMinute", Foot, Minute),
   "ft/min"
 );
-export const MilesPerHour: q.Velocity = _register(
-  UnitDivide.lengthByDuration(Mile, Hour),
+export const MilesPerHour = registerUnit(
+  UnitDivide.lengthByDuration("MilesPerHour", Mile, Hour),
   "mph"
 );
-export const KilometerPerHour: q.Velocity = _register(
-  UnitDivide.lengthByDuration(Kilometer, Hour),
+export const KilometerPerHour = registerUnit(
+  UnitDivide.lengthByDuration("KilometerPerHour", Kilometer, Hour),
   "km/h"
 );
-export const MeterPerHour: q.Velocity = _register(
-  UnitDivide.lengthByDuration(Meter, Hour),
+export const MeterPerHour = registerUnit(
+  UnitDivide.lengthByDuration("MeterPerHour", Meter, Hour),
   "m/h"
 );
 
 // Acceleration
 
 // Density
-export const KilogramPerCubicMeter: q.Density = _register(
-  UnitDivide.massByVolume(Kilogram, CubicMeter),
+export const KilogramPerCubicMeter = registerUnit(
+  UnitDivide.massByVolume("KilogramPerCubicMeter", Kilogram, CubicMeter),
   "kg/m³"
 );
-export const GramPerCubicCentiMeter: q.Density = _register(
-  UnitDivide.massByVolume(Gram, CubicCentiMeter),
+export const GramPerCubicCentiMeter = registerUnit(
+  UnitDivide.massByVolume("GramPerCubicCentiMeter", Gram, CubicCentiMeter),
   "g/cm³"
 );
-export const SlugPerCubicFeet: q.Density = _register(
-  UnitDivide.massByVolume(Slug, CubicFeet),
+export const SlugPerCubicFeet = registerUnit(
+  UnitDivide.massByVolume("SlugPerCubicFeet", Slug, CubicFeet),
   "slug/ft³"
 );
-export const PoundPerCubicFoot: q.Density = _register(
-  UnitDivide.massByVolume(PoundLb, CubicFeet),
+export const PoundPerCubicFoot = registerUnit(
+  UnitDivide.massByVolume("PoundPerCubicFoot", PoundLb, CubicFeet),
   "lb/ft³"
 );
 
 // Force
-export const PoundForce: q.Force = _register(
-  Unit.divideNumber(8896443230521.0, Unit.timesNumber(2000000000000.0, Newton)),
+export const PoundForce = registerUnit(
+  Unit.divideNumber(
+    "PoundForce",
+    8896443230521.0,
+    Unit.timesNumber("", 2000000000000.0, Newton)
+  ),
   "lb"
 );
 
 // Pressure
-export const KiloPascal: q.Pressure = _register(Kilo(Pascal), "kPa");
-export const HectoPascal: q.Pressure = _register(Hecto(Pascal), "hPa");
-export const NewtonPerSquareMeter: q.Pressure = _register(
-  UnitDivide.forceByArea(Newton, SquareMeter),
+export const KiloPascal = registerUnit(Kilo("KiloPascal", Pascal), "kPa");
+export const HectoPascal = registerUnit(Hecto("HectoPascal", Pascal), "hPa");
+export const NewtonPerSquareMeter = registerUnit(
+  UnitDivide.forceByArea("NewtonPerSquareMeter", Newton, SquareMeter),
   "N/m²"
 );
-export const PoundForcePerSquareInch: q.Pressure = _register(
-  Unit.divideNumber(1290320000.0, Unit.timesNumber(8896443230521.0, Pascal)),
+export const PoundForcePerSquareInch = registerUnit(
+  Unit.divideNumber(
+    "PoundForcePerSquareInch",
+    1290320000.0,
+    Unit.timesNumber("", 8896443230521.0, Pascal)
+  ),
   "psi"
 );
-export const PoundForcePerSquareFoot: q.Pressure = _register(
-  Unit.timesNumber(144.0, PoundForcePerSquareInch),
+export const PoundForcePerSquareFoot = registerUnit(
+  Unit.timesNumber("PoundForcePerSquareFoot", 144.0, PoundForcePerSquareInch),
   "psf"
 );
-export const DeciPascal: q.Pressure = _register(Deci(Pascal), "dPa");
+export const DeciPascal = registerUnit(Deci("DeciPascal", Pascal), "dPa");
 
 // http://www.wolframalpha.com/input/?i=psi and select 'Show exact conversions'
-export const InchOfMercury: q.Pressure = _register(
-  Unit.divideNumber(152.0, Unit.timesNumber(514731.0, Pascal)),
+export const InchOfMercury = registerUnit(
+  Unit.divideNumber(
+    "InchOfMercury",
+    152.0,
+    Unit.timesNumber("", 514731.0, Pascal)
+  ),
   "in HG"
 );
 
 // http://www.wolframalpha.com/input/?i=inHg and select 'Show exact conversions'
-export const InchOfWaterColumn: q.Pressure = _register(
-  Unit.timesNumber(249.0889, Pascal),
+export const InchOfWaterColumn = registerUnit(
+  Unit.timesNumber("InchOfWaterColumn", 249.0889, Pascal),
   "in WC"
 );
 
 // http://www.wolframalpha.com/input/?i=inWC
-export const FeetOfWaterColumn: q.Pressure = _register(
-  Unit.timesNumber(2989.067, Pascal),
+export const FeetOfWaterColumn = registerUnit(
+  Unit.timesNumber("FeetOfWaterColumn", 2989.067, Pascal),
   "ft WC"
 );
-export const Bar: q.Pressure = _register(
-  Unit.timesNumber(100000.0, Pascal),
+export const Bar = registerUnit(
+  Unit.timesNumber("Bar", 100000.0, Pascal),
   "bar"
 );
-export const MilliBar: q.Pressure = _register(Milli(Bar), "mbar");
+export const MilliBar = registerUnit(Milli("MilliBar", Bar), "mbar");
 
 // Power
-export const KiloWatt: q.Power = _register(Kilo(Watt), "kW");
-export const MegaWatt: q.Power = _register(Mega(Watt), "MW");
-export const GigaWatt: q.Power = _register(Giga(Watt), "GW");
-export const BtuPerHour: q.Power = _register(
-  Unit.divideNumber(3600.0, Unit.timesNumber(52752792631.0 / 50000000.0, Watt)),
+export const KiloWatt = registerUnit(Kilo("KiloWatt", Watt), "kW");
+export const MegaWatt = registerUnit(Mega("MegaWatt", Watt), "MW");
+export const GigaWatt = registerUnit(Giga("GigaWatt", Watt), "GW");
+export const BtuPerHour = registerUnit(
+  Unit.divideNumber(
+    "BtuPerHour",
+    3600.0,
+    Unit.timesNumber("", 52752792631.0 / 50000000.0, Watt)
+  ),
   "BTU/h"
 );
-export const TonCooling: q.Power = _register(
-  Unit.timesNumber(12000.0, BtuPerHour),
+export const TonCooling = registerUnit(
+  Unit.timesNumber("TonCooling", 12000.0, BtuPerHour),
   "tons"
 );
-export const KiloBtuPerHour: q.Power = _register(Kilo(BtuPerHour), "MBH");
-export const HorsePower: q.Power = _register(
-  Unit.timesNumber(745.699872, Watt),
+export const KiloBtuPerHour = registerUnit(
+  Kilo("KiloBtuPerHour", BtuPerHour),
+  "MBH"
+);
+export const HorsePower = registerUnit(
+  Unit.timesNumber("HorsePower", 745.699872, Watt),
   "hp"
 );
-export const VoltAmpere: q.Power = _register(
-  Unit.createAlternate<"Power">("VA", Watt),
+export const VoltAmpere = registerUnit(
+  Unit.createAlternate<"Power">("VoltAmpere", "VA", Watt),
   "VA"
 );
 
 // Energy
-export const NewtonMeter: q.Energy = _register(
-  UnitTimes.forceByLength(Newton, Meter),
+export const NewtonMeter = registerUnit(
+  UnitTimes.forceByLength("NewtonMeter", Newton, Meter),
   "Nm"
 );
-export const Kilojoule: q.Energy = _register(Kilo(Joule), "kJ");
-export const Megajoule: q.Energy = _register(Mega(Joule), "MJ");
-export const KiloWattHour: q.Energy = _register(
-  UnitTimes.powerByDuration(KiloWatt, Hour),
+export const Kilojoule = registerUnit(Kilo("Kilojoule", Joule), "kJ");
+export const Megajoule = registerUnit(Mega("Megajoule", Joule), "MJ");
+export const KiloWattHour = registerUnit(
+  UnitTimes.powerByDuration("KiloWattHour", KiloWatt, Hour),
   "kWh"
 );
-export const MegaWattHour: q.Energy = _register(
-  UnitTimes.powerByDuration(MegaWatt, Hour),
+export const MegaWattHour = registerUnit(
+  UnitTimes.powerByDuration("MegaWattHour", MegaWatt, Hour),
   "MWh"
 );
-export const GigaWattHour: q.Energy = _register(
-  UnitTimes.powerByDuration(GigaWatt, Hour),
+export const GigaWattHour = registerUnit(
+  UnitTimes.powerByDuration("GigaWattHour", GigaWatt, Hour),
   "GWh"
 );
-export const WattHour: q.Energy = _register(
-  UnitTimes.powerByDuration(Watt, Hour),
+export const WattHour = registerUnit(
+  UnitTimes.powerByDuration("WattHour", Watt, Hour),
   "Wh"
 );
-export const WattSecond: q.Energy = _register(
-  UnitTimes.powerByDuration(Watt, Second),
+export const WattSecond = registerUnit(
+  UnitTimes.powerByDuration("WattSecond", Watt, Second),
   "Ws"
 );
-export const Btu: q.Energy = _register(
-  Unit.timesNumber(52752792631.0 / 50000000.0, Joule),
+export const Btu = registerUnit(
+  Unit.timesNumber("Btu", 52752792631.0 / 50000000.0, Joule),
   "BTU"
 );
-export const KiloBtu: q.Energy = _register(Kilo(Btu), "MBTU");
-export const MegaBtu: q.Energy = _register(Mega(Btu), "MMBTU");
-export const Therm: q.Energy = _register(
-  Unit.timesNumber(100000, Btu),
+export const KiloBtu = registerUnit(Kilo("KiloBtu", Btu), "MBTU");
+export const MegaBtu = registerUnit(Mega("MegaBtu", Btu), "MMBTU");
+export const Therm = registerUnit(
+  Unit.timesNumber("Therm", 100000, Btu),
   "Therm"
 );
 
 /// http://www.wolframalpha.com/input/?i=BTU and select 'Show exact conversions'
 // Per Energy
-export const OnePerKiloWattHour: q.DimensionlessPerEnergy = _register(
-  UnitDivide.dimensionlessByEnergy(One, KiloWattHour),
+export const OnePerKiloWattHour = registerUnit(
+  UnitDivide.dimensionlessByEnergy("OnePerKiloWattHour", One, KiloWattHour),
   "/kWh"
 );
-export const OnePerBtu: q.DimensionlessPerEnergy = _register(
-  UnitDivide.dimensionlessByEnergy(One, Btu),
+export const OnePerBtu = registerUnit(
+  UnitDivide.dimensionlessByEnergy("OnePerBtu", One, Btu),
   "/BTU"
 );
-export const OnePerMegaBtu: q.DimensionlessPerEnergy = _register(
-  UnitDivide.dimensionlessByEnergy(One, MegaBtu),
+export const OnePerMegaBtu = registerUnit(
+  UnitDivide.dimensionlessByEnergy("OnePerMegaBtu", One, MegaBtu),
   "/MMBTU"
 );
-export const OnePerTherm: q.DimensionlessPerEnergy = _register(
-  UnitDivide.dimensionlessByEnergy(One, Therm),
+export const OnePerTherm = registerUnit(
+  UnitDivide.dimensionlessByEnergy("OnePerTherm", One, Therm),
   "/Therm"
 );
-export const OnePerKilojoule: q.DimensionlessPerEnergy = _register(
-  UnitDivide.dimensionlessByEnergy(One, Kilojoule),
+export const OnePerKilojoule = registerUnit(
+  UnitDivide.dimensionlessByEnergy("OnePerKilojoule", One, Kilojoule),
   "/kJ"
 );
-export const OnePerMegajoule: q.DimensionlessPerEnergy = _register(
-  UnitDivide.dimensionlessByEnergy(One, Megajoule),
+export const OnePerMegajoule = registerUnit(
+  UnitDivide.dimensionlessByEnergy("OnePerMegajoule", One, Megajoule),
   "/MJ"
 );
-export const OnePerJoule: q.DimensionlessPerEnergy = _register(
-  UnitDivide.dimensionlessByEnergy(One, Joule),
+export const OnePerJoule = registerUnit(
+  UnitDivide.dimensionlessByEnergy("OnePerJoule", One, Joule),
   "/J"
 );
 
 // Emission
-export const KilogramPerKiloWattHour: q.Emission = _register(
-  UnitDivide.massByEnergy(Kilogram, KiloWattHour),
+export const KilogramPerKiloWattHour = registerUnit(
+  UnitDivide.massByEnergy("KilogramPerKiloWattHour", Kilogram, KiloWattHour),
   "kg/kWh"
 );
-export const GramPerKiloWattHour: q.Emission = _register(
-  UnitDivide.massByEnergy(Gram, KiloWattHour),
+export const GramPerKiloWattHour = registerUnit(
+  UnitDivide.massByEnergy("GramPerKiloWattHour", Gram, KiloWattHour),
   "g/kWh"
 );
-export const PoundLbPerKiloWattHour: q.Emission = _register(
-  UnitDivide.massByEnergy(PoundLb, KiloWattHour),
+export const PoundLbPerKiloWattHour = registerUnit(
+  UnitDivide.massByEnergy("PoundLbPerKiloWattHour", PoundLb, KiloWattHour),
   "lb/kWh"
 );
 
 // MassFlow
-export const KilogramPerSecond: q.MassFlow = _register(
-  UnitDivide.massByDuration(Kilogram, Second),
+export const KilogramPerSecond = registerUnit(
+  UnitDivide.massByDuration("KilogramPerSecond", Kilogram, Second),
   "kg/s"
 );
-export const GramPerSecond: q.MassFlow = _register(
-  UnitDivide.massByDuration(Gram, Second),
+export const GramPerSecond = registerUnit(
+  UnitDivide.massByDuration("GramPerSecond", Gram, Second),
   "g/s"
 );
-export const GramPerHour: q.MassFlow = _register(
-  UnitDivide.massByDuration(Gram, Hour),
+export const GramPerHour = registerUnit(
+  UnitDivide.massByDuration("GramPerHour", Gram, Hour),
   "g/h"
 );
-export const KilogramPerHour: q.MassFlow = _register(
-  UnitDivide.massByDuration(Kilogram, Hour),
+export const KilogramPerHour = registerUnit(
+  UnitDivide.massByDuration("KilogramPerHour", Kilogram, Hour),
   "kg/h"
 );
-export const SlugPerSecond: q.MassFlow = _register(
-  UnitDivide.massByDuration(Slug, Second),
+export const SlugPerSecond = registerUnit(
+  UnitDivide.massByDuration("SlugPerSecond", Slug, Second),
   "slug/s"
 );
-export const SlugPerHour: q.MassFlow = _register(
-  UnitDivide.massByDuration(Slug, Hour),
+export const SlugPerHour = registerUnit(
+  UnitDivide.massByDuration("SlugPerHour", Slug, Hour),
   "slug/h"
 );
-export const PoundLbPerHour: q.MassFlow = _register(
-  UnitDivide.massByDuration(PoundLb, Hour),
+export const PoundLbPerHour = registerUnit(
+  UnitDivide.massByDuration("PoundLbPerHour", PoundLb, Hour),
   "lb/h"
 );
-export const GrainPerHour: q.MassFlow = _register(
-  UnitDivide.massByDuration(Grain, Hour),
+export const GrainPerHour = registerUnit(
+  UnitDivide.massByDuration("GrainPerHour", Grain, Hour),
   "gr/h"
 );
-export const StandardCubicMeterPerHour: q.MassFlow = _register(
-  Unit.timesNumber(1.2041, KilogramPerHour),
+export const StandardCubicMeterPerHour = registerUnit(
+  Unit.timesNumber("StandardCubicMeterPerHour", 1.2041, KilogramPerHour),
   "Sm³/h"
 );
-export const StandardCubicFeetPerMinute: q.MassFlow = _register(
+export const StandardCubicFeetPerMinute = registerUnit(
   Unit.timesNumber(
+    "StandardCubicFeetPerMinute",
     0.02831684660923049289319782819867,
-    Unit.timesNumber(60.0, StandardCubicMeterPerHour)
+    Unit.timesNumber("", 60.0, StandardCubicMeterPerHour)
   ),
   "SCFM"
 );
-export const StandardCubicMeterPerSecond: q.MassFlow = _register(
-  Unit.timesNumber(3600.0, StandardCubicMeterPerHour),
+export const StandardCubicMeterPerSecond = registerUnit(
+  Unit.timesNumber(
+    "StandardCubicMeterPerSecond",
+    3600.0,
+    StandardCubicMeterPerHour
+  ),
   "Sm³/s"
 );
-export const StandardLiterPerSecond: q.MassFlow = _register(
-  Unit.timesNumber(3600.0 * 1000, StandardCubicMeterPerHour),
+export const StandardLiterPerSecond = registerUnit(
+  Unit.timesNumber(
+    "StandardLiterPerSecond",
+    3600.0 * 1000,
+    StandardCubicMeterPerHour
+  ),
   "Sl/s"
 );
 
 // VolumeFlow
-export const CubicMeterPerSecond: q.VolumeFlow = _register(
-  UnitDivide.volumeByDuration(CubicMeter, Second),
+export const CubicMeterPerSecond = registerUnit(
+  UnitDivide.volumeByDuration("CubicMeterPerSecond", CubicMeter, Second),
   "m³/s"
 );
-export const CubicMeterPerHour: q.VolumeFlow = _register(
-  UnitDivide.volumeByDuration(CubicMeter, Hour),
+export const CubicMeterPerHour = registerUnit(
+  UnitDivide.volumeByDuration("CubicMeterPerHour", CubicMeter, Hour),
   "m³/h"
 );
-export const CubicFeetPerMinute: q.VolumeFlow = _register(
-  UnitDivide.volumeByDuration(CubicFeet, Minute),
+export const CubicFeetPerMinute = registerUnit(
+  UnitDivide.volumeByDuration("CubicFeetPerMinute", CubicFeet, Minute),
   "acfm"
 );
-export const CubicFeetPerHour: q.VolumeFlow = _register(
-  UnitDivide.volumeByDuration(CubicFeet, Hour),
+export const CubicFeetPerHour = registerUnit(
+  UnitDivide.volumeByDuration("CubicFeetPerHour", CubicFeet, Hour),
   "acfh"
 );
-export const HundredCubicFeetPerHour: q.VolumeFlow = _register(
-  UnitDivide.volumeByDuration(HundredCubicFeet, Hour),
+export const HundredCubicFeetPerHour = registerUnit(
+  UnitDivide.volumeByDuration(
+    "HundredCubicFeetPerHour",
+    HundredCubicFeet,
+    Hour
+  ),
   "cch"
 );
-export const LiterPerSecond: q.VolumeFlow = _register(
-  UnitDivide.volumeByDuration(Liter, Second),
+export const LiterPerSecond = registerUnit(
+  UnitDivide.volumeByDuration("LiterPerSecond", Liter, Second),
   "l/s"
 );
-export const LiterPerMinute: q.VolumeFlow = _register(
-  UnitDivide.volumeByDuration(Liter, Minute),
+export const LiterPerMinute = registerUnit(
+  UnitDivide.volumeByDuration("LiterPerMinute", Liter, Minute),
   "l/m"
 );
-export const LiterPerHour: q.VolumeFlow = _register(
-  UnitDivide.volumeByDuration(Liter, Hour),
+export const LiterPerHour = registerUnit(
+  UnitDivide.volumeByDuration("LiterPerHour", Liter, Hour),
   "l/h"
 );
-export const GallonsPerMinute: q.VolumeFlow = _register(
-  UnitDivide.volumeByDuration(Gallon, Minute),
+export const GallonsPerMinute = registerUnit(
+  UnitDivide.volumeByDuration("GallonsPerMinute", Gallon, Minute),
   "gal/min"
 );
-export const GallonsPerHour: q.VolumeFlow = _register(
-  UnitDivide.volumeByDuration(Gallon, Hour),
+export const GallonsPerHour = registerUnit(
+  UnitDivide.volumeByDuration("GallonsPerHour", Gallon, Hour),
   "gal/h"
 );
 
 // VolumeFlowPerArea
-export const CubicMeterPerSecondPerSquareMeter: q.VolumeFlowPerArea = _register(
-  UnitDivide.volumeFlowByArea(CubicMeterPerSecond, SquareMeter),
+export const CubicMeterPerSecondPerSquareMeter = registerUnit(
+  UnitDivide.volumeFlowByArea(
+    "CubicMeterPerSecondPerSquareMeter",
+    CubicMeterPerSecond,
+    SquareMeter
+  ),
   "m³/s/m²"
 );
-export const CubicFeetPerMinutePerSquareFeet: q.VolumeFlowPerArea = _register(
-  UnitDivide.volumeFlowByArea(CubicFeetPerMinute, SquareFeet),
+export const CubicFeetPerMinutePerSquareFeet = registerUnit(
+  UnitDivide.volumeFlowByArea(
+    "CubicFeetPerMinutePerSquareFeet",
+    CubicFeetPerMinute,
+    SquareFeet
+  ),
   "acfm/ft²"
 );
-export const LiterPerSecondPerSquareMeter: q.VolumeFlowPerArea = _register(
-  UnitDivide.volumeFlowByArea(LiterPerSecond, SquareMeter),
+export const LiterPerSecondPerSquareMeter = registerUnit(
+  UnitDivide.volumeFlowByArea(
+    "LiterPerSecondPerSquareMeter",
+    LiterPerSecond,
+    SquareMeter
+  ),
   "l/s/m²"
 );
 
 // Per Volume
-export const OnePerLiter: q.DimensionlessPerVolume = _register(
-  UnitDivide.dimensionlessByVolume(One, Liter),
+export const OnePerLiter = registerUnit(
+  UnitDivide.dimensionlessByVolume("OnePerLiter", One, Liter),
   "/l"
 );
-export const OnePerCubicMeter: q.DimensionlessPerVolume = _register(
-  UnitDivide.dimensionlessByVolume(One, CubicMeter),
+export const OnePerCubicMeter = registerUnit(
+  UnitDivide.dimensionlessByVolume("OnePerCubicMeter", One, CubicMeter),
   "/m³"
 );
-export const OnePerGallon: q.DimensionlessPerVolume = _register(
-  UnitDivide.dimensionlessByVolume(One, Gallon),
+export const OnePerGallon = registerUnit(
+  UnitDivide.dimensionlessByVolume("OnePerGallon", One, Gallon),
   "/gal"
 );
-export const OnePerHundredCubicFeet: q.DimensionlessPerVolume = _register(
-  UnitDivide.dimensionlessByVolume(One, HundredCubicFeet),
+export const OnePerHundredCubicFeet = registerUnit(
+  UnitDivide.dimensionlessByVolume(
+    "OnePerHundredCubicFeet",
+    One,
+    HundredCubicFeet
+  ),
   "/100 ft³"
 );
 
 // Per Duration
-export const OnePerHour: q.DimensionlessPerDuration = _register(
-  UnitDivide.dimensionlessByDuration(One, Hour),
+export const OnePerHour = registerUnit(
+  UnitDivide.dimensionlessByDuration("OnePerHour", One, Hour),
   "/h"
 );
-export const OnePerSecond: q.DimensionlessPerDuration = _register(
-  UnitDivide.dimensionlessByDuration(One, Second),
+export const OnePerSecond = registerUnit(
+  UnitDivide.dimensionlessByDuration("OnePerSecond", One, Second),
   "/s"
 );
 
 /// Water use efficiency
-export const LiterPerKiloWattHour: q.WaterUseEfficiency = _register(
-  UnitDivide.volumeByEnergy(Liter, KiloWattHour),
+export const LiterPerKiloWattHour = registerUnit(
+  UnitDivide.volumeByEnergy("LiterPerKiloWattHour", Liter, KiloWattHour),
   "l/kWh"
 );
 
-export const KilogramPerSquareMeterSecond: q.MassFlowPerArea = _register(
-  UnitDivide.massFlowByArea(KilogramPerSecond, SquareMeter),
+export const KilogramPerSquareMeterSecond = registerUnit(
+  UnitDivide.massFlowByArea(
+    "KilogramPerSquareMeterSecond",
+    KilogramPerSecond,
+    SquareMeter
+  ),
   "kg/m²s"
 );
 
 // Humidity
-export const KilogramPerKilogram: q.HumidityRatio = _register(
-  UnitDivide.massByMass(Kilogram, Kilogram),
+export const KilogramPerKilogram = registerUnit(
+  UnitDivide.massByMass("KilogramPerKilogram", Kilogram, Kilogram),
   "kg/kg"
 );
-export const GramPerKilogram: q.HumidityRatio = _register(
-  UnitDivide.massByMass(Gram, Kilogram),
+export const GramPerKilogram = registerUnit(
+  UnitDivide.massByMass("GramPerKilogram", Gram, Kilogram),
   "g/kg"
 );
-export const PoundLbPerPoundLb: q.HumidityRatio = _register(
-  UnitDivide.massByMass(PoundLb, PoundLb),
+export const PoundLbPerPoundLb = registerUnit(
+  UnitDivide.massByMass("PoundLbPerPoundLb", PoundLb, PoundLb),
   "lb/lb"
 );
-export const GrainPerPoundLb: q.HumidityRatio = _register(
-  UnitDivide.massByMass(Grain, PoundLb),
+export const GrainPerPoundLb = registerUnit(
+  UnitDivide.massByMass("GrainPerPoundLb", Grain, PoundLb),
   "gr/lb"
 );
-export const GramPerPoundLb: q.HumidityRatio = _register(
-  UnitDivide.massByMass(Gram, PoundLb),
+export const GramPerPoundLb = registerUnit(
+  UnitDivide.massByMass("GramPerPoundLb", Gram, PoundLb),
   "g/lb"
 );
 
 // Specific energy
-export const KilojoulePerKilogram: q.SpecificEnthalpy = _register(
-  UnitDivide.energyByMass(Kilojoule, Kilogram),
+export const KilojoulePerKilogram = registerUnit(
+  UnitDivide.energyByMass("KilojoulePerKilogram", Kilojoule, Kilogram),
   "kJ/kg"
 );
-export const KiloWattHourPerKilogram: q.SpecificEnthalpy = _register(
-  UnitDivide.energyByMass(KiloWattHour, Kilogram),
+export const KiloWattHourPerKilogram = registerUnit(
+  UnitDivide.energyByMass("KiloWattHourPerKilogram", KiloWattHour, Kilogram),
   "kWh/kg"
 );
-export const BtuPerPoundLb: q.SpecificEnthalpy = _register(
-  Unit.minus(7.68, Unit.timesNumber(2.326, KilojoulePerKilogram)),
+export const BtuPerPoundLb = registerUnit(
+  Unit.minus(
+    "BtuPerPoundLb",
+    7.68,
+    Unit.timesNumber("", 2.326, KilojoulePerKilogram)
+  ),
   "BTU/lb"
 );
 
 // Energy per volume
-export const KiloWattHourPerCubicMeter: q.HeatingValue = _register(
-  UnitDivide.energyByVolume(KiloWattHour, CubicMeter),
+export const KiloWattHourPerCubicMeter = registerUnit(
+  UnitDivide.energyByVolume(
+    "KiloWattHourPerCubicMeter",
+    KiloWattHour,
+    CubicMeter
+  ),
   "kWh/m³"
 );
 
 // Specific heat capacity of air at constant pressure (kJ/kg°C, kWs/kgK, Btu/lb°F)
 // Heat capacity is the measurable physical quantity that characterizes the amount of heat required to change a body's temperature by a given amount.
 // Check if this really is correct
-export const KilojoulePerKilogramKelvin: q.SpecificHeatCapacity = _register(
-  UnitTimes.specificEnthalpyByTemperature(KilojoulePerKilogram, Kelvin),
+export const KilojoulePerKilogramKelvin = registerUnit(
+  UnitTimes.specificEnthalpyByTemperature(
+    "KilojoulePerKilogramKelvin",
+    KilojoulePerKilogram,
+    Kelvin
+  ),
   "kJ/kg°K"
 );
-export const KilojoulePerKilogramCelsius: q.SpecificHeatCapacity = _register(
-  UnitTimes.specificEnthalpyByTemperature(KilojoulePerKilogram, Celsius),
+export const KilojoulePerKilogramCelsius = registerUnit(
+  UnitTimes.specificEnthalpyByTemperature(
+    "KilojoulePerKilogramCelsius",
+    KilojoulePerKilogram,
+    Celsius
+  ),
   "kJ/kg°C"
 );
 
 // Heat Capacity Rate
-export const KilowattPerCelsius: q.HeatCapacityRate = _register(
-  UnitDivide.powerByTemperature(KiloWatt, Celsius),
+export const KilowattPerCelsius = registerUnit(
+  UnitDivide.powerByTemperature("KilowattPerCelsius", KiloWatt, Celsius),
   "kW/°C"
 );
-export const KilowattPerKelvin: q.HeatCapacityRate = _register(
-  UnitDivide.powerByTemperature(KiloWatt, Kelvin),
+export const KilowattPerKelvin = registerUnit(
+  UnitDivide.powerByTemperature("KilowattPerKelvin", KiloWatt, Kelvin),
   "kW/K"
 );
 
 /// Moment of inertia
-export const KilogramSquareMeter: q.MomentOfInertia = _register(
-  UnitTimes.massByArea(Kilogram, SquareMeter),
+export const KilogramSquareMeter = registerUnit(
+  UnitTimes.massByArea("KilogramSquareMeter", Kilogram, SquareMeter),
   "kg·m²"
 );
 
 // Intensity
-export const WattPerSquareMeter: q.Intensity = _register(
-  UnitDivide.powerByArea(Watt, SquareMeter),
+export const WattPerSquareMeter = registerUnit(
+  UnitDivide.powerByArea("WattPerSquareMeter", Watt, SquareMeter),
   "W/m²"
 );
 
 // Specific Fan Power
-export const KiloWattPerCubicMeterPerSecond: q.SpecificFanPower = _register(
-  UnitDivide.powerByVolumeFlow(KiloWatt, CubicMeterPerSecond),
+export const KiloWattPerCubicMeterPerSecond = registerUnit(
+  UnitDivide.powerByVolumeFlow(
+    "KiloWattPerCubicMeterPerSecond",
+    KiloWatt,
+    CubicMeterPerSecond
+  ),
   "kW/m³/s"
 );
-export const WattPerCubicMeterPerSecond: q.SpecificFanPower = _register(
-  UnitDivide.powerByVolumeFlow(Watt, CubicMeterPerSecond),
+export const WattPerCubicMeterPerSecond = registerUnit(
+  UnitDivide.powerByVolumeFlow(
+    "WattPerCubicMeterPerSecond",
+    Watt,
+    CubicMeterPerSecond
+  ),
   "W/m³/s"
 );
-export const KiloWattPerCubicFootPerMinute: q.SpecificFanPower = _register(
-  UnitDivide.powerByVolumeFlow(KiloWatt, CubicFeetPerMinute),
+export const KiloWattPerCubicFootPerMinute = registerUnit(
+  UnitDivide.powerByVolumeFlow(
+    "KiloWattPerCubicFootPerMinute",
+    KiloWatt,
+    CubicFeetPerMinute
+  ),
   "kW/ft³/min"
 );
 
 // Sound power level
-export const DecibelLw: q.SoundPowerLevel = _register(
+export const DecibelLw = registerUnit(
   Unit.createAlternate<"SoundPowerLevel">(
+    "DecibelLw",
     "dB",
-    UnitTimes.dimensionlessByDimensionless(One, One) as Unit.Unit<any>
+    UnitTimes.dimensionlessByDimensionless("", One, One) as Unit.Unit<any>
   ),
   "dB"
 );
 
 // Sound pressure level
-export const Decibel: q.SoundPressureLevel = _register(
+export const Decibel = registerUnit(
   Unit.createAlternate<"SoundPressureLevel">(
+    "Decibel",
     "dB",
-    UnitTimes.dimensionlessByDimensionless(One, One)
+    UnitTimes.dimensionlessByDimensionless("", One, One)
   ),
   "dB"
 );
 
 // Electric resistance
-export const KiloOhm: q.ElectricResistance = _register(Kilo(Ohm), "kOhm");
+export const KiloOhm = registerUnit(Kilo("KiloOhm", Ohm), "kOhm");
 
 // Electric current
-export const MilliAmpere: q.ElectricCurrent = _register(Milli(Ampere), "mA");
+export const MilliAmpere = registerUnit(Milli("MilliAmpere", Ampere), "mA");
 
 // Water hardness
-export const MilliGramCalciumPerLiter: q.WaterHardness = _register(
-  Unit.createBase("WaterHardness", "mg Ca²⁺/l"),
+export const MilliGramCalciumPerLiter = registerUnit(
+  Unit.createBase("MilliGramCalciumPerLiter", "WaterHardness", "mg Ca²⁺/l"),
   "mg Ca²⁺/l"
 );
-export const FrenchDegree: q.WaterHardness = _register(
-  Unit.timesNumber(4.0043, MilliGramCalciumPerLiter),
+export const FrenchDegree = registerUnit(
+  Unit.timesNumber("FrenchDegree", 4.0043, MilliGramCalciumPerLiter),
   "°f"
 );
 
 // ElectricPotential
-export const MilliVolt: q.ElectricPotential = _register(Milli(Volt), "mV");
-export const KiloVolt: q.ElectricPotential = _register(Kilo(Volt), "kV");
+export const MilliVolt = registerUnit(Milli("MilliVolt", Volt), "mV");
+export const KiloVolt = registerUnit(Kilo("KiloVolt", Volt), "kV");
 
 // Discrete
-// export const Integer: q.Discrete = _register(Unit.createProductUnit<q.Discrete>("Discrete", []), " ");
-export const Integer: q.Discrete = _register(
-  Unit.createBase("Discrete", " "),
+// export const Integer = _register(Unit.createProductUnit<q.Discrete>("Discrete", []), " ");
+export const Integer = registerUnit(
+  Unit.createBase("Integer", "Discrete", " "),
   " "
 );
 
 // Text
-// export const Text: q.Text = _register(Unit.createProductUnit<q.Text>("Text", []), " ");
-export const Text: q.Text = _register(Unit.createBase("Text", " "), " ");
+// export const Text = _register(Unit.createProductUnit<q.Text>("Text", []), " ");
+export const Text = registerUnit(Unit.createBase("Text", "Text", " "), " ");
 
 // Alkalinity
-export const MilliGramHydrogenCarbonatePerLiter: q.Alkalinity = _register(
-  Unit.createBase("Alkalinity", "mg HCO₃⁻/l"),
+export const MilliGramHydrogenCarbonatePerLiter = registerUnit(
+  Unit.createBase(
+    "MilliGramHydrogenCarbonatePerLiter",
+    "Alkalinity",
+    "mg HCO₃⁻/l"
+  ),
   "mg HCO₃⁻/l"
 );
 
 // Viscosity
-export const PascalSecond: q.Viscosity = _register(
-  Unit.createBase("Viscosity", "Pa·s")
+export const PascalSecond = registerUnit(
+  Unit.createBase("PascalSecond", "Viscosity", "Pa·s"),
+  "Pa·s"
 );
 
 // Thermal Transmittance
-export const WattPerSquareMeterPerKelvin: q.ThermalTransmittance = _register(
+export const WattPerSquareMeterPerKelvin = registerUnit(
   UnitDivide.intensityByDeltaTemperature(
-    UnitDivide.powerByArea(Watt, SquareMeter),
+    "WattPerSquareMeterPerKelvin",
+    UnitDivide.powerByArea("", Watt, SquareMeter),
     DeltaCelsius
   ),
   "W/m²/°K"
 );
-export const BtuPerHourPerSquareFeetPerFahrenheit: q.ThermalTransmittance = _register(
+export const BtuPerHourPerSquareFeetPerFahrenheit = registerUnit(
   UnitDivide.intensityByDeltaTemperature(
-    UnitDivide.powerByArea(BtuPerHour, SquareFeet),
+    "BtuPerHourPerSquareFeetPerFahrenheit",
+    UnitDivide.powerByArea("", BtuPerHour, SquareFeet),
     DeltaFahrenheit
   ),
   "BTU/h/ft²/°F"
 );
 
 // Thermal conductivity
-export const WattPerMeterPerKelvin: q.ThermalConductivity = _register(
+export const WattPerMeterPerKelvin = registerUnit(
   UnitDivide.heatCapacityRateByLength(
-    UnitDivide.powerByDeltaTemperature(Watt, DeltaCelsius),
+    "WattPerMeterPerKelvin",
+    UnitDivide.powerByDeltaTemperature("", Watt, DeltaCelsius),
     Meter
   ),
   "W/m/°K"
 );
-export const BtuPerHourPerFeetPerFahrenheit: q.ThermalConductivity = _register(
+export const BtuPerHourPerFeetPerFahrenheit = registerUnit(
   UnitDivide.heatCapacityRateByLength(
-    UnitDivide.powerByDeltaTemperature(BtuPerHour, DeltaCelsius),
+    "BtuPerHourPerFeetPerFahrenheit",
+    UnitDivide.powerByDeltaTemperature("", BtuPerHour, DeltaCelsius),
     Foot
   ),
   "BTU/h/ft/°F"
 );
 
 // Volume flow per cooling power
-export const GallonsPerMinutePerTonCooling: q.VolumeFlowPerPower = _register(
-  UnitDivide.volumeFlowByPower(GallonsPerMinute, TonCooling),
+export const GallonsPerMinutePerTonCooling = registerUnit(
+  UnitDivide.volumeFlowByPower(
+    "GallonsPerMinutePerTonCooling",
+    GallonsPerMinute,
+    TonCooling
+  ),
   "gpm/ton"
 );
-export const LiterPerSecondPerKiloWatt: q.VolumeFlowPerPower = _register(
-  UnitDivide.volumeFlowByPower(LiterPerSecond, KiloWatt),
+export const LiterPerSecondPerKiloWatt = registerUnit(
+  UnitDivide.volumeFlowByPower(
+    "LiterPerSecondPerKiloWatt",
+    LiterPerSecond,
+    KiloWatt
+  ),
   "l/s/kW"
 );
 
 //SquareRootPressure
-export const SquareRootPascal: q.SquareRootPressure = _register(
-  Unit.createBase("SquareRootPressure", "√Pa"),
+export const SquareRootPascal = registerUnit(
+  Unit.createBase("SquareRootPascal", "SquareRootPressure", "√Pa"),
   "√Pa"
 );
-export const SquareRootInchOfWaterColumn: q.SquareRootPressure = _register(
-  Unit.timesNumber(1 / 0.06335029447, SquareRootPascal),
+export const SquareRootInchOfWaterColumn = registerUnit(
+  Unit.timesNumber(
+    "SquareRootInchOfWaterColumn",
+    1 / 0.06335029447,
+    SquareRootPascal
+  ),
   "√in WC"
 ); //sqrt(Pa/249.0889) = 0.06335029447
 
 //VolumeFlowPerSquareRootPressure
-export const LiterPerSecondPerSquareRootPascal: q.VolumeFlowPerSquareRootPressure = _register(
-  UnitDivide.volumeFlowBySquareRootPressure(LiterPerSecond, SquareRootPascal)
-);
-export const CubicFeetPerMinutePerSquareRootInchOfWaterColumn: q.VolumeFlowPerSquareRootPressure = _register(
+export const LiterPerSecondPerSquareRootPascal = registerUnit(
   UnitDivide.volumeFlowBySquareRootPressure(
+    "LiterPerSecondPerSquareRootPascal",
+    LiterPerSecond,
+    SquareRootPascal
+  )
+);
+export const CubicFeetPerMinutePerSquareRootInchOfWaterColumn = registerUnit(
+  UnitDivide.volumeFlowBySquareRootPressure(
+    "CubicFeetPerMinutePerSquareRootInchOfWaterColumn",
     CubicFeetPerMinute,
     SquareRootInchOfWaterColumn
   )
 );
 
 export function isUnit(unit: string): boolean {
-  _ensureMetaAdded();
-  return _stringToUnit.hasOwnProperty(unit.trim().toLowerCase());
+  return _stringToUnit[unit.trim().toLowerCase()] !== undefined;
 }
 
 export function getUnitFromString(
   unitString: string,
   onError?: (unitString: string) => Unit.Unit
 ): Unit.Unit {
-  _ensureMetaAdded();
-  let unit = _stringToUnit[unitString.trim().toLowerCase()];
+  const unit = _stringToUnit[unitString.trim().toLowerCase()];
   if (unit === undefined) {
     if (!onError) {
       throw new Error("Unknown unit " + unitString);
@@ -1273,19 +1445,11 @@ export function getUnitFromString(
 }
 
 export function getStringFromUnit(unit: Unit.Unit): string {
-  _ensureMetaAdded();
-  const name = _unitToString[getUnitKey(unit)];
-  if (name === undefined) {
-    throw new Error("Unknown Unit " + unit);
-  }
-  return name;
+  return unit.name;
 }
 
 export function getQuantityTypeFromString(quantityString: string): string {
-  _ensureMetaAdded();
-  const quantityArray = Object.keys(_quantityToUnits);
-  const foundIndex = quantityArray.indexOf(quantityString);
-  if (foundIndex < 0) {
+  if (_quantityToUnits[quantityString] === undefined) {
     throw new Error(`Unknown quantity '${quantityString}'`);
   }
   return quantityString;
@@ -1296,7 +1460,6 @@ export function getStringFromQuantityType(quantity: string): string {
 }
 
 export function getUnitsForQuantity(quantityType: string): Array<Unit.Unit> {
-  _ensureMetaAdded();
   const units = _quantityToUnits[quantityType];
   if (units === undefined) {
     throw new Error("Unknown quantity type");
@@ -1305,385 +1468,29 @@ export function getUnitsForQuantity(quantityType: string): Array<Unit.Unit> {
 }
 
 export function getAllUnits(): Array<Unit.Unit> {
-  _ensureMetaAdded();
   const unitsArray = Object.keys(_stringToUnit).map(key => _stringToUnit[key]);
   return unitsArray;
 }
 
 export function getAllQuantities(): Array<string> {
-  _ensureMetaAdded();
-  const quantityArray = Object.keys(_quantityToUnits) as Array<string>;
+  const quantityArray = Object.keys(_quantityToUnits);
   return quantityArray;
 }
 
-// == BEGIN META: Manually added meta data needed becuase reflection does not work ==
-
-let _metaAdded: boolean = false;
-
-function getUnitKey(unit: Unit.Unit): string {
-  // Iterates whole array. ES6 doesnt have find
-  const foundUnit = getAllUnits().filter(u => Unit.equals(u, unit))[0];
-  if (!foundUnit) {
-    throw new Error("Unknown Unit " + JSON.stringify(unit));
+export function registerUnit<T extends string>(
+  unit: Unit.Unit<T>,
+  label?: string
+): Unit.Unit<T> {
+  if (label) {
+    UnitName.registerLabel(label, unit);
   }
-
-  return JSON.stringify(foundUnit);
-}
-
-function _addMeta(quantity: string, name: string, unit: Unit.Unit): void {
-  const lowerName = name.toLowerCase();
-  _unitToString[JSON.stringify(unit)] = lowerName;
+  const lowerName = unit.name.toLowerCase();
+  _unitToString[lowerName] = lowerName;
   _stringToUnit[lowerName] = unit;
-  let quantityUnits = _quantityToUnits[quantity];
-  if (quantityUnits === undefined) {
-    quantityUnits = [];
-    _quantityToUnits[quantity] = quantityUnits;
+  if (_quantityToUnits[unit.quantity] === undefined) {
+    _quantityToUnits[unit.quantity] = [];
   }
-  quantityUnits.push(unit);
-}
+  _quantityToUnits[unit.quantity].push(unit);
 
-// Since Dart uses lazy init for static member variables, we need to access them all to make them register.
-// While accessing them we also register meta-data for them
-function _ensureMetaAdded(): void {
-  if (_metaAdded) {
-    return;
-  }
-
-  _addMeta("Dimensionless", "One", One);
-  _addMeta("Dimensionless", "Percent", Percent);
-  _addMeta("Dimensionless", "PPM", PPM);
-  _addMeta("ElectricCurrent", "Ampere", Ampere);
-  _addMeta("LuminousIntensity", "Candela", Candela);
-  _addMeta("Temperature", "Kelvin", Kelvin);
-  _addMeta("Mass", "Kilogram", Kilogram);
-  _addMeta("Length", "Meter", Meter);
-  _addMeta("AmountOfSubstance", "Mole", Mole);
-  _addMeta("Duration", "Second", Second);
-  _addMeta("Mass", "Gram", Gram);
-  _addMeta("Angle", "Radian", Radian);
-  _addMeta("SolidAngle", "Steradian", Steradian);
-  _addMeta("DataAmount", "Bit", Bit);
-  _addMeta("Frequency", "Hertz", Hertz);
-  _addMeta("Force", "Newton", Newton);
-  _addMeta("Pressure", "Pascal", Pascal);
-  _addMeta("Energy", "Joule", Joule);
-  _addMeta("Power", "Watt", Watt);
-  _addMeta("ElectricCharge", "Coulomb", Coulomb);
-  _addMeta("ElectricPotential", "Volt", Volt);
-  _addMeta("ElectricCapacitance", "Farad", Farad);
-  _addMeta("ElectricResistance", "Ohm", Ohm);
-  _addMeta("ElectricConductance", "Siemens", Siemens);
-  _addMeta("MagneticFlux", "Weber", Weber);
-  _addMeta("MagneticFluxDensity", "Tesla", Tesla);
-  _addMeta("ElectricInductance", "Henry", Henry);
-  _addMeta("Temperature", "Celsius", Celsius);
-  _addMeta("LuminousFlux", "Lumen", Lumen);
-  _addMeta("Illuminance", "Lux", Lux);
-  _addMeta("RadioactiveActivity", "Becquerel", Becquerel);
-  _addMeta("RadiationDoseAbsorbed", "Gray", Gray);
-  _addMeta("RadiationDoseEffective", "Sievert", Sievert);
-  _addMeta("CatalyticActivity", "Katal", Katal);
-  _addMeta("Velocity", "MeterPerSecond", MeterPerSecond);
-  _addMeta("Acceleration", "MeterPerSquareSecond", MeterPerSquareSecond);
-  _addMeta("Area", "SquareMeter", SquareMeter);
-  _addMeta("Volume", "CubicMeter", CubicMeter);
-  _addMeta("Length", "Kilometer", Kilometer);
-  _addMeta("Length", "CentiMeter", CentiMeter);
-  _addMeta("Length", "Millimeter", Millimeter);
-  _addMeta("RelativeHumidity", "HumidityFactor", HumidityFactor);
-  _addMeta("RelativeHumidity", "PercentHumidity", PercentHumidity);
-  _addMeta("WetTemperature", "CelsiusWet", CelsiusWet);
-  _addMeta("WetTemperature", "FahrenheitWet", FahrenheitWet);
-  _addMeta("WetTemperature", "KelvinWet", KelvinWet);
-  _addMeta("DewPointTemperature", "CelsiusDewPoint", CelsiusDewPoint);
-  _addMeta("DewPointTemperature", "FahrenheitDewPoint", FahrenheitDewPoint);
-  _addMeta("DewPointTemperature", "KelvinDewPoint", KelvinDewPoint);
-  _addMeta("Mass", "PoundLb", PoundLb);
-  _addMeta("Mass", "Grain", Grain);
-  _addMeta("Mass", "Slug", Slug);
-  _addMeta("Mass", "Tonne", Tonne);
-  _addMeta("Mass", "MilliGram", MilliGram);
-  _addMeta("DimensionlessPerMass", "OnePerKilogram", OnePerKilogram);
-  _addMeta("DimensionlessPerMass", "OnePerPoundLb", OnePerPoundLb);
-  _addMeta("Length", "Foot", Foot);
-  _addMeta("Length", "Yard", Yard);
-  _addMeta("Length", "Inch", Inch);
-  _addMeta("Length", "Mile", Mile);
-  _addMeta("Length", "Decimeter", Decimeter);
-  _addMeta("Temperature", "Rankine", Rankine);
-  _addMeta("Temperature", "Fahrenheit", Fahrenheit);
-  _addMeta("DeltaTemperature", "DeltaCelsius", DeltaCelsius);
-  _addMeta("DeltaTemperature", "DeltaFahrenheit", DeltaFahrenheit);
-  _addMeta(
-    "DeltaDewPointTemperature",
-    "DeltaCelsiusDewPoint",
-    DeltaCelsiusDewPoint
-  );
-  _addMeta(
-    "DeltaDewPointTemperature",
-    "DeltaFahrenheitDewPoint",
-    DeltaFahrenheitDewPoint
-  );
-  _addMeta("Duration", "Minute", Minute);
-  _addMeta("Duration", "Hour", Hour);
-  _addMeta("Duration", "Day", Day);
-  _addMeta("Duration", "Week", Week);
-  _addMeta("Duration", "Year", Year);
-  _addMeta("Duration", "MilliSecond", MilliSecond);
-  _addMeta("Frequency", "RevolutionsPerMinute", RevolutionsPerMinute);
-  _addMeta("Frequency", "RevolutionsPerHour", RevolutionsPerHour);
-  _addMeta("Area", "SquareInch", SquareInch);
-  _addMeta("Area", "SquareFeet", SquareFeet);
-  _addMeta("Area", "SquareMillimeter", SquareMillimeter);
-  _addMeta("Area", "SquareCentimeter", SquareCentimeter);
-  _addMeta("Area", "SquareDecimeter", SquareDecimeter);
-  _addMeta("Angle", "Degrees", Degrees);
-  _addMeta("Volume", "CubicCentiMeter", CubicCentiMeter);
-  _addMeta("Volume", "CubicInch", CubicInch);
-  _addMeta("Volume", "CubicFeet", CubicFeet);
-  _addMeta("Volume", "HundredCubicFeet", HundredCubicFeet);
-  _addMeta("Volume", "Liter", Liter);
-  _addMeta("Volume", "MilliLiter", MilliLiter);
-  _addMeta("Volume", "Gallon", Gallon);
-  _addMeta("Velocity", "FeetPerSecond", FeetPerSecond);
-  _addMeta("Velocity", "FeetPerMinute", FeetPerMinute);
-  _addMeta("Velocity", "MilesPerHour", MilesPerHour);
-  _addMeta("Velocity", "KilometerPerHour", KilometerPerHour);
-  _addMeta("Velocity", "MeterPerHour", MeterPerHour);
-  _addMeta("Density", "KilogramPerCubicMeter", KilogramPerCubicMeter);
-  _addMeta("Density", "GramPerCubicCentiMeter", GramPerCubicCentiMeter);
-  _addMeta("Density", "SlugPerCubicFeet", SlugPerCubicFeet);
-  _addMeta("Density", "PoundPerCubicFoot", PoundPerCubicFoot);
-  _addMeta("Force", "PoundForce", PoundForce);
-  _addMeta("Pressure", "KiloPascal", KiloPascal);
-  _addMeta("Pressure", "HectoPascal", HectoPascal);
-  _addMeta("Pressure", "NewtonPerSquareMeter", NewtonPerSquareMeter);
-  _addMeta("Pressure", "PoundForcePerSquareInch", PoundForcePerSquareInch);
-  _addMeta("Pressure", "InchOfMercury", InchOfMercury);
-  _addMeta("Pressure", "InchOfWaterColumn", InchOfWaterColumn);
-  _addMeta("Pressure", "FeetOfWaterColumn", FeetOfWaterColumn);
-  _addMeta("Pressure", "Bar", Bar);
-  _addMeta("Pressure", "MilliBar", MilliBar);
-  _addMeta("Pressure", "PoundForcePerSquareFoot", PoundForcePerSquareFoot);
-  _addMeta("Pressure", "DeciPascal", DeciPascal);
-  _addMeta("Power", "KiloWatt", KiloWatt);
-  _addMeta("Power", "MegaWatt", MegaWatt);
-  _addMeta("Power", "GigaWatt", GigaWatt);
-  _addMeta("Power", "BtuPerHour", BtuPerHour);
-  _addMeta("Power", "TonCooling", TonCooling);
-  _addMeta("Power", "KiloBtuPerHour", KiloBtuPerHour);
-  _addMeta("Power", "HorsePower", HorsePower);
-  _addMeta("Power", "VoltAmpere", VoltAmpere);
-  _addMeta("Energy", "NewtonMeter", NewtonMeter);
-  _addMeta("Energy", "Kilojoule", Kilojoule);
-  _addMeta("Energy", "Megajoule", Megajoule);
-  _addMeta("Energy", "KiloWattHour", KiloWattHour);
-  _addMeta("Energy", "MegaWattHour", MegaWattHour);
-  _addMeta("Energy", "GigaWattHour", GigaWattHour);
-  _addMeta("Energy", "WattHour", WattHour);
-  _addMeta("Energy", "WattSecond", WattSecond);
-  _addMeta("Energy", "Btu", Btu);
-  _addMeta("Energy", "KiloBtu", KiloBtu);
-  _addMeta("Energy", "MegaBtu", MegaBtu);
-  _addMeta("Energy", "Therm", Therm);
-  _addMeta("DimensionlessPerEnergy", "OnePerKiloWattHour", OnePerKiloWattHour);
-  _addMeta("DimensionlessPerEnergy", "OnePerBtu", OnePerBtu);
-  _addMeta("DimensionlessPerEnergy", "OnePerMegaBtu", OnePerMegaBtu);
-  _addMeta("DimensionlessPerEnergy", "OnePerTherm", OnePerTherm);
-  _addMeta("DimensionlessPerEnergy", "OnePerKilojoule", OnePerKilojoule);
-  _addMeta("DimensionlessPerEnergy", "OnePerMegajoule", OnePerMegajoule);
-  _addMeta("DimensionlessPerEnergy", "OnePerJoule", OnePerJoule);
-  _addMeta("Emission", "KilogramPerKiloWattHour", KilogramPerKiloWattHour);
-  _addMeta("Emission", "PoundLbPerKiloWattHour", PoundLbPerKiloWattHour);
-  _addMeta("Emission", "GramPerKiloWattHour", GramPerKiloWattHour);
-  _addMeta("MassFlow", "KilogramPerSecond", KilogramPerSecond);
-  _addMeta("MassFlow", "GramPerSecond", GramPerSecond);
-  _addMeta("MassFlow", "GramPerHour", GramPerHour);
-  _addMeta("MassFlow", "KilogramPerHour", KilogramPerHour);
-  _addMeta("MassFlow", "SlugPerSecond", SlugPerSecond);
-  _addMeta("MassFlow", "SlugPerHour", SlugPerHour);
-  _addMeta("MassFlow", "PoundLbPerHour", PoundLbPerHour);
-  _addMeta("MassFlow", "GrainPerHour", GrainPerHour);
-  _addMeta("MassFlow", "StandardCubicMeterPerHour", StandardCubicMeterPerHour);
-  _addMeta(
-    "MassFlow",
-    "StandardCubicFeetPerMinute",
-    StandardCubicFeetPerMinute
-  );
-  _addMeta(
-    "MassFlow",
-    "StandardCubicMeterPerSecond",
-    StandardCubicMeterPerSecond
-  );
-  _addMeta("MassFlow", "StandardLiterPerSecond", StandardLiterPerSecond);
-  _addMeta("VolumeFlow", "CubicMeterPerSecond", CubicMeterPerSecond);
-  _addMeta("VolumeFlow", "CubicMeterPerHour", CubicMeterPerHour);
-  _addMeta("VolumeFlow", "CubicFeetPerMinute", CubicFeetPerMinute);
-  _addMeta("VolumeFlow", "CubicFeetPerHour", CubicFeetPerHour);
-  _addMeta("VolumeFlow", "HundredCubicFeetPerHour", HundredCubicFeetPerHour);
-  _addMeta("VolumeFlow", "LiterPerSecond", LiterPerSecond);
-  _addMeta("VolumeFlow", "LiterPerMinute", LiterPerMinute);
-  _addMeta("VolumeFlow", "LiterPerHour", LiterPerHour);
-  _addMeta("VolumeFlow", "GallonsPerMinute", GallonsPerMinute);
-  _addMeta("VolumeFlow", "GallonsPerHour", GallonsPerHour);
-  _addMeta("DimensionlessPerVolume", "OnePerLiter", OnePerLiter);
-  _addMeta("DimensionlessPerVolume", "OnePerCubicMeter", OnePerCubicMeter);
-  _addMeta("DimensionlessPerVolume", "OnePerGallon", OnePerGallon);
-  _addMeta(
-    "DimensionlessPerVolume",
-    "OnePerHundredCubicFeet",
-    OnePerHundredCubicFeet
-  );
-  _addMeta("DimensionlessPerDuration", "OnePerHour", OnePerHour);
-  _addMeta("DimensionlessPerDuration", "OnePerSecond", OnePerSecond);
-  _addMeta("WaterUseEfficiency", "LiterPerKiloWattHour", LiterPerKiloWattHour);
-  _addMeta(
-    "MassFlowPerArea",
-    "KilogramPerSquareMeterSecond",
-    KilogramPerSquareMeterSecond
-  );
-  _addMeta("HumidityRatio", "KilogramPerKilogram", KilogramPerKilogram);
-  _addMeta("HumidityRatio", "GramPerKilogram", GramPerKilogram);
-  _addMeta("HumidityRatio", "PoundLbPerPoundLb", PoundLbPerPoundLb);
-  _addMeta("HumidityRatio", "GrainPerPoundLb", GrainPerPoundLb);
-  _addMeta("HumidityRatio", "GramPerPoundLb", GramPerPoundLb);
-  _addMeta("SpecificEnthalpy", "KilojoulePerKilogram", KilojoulePerKilogram);
-  _addMeta(
-    "SpecificEnthalpy",
-    "KiloWattHourPerKilogram",
-    KiloWattHourPerKilogram
-  );
-  _addMeta("SpecificEnthalpy", "BtuPerPoundLb", BtuPerPoundLb);
-  _addMeta(
-    "HeatingValue",
-    "KiloWattHourPerCubicMeter",
-    KiloWattHourPerCubicMeter
-  );
-  _addMeta(
-    "SpecificHeatCapacity",
-    "KilojoulePerKilogramKelvin",
-    KilojoulePerKilogramKelvin
-  );
-  _addMeta(
-    "SpecificHeatCapacity",
-    "KilojoulePerKilogramCelsius",
-    KilojoulePerKilogramCelsius
-  );
-  _addMeta("HeatCapacityRate", "KilowattPerCelsius", KilowattPerCelsius);
-  _addMeta("HeatCapacityRate", "KilowattPerKelvin", KilowattPerKelvin);
-  _addMeta("MomentOfInertia", "KilogramSquareMeter", KilogramSquareMeter);
-  _addMeta("Intensity", "WattPerSquareMeter", WattPerSquareMeter);
-  _addMeta(
-    "SpecificFanPower",
-    "KiloWattPerCubicMeterPerSecond",
-    KiloWattPerCubicMeterPerSecond
-  );
-  _addMeta(
-    "SpecificFanPower",
-    "WattPerCubicMeterPerSecond",
-    WattPerCubicMeterPerSecond
-  );
-  _addMeta(
-    "SpecificFanPower",
-    "KiloWattPerCubicFootPerMinute",
-    KiloWattPerCubicFootPerMinute
-  );
-  _addMeta("SoundPressureLevel", "Decibel", Decibel);
-  _addMeta("SoundPowerLevel", "DecibelLw", DecibelLw);
-  _addMeta("ElectricResistance", "KiloOhm", KiloOhm);
-  _addMeta("ElectricCurrent", "MilliAmpere", MilliAmpere);
-  _addMeta(
-    "WaterHardness",
-    "MilliGramCalciumPerLiter",
-    MilliGramCalciumPerLiter
-  );
-  _addMeta("WaterHardness", "FrenchDegree", FrenchDegree);
-  _addMeta("ElectricPotential", "MilliVolt", MilliVolt);
-  _addMeta("ElectricPotential", "KiloVolt", KiloVolt);
-  _addMeta("Discrete", "Integer", Integer);
-  _addMeta("Text", "Text", Text);
-  _addMeta(
-    "Alkalinity",
-    "MilliGramHydrogenCarbonatePerLiter",
-    MilliGramHydrogenCarbonatePerLiter
-  );
-  _addMeta("Viscosity", "PascalSecond", PascalSecond);
-  _addMeta(
-    "ThermalTransmittance",
-    "WattPerSquareMeterPerKelvin",
-    WattPerSquareMeterPerKelvin
-  );
-  _addMeta(
-    "ThermalTransmittance",
-    "BtuPerHourPerSquareFeetPerFahrenheit",
-    BtuPerHourPerSquareFeetPerFahrenheit
-  );
-  _addMeta(
-    "ThermalConductivity",
-    "WattPerMeterPerKelvin",
-    WattPerMeterPerKelvin
-  );
-  _addMeta(
-    "ThermalConductivity",
-    "BtuPerHourPerFeetPerFahrenheit",
-    BtuPerHourPerFeetPerFahrenheit
-  );
-  _addMeta(
-    "VolumeFlowPerPower",
-    "GallonsPerMinutePerTonCooling",
-    GallonsPerMinutePerTonCooling
-  );
-  _addMeta(
-    "VolumeFlowPerPower",
-    "LiterPerSecondPerKiloWatt",
-    LiterPerSecondPerKiloWatt
-  );
-  _addMeta(
-    "VolumeFlowPerPower",
-    "CubicFeetPerMinutePerSquareFeet",
-    CubicFeetPerMinutePerSquareFeet
-  );
-  _addMeta(
-    "VolumeFlowPerPower",
-    "CubicMeterPerSecondPerSquareMeter",
-    CubicMeterPerSecondPerSquareMeter
-  );
-  _addMeta(
-    "VolumeFlowPerPower",
-    "LiterPerSecondPerSquareMeter",
-    LiterPerSecondPerSquareMeter
-  );
-  _addMeta(
-    "VolumeFlowPerArea",
-    "CubicMeterPerSecondPerSquareMeter",
-    CubicMeterPerSecondPerSquareMeter
-  );
-  _addMeta(
-    "VolumeFlowPerArea",
-    "CubicFeetPerMinutePerSquareFeet",
-    CubicFeetPerMinutePerSquareFeet
-  );
-  _addMeta(
-    "VolumeFlowPerArea",
-    "LiterPerSecondPerSquareMeter",
-    LiterPerSecondPerSquareMeter
-  );
-  _addMeta("SquareRootPressure", "SquareRootPascal", SquareRootPascal);
-  _addMeta(
-    "SquareRootPressure",
-    "SquareRootInchOfWaterColumn",
-    SquareRootInchOfWaterColumn
-  );
-  _addMeta(
-    "VolumeFlowPerSquareRootPressure",
-    "LiterPerSecondPerSquareRootPascal",
-    LiterPerSecondPerSquareRootPascal
-  );
-  _addMeta(
-    "VolumeFlowPerSquareRootPressure",
-    "CubicFeetPerMinutePerSquareRootInchOfWaterColumn",
-    CubicFeetPerMinutePerSquareRootInchOfWaterColumn
-  );
-
-  _metaAdded = true;
+  return unit;
 }

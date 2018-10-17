@@ -1,8 +1,7 @@
 import { ConversionTest } from "./conversion-test";
 import * as Units from "../../src/units";
-import { Pressure } from "../../src/quantity";
 
-export const tests: ReadonlyArray<ConversionTest<Pressure>> = [
+export const tests: ReadonlyArray<ConversionTest> = [
   {
     name: "0pascal_0kilopascal",
     fromUnit: Units.Pascal,

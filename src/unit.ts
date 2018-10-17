@@ -4,10 +4,11 @@
 
 // tslint:disable:max-file-line-count
 
-import { Dimensionless } from "./quantity";
 import { exhaustiveCheck } from "./utils/exhaustive-check";
+import { Dimensionless } from "./quantity";
 
 export interface Unit<TQuantityName extends string = string> {
+  readonly name: string;
   readonly quantity: TQuantityName;
   readonly unitInfo: UnitInfo<TQuantityName>;
 }
@@ -156,7 +157,7 @@ export interface OffsetConverter {
  * Holds the dimensionless unit ONE
  * @type {Unit}
  */
-export const One: Dimensionless = createOne(); //tslint:disable-line
+export const One = createOne(); //tslint:disable-line
 
 /**
  * Holds the identity converter (unique). This converter does nothing (ONE.convert(x) == x).
@@ -170,10 +171,11 @@ const identityConverter: UnitConverter = createIdentityConverter();
  * @param symbol The symbol of this base unit.
  */
 export function createBase<T extends string>(
+  name: string,
   quantity: T,
   symbol: string
 ): Unit<T> {
-  return { quantity, unitInfo: { quantity, type: "base", symbol } };
+  return { name, quantity, unitInfo: { quantity, type: "base", symbol } };
 }
 
 /**
@@ -183,10 +185,12 @@ export function createBase<T extends string>(
  * @param parent Parent the system unit from which this alternate unit is derived.
  */
 export function createAlternate<T extends string>(
+  name: string,
   symbol: string,
   parent: Unit<T>
 ): Unit<T> {
   return {
+    name,
     quantity: parent.quantity,
     unitInfo: { quantity: parent.quantity, type: "alternate", symbol, parent }
   };
@@ -200,11 +204,12 @@ export function createAlternate<T extends string>(
  * @returns left * right
  */
 export function times<T extends string>(
+  name: string,
   quantity: T,
   left: Unit,
   right: Unit
 ): Unit<T> {
-  return { quantity, unitInfo: product(quantity, left, right) };
+  return { name, quantity, unitInfo: product(quantity, left, right) };
 }
 
 /**
@@ -215,40 +220,52 @@ export function times<T extends string>(
  * @returns left / right
  */
 export function divide<T extends string>(
+  name: string,
   quantity: T,
   left: Unit,
   right: Unit
 ): Unit<T> {
-  return { quantity, unitInfo: quotient(quantity, left, right) };
+  return { name, quantity, unitInfo: quotient(quantity, left, right) };
 }
 
-export function squareRoot<T extends string>(quantity: T, unit: Unit): Unit<T> {
-  return { quantity, unitInfo: pow(quantity, unit, 0.5) };
+export function squareRoot<T extends string>(
+  name: string,
+  quantity: T,
+  unit: Unit
+): Unit<T> {
+  return { name, quantity, unitInfo: pow(quantity, unit, 0.5) };
 }
 
 export function timesNumber<T extends string>(
+  name: string,
   factor: number,
   unit: Unit<T>
 ): Unit<T> {
-  return transform(createFactorConverter(factor), unit);
+  return transform(name, createFactorConverter(factor), unit);
 }
 
 export function divideNumber<T extends string>(
+  name: string,
   factor: number,
   unit: Unit<T>
 ): Unit<T> {
-  return transform(createFactorConverter(1.0 / factor), unit);
+  return transform(name, createFactorConverter(1.0 / factor), unit);
 }
 
-export function plus<T extends string>(offset: number, unit: Unit<T>): Unit<T> {
-  return transform(createOffsetConverter(offset), unit);
-}
-
-export function minus<T extends string>(
+export function plus<T extends string>(
+  name: string,
   offset: number,
   unit: Unit<T>
 ): Unit<T> {
-  return transform(createOffsetConverter(-offset), unit);
+  return transform(name, createOffsetConverter(offset), unit);
+}
+
+export function minus<T extends string>(
+  name: string,
+  offset: number,
+  unit: Unit<T>
+): Unit<T> {
+  return transform(name, createOffsetConverter(-offset), unit);
 }
 
 /**
@@ -389,6 +406,7 @@ function toStandardUnitConverter<T extends string>(
  * @private
  */
 function transform<T extends string>(
+  name: string,
   operation: UnitConverter,
   unit: Unit<T>
 ): Unit<T> {
@@ -396,6 +414,7 @@ function transform<T extends string>(
     return unit;
   }
   return {
+    name,
     quantity: unit.quantity,
     unitInfo: createTransformedUnit(unit, operation)
   };
@@ -698,8 +717,9 @@ function concatenateConverters(
  * Used solely to create ONE instance.
  * @private
  */
-function createOne(): Dimensionless {
+function createOne(): Unit<Dimensionless> {
   return {
+    name: "One",
     quantity: "Dimensionless",
     unitInfo: {
       quantity: "Dimensionless",
