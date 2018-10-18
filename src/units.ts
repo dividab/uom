@@ -121,7 +121,8 @@ export const MeterPerSecond = registerUnit(
 
 /** The metric unit for acceleration quantities ( <code>m/s²</code> ). */
 export const MeterPerSquareSecond = registerUnit(
-  UnitDivide.velocityBySecond("MeterPerSquareSecond", MeterPerSecond, Second)
+  UnitDivide.velocityBySecond("MeterPerSquareSecond", MeterPerSecond, Second),
+  "m/s²"
 );
 
 /** The metric unit for area quantities ( <code>m²</code> ). */
@@ -161,7 +162,7 @@ export const Gram = registerUnit(
  * One radian is the angle between two radii of a circle such that the length of the arc between them is equal to the radius.
  */
 export const Radian = registerUnit(
-  Unit.createAlternate<"Angle">("Radian", "rad", One as Unit.Unit<any>),
+  Unit.createBase<"Angle">("Radian", "Angle", "rad"),
   "rad"
 );
 
@@ -171,7 +172,7 @@ export const Radian = registerUnit(
  * surface of the sphere that is equal to the radius squared. The total solid angle of a sphere is 4*Pi steradians.
  */
 export const Steradian = registerUnit(
-  Unit.createAlternate<"SolidAngle">("Steradian", "sr", One as Unit.Unit<any>),
+  Unit.createBase<"SolidAngle">("Steradian", "SolidAngle", "sr"),
   "sr"
 );
 
@@ -179,7 +180,7 @@ export const Steradian = registerUnit(
  * The unit for binary information ( <code>bit</code> ).
  */
 export const Bit = registerUnit(
-  Unit.createAlternate<"DataAmount">("Bit", "bit", One as Unit.Unit<any>),
+  Unit.createBase<"DataAmount">("Bit", "DataAmount", "bit"),
   "bit"
 );
 
@@ -189,11 +190,7 @@ export const Bit = registerUnit(
  * German physicist who was the first to produce radio waves artificially.
  */
 export const Hertz = registerUnit(
-  Unit.createAlternate<"Frequency">(
-    "Hertz",
-    "Hz",
-    UnitDivide.dimentionlessByDuration("Hertz", One, Second)
-  ),
+  UnitDivide.dimentionlessByDuration("Hertz", One, Second),
   "Hz"
 );
 
@@ -203,11 +200,7 @@ export const Hertz = registerUnit(
  * It is named after the English mathematician and physicist Sir Isaac Newton (1642-1727).
  */
 export const Newton = registerUnit(
-  Unit.createAlternate<"Force">(
-    "Newton",
-    "N",
-    UnitTimes.massByAcceleration("Newton", Kilogram, MeterPerSquareSecond)
-  ),
+  UnitTimes.massByAcceleration("Newton", Kilogram, MeterPerSquareSecond),
   "N"
 );
 
@@ -217,11 +210,7 @@ export const Newton = registerUnit(
  * It is named after the French philosopher and mathematician Blaise Pascal (1623-1662).
  */
 export const Pascal = registerUnit(
-  Unit.createAlternate<"Pressure">(
-    "Pascal",
-    "Pa",
-    UnitDivide.forceByArea("Pascal", Newton, SquareMeter)
-  ),
+  UnitDivide.forceByArea("Pascal", Newton, SquareMeter),
   "Pa"
 );
 
@@ -232,11 +221,7 @@ export const Pascal = registerUnit(
  * It is named after the English physicist James Prescott Joule (1818-1889).
  */
 export const Joule = registerUnit(
-  Unit.createAlternate<"Energy">(
-    "Joule",
-    "J",
-    UnitTimes.forceByLength("Joule", Newton, Meter)
-  ),
+  UnitTimes.forceByLength("Joule", Newton, Meter),
   "J"
 );
 
@@ -246,11 +231,7 @@ export const Joule = registerUnit(
  * It is named after the British scientist James Watt (1736-1819).
  */
 export const Watt = registerUnit(
-  Unit.createAlternate<"Power">(
-    "Watt",
-    "W",
-    UnitDivide.energyByDuration("Watt", Joule, Second)
-  ),
+  UnitDivide.energyByDuration("Watt", Joule, Second),
   "W"
 );
 
@@ -260,11 +241,7 @@ export const Watt = registerUnit(
  * It is named after the French physicist Charles Augustin de Coulomb (1736-1806).
  */
 export const Coulomb = registerUnit(
-  Unit.createAlternate<"ElectricCharge">(
-    "Coulomb",
-    "C",
-    UnitTimes.durationByElectricCurrent("Coulomb", Second, Ampere)
-  ),
+  UnitTimes.durationByElectricCurrent("Coulomb", Second, Ampere),
   "C"
 );
 
@@ -275,11 +252,7 @@ export const Coulomb = registerUnit(
  * It is named after the Italian physicist Count Alessandro Volta (1745-1827).
  */
 export const Volt = registerUnit(
-  Unit.createAlternate<"ElectricPotential">(
-    "Volt",
-    "V",
-    UnitDivide.powerByElectricalCurrent("Volt", Watt, Ampere)
-  ),
+  UnitDivide.powerByElectricalCurrent("Volt", Watt, Ampere),
   "V"
 );
 
@@ -290,11 +263,7 @@ export const Volt = registerUnit(
  * It is named after the British physicist and chemist Michael Faraday (1791-1867).
  */
 export const Farad = registerUnit(
-  Unit.createAlternate<"ElectricCapacitance">(
-    "Farad",
-    "F",
-    UnitDivide.electricChargeByElectricPotential("Farad", Coulomb, Volt)
-  ),
+  UnitDivide.electricChargeByElectricPotential("Farad", Coulomb, Volt),
   "F"
 );
 
@@ -305,13 +274,8 @@ export const Farad = registerUnit(
  * It is named after the German physicist Georg Simon Ohm (1789-1854).
  */
 export const Ohm = registerUnit(
-  Si(
-    Unit.createAlternate<"ElectricResistance">(
-      "Ohm",
-      "Ω",
-      UnitDivide.electricalPotentialByElectricalCurrent("Ohm", Volt, Ampere)
-    )
-  )
+  UnitDivide.electricalPotentialByElectricalCurrent("Ohm", Volt, Ampere),
+  "Ω"
 );
 
 /**
@@ -320,13 +284,8 @@ export const Ohm = registerUnit(
  * It is named after the German engineer Ernst Werner von Siemens (1816-1892).
  */
 export const Siemens = registerUnit(
-  Si(
-    Unit.createAlternate<"ElectricConductance">(
-      "Siemens",
-      "S",
-      UnitDivide.electricalCurrentByElectricalPotential("Siemens", Ampere, Volt)
-    )
-  )
+  UnitDivide.electricalCurrentByElectricalPotential("Siemens", Ampere, Volt),
+  "S"
 );
 
 /**
@@ -336,13 +295,8 @@ export const Siemens = registerUnit(
  * It is named after the German physicist Wilhelm Eduard Weber (1804-1891).
  */
 export const Weber = registerUnit(
-  Si(
-    Unit.createAlternate<"MagneticFlux">(
-      "Weber",
-      "Wb",
-      UnitTimes.electricalPotentialByDuration("Weber", Volt, Second)
-    )
-  )
+  UnitTimes.electricalPotentialByDuration("Weber", Volt, Second),
+  "Wb"
 );
 
 /**
@@ -351,13 +305,8 @@ export const Weber = registerUnit(
  * It is named after the Serbian-born American electrical engineer and physicist Nikola Tesla (1856-1943).
  */
 export const Tesla = registerUnit(
-  Si(
-    Unit.createAlternate<"MagneticFluxDensity">(
-      "Tesla",
-      "T",
-      UnitDivide.magneticFluxByArea("Tesla", Weber, SquareMeter)
-    )
-  )
+  UnitDivide.magneticFluxByArea("Tesla", Weber, SquareMeter),
+  "T"
 );
 
 /**
@@ -367,13 +316,8 @@ export const Tesla = registerUnit(
  * It is named after the American physicist Joseph Henry (1791-1878).
  */
 export const Henry = registerUnit(
-  Si(
-    Unit.createAlternate<"ElectricInductance">(
-      "Henry",
-      "H",
-      UnitDivide.magneticFluxByElectricalCurrent("Henry", Weber, Ampere)
-    )
-  )
+  UnitDivide.magneticFluxByElectricalCurrent("Henry", Weber, Ampere),
+  "H"
 );
 
 /**
@@ -392,13 +336,8 @@ export const Celsius = registerUnit(
  * candela intensity radiating equally in all directions.
  */
 export const Lumen = registerUnit(
-  Si(
-    Unit.createAlternate<"LuminousFlux">(
-      "Lumen",
-      "lm",
-      UnitTimes.luminousIntensityBySolidAngle("Lumen", Candela, Steradian)
-    )
-  )
+  UnitTimes.luminousIntensityBySolidAngle("Lumen", Candela, Steradian),
+  "lm"
 );
 
 /**
@@ -406,13 +345,8 @@ export const Lumen = registerUnit(
  * One Lux is equal to one lumen per square meter.
  */
 export const Lux = registerUnit(
-  Si(
-    Unit.createAlternate<"Illuminance">(
-      "Lux",
-      "lx",
-      UnitDivide.luminousFluxByArea("Lux", Lumen, SquareMeter)
-    )
-  )
+  UnitDivide.luminousFluxByArea("Lux", Lumen, SquareMeter),
+  "lx"
 );
 
 /**
@@ -421,15 +355,8 @@ export const Lux = registerUnit(
  * It is named after the French physicist, Antoine-Henri Becquerel (1852-1908).
  */
 export const Becquerel = registerUnit(
-  Si(
-    Unit.createAlternate<"RadioactiveActivity">(
-      "Becquerel",
-      "Bq",
-      UnitDivide.dimentionlessByDuration("Becquerel", One, Second) as Unit.Unit<
-        any
-      >
-    )
-  )
+  UnitDivide.dimentionlessByDuration("Becquerel", One, Second),
+  "Bq"
 );
 
 /**
@@ -438,13 +365,8 @@ export const Becquerel = registerUnit(
  * It is named after the British physician L. H. Gray (1905-1965).
  */
 export const Gray = registerUnit(
-  Si(
-    Unit.createAlternate<"RadiationDoseAbsorbed">(
-      "Gray",
-      "Gy",
-      UnitDivide.energyByMass("Gray", Joule, Kilogram) as Unit.Unit<any>
-    )
-  )
+  UnitDivide.energyByMass("Gray", Joule, Kilogram),
+  "Gy"
 );
 
 /**
@@ -454,26 +376,16 @@ export const Gray = registerUnit(
  * It is named after the Swedish physicist Rolf Sievert (1898-1966).
  */
 export const Sievert = registerUnit(
-  Si(
-    Unit.createAlternate<"RadiationDoseEffective">(
-      "Sievert",
-      "Sv",
-      UnitDivide.energyByMass("Sievert", Joule, Kilogram) as Unit.Unit<any>
-    )
-  )
+  UnitDivide.energyByMass("Sievert", Joule, Kilogram),
+  "Sv"
 );
 
 /**
  * The derived unit for catalytic activity ( <code>kat</code> ).
  */
 export const Katal = registerUnit(
-  Si(
-    Unit.createAlternate<"CatalyticActivity">(
-      "Katal",
-      "kat",
-      UnitDivide.amountOfSubstanceByDuration("Katal", Mole, Second)
-    )
-  )
+  UnitDivide.amountOfSubstanceByDuration("Katal", Mole, Second),
+  "kat"
 );
 
 /////////////////
@@ -705,19 +617,11 @@ export const MilliSecond = registerUnit(Milli("MilliSecond", Second), "ms");
 
 // Frequency
 export const RevolutionsPerMinute = registerUnit(
-  Unit.createAlternate<"Frequency">(
-    "RevolutionsPerMinute",
-    "rpm",
-    UnitDivide.dimentionlessByDuration("", One, Minute)
-  ),
+  UnitDivide.dimentionlessByDuration("RevolutionsPerMinute", One, Minute),
   "rpm"
 );
 export const RevolutionsPerHour = registerUnit(
-  Unit.createAlternate<"Frequency">(
-    "RevolutionsPerHour",
-    "rph",
-    UnitDivide.dimentionlessByDuration("", One, Hour)
-  ),
+  UnitDivide.dimentionlessByDuration("RevolutionsPerHour", One, Hour),
   "rph"
 );
 
@@ -1277,21 +1181,13 @@ export const KiloWattPerCubicFootPerMinute = registerUnit(
 
 // Sound power level
 export const DecibelLw = registerUnit(
-  Unit.createAlternate<"SoundPowerLevel">(
-    "DecibelLw",
-    "dB",
-    UnitTimes.dimensionlessByDimensionless("", One, One) as Unit.Unit<any>
-  ),
+  Unit.createBase("DecibelLw", "SoundPowerLevel", "dB"),
   "dB"
 );
 
 // Sound pressure level
 export const Decibel = registerUnit(
-  Unit.createAlternate<"SoundPressureLevel">(
-    "Decibel",
-    "dB",
-    UnitTimes.dimensionlessByDimensionless("", One, One)
-  ),
+  Unit.createBase("Decibel", "SoundPressureLevel", "dB"),
   "dB"
 );
 
@@ -1416,14 +1312,16 @@ export const LiterPerSecondPerSquareRootPascal = registerUnit(
     "LiterPerSecondPerSquareRootPascal",
     LiterPerSecond,
     SquareRootPascal
-  )
+  ),
+  "l/s/√Pa"
 );
 export const CubicFeetPerMinutePerSquareRootInchOfWaterColumn = registerUnit(
   UnitDivide.volumeFlowBySquareRootPressure(
     "CubicFeetPerMinutePerSquareRootInchOfWaterColumn",
     CubicFeetPerMinute,
     SquareRootInchOfWaterColumn
-  )
+  ),
+  "ft³/min/√in WC"
 );
 
 export function isUnit(unit: string): boolean {
@@ -1480,7 +1378,7 @@ export function getAllQuantities(): Array<string> {
 
 export function registerUnit<T extends Quantity>(
   unit: Unit.Unit<T>,
-  label?: string
+  label: string
 ): Unit.Unit<T> {
   if (label) {
     UnitName.registerLabel(label, unit);

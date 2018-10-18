@@ -54,6 +54,10 @@ test("units_test_equals", t => {
       st.end();
     }
   );
+  t.test("Degrees should be quantity Angle", st => {
+    st.true(Units.Degrees.quantity === "Angle");
+    st.end();
+  });
 });
 
 /*
