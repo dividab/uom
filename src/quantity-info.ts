@@ -13,13 +13,6 @@ export function getQuantityInfo(quantity: Quantity): QuantityInfo | undefined {
   return quantityInfo[quantity];
 }
 
-// function createQuantityInfo(
-//   siUnit: Unit.Unit,
-//   ipUnit: Unit.Unit
-// ): QuantityInfo | undefined {
-//   return { siUnit, ipUnit };
-// }
-
 export function addQuantity(
   quantity: Quantity,
   siUnit: Unit.Unit<Quantity>,
@@ -66,6 +59,11 @@ addQuantity(
 addQuantity("Duration", Units.Minute, Units.Minute);
 addQuantity("ElectricCurrent", Units.Ampere, Units.Ampere);
 addQuantity("ElectricPotential", Units.Volt, Units.Volt);
+addQuantity(
+  "Emission",
+  Units.KilogramPerKiloWattHour,
+  Units.PoundLbPerKiloWattHour
+);
 addQuantity("Energy", Units.KiloWattHour, Units.KiloWattHour);
 addQuantity("Force", Units.Newton, Units.Newton);
 addQuantity("Frequency", Units.Hertz, Units.Hertz);
