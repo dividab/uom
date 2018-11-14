@@ -64,7 +64,7 @@ For more information, see the [full API docs](docs/api.md).
 
 ## Internal Design
 
-The package is designed around the idea of measure systems. A measure system has a number of `BaseUnit`s which is used to create all other derived units in the system which are represented as `ProductUnit` or `TransformedUnit`. For example in the SI measure system, `m` and `s` are `BaseUnits`s and they can be used to create the `m/s` `ProductUnit.
+The package is designed around the idea of measure systems. A measure system has a number of `BaseUnit`s which is used to create all other derived units in the system which are represented as `ProductUnit` or `TransformedUnit`. For example in the SI measure system, `m` and `s` are `BaseUnits`s and they can be used to create the `m/s` `ProductUnit`.
 
 In the case that a derived unit can be known by a different name, an `AlternateUnit` can be used. For example in the SI system the derived unit `N/m2` is also known as `Pascal`.
 
