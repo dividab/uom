@@ -4,18 +4,17 @@ import { Quantity } from "./quantity";
 
 // We keep a global repository of Labels becasue if a Unit object is derived from arithmetic operations
 // it may still be considered equal to an existing unit and thus should have the same label.
-// const _typeLabels: Map<Unit.Unit<Quantity>, string> = new Map();
-const _typeLabels: { [unit: string]: string } = {}; //tslint:disable-line
+const _unitLabels: { [unit: string]: string } = {}; //tslint:disable-line
 
 export function registerLabel<T extends Quantity>(
   label: string,
   unit: Unit.Unit<T>
 ): void {
-  _typeLabels[unit.name] = label;
+  _unitLabels[unit.name] = label;
 }
 
-export function getName<T extends Quantity>(unit: Unit.Unit<T>): string {
-  const label = _typeLabels[unit.name];
+export function getLabel<T extends Quantity>(unit: Unit.Unit<T>): string {
+  const label = _unitLabels[unit.name];
   if (label === undefined) {
     return buildDerivedName(unit);
   }
@@ -82,7 +81,7 @@ function productUnitBuildNameFromElements(
 ): string {
   let name: string = "";
   for (let e of elements) {
-    name += getName(e.unit);
+    name += getLabel(e.unit);
 
     switch (Math.abs(e.pow)) {
       case 1:

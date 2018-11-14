@@ -46,7 +46,7 @@ export function create<T extends Quantity>(
  * @returns {string} String representation of the Amount.
  */
 export function toString<T extends Quantity>(amount: Amount<T>): string {
-  const unitname = UnitLabel.getName(amount.unit);
+  const unitname = UnitLabel.getLabel(amount.unit);
   if (unitname.length > 0) {
     return amount.value.toString() + " " + unitname;
   }
