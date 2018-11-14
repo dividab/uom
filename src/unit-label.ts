@@ -15,7 +15,7 @@ export function registerLabel<T extends Quantity>(
 export function getLabel<T extends Quantity>(unit: Unit.Unit<T>): string {
   const label = _unitLabels[unit.name];
   if (label === undefined) {
-    return Unit.buildDerivedName(unit, getLabel);
+    return Unit.buildDerivedSymbol(unit, getLabel);
   }
   return label;
 }

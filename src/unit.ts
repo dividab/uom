@@ -722,9 +722,9 @@ function createOne(): Unit<Dimensionless> {
 
 export type GetSymbolFn = (unit: Unit) => string;
 
-export function buildDerivedName<T extends Quantity>(
+export function buildDerivedSymbol<T extends Quantity>(
   unit: Unit<T>,
-  getSymbol: GetSymbolFn = buildDerivedName
+  getSymbol: GetSymbolFn = buildDerivedSymbol
 ): string {
   switch (unit.unitInfo.type) {
     case "alternate":
