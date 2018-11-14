@@ -719,3 +719,90 @@ function createOne(): Unit<Dimensionless> {
     }
   };
 }
+
+export type GetSymbolFn = (unit: Unit) => string;
+
+export function buildDerivedName<T extends Quantity>(
+  unit: Unit<T>,
+  getSymbol: GetSymbolFn = buildDerivedName
+): string {
+  switch (unit.unitInfo.type) {
+    case "alternate":
+      return unit.unitInfo.symbol;
+    case "base":
+      return unit.unitInfo.symbol;
+    case "product":
+      return productUnitBuildDerivedName(unit, getSymbol);
+    case "transformed":
+      return "";
+    default:
+      return exhaustiveCheck(unit.unitInfo, true);
+  }
+  // throw new Error(`Unknown innerUnit ${JSON.stringify(unit)}`);
+}
+
+function productUnitBuildDerivedName<T extends Quantity>(
+  unit: Unit<T>,
+  getSymbol: GetSymbolFn
+): string {
+  const comparePow = (a: Element, b: Element) => {
+    if (a.pow > b.pow) {
+      return 1;
+    } else if (a.pow < b.pow) {
+      return -1;
+    } else {
+      return 0;
+    }
+  };
+
+  const pospow = getElements2(unit).filter(e => e.pow > 0);
+  pospow.sort(comparePow); // orderby e.Pow descending select e;
+  const posname = productUnitBuildNameFromElements(pospow, getSymbol);
+  const negpow = getElements2(unit).filter(e => e.pow < 0);
+  negpow.sort(comparePow); // orderby e.Pow ascending select e;
+  const negname = productUnitBuildNameFromElements(negpow, getSymbol);
+
+  let name: string = posname;
+  if (negname.length > 0) {
+    if (name.length === 0) {
+      name += "1";
+    }
+
+    name += "/" + negname;
+  }
+
+  return name;
+}
+
+function getElements2(unit: Unit): Array<Element> {
+  if (unit.unitInfo.type === "product") {
+    return unit.unitInfo.elements;
+  }
+  return [];
+}
+
+function productUnitBuildNameFromElements(
+  elements: Array<Element>,
+  getSymbol: GetSymbolFn
+): string {
+  let name: string = "";
+  for (let e of elements) {
+    name += getSymbol(e.unit);
+
+    switch (Math.abs(e.pow)) {
+      case 1:
+        break;
+      case 2:
+        name += "²";
+        break;
+      case 3:
+        name += "³";
+        break;
+      default:
+        name += "^" + Math.abs(e.pow).toString();
+        break;
+    }
+  }
+
+  return name;
+}
