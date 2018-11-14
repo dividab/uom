@@ -1,5 +1,5 @@
 import * as Unit from "./unit";
-import * as UnitName from "./unit-name";
+import * as UnitLabel from "./unit-label";
 import * as UnitDivide from "./unit-divide";
 import * as UnitTimes from "./unit-times";
 import * as q from "./quantity";
@@ -1381,7 +1381,7 @@ export function registerUnit<T extends Quantity>(
   label: string
 ): Unit.Unit<T> {
   if (label) {
-    UnitName.registerLabel(label, unit);
+    UnitLabel.registerLabel(label, unit);
   }
   const lowerName = unit.name.toLowerCase();
   _unitToString[lowerName] = lowerName;
