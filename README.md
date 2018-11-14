@@ -62,6 +62,12 @@ The API is divided into modules, where each module contains functions that opera
 
 For more information, see the [full API docs](docs/api.md).
 
+## Internal Design
+
+The package is designed around the idea of measure systems. A measure system has a number of `BaseUnit`s which is used to create all other derived units in the system which are represented as `ProductUnit` or `TransformedUnit`. For example in the SI measure system, `m` and `s` are `BaseUnits`s and they can be used to create the `m/s` `ProductUnit.
+
+In the case that a derived unit can be known by a different name, an `AlternateUnit` can be used. For example in the SI system the derived unit `N/m2` is also known as `Pascal`.
+
 ## Prior art
 
 This library was inspired by [JSR-275](http://download.oracle.com/otn-pub/jcp/untis-0.6-edr-oth-JSpec/Units-v0.6_edr.pdf?AuthParam=1527941513_89b45d975b743c799d22105ff16f961b). See also this [repo](http://code.google.com/p/unitsofmeasure/), this [article](https://www.javaworld.com/article/2077770/core-java/introduction-to-jsr-275--measures-and-units.html). Altough JSR-275 was not accepted it evolved into [JSR-363](http://www.baeldung.com/javax-measure) which is now accepted.
