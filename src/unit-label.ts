@@ -15,6 +15,9 @@ export function registerLabel<T extends Quantity>(
 export function getLabel<T extends Quantity>(unit: Unit.Unit<T>): string {
   const label = _unitLabels[unit.name];
   if (label === undefined) {
+    // Fall back to buiding the label from the symbols of the
+    // base/alternate units, but also use labels from the registry
+    // for any itermediate units
     return Unit.buildDerivedSymbol(unit, getLabel);
   }
   return label;
