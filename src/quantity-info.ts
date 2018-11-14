@@ -2,6 +2,11 @@ import * as Unit from "./unit";
 import * as Units from "./units";
 import { Quantity } from "./quantity";
 
+/**
+ * Holds the default SI unit and IP unit for a Quantity.
+ * For example the Quantity Length can have Meter as default
+ * for the SI system and Inch as default for the IP system.
+ */
 export interface QuantityInfo {
   readonly siUnit: Unit.Unit<Quantity>;
   readonly ipUnit: Unit.Unit<Quantity>;

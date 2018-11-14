@@ -8,7 +8,7 @@ import { Quantity } from "./quantity";
 
 // tslint:disable variable-name max-line-length max-file-line-count
 
-const _unitToString: { [key: string]: string } = {}; // tslint:disable-line
+// const _unitToString: { [key: string]: string } = {}; // tslint:disable-line
 const _stringToUnit: { [key: string]: Unit.Unit } = {}; // tslint:disable-line
 const _quantityToUnits: { [key: string]: Array<Unit.Unit> } = {}; // tslint:disable-line
 
@@ -1384,7 +1384,7 @@ export function registerUnit<T extends Quantity>(
     UnitLabel.registerLabel(label, unit);
   }
   const lowerName = unit.name.toLowerCase();
-  _unitToString[lowerName] = lowerName;
+  // _unitToString[lowerName] = lowerName;
   _stringToUnit[lowerName] = unit;
   if (_quantityToUnits[unit.quantity] === undefined) {
     _quantityToUnits[unit.quantity] = [];
