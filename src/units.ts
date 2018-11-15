@@ -1,11 +1,8 @@
 import * as Unit from "./unit";
 import * as UnitDivide from "./unit-divide";
 import * as UnitTimes from "./unit-times";
-import * as q from "./quantity";
-import { Quantity } from "./quantity";
 import { registerUnit } from "./unit-registry";
 
-import { MeterPerSecond } from "./units/velocity";
 import {
   Second,
   Meter,
@@ -16,37 +13,35 @@ import {
   Mole
 } from "./units/base-units";
 import { One } from "./units/dimensionless";
+import { Cubed, Kilo, Milli, Squared, Mega, Giga } from "./unit-prefix";
 
 export * from "./units/base-units";
 export * from "./units/dimensionless";
 export * from "./units/velocity";
+export * from "./units/acceleration";
+export * from "./units/angle";
+export * from "./units/length";
+export * from "./units/mass";
+export * from "./units/volume";
+export * from "./units/solid-angle";
+export * from "./units/frequency";
+export * from "./units/force";
+export * from "./units/pressure";
+export * from "./units/energy";
+export * from "./units/electric-charge";
+export * from "./units/electric-potential";
+export * from "./units/electric-capacitance";
+export * from "./units/electric-resistance";
+export * from "./units/magnetic-flux";
+export * from "./units/magnetic-flux-density";
+export * from "./units/electric-conductance";
+export * from "./units/electric-inductance";
+export * from "./units/luminous-flux";
+export * from "./units/illuminance";
+export * from "./units/specific-enthalpy";
+export * from "./units/catalytic-activity";
 
 // tslint:disable variable-name max-line-length max-file-line-count
-
-//////////////////////////////
-/// SI DERIVED PRODUCT UNITS //
-//////////////////////////////
-
-/** The metric unit for acceleration quantities ( <code>m/s²</code> ). */
-export const MeterPerSquareSecond = registerUnit(
-  UnitDivide.velocityBySecond("MeterPerSquareSecond", MeterPerSecond, Second),
-  "m/s²"
-);
-
-/** The metric unit for area quantities ( <code>m²</code> ). */
-export const SquareMeter = registerUnit(Squared("SquareMeter", Meter), "m²");
-
-/** The metric unit for volume quantities ( <code>m³</code> ). */
-export const CubicMeter = registerUnit(Cubed("CubicMeter", Meter), "m³");
-
-/** Equivalent to <code>KILO(METER)</code>. */
-export const Kilometer = registerUnit(Kilo("Kilometer", Meter), "km");
-
-/** Equivalent to <code>CENTI(METRE)</code>. */
-export const CentiMeter = registerUnit(Centi("CentiMeter", Meter), "cm");
-
-/** Equivalent to <code>MILLI(METRE)</code>. */
-export const Millimeter = registerUnit(Milli("Millimeter", Meter), "mm");
 
 ////////////////////////////////
 /// SI DERIVED ALTERNATE UNITS //
@@ -56,332 +51,6 @@ export const Millimeter = registerUnit(Milli("Millimeter", Meter), "mm");
  * AlternateUnits seems to be units with names like "Newton", "Celsius" while
  * ProductUnits seem to be units with names like "MeterPerSecond"
  */
-
-/** The derived unit for mass quantities ( <code>g</code> ).
- * The base unit for mass quantity is {@link #Kilogram}.
- */
-export const Gram = registerUnit(
-  Unit.divideNumber("Gram", 1000.0, Kilogram),
-  "g"
-);
-
-/**
- * The unit for plane angle quantities ( <code>rad</code> ).
- * One radian is the angle between two radii of a circle such that the length of the arc between them is equal to the radius.
- */
-export const Radian = registerUnit(
-  Unit.createBase<"Angle">("Radian", "Angle", "rad"),
-  "rad"
-);
-
-/**
- * The unit for solid angle quantities ( <code>sr</code> ).
- * One steradian is the solid angle subtended at the center of a sphere by an area on the
- * surface of the sphere that is equal to the radius squared. The total solid angle of a sphere is 4*Pi steradians.
- */
-export const Steradian = registerUnit(
-  Unit.createBase<"SolidAngle">("Steradian", "SolidAngle", "sr"),
-  "sr"
-);
-
-/**
- * The unit for binary information ( <code>bit</code> ).
- */
-export const Bit = registerUnit(
-  Unit.createBase<"DataAmount">("Bit", "DataAmount", "bit"),
-  "bit"
-);
-
-/**
- * The derived unit for frequency ( <code>Hz</code> ).
- * A unit of frequency equal to one cycle per second. After Heinrich Rudolf Hertz (1857-1894),
- * German physicist who was the first to produce radio waves artificially.
- */
-export const Hertz = registerUnit(
-  UnitDivide.dimentionlessByDuration("Hertz", One, Second),
-  "Hz"
-);
-
-/**
- * The derived unit for force ( <code>N</code> ).
- * One newton is the force required to give a mass of 1 kilogram an Force of 1 metre per second per second.
- * It is named after the English mathematician and physicist Sir Isaac Newton (1642-1727).
- */
-export const Newton = registerUnit(
-  UnitTimes.massByAcceleration("Newton", Kilogram, MeterPerSquareSecond),
-  "N"
-);
-
-/**
- * The derived unit for pressure, stress ( <code>Pa</code> ).
- * One pascal is equal to one newton per square meter.
- * It is named after the French philosopher and mathematician Blaise Pascal (1623-1662).
- */
-export const Pascal = registerUnit(
-  UnitDivide.forceByArea("Pascal", Newton, SquareMeter),
-  "Pa"
-);
-
-/**
- * The derived unit for energy, work, quantity of heat ( <code>J</code> ).
- * One joule is the amount of work done when an applied force of 1 newton moves
- * through a distance of 1 metre in the direction of the force.
- * It is named after the English physicist James Prescott Joule (1818-1889).
- */
-export const Joule = registerUnit(
-  UnitTimes.forceByLength("Joule", Newton, Meter),
-  "J"
-);
-
-/**
- * The derived unit for power, radiant, flux ( <code>W</code> ).
- * One watt is equal to one joule per second.
- * It is named after the British scientist James Watt (1736-1819).
- */
-export const Watt = registerUnit(
-  UnitDivide.energyByDuration("Watt", Joule, Second),
-  "W"
-);
-
-/**
- * The derived unit for electric charge, quantity of electricity ( <code>C</code> ).
- * One Coulomb is equal to the quantity of charge transferred in one second by a steady current of one ampere.
- * It is named after the French physicist Charles Augustin de Coulomb (1736-1806).
- */
-export const Coulomb = registerUnit(
-  UnitTimes.durationByElectricCurrent("Coulomb", Second, Ampere),
-  "C"
-);
-
-/**
- * The derived unit for electric potential difference, electromotive force ( <code>V</code> ).
- * One Volt is equal to the difference of electric potential between two points on a conducting
- * wire carrying a export constant current of one ampere when the power dissipated between the points is one watt.
- * It is named after the Italian physicist Count Alessandro Volta (1745-1827).
- */
-export const Volt = registerUnit(
-  UnitDivide.powerByElectricalCurrent("Volt", Watt, Ampere),
-  "V"
-);
-
-/**
- * The derived unit for capacitance ( <code>F</code> ).
- * One Farad is equal to the capacitance of a capacitor having an equal and opposite charge of 1 coulomb on
- * each plate and a potential difference of 1 volt between the plates.
- * It is named after the British physicist and chemist Michael Faraday (1791-1867).
- */
-export const Farad = registerUnit(
-  UnitDivide.electricChargeByElectricPotential("Farad", Coulomb, Volt),
-  "F"
-);
-
-/**
- * The derived unit for electric resistance ( <code>Ω</code> or <code>Ohm</code> ).
- * One Ohm is equal to the resistance of a conductor in which a current of one ampere is produced
- * by a potential of one volt across its terminals.
- * It is named after the German physicist Georg Simon Ohm (1789-1854).
- */
-export const Ohm = registerUnit(
-  UnitDivide.electricalPotentialByElectricalCurrent("Ohm", Volt, Ampere),
-  "Ω"
-);
-
-/**
- * The derived unit for electric conductance ( <code>S</code> ).
- * One Siemens is equal to one ampere per volt.
- * It is named after the German engineer Ernst Werner von Siemens (1816-1892).
- */
-export const Siemens = registerUnit(
-  UnitDivide.electricalCurrentByElectricalPotential("Siemens", Ampere, Volt),
-  "S"
-);
-
-/**
- * The derived unit for magnetic flux ( <code>Wb</code> ).
- * One Weber is equal to the magnetic flux that in linking a circuit of one turn produces in it an
- * electromotive force of one volt as it is uniformly reduced to zero within one second.
- * It is named after the German physicist Wilhelm Eduard Weber (1804-1891).
- */
-export const Weber = registerUnit(
-  UnitTimes.electricalPotentialByDuration("Weber", Volt, Second),
-  "Wb"
-);
-
-/**
- * The derived unit for magnetic flux density ( <code>T</code> ).
- * One Tesla is equal equal to one weber per square meter.
- * It is named after the Serbian-born American electrical engineer and physicist Nikola Tesla (1856-1943).
- */
-export const Tesla = registerUnit(
-  UnitDivide.magneticFluxByArea("Tesla", Weber, SquareMeter),
-  "T"
-);
-
-/**
- * The derived unit for inductance ( <code>H</code> ).
- * One Henry is equal to the inductance for which an induced electromotive force of one volt is produced
- * when the current is varied at the rate of one ampere per second.
- * It is named after the American physicist Joseph Henry (1791-1878).
- */
-export const Henry = registerUnit(
-  UnitDivide.magneticFluxByElectricalCurrent("Henry", Weber, Ampere),
-  "H"
-);
-
-/**
- * The derived unit for Celsius temperature ( <code>℃</code> ).
- * This is a unit of temperature such as the freezing point of water (at one atmosphere of pressure)
- * is 0 ℃, while the boiling point is 100 ℃.
- */
-export const Celsius = registerUnit(
-  Si(Unit.plus("Celsius", 273.15, Kelvin)),
-  "°C"
-);
-
-/**
- * The derived unit for luminous flux ( <code>lm</code> ).
- * One Lumen is equal to the amount of light given out through a solid angle by a source of one
- * candela intensity radiating equally in all directions.
- */
-export const Lumen = registerUnit(
-  UnitTimes.luminousIntensityBySolidAngle("Lumen", Candela, Steradian),
-  "lm"
-);
-
-/**
- * The derived unit for illuminance ( <code>lx</code> ).
- * One Lux is equal to one lumen per square meter.
- */
-export const Lux = registerUnit(
-  UnitDivide.luminousFluxByArea("Lux", Lumen, SquareMeter),
-  "lx"
-);
-
-/**
- * The derived unit for activity of a radionuclide ( <code>Bq</code> ).
- * One becquerel is the radiation caused by one disintegration per second.
- * It is named after the French physicist, Antoine-Henri Becquerel (1852-1908).
- */
-export const Becquerel = registerUnit(
-  UnitDivide.dimentionlessByDuration("Becquerel", One, Second),
-  "Bq"
-);
-
-/**
- * The derived unit for absorbed dose, specific energy (imparted), kerma ( <code>Gy</code> ).
- * One gray is equal to the dose of one joule of energy absorbed per one kilogram of matter.
- * It is named after the British physician L. H. Gray (1905-1965).
- */
-export const Gray = registerUnit(
-  UnitDivide.energyByMass("Gray", Joule, Kilogram),
-  "Gy"
-);
-
-/**
- * The derived unit for dose equivalent ( <code>Sv</code> ).
- * One Sievert is equal is equal to the actual dose, in grays, multiplied by a "quality factor" which is
- * larger for more dangerous forms of radiation.
- * It is named after the Swedish physicist Rolf Sievert (1898-1966).
- */
-export const Sievert = registerUnit(
-  UnitDivide.energyByMass("Sievert", Joule, Kilogram),
-  "Sv"
-);
-
-/**
- * The derived unit for catalytic activity ( <code>kat</code> ).
- */
-export const Katal = registerUnit(
-  UnitDivide.amountOfSubstanceByDuration("Katal", Mole, Second),
-  "kat"
-);
-
-/////////////////
-/// SI PREFIXES //
-/////////////////
-
-function Giga<T extends Quantity>(name: string, u: Unit.Unit<T>): Unit.Unit<T> {
-  return Unit.timesNumber(name, Math.pow(10, 9), u);
-}
-
-function Mega<T extends Quantity>(name: string, u: Unit.Unit<T>): Unit.Unit<T> {
-  return Unit.timesNumber(name, Math.pow(10, 6), u);
-}
-
-/**
- * Returns the specified unit multiplied by the factor <code>10<sup>3</sup></code>
- * @param unit Any unit.
- * @returns <code>unit.multiply(1e3)</code> .
- */
-function Kilo<T extends Quantity>(
-  name: string,
-  unit: Unit.Unit<T>
-): Unit.Unit<T> {
-  return Unit.timesNumber(name, Math.pow(10.0, 3), unit);
-}
-
-/**
- * Returns the specified unit multiplied by the factor <code>10<sup>2</sup></code>.
- * @param unit any unit.
- * @returns <code>unit.multiply(1e2)</code> .
- */
-function Hecto<T extends Quantity>(
-  name: string,
-  unit: Unit.Unit<T>
-): Unit.Unit<T> {
-  return Unit.timesNumber(name, Math.pow(10, 2), unit);
-}
-
-/**
- * Returns the specified unit multiplied by the factor <code>10<sup>-1</sup></code>.
- * @param unit any unit.
- * @return <code>unit.multiply(1e-1)</code>.
- */
-function Deci<T extends Quantity>(
-  name: string,
-  unit: Unit.Unit<T>
-): Unit.Unit<T> {
-  return Unit.timesNumber(name, Math.pow(10, -1), unit);
-}
-
-/**
- * Returns the specified unit multiplied by the factor <code>10<sup>-2</sup></code>.
- * @param unit any unit.
- * @returns <code>unit.multiply(1e-2)</code> .
- */
-function Centi<T extends Quantity>(
-  name: string,
-  unit: Unit.Unit<T>
-): Unit.Unit<T> {
-  return Unit.timesNumber(name, Math.pow(10, -2), unit);
-}
-
-/**
- * Returns the specified unit multiplied by the factor <code>10<sup>-3</sup></code>.
- * @param unit any unit. @return <code>unit.multiply(1e-3)</code> .
- */
-function Milli<T extends Quantity>(
-  name: string,
-  unit: Unit.Unit<T>
-): Unit.Unit<T> {
-  return Unit.timesNumber(name, Math.pow(10, -3), unit);
-}
-
-function Si<T extends Quantity>(toAdd: Unit.Unit<T>): Unit.Unit<T> {
-  // TODO
-  return toAdd;
-}
-
-function Squared(name: string, u: Unit.Unit<q.Length>): Unit.Unit<q.Area> {
-  return UnitTimes.lengthByLength(name, u, u);
-  // TODO was return u.Times <q.Area> (u);
-}
-
-function Cubed(name: string, u: Unit.Unit<q.Length>): Unit.Unit<q.Volume> {
-  const area = UnitTimes.lengthByLength(name, u, u);
-  return UnitTimes.areaByLength(name, area, u);
-  // TODO was return u.Times < IArea > (u).Times < IVolume > (u);
-}
 
 ////////////////////////////////////////////////////////////////////////////
 /// END: System of Units - SI
