@@ -7,6 +7,7 @@ import * as UnitLabel from "./unit-label";
 import * as UnitInfo from "./unit-info";
 import * as UnitDivide from "./unit-divide";
 import * as UnitTimes from "./unit-times";
+import * as UnitRegistry from "./unit-registry";
 
 export {
   Amount,
@@ -17,5 +18,6 @@ export {
   UnitLabel,
   UnitInfo,
   UnitDivide,
-  UnitTimes
+  UnitTimes,
+  UnitRegistry
 };
