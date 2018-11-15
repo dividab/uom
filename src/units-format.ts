@@ -23,3 +23,6 @@ export * from "./units/luminous-flux-format";
 export * from "./units/illuminance-format";
 export * from "./units/specific-enthalpy-format";
 export * from "./units/catalytic-activity-format";
+export * from "./units/relative-humidity-format";
+export * from "./units/wet-temperature-format";
+export * from "./units/duration-format";

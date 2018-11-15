@@ -3,15 +3,7 @@ import * as UnitDivide from "./unit-divide";
 import * as UnitTimes from "./unit-times";
 import { registerUnit } from "./unit-registry";
 
-import {
-  Second,
-  Meter,
-  Kilogram,
-  Ampere,
-  Candela,
-  Kelvin,
-  Mole
-} from "./units/base-units";
+import { Second, Meter, Kilogram, Ampere, Kelvin } from "./units/base-units";
 import { One } from "./units/dimensionless";
 import { Cubed, Kilo, Milli, Squared, Mega, Giga } from "./unit-prefix";
 
@@ -40,6 +32,9 @@ export * from "./units/luminous-flux";
 export * from "./units/illuminance";
 export * from "./units/specific-enthalpy";
 export * from "./units/catalytic-activity";
+export * from "./units/relative-humidity";
+export * from "./units/wet-temperature";
+export * from "./units/duration";
 
 // tslint:disable variable-name max-line-length max-file-line-count
 
@@ -55,195 +50,6 @@ export * from "./units/catalytic-activity";
 ////////////////////////////////////////////////////////////////////////////
 /// END: System of Units - SI
 ////////////////////////////////////////////////////////////////////////////
-
-/// Alternative Quantities for Humidity
-// export const HumidityFactor = _register(Unit.createProductUnit<q.RelativeHumidity>("RelativeHumidity", []), "r.H. factor");
-// export const HumidityFactor = _register(Unit.createAlternate<"RelativeHumidity">("r.H.", One), "r.H. factor");
-export const HumidityFactor = registerUnit(
-  Unit.createBase("HumidityFactor", "RelativeHumidity", "r.H."),
-  "r.H. factor"
-);
-
-/** Factor of humidity, eg., 0.01 means 1% */
-export const PercentHumidity = registerUnit(
-  Unit.divideNumber("PercentHumidity", 100.0, HumidityFactor),
-  "% r.H."
-);
-
-/** Percent of humidity, eg., 10.0 means 10% */
-export const CelsiusWet = registerUnit(
-  Unit.createBase("CelsiusWet", "WetTemperature", "wb°C"),
-  "wb°C"
-);
-export const FahrenheitWet = registerUnit(
-  Unit.minus(
-    "FahrenheitWet",
-    32.0,
-    Unit.timesNumber("", 5.0 / 9.0, CelsiusWet)
-  ),
-  "wb°F"
-);
-export const KelvinWet = registerUnit(
-  Unit.minus("KelvinWet", 273.15, CelsiusWet),
-  "wb°K"
-);
-export const CelsiusDewPoint = registerUnit(
-  Unit.createBase("CelsiusDewPoint", "DewPointTemperature", "dp°C"),
-  "dp°C"
-);
-export const FahrenheitDewPoint = registerUnit(
-  Unit.minus(
-    "FahrenheitDewPoint",
-    32.0,
-    Unit.timesNumber("", 5.0 / 9.0, CelsiusDewPoint)
-  ),
-  "dp°F"
-);
-export const KelvinDewPoint = registerUnit(
-  Unit.minus("KelvinDewPoint", 273.15, CelsiusDewPoint),
-  "dp°K"
-);
-
-/// Mass
-export const PoundLb = registerUnit(
-  Unit.divideNumber("PoundLb", 100000000.0 / 45359237.0, Kilogram),
-  "lb"
-);
-
-// http://www.wolframalpha.com/input/?i=kg
-export const Grain = registerUnit(
-  Unit.divideNumber("Grain", 100000000000.0 / 6479891.0, Kilogram),
-  "gr"
-);
-
-// http://www.wolframalpha.com/input/?i=grain
-export const Slug = registerUnit(
-  Unit.timesNumber("Slug", 14.5939, Kilogram),
-  "slug"
-);
-export const Tonne = registerUnit(
-  Unit.timesNumber("Tonne", 1000.0, Kilogram),
-  "t"
-);
-export const MilliGram = registerUnit(Milli("MilliGram", Gram), "mg");
-
-// Per mass
-export const OnePerKilogram = registerUnit(
-  UnitDivide.dimensionlessByMass("OnePerKilogram", One, Kilogram),
-  "/kg"
-);
-export const OnePerPoundLb = registerUnit(
-  UnitDivide.dimensionlessByMass("OnePerPoundLb", One, PoundLb),
-  "/lb"
-);
-
-// Length
-export const Foot = registerUnit(Unit.timesNumber("Foot", 0.3048, Meter), "ft");
-export const Yard = registerUnit(Unit.timesNumber("Yard", 3.0, Foot), "yd");
-export const Inch = registerUnit(Unit.divideNumber("Inch", 12.0, Foot), "in");
-export const Mile = registerUnit(Unit.timesNumber("Mile", 5280.0, Foot), "mi");
-export const Decimeter = registerUnit(Deci("Decimeter", Meter), "dm");
-
-// Temperature
-export const Rankine = registerUnit(
-  Unit.divideNumber("Rankine", 9.0, Unit.timesNumber("", 5.0, Kelvin)),
-  "Rankine"
-);
-export const Fahrenheit = registerUnit(
-  Unit.plus(
-    "Fahrenheit",
-    459.67,
-    Unit.divideNumber("", 9.0, Unit.timesNumber("", 5.0, Kelvin))
-  ),
-  "°F"
-);
-
-// Delta temperature
-export const DeltaCelsius = registerUnit(
-  Unit.createBase("DeltaCelsius", "DeltaTemperature", "°C"),
-  "°C"
-);
-export const DeltaFahrenheit = registerUnit(
-  Unit.timesNumber("DeltaFahrenheit", 5.0 / 9.0, DeltaCelsius),
-  "°F"
-);
-
-// Delta temperature
-export const DeltaCelsiusDewPoint = registerUnit(
-  Unit.createBase("DeltaCelsiusDewPoint", "DeltaDewPointTemperature", "dp°C"),
-  "dp°C"
-);
-export const DeltaFahrenheitDewPoint = registerUnit(
-  Unit.timesNumber("DeltaFahrenheitDewPoint", 5.0 / 9.0, DeltaCelsiusDewPoint),
-  "dp°F"
-);
-
-// Duration / Time
-export const Minute = registerUnit(
-  Unit.timesNumber("Minute", 60.0, Second),
-  "min"
-);
-export const Hour = registerUnit(Unit.timesNumber("Hour", 60.0, Minute), "h");
-export const Day = registerUnit(Unit.timesNumber("Day", 24.0, Hour), "days");
-export const Week = registerUnit(Unit.timesNumber("Week", 7.0, Day), "weeks");
-export const Year = registerUnit(
-  Unit.timesNumber("Year", 8760.0, Hour),
-  "year"
-);
-export const MilliSecond = registerUnit(Milli("MilliSecond", Second), "ms");
-
-// Frequency
-export const RevolutionsPerMinute = registerUnit(
-  UnitDivide.dimentionlessByDuration("RevolutionsPerMinute", One, Minute),
-  "rpm"
-);
-export const RevolutionsPerHour = registerUnit(
-  UnitDivide.dimentionlessByDuration("RevolutionsPerHour", One, Hour),
-  "rph"
-);
-
-/// Area
-export const SquareInch = registerUnit(Squared("SquareInch", Inch), "in²");
-export const SquareFeet = registerUnit(Squared("SquareFeet", Foot), "ft²");
-export const SquareMillimeter = registerUnit(
-  Squared("SquareMillimeter", Millimeter),
-  "mm²"
-);
-export const SquareCentimeter = registerUnit(
-  Squared("SquareCentimeter", CentiMeter),
-  "cm²"
-);
-export const SquareDecimeter = registerUnit(
-  Squared("SquareDecimeter", Decimeter),
-  "dm²"
-);
-
-// Angle
-export const Degrees = registerUnit(
-  Unit.timesNumber("Degrees", Math.PI / 180.0, Radian),
-  "°"
-);
-
-// Volume
-export const CubicCentiMeter = registerUnit(
-  Cubed("CubicCentiMeter", CentiMeter),
-  "cm³"
-);
-export const CubicInch = registerUnit(Cubed("CubicInch", Inch), "in³");
-export const CubicFeet = registerUnit(Cubed("CubicFeet", Foot), "ft³");
-export const HundredCubicFeet = registerUnit(
-  Unit.timesNumber("HundredCubicFeet", 100.0, CubicFeet),
-  "100 ft³"
-);
-export const Liter = registerUnit(
-  Unit.divideNumber("Liter", 1000.0, CubicMeter),
-  "L"
-);
-export const MilliLiter = registerUnit(Milli("MilliLiter", Liter), "ml");
-export const Gallon = registerUnit(
-  Unit.timesNumber("Gallon", 3.785, Liter),
-  "gal"
-);
 
 // Velocity
 export const FeetPerSecond = registerUnit(

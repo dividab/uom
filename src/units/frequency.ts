@@ -1,6 +1,7 @@
 import * as UnitDivide from "../unit-divide";
 import { Second } from "./base-units";
 import { One } from "./dimensionless";
+import { Minute, Hour } from "./duration";
 
 // tslint:disable:variable-name
 
@@ -20,4 +21,17 @@ export const Becquerel = UnitDivide.dimentionlessByDuration(
   "Becquerel",
   One,
   Second
+);
+
+// Frequency
+export const RevolutionsPerMinute = UnitDivide.dimentionlessByDuration(
+  "RevolutionsPerMinute",
+  One,
+  Minute
+);
+
+export const RevolutionsPerHour = UnitDivide.dimentionlessByDuration(
+  "RevolutionsPerHour",
+  One,
+  Hour
 );
