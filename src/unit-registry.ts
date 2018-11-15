@@ -2,6 +2,15 @@ import * as Unit from "./unit";
 import * as UnitLabel from "./unit-label";
 import { Quantity } from "./quantity";
 
+export type MeasureSystem = "SI" | "IP";
+
+export interface UnitFormat {
+  readonly label: string;
+  readonly measureSystem: MeasureSystem | undefined;
+  readonly decimalCount: number;
+  readonly coUnit?: Unit.Unit<Quantity>;
+}
+
 // const _unitToString: { [key: string]: string } = {}; // tslint:disable-line
 const _stringToUnit: { [key: string]: Unit.Unit } = {}; // tslint:disable-line
 const _quantityToUnits: { [key: string]: Array<Unit.Unit> } = {}; // tslint:disable-line
@@ -74,4 +83,48 @@ export function registerUnit<T extends Quantity>(
   _quantityToUnits[unit.quantity].push(unit);
 
   return unit;
+}
+
+export type UnitMap = { readonly [key: string]: Unit.Unit };
+export type UnitFormatMap<TUnitMap> = { [P in keyof TUnitMap]: UnitFormat };
+
+// const x = {
+//   olle: Unit.createBase("asdf", "Length", "dsfadf")
+// };
+
+// registerUnits(x, { olle: { label: "", decimalCount: 2, measureSystem: "SI" } });
+
+const _formats: { [key: string]: UnitFormat } = {}; //tslint:disable-line
+
+export function registerUnits<TUnits extends UnitMap>(
+  units: TUnits,
+  unitsFormat: UnitFormatMap<TUnits>
+): void {
+  for (const unitKey of Object.keys(units)) {
+    const unit = units[unitKey];
+    const unitInfo = unitsFormat[unitKey];
+    registerUnit(unit, unitInfo.label);
+    registerUnitFormat(unit, unitInfo);
+  }
+}
+
+export function registerUnitFormat<T extends Quantity>(
+  unit: Unit.Unit<T>,
+  format: UnitFormat
+): void {
+  _formats[unit.name] = format;
+}
+
+export function createUnitFormat<T extends Quantity>(
+  label: string,
+  measureSystem: MeasureSystem | undefined,
+  decimalCount: number,
+  coUnit?: Unit.Unit<T>
+): UnitFormat {
+  return {
+    label,
+    measureSystem,
+    decimalCount,
+    coUnit
+  };
 }

@@ -8,6 +8,7 @@ import * as UnitInfo from "./unit-info";
 import * as UnitDivide from "./unit-divide";
 import * as UnitTimes from "./unit-times";
 import * as UnitRegistry from "./unit-registry";
+// import * as UnitsFormat from "./units-format";
 
 export {
   Amount,
@@ -21,3 +22,5 @@ export {
   UnitTimes,
   UnitRegistry
 };
+
+// UnitRegistry.registerUnits(Units, UnitsFormat);
