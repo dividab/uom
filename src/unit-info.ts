@@ -1,5 +1,6 @@
 import * as Unit from "./unit";
 import * as Units from "./units";
+import * as UnitRegistry from "./unit-registry";
 import { Quantity } from "./quantity";
 
 export type MeasureSystem = "SI" | "IP";
@@ -13,7 +14,7 @@ export interface UnitInfo {
 const units: { [key: string]: UnitInfo } = {}; //tslint:disable-line
 
 export function getUnitInfo(unit: Unit.Unit<Quantity>): UnitInfo | undefined {
-  return units[Units.getStringFromUnit(unit)];
+  return units[UnitRegistry.getStringFromUnit(unit)];
 }
 
 // The last argument is the corresponding unit which is the closest unit in the other measure system (SI/IP)
@@ -23,7 +24,7 @@ export function addUnit<T extends Quantity>(
   decimalCount: number,
   coUnit?: Unit.Unit<T>
 ): void {
-  units[Units.getStringFromUnit(unit)] = {
+  units[UnitRegistry.getStringFromUnit(unit)] = {
     measureSystem,
     decimalCount,
     coUnit
