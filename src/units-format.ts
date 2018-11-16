@@ -35,3 +35,7 @@ export * from "./units/volume-flow-format";
 export * from "./units/volume-flow-per-area-format";
 export * from "./units/dimensionless-per-mass-format";
 export * from "./units/dimensionless-per-volume-format";
+export * from "./units/dimensionless-per-duration-format";
+export * from "./units/mass-flow-per-area-format";
+export * from "./units/water-use-efficiency-format";
+export * from "./units/humidity-ratio-format";

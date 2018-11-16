@@ -44,6 +44,10 @@ export * from "./units/volume-flow";
 export * from "./units/volume-flow-per-area";
 export * from "./units/dimensionless-per-mass";
 export * from "./units/dimensionless-per-volume";
+export * from "./units/dimensionless-per-duration";
+export * from "./units/mass-flow-per-area";
+export * from "./units/water-use-efficiency";
+export * from "./units/humidity-ratio";
 
 // tslint:disable variable-name max-line-length max-file-line-count
 
@@ -59,53 +63,6 @@ export * from "./units/dimensionless-per-volume";
 ////////////////////////////////////////////////////////////////////////////
 /// END: System of Units - SI
 ////////////////////////////////////////////////////////////////////////////
-
-// Per Duration
-export const OnePerHour = registerUnit(
-  UnitDivide.dimensionlessByDuration("OnePerHour", One, Hour),
-  "/h"
-);
-export const OnePerSecond = registerUnit(
-  UnitDivide.dimensionlessByDuration("OnePerSecond", One, Second),
-  "/s"
-);
-
-/// Water use efficiency
-export const LiterPerKiloWattHour = registerUnit(
-  UnitDivide.volumeByEnergy("LiterPerKiloWattHour", Liter, KiloWattHour),
-  "l/kWh"
-);
-
-export const KilogramPerSquareMeterSecond = registerUnit(
-  UnitDivide.massFlowByArea(
-    "KilogramPerSquareMeterSecond",
-    KilogramPerSecond,
-    SquareMeter
-  ),
-  "kg/m²s"
-);
-
-// Humidity
-export const KilogramPerKilogram = registerUnit(
-  UnitDivide.massByMass("KilogramPerKilogram", Kilogram, Kilogram),
-  "kg/kg"
-);
-export const GramPerKilogram = registerUnit(
-  UnitDivide.massByMass("GramPerKilogram", Gram, Kilogram),
-  "g/kg"
-);
-export const PoundLbPerPoundLb = registerUnit(
-  UnitDivide.massByMass("PoundLbPerPoundLb", PoundLb, PoundLb),
-  "lb/lb"
-);
-export const GrainPerPoundLb = registerUnit(
-  UnitDivide.massByMass("GrainPerPoundLb", Grain, PoundLb),
-  "gr/lb"
-);
-export const GramPerPoundLb = registerUnit(
-  UnitDivide.massByMass("GramPerPoundLb", Gram, PoundLb),
-  "g/lb"
-);
 
 // Specific energy
 export const KilojoulePerKilogram = registerUnit(
