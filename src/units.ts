@@ -5,7 +5,7 @@ import { registerUnit } from "./unit-registry";
 
 import { Second, Meter, Kilogram, Ampere, Kelvin } from "./units/base-units";
 import { One } from "./units/dimensionless";
-import { Cubed, Kilo, Milli, Squared, Mega, Giga } from "./unit-prefix";
+import { Kilo, Milli, Mega, Giga } from "./unit-prefix";
 
 export * from "./units/base-units";
 export * from "./units/dimensionless";
@@ -14,6 +14,7 @@ export * from "./units/acceleration";
 export * from "./units/angle";
 export * from "./units/length";
 export * from "./units/mass";
+export * from "./units/area";
 export * from "./units/volume";
 export * from "./units/solid-angle";
 export * from "./units/frequency";
@@ -35,6 +36,7 @@ export * from "./units/catalytic-activity";
 export * from "./units/relative-humidity";
 export * from "./units/wet-temperature";
 export * from "./units/duration";
+export * from "./units/density";
 
 // tslint:disable variable-name max-line-length max-file-line-count
 
@@ -50,173 +52,6 @@ export * from "./units/duration";
 ////////////////////////////////////////////////////////////////////////////
 /// END: System of Units - SI
 ////////////////////////////////////////////////////////////////////////////
-
-// Velocity
-export const FeetPerSecond = registerUnit(
-  UnitDivide.lengthByDuration("FeetPerSecond", Foot, Second),
-  "ft/s"
-);
-export const FeetPerMinute = registerUnit(
-  UnitDivide.lengthByDuration("FeetPerMinute", Foot, Minute),
-  "ft/min"
-);
-export const MilesPerHour = registerUnit(
-  UnitDivide.lengthByDuration("MilesPerHour", Mile, Hour),
-  "mph"
-);
-export const KilometerPerHour = registerUnit(
-  UnitDivide.lengthByDuration("KilometerPerHour", Kilometer, Hour),
-  "km/h"
-);
-export const MeterPerHour = registerUnit(
-  UnitDivide.lengthByDuration("MeterPerHour", Meter, Hour),
-  "m/h"
-);
-
-// Acceleration
-
-// Density
-export const KilogramPerCubicMeter = registerUnit(
-  UnitDivide.massByVolume("KilogramPerCubicMeter", Kilogram, CubicMeter),
-  "kg/m³"
-);
-export const GramPerCubicCentiMeter = registerUnit(
-  UnitDivide.massByVolume("GramPerCubicCentiMeter", Gram, CubicCentiMeter),
-  "g/cm³"
-);
-export const SlugPerCubicFeet = registerUnit(
-  UnitDivide.massByVolume("SlugPerCubicFeet", Slug, CubicFeet),
-  "slug/ft³"
-);
-export const PoundPerCubicFoot = registerUnit(
-  UnitDivide.massByVolume("PoundPerCubicFoot", PoundLb, CubicFeet),
-  "lb/ft³"
-);
-
-// Force
-export const PoundForce = registerUnit(
-  Unit.divideNumber(
-    "PoundForce",
-    8896443230521.0,
-    Unit.timesNumber("", 2000000000000.0, Newton)
-  ),
-  "lb"
-);
-
-// Pressure
-export const KiloPascal = registerUnit(Kilo("KiloPascal", Pascal), "kPa");
-export const HectoPascal = registerUnit(Hecto("HectoPascal", Pascal), "hPa");
-export const NewtonPerSquareMeter = registerUnit(
-  UnitDivide.forceByArea("NewtonPerSquareMeter", Newton, SquareMeter),
-  "N/m²"
-);
-export const PoundForcePerSquareInch = registerUnit(
-  Unit.divideNumber(
-    "PoundForcePerSquareInch",
-    1290320000.0,
-    Unit.timesNumber("", 8896443230521.0, Pascal)
-  ),
-  "psi"
-);
-export const PoundForcePerSquareFoot = registerUnit(
-  Unit.timesNumber("PoundForcePerSquareFoot", 144.0, PoundForcePerSquareInch),
-  "psf"
-);
-export const DeciPascal = registerUnit(Deci("DeciPascal", Pascal), "dPa");
-
-// http://www.wolframalpha.com/input/?i=psi and select 'Show exact conversions'
-export const InchOfMercury = registerUnit(
-  Unit.divideNumber(
-    "InchOfMercury",
-    152.0,
-    Unit.timesNumber("", 514731.0, Pascal)
-  ),
-  "in HG"
-);
-
-// http://www.wolframalpha.com/input/?i=inHg and select 'Show exact conversions'
-export const InchOfWaterColumn = registerUnit(
-  Unit.timesNumber("InchOfWaterColumn", 249.0889, Pascal),
-  "in WC"
-);
-
-// http://www.wolframalpha.com/input/?i=inWC
-export const FeetOfWaterColumn = registerUnit(
-  Unit.timesNumber("FeetOfWaterColumn", 2989.067, Pascal),
-  "ft WC"
-);
-export const Bar = registerUnit(
-  Unit.timesNumber("Bar", 100000.0, Pascal),
-  "bar"
-);
-export const MilliBar = registerUnit(Milli("MilliBar", Bar), "mbar");
-
-// Power
-export const KiloWatt = registerUnit(Kilo("KiloWatt", Watt), "kW");
-export const MegaWatt = registerUnit(Mega("MegaWatt", Watt), "MW");
-export const GigaWatt = registerUnit(Giga("GigaWatt", Watt), "GW");
-export const BtuPerHour = registerUnit(
-  Unit.divideNumber(
-    "BtuPerHour",
-    3600.0,
-    Unit.timesNumber("", 52752792631.0 / 50000000.0, Watt)
-  ),
-  "BTU/h"
-);
-export const TonCooling = registerUnit(
-  Unit.timesNumber("TonCooling", 12000.0, BtuPerHour),
-  "tons"
-);
-export const KiloBtuPerHour = registerUnit(
-  Kilo("KiloBtuPerHour", BtuPerHour),
-  "MBH"
-);
-export const HorsePower = registerUnit(
-  Unit.timesNumber("HorsePower", 745.699872, Watt),
-  "hp"
-);
-export const VoltAmpere = registerUnit(
-  Unit.createAlternate<"Power">("VoltAmpere", "VA", Watt),
-  "VA"
-);
-
-// Energy
-export const NewtonMeter = registerUnit(
-  UnitTimes.forceByLength("NewtonMeter", Newton, Meter),
-  "Nm"
-);
-export const Kilojoule = registerUnit(Kilo("Kilojoule", Joule), "kJ");
-export const Megajoule = registerUnit(Mega("Megajoule", Joule), "MJ");
-export const KiloWattHour = registerUnit(
-  UnitTimes.powerByDuration("KiloWattHour", KiloWatt, Hour),
-  "kWh"
-);
-export const MegaWattHour = registerUnit(
-  UnitTimes.powerByDuration("MegaWattHour", MegaWatt, Hour),
-  "MWh"
-);
-export const GigaWattHour = registerUnit(
-  UnitTimes.powerByDuration("GigaWattHour", GigaWatt, Hour),
-  "GWh"
-);
-export const WattHour = registerUnit(
-  UnitTimes.powerByDuration("WattHour", Watt, Hour),
-  "Wh"
-);
-export const WattSecond = registerUnit(
-  UnitTimes.powerByDuration("WattSecond", Watt, Second),
-  "Ws"
-);
-export const Btu = registerUnit(
-  Unit.timesNumber("Btu", 52752792631.0 / 50000000.0, Joule),
-  "BTU"
-);
-export const KiloBtu = registerUnit(Kilo("KiloBtu", Btu), "MBTU");
-export const MegaBtu = registerUnit(Mega("MegaBtu", Btu), "MMBTU");
-export const Therm = registerUnit(
-  Unit.timesNumber("Therm", 100000, Btu),
-  "Therm"
-);
 
 /// http://www.wolframalpha.com/input/?i=BTU and select 'Show exact conversions'
 // Per Energy

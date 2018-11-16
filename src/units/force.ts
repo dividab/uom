@@ -1,4 +1,5 @@
 import * as UnitTimes from "../unit-times";
+import * as Unit from "../unit";
 import { Kilogram } from "./base-units";
 import { MeterPerSquareSecond } from "./acceleration";
 
@@ -13,4 +14,11 @@ export const Newton = UnitTimes.massByAcceleration(
   "Newton",
   Kilogram,
   MeterPerSquareSecond
+);
+
+// Force
+export const PoundForce = Unit.divideNumber(
+  "PoundForce",
+  8896443230521.0,
+  Unit.timesNumber("", 2000000000000.0, Newton)
 );
