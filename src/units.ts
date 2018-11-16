@@ -5,7 +5,7 @@ import { registerUnit } from "./unit-registry";
 
 import { Second, Meter, Kilogram, Ampere, Kelvin } from "./units/base-units";
 import { One } from "./units/dimensionless";
-import { Kilo, Milli, Mega, Giga } from "./unit-prefix";
+import { Kilo, Milli } from "./unit-prefix";
 
 export * from "./units/base-units";
 export * from "./units/dimensionless";
@@ -37,6 +37,13 @@ export * from "./units/relative-humidity";
 export * from "./units/wet-temperature";
 export * from "./units/duration";
 export * from "./units/density";
+export * from "./units/dimensionless-per-energy";
+export * from "./units/emission";
+export * from "./units/mass-flow";
+export * from "./units/volume-flow";
+export * from "./units/volume-flow-per-area";
+export * from "./units/dimensionless-per-mass";
+export * from "./units/dimensionless-per-volume";
 
 // tslint:disable variable-name max-line-length max-file-line-count
 
@@ -52,207 +59,6 @@ export * from "./units/density";
 ////////////////////////////////////////////////////////////////////////////
 /// END: System of Units - SI
 ////////////////////////////////////////////////////////////////////////////
-
-/// http://www.wolframalpha.com/input/?i=BTU and select 'Show exact conversions'
-// Per Energy
-export const OnePerKiloWattHour = registerUnit(
-  UnitDivide.dimensionlessByEnergy("OnePerKiloWattHour", One, KiloWattHour),
-  "/kWh"
-);
-export const OnePerBtu = registerUnit(
-  UnitDivide.dimensionlessByEnergy("OnePerBtu", One, Btu),
-  "/BTU"
-);
-export const OnePerMegaBtu = registerUnit(
-  UnitDivide.dimensionlessByEnergy("OnePerMegaBtu", One, MegaBtu),
-  "/MMBTU"
-);
-export const OnePerTherm = registerUnit(
-  UnitDivide.dimensionlessByEnergy("OnePerTherm", One, Therm),
-  "/Therm"
-);
-export const OnePerKilojoule = registerUnit(
-  UnitDivide.dimensionlessByEnergy("OnePerKilojoule", One, Kilojoule),
-  "/kJ"
-);
-export const OnePerMegajoule = registerUnit(
-  UnitDivide.dimensionlessByEnergy("OnePerMegajoule", One, Megajoule),
-  "/MJ"
-);
-export const OnePerJoule = registerUnit(
-  UnitDivide.dimensionlessByEnergy("OnePerJoule", One, Joule),
-  "/J"
-);
-
-// Emission
-export const KilogramPerKiloWattHour = registerUnit(
-  UnitDivide.massByEnergy("KilogramPerKiloWattHour", Kilogram, KiloWattHour),
-  "kg/kWh"
-);
-export const GramPerKiloWattHour = registerUnit(
-  UnitDivide.massByEnergy("GramPerKiloWattHour", Gram, KiloWattHour),
-  "g/kWh"
-);
-export const PoundLbPerKiloWattHour = registerUnit(
-  UnitDivide.massByEnergy("PoundLbPerKiloWattHour", PoundLb, KiloWattHour),
-  "lb/kWh"
-);
-
-// MassFlow
-export const KilogramPerSecond = registerUnit(
-  UnitDivide.massByDuration("KilogramPerSecond", Kilogram, Second),
-  "kg/s"
-);
-export const GramPerSecond = registerUnit(
-  UnitDivide.massByDuration("GramPerSecond", Gram, Second),
-  "g/s"
-);
-export const GramPerHour = registerUnit(
-  UnitDivide.massByDuration("GramPerHour", Gram, Hour),
-  "g/h"
-);
-export const KilogramPerHour = registerUnit(
-  UnitDivide.massByDuration("KilogramPerHour", Kilogram, Hour),
-  "kg/h"
-);
-export const SlugPerSecond = registerUnit(
-  UnitDivide.massByDuration("SlugPerSecond", Slug, Second),
-  "slug/s"
-);
-export const SlugPerHour = registerUnit(
-  UnitDivide.massByDuration("SlugPerHour", Slug, Hour),
-  "slug/h"
-);
-export const PoundLbPerHour = registerUnit(
-  UnitDivide.massByDuration("PoundLbPerHour", PoundLb, Hour),
-  "lb/h"
-);
-export const GrainPerHour = registerUnit(
-  UnitDivide.massByDuration("GrainPerHour", Grain, Hour),
-  "gr/h"
-);
-export const StandardCubicMeterPerHour = registerUnit(
-  Unit.timesNumber("StandardCubicMeterPerHour", 1.2041, KilogramPerHour),
-  "Sm³/h"
-);
-export const StandardCubicFeetPerMinute = registerUnit(
-  Unit.timesNumber(
-    "StandardCubicFeetPerMinute",
-    0.02831684660923049289319782819867,
-    Unit.timesNumber("", 60.0, StandardCubicMeterPerHour)
-  ),
-  "SCFM"
-);
-export const StandardCubicMeterPerSecond = registerUnit(
-  Unit.timesNumber(
-    "StandardCubicMeterPerSecond",
-    3600.0,
-    StandardCubicMeterPerHour
-  ),
-  "Sm³/s"
-);
-export const StandardLiterPerSecond = registerUnit(
-  Unit.timesNumber(
-    "StandardLiterPerSecond",
-    3600.0 * 1000,
-    StandardCubicMeterPerHour
-  ),
-  "Sl/s"
-);
-
-// VolumeFlow
-export const CubicMeterPerSecond = registerUnit(
-  UnitDivide.volumeByDuration("CubicMeterPerSecond", CubicMeter, Second),
-  "m³/s"
-);
-export const CubicMeterPerHour = registerUnit(
-  UnitDivide.volumeByDuration("CubicMeterPerHour", CubicMeter, Hour),
-  "m³/h"
-);
-export const CubicFeetPerMinute = registerUnit(
-  UnitDivide.volumeByDuration("CubicFeetPerMinute", CubicFeet, Minute),
-  "acfm"
-);
-export const CubicFeetPerHour = registerUnit(
-  UnitDivide.volumeByDuration("CubicFeetPerHour", CubicFeet, Hour),
-  "acfh"
-);
-export const HundredCubicFeetPerHour = registerUnit(
-  UnitDivide.volumeByDuration(
-    "HundredCubicFeetPerHour",
-    HundredCubicFeet,
-    Hour
-  ),
-  "cch"
-);
-export const LiterPerSecond = registerUnit(
-  UnitDivide.volumeByDuration("LiterPerSecond", Liter, Second),
-  "l/s"
-);
-export const LiterPerMinute = registerUnit(
-  UnitDivide.volumeByDuration("LiterPerMinute", Liter, Minute),
-  "l/m"
-);
-export const LiterPerHour = registerUnit(
-  UnitDivide.volumeByDuration("LiterPerHour", Liter, Hour),
-  "l/h"
-);
-export const GallonsPerMinute = registerUnit(
-  UnitDivide.volumeByDuration("GallonsPerMinute", Gallon, Minute),
-  "gal/min"
-);
-export const GallonsPerHour = registerUnit(
-  UnitDivide.volumeByDuration("GallonsPerHour", Gallon, Hour),
-  "gal/h"
-);
-
-// VolumeFlowPerArea
-export const CubicMeterPerSecondPerSquareMeter = registerUnit(
-  UnitDivide.volumeFlowByArea(
-    "CubicMeterPerSecondPerSquareMeter",
-    CubicMeterPerSecond,
-    SquareMeter
-  ),
-  "m³/s/m²"
-);
-export const CubicFeetPerMinutePerSquareFeet = registerUnit(
-  UnitDivide.volumeFlowByArea(
-    "CubicFeetPerMinutePerSquareFeet",
-    CubicFeetPerMinute,
-    SquareFeet
-  ),
-  "acfm/ft²"
-);
-export const LiterPerSecondPerSquareMeter = registerUnit(
-  UnitDivide.volumeFlowByArea(
-    "LiterPerSecondPerSquareMeter",
-    LiterPerSecond,
-    SquareMeter
-  ),
-  "l/s/m²"
-);
-
-// Per Volume
-export const OnePerLiter = registerUnit(
-  UnitDivide.dimensionlessByVolume("OnePerLiter", One, Liter),
-  "/l"
-);
-export const OnePerCubicMeter = registerUnit(
-  UnitDivide.dimensionlessByVolume("OnePerCubicMeter", One, CubicMeter),
-  "/m³"
-);
-export const OnePerGallon = registerUnit(
-  UnitDivide.dimensionlessByVolume("OnePerGallon", One, Gallon),
-  "/gal"
-);
-export const OnePerHundredCubicFeet = registerUnit(
-  UnitDivide.dimensionlessByVolume(
-    "OnePerHundredCubicFeet",
-    One,
-    HundredCubicFeet
-  ),
-  "/100 ft³"
-);
 
 // Per Duration
 export const OnePerHour = registerUnit(
