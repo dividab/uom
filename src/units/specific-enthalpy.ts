@@ -1,6 +1,7 @@
 import * as UnitDivide from "../unit-divide";
+import * as Unit from "../unit";
 import { Kilogram } from "./base-units";
-import { Joule } from "./energy";
+import { Joule, Kilojoule, KiloWattHour } from "./energy";
 
 // tslint:disable:variable-name
 
@@ -18,3 +19,20 @@ export const Gray = UnitDivide.energyByMass("Gray", Joule, Kilogram);
  * It is named after the Swedish physicist Rolf Sievert (1898-1966).
  */
 export const Sievert = UnitDivide.energyByMass("Sievert", Joule, Kilogram);
+
+// Specific energy
+export const KilojoulePerKilogram = UnitDivide.energyByMass(
+  "KilojoulePerKilogram",
+  Kilojoule,
+  Kilogram
+);
+export const KiloWattHourPerKilogram = UnitDivide.energyByMass(
+  "KiloWattHourPerKilogram",
+  KiloWattHour,
+  Kilogram
+);
+export const BtuPerPoundLb = Unit.minus(
+  "BtuPerPoundLb",
+  7.68,
+  Unit.timesNumber("", 2.326, KilojoulePerKilogram)
+);

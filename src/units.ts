@@ -1,10 +1,8 @@
 import * as Unit from "./unit";
 import * as UnitDivide from "./unit-divide";
-import * as UnitTimes from "./unit-times";
 import { registerUnit } from "./unit-registry";
 
-import { Second, Meter, Kilogram, Ampere, Kelvin } from "./units/base-units";
-import { One } from "./units/dimensionless";
+import { Meter, Ampere } from "./units/base-units";
 import { Kilo, Milli } from "./unit-prefix";
 
 export * from "./units/base-units";
@@ -48,6 +46,10 @@ export * from "./units/dimensionless-per-duration";
 export * from "./units/mass-flow-per-area";
 export * from "./units/water-use-efficiency";
 export * from "./units/humidity-ratio";
+export * from "./units/heating-value";
+export * from "./units/specific-heat-capacity";
+export * from "./units/heat-capacity-rate";
+export * from "./units/moment-of-inertia";
 
 // tslint:disable variable-name max-line-length max-file-line-count
 
@@ -63,102 +65,6 @@ export * from "./units/humidity-ratio";
 ////////////////////////////////////////////////////////////////////////////
 /// END: System of Units - SI
 ////////////////////////////////////////////////////////////////////////////
-
-// Specific energy
-export const KilojoulePerKilogram = registerUnit(
-  UnitDivide.energyByMass("KilojoulePerKilogram", Kilojoule, Kilogram),
-  "kJ/kg"
-);
-export const KiloWattHourPerKilogram = registerUnit(
-  UnitDivide.energyByMass("KiloWattHourPerKilogram", KiloWattHour, Kilogram),
-  "kWh/kg"
-);
-export const BtuPerPoundLb = registerUnit(
-  Unit.minus(
-    "BtuPerPoundLb",
-    7.68,
-    Unit.timesNumber("", 2.326, KilojoulePerKilogram)
-  ),
-  "BTU/lb"
-);
-
-// Energy per volume
-export const KiloWattHourPerCubicMeter = registerUnit(
-  UnitDivide.energyByVolume(
-    "KiloWattHourPerCubicMeter",
-    KiloWattHour,
-    CubicMeter
-  ),
-  "kWh/m³"
-);
-
-// Specific heat capacity of air at constant pressure (kJ/kg°C, kWs/kgK, Btu/lb°F)
-// Heat capacity is the measurable physical quantity that characterizes the amount of heat required to change a body's temperature by a given amount.
-// Check if this really is correct
-export const KilojoulePerKilogramKelvin = registerUnit(
-  UnitTimes.specificEnthalpyByTemperature(
-    "KilojoulePerKilogramKelvin",
-    KilojoulePerKilogram,
-    Kelvin
-  ),
-  "kJ/kg°K"
-);
-export const KilojoulePerKilogramCelsius = registerUnit(
-  UnitTimes.specificEnthalpyByTemperature(
-    "KilojoulePerKilogramCelsius",
-    KilojoulePerKilogram,
-    Celsius
-  ),
-  "kJ/kg°C"
-);
-
-// Heat Capacity Rate
-export const KilowattPerCelsius = registerUnit(
-  UnitDivide.powerByTemperature("KilowattPerCelsius", KiloWatt, Celsius),
-  "kW/°C"
-);
-export const KilowattPerKelvin = registerUnit(
-  UnitDivide.powerByTemperature("KilowattPerKelvin", KiloWatt, Kelvin),
-  "kW/K"
-);
-
-/// Moment of inertia
-export const KilogramSquareMeter = registerUnit(
-  UnitTimes.massByArea("KilogramSquareMeter", Kilogram, SquareMeter),
-  "kg·m²"
-);
-
-// Intensity
-export const WattPerSquareMeter = registerUnit(
-  UnitDivide.powerByArea("WattPerSquareMeter", Watt, SquareMeter),
-  "W/m²"
-);
-
-// Specific Fan Power
-export const KiloWattPerCubicMeterPerSecond = registerUnit(
-  UnitDivide.powerByVolumeFlow(
-    "KiloWattPerCubicMeterPerSecond",
-    KiloWatt,
-    CubicMeterPerSecond
-  ),
-  "kW/m³/s"
-);
-export const WattPerCubicMeterPerSecond = registerUnit(
-  UnitDivide.powerByVolumeFlow(
-    "WattPerCubicMeterPerSecond",
-    Watt,
-    CubicMeterPerSecond
-  ),
-  "W/m³/s"
-);
-export const KiloWattPerCubicFootPerMinute = registerUnit(
-  UnitDivide.powerByVolumeFlow(
-    "KiloWattPerCubicFootPerMinute",
-    KiloWatt,
-    CubicFeetPerMinute
-  ),
-  "kW/ft³/min"
-);
 
 // Sound power level
 export const DecibelLw = registerUnit(

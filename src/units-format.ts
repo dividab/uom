@@ -39,3 +39,7 @@ export * from "./units/dimensionless-per-duration-format";
 export * from "./units/mass-flow-per-area-format";
 export * from "./units/water-use-efficiency-format";
 export * from "./units/humidity-ratio-format";
+export * from "./units/heating-value-format";
+export * from "./units/specific-heat-capacity-format";
+export * from "./units/heat-capacity-rate-format";
+export * from "./units/moment-of-inertia-format";
