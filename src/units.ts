@@ -1,9 +1,3 @@
-import * as Unit from "./unit";
-import * as UnitDivide from "./unit-divide";
-import { registerUnit } from "./unit-registry";
-
-import { Meter } from "./units/base-units";
-
 export * from "./units/base-units";
 export * from "./units/dimensionless";
 export * from "./units/velocity";
@@ -57,104 +51,8 @@ export * from "./units/discrete";
 export * from "./units/text";
 export * from "./units/alkalinity";
 export * from "./units/viscosity";
-
-// tslint:disable variable-name max-line-length max-file-line-count
-
-////////////////////////////////
-/// SI DERIVED ALTERNATE UNITS //
-////////////////////////////////
-
-/**
- * AlternateUnits seems to be units with names like "Newton", "Celsius" while
- * ProductUnits seem to be units with names like "MeterPerSecond"
- */
-
-////////////////////////////////////////////////////////////////////////////
-/// END: System of Units - SI
-////////////////////////////////////////////////////////////////////////////
-
-// Thermal Transmittance
-export const WattPerSquareMeterPerKelvin = registerUnit(
-  UnitDivide.intensityByDeltaTemperature(
-    "WattPerSquareMeterPerKelvin",
-    UnitDivide.powerByArea("", Watt, SquareMeter),
-    DeltaCelsius
-  ),
-  "W/m²/°K"
-);
-export const BtuPerHourPerSquareFeetPerFahrenheit = registerUnit(
-  UnitDivide.intensityByDeltaTemperature(
-    "BtuPerHourPerSquareFeetPerFahrenheit",
-    UnitDivide.powerByArea("", BtuPerHour, SquareFeet),
-    DeltaFahrenheit
-  ),
-  "BTU/h/ft²/°F"
-);
-
-// Thermal conductivity
-export const WattPerMeterPerKelvin = registerUnit(
-  UnitDivide.heatCapacityRateByLength(
-    "WattPerMeterPerKelvin",
-    UnitDivide.powerByDeltaTemperature("", Watt, DeltaCelsius),
-    Meter
-  ),
-  "W/m/°K"
-);
-export const BtuPerHourPerFeetPerFahrenheit = registerUnit(
-  UnitDivide.heatCapacityRateByLength(
-    "BtuPerHourPerFeetPerFahrenheit",
-    UnitDivide.powerByDeltaTemperature("", BtuPerHour, DeltaCelsius),
-    Foot
-  ),
-  "BTU/h/ft/°F"
-);
-
-// Volume flow per cooling power
-export const GallonsPerMinutePerTonCooling = registerUnit(
-  UnitDivide.volumeFlowByPower(
-    "GallonsPerMinutePerTonCooling",
-    GallonsPerMinute,
-    TonCooling
-  ),
-  "gpm/ton"
-);
-export const LiterPerSecondPerKiloWatt = registerUnit(
-  UnitDivide.volumeFlowByPower(
-    "LiterPerSecondPerKiloWatt",
-    LiterPerSecond,
-    KiloWatt
-  ),
-  "l/s/kW"
-);
-
-//SquareRootPressure
-export const SquareRootPascal = registerUnit(
-  Unit.createBase("SquareRootPascal", "SquareRootPressure", "√Pa"),
-  "√Pa"
-);
-export const SquareRootInchOfWaterColumn = registerUnit(
-  Unit.timesNumber(
-    "SquareRootInchOfWaterColumn",
-    1 / 0.06335029447,
-    SquareRootPascal
-  ),
-  "√in WC"
-); //sqrt(Pa/249.0889) = 0.06335029447
-
-//VolumeFlowPerSquareRootPressure
-export const LiterPerSecondPerSquareRootPascal = registerUnit(
-  UnitDivide.volumeFlowBySquareRootPressure(
-    "LiterPerSecondPerSquareRootPascal",
-    LiterPerSecond,
-    SquareRootPascal
-  ),
-  "l/s/√Pa"
-);
-export const CubicFeetPerMinutePerSquareRootInchOfWaterColumn = registerUnit(
-  UnitDivide.volumeFlowBySquareRootPressure(
-    "CubicFeetPerMinutePerSquareRootInchOfWaterColumn",
-    CubicFeetPerMinute,
-    SquareRootInchOfWaterColumn
-  ),
-  "ft³/min/√in WC"
-);
+export * from "./units/thermal-transmittance";
+export * from "./units/thermal-conductivity";
+export * from "./units/volume-flow-per-power";
+export * from "./units/square-root-pressure";
+export * from "./units/volume-flow-per-square-root-pressure";
