@@ -1,6 +1,6 @@
 import { createUnitFormat } from "../format";
 
-import * as Area from "./area";
+import * as Area from "../units/area";
 
 // tslint:disable:variable-name
 

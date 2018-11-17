@@ -1,6 +1,6 @@
 import { createUnitFormat } from "../format";
-import * as Mass from "./mass";
-import { Kilogram } from "./base-units";
+import * as Mass from "../units/mass";
+import { Kilogram } from "../units/base-units";
 
 // tslint:disable:variable-name
 

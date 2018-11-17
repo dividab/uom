@@ -1,5 +1,5 @@
 import { createUnitFormat } from "../format";
-import * as DimensionlessPerEnerge from "./dimensionless-per-energy";
+import * as DimensionlessPerEnerge from "../units/dimensionless-per-energy";
 
 // tslint:disable:variable-name
 

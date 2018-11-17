@@ -1,5 +1,5 @@
 import { createUnitFormat } from "../format";
-import * as Power from "./power";
+import * as Power from "../units/power";
 
 // tslint:disable:variable-name
 

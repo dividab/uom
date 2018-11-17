@@ -1,5 +1,5 @@
 import { createUnitFormat } from "../format";
-import * as MassFlow from "./mass-flow";
+import * as MassFlow from "../units/mass-flow";
 
 // tslint:disable:variable-name
 

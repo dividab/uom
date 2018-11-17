@@ -1,5 +1,5 @@
 import { createUnitFormat } from "../format";
-import * as HumidityRatio from "./humidity-ratio";
+import * as HumidityRatio from "../units/humidity-ratio";
 
 // tslint:disable:variable-name
 

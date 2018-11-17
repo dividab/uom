@@ -1,5 +1,5 @@
 import { createUnitFormat } from "../format";
-import * as VolumeFlow from "./volume-flow";
+import * as VolumeFlow from "../units/volume-flow";
 
 // tslint:disable:variable-name
 

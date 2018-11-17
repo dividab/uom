@@ -1,5 +1,5 @@
 import { createUnitFormat } from "../format";
-import * as Emission from "./emission";
+import * as Emission from "../units/emission";
 
 // tslint:disable:variable-name
 

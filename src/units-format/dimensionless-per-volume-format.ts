@@ -1,5 +1,5 @@
 import { createUnitFormat } from "../format";
-import * as DimensionlessPerVolume from "./dimensionless-per-volume";
+import * as DimensionlessPerVolume from "../units/dimensionless-per-volume";
 
 // tslint:disable:variable-name
 

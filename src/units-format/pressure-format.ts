@@ -1,5 +1,5 @@
 import { createUnitFormat } from "../format";
-import * as Pressure from "./pressure";
+import * as Pressure from "../units/pressure";
 
 // tslint:disable:variable-name
 

@@ -1,5 +1,5 @@
 import { createUnitFormat } from "../format";
-import * as Velocity from "./velocity";
+import * as Velocity from "../units/velocity";
 
 // tslint:disable:variable-name
 

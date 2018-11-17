@@ -1,6 +1,6 @@
 import { createUnitFormat } from "../format";
-import * as Length from "./length";
-import { Meter } from "./base-units";
+import * as Length from "../units/length";
+import { Meter } from "../units/base-units";
 
 // tslint:disable:variable-name
 

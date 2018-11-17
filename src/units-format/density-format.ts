@@ -1,5 +1,5 @@
 import { createUnitFormat } from "../format";
-import * as Density from "./density";
+import * as Density from "../units/density";
 
 // tslint:disable:variable-name
 

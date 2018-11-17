@@ -1,5 +1,5 @@
 import { createUnitFormat } from "../format";
-import * as DeltaDewPointTemperature from "./delta-dew-point-temperature";
+import * as DeltaDewPointTemperature from "../units/delta-dew-point-temperature";
 
 // tslint:disable:variable-name
 

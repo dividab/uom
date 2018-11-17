@@ -1,5 +1,5 @@
 import { createUnitFormat } from "../format";
-import * as Volume from "./volume";
+import * as Volume from "../units/volume";
 
 // tslint:disable:variable-name
 
