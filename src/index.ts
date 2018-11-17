@@ -17,5 +17,3 @@ export {
   UnitTimes,
   Format
 };
-
-// UnitRegistry.registerUnits(Units, UnitsFormat);

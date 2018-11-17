@@ -6,7 +6,9 @@ import * as Units from "./units";
 const units: UnitMap = Units;
 const unitsFormat: UnitFormatMap<typeof Units> = UnitsFormat;
 
-export type UnitMap = { readonly [key: string]: Unit.Unit };
+export type UnitMap = {
+  readonly [key: string]: Unit.Unit;
+};
 export type UnitFormatMap<TUnitMap> = { [P in keyof TUnitMap]: UnitFormat };
 
 export type MeasureSystem = "SI" | "IP";
@@ -34,7 +36,7 @@ export function createUnitFormat<T extends Quantity>(
 }
 
 export function getUnitFormat(unit: Unit.Unit): UnitFormat | undefined {
-  return unitsFormat[unit.name];
+  return (unitsFormat as { readonly [key: string]: UnitFormat })[unit.name];
 }
 
 // const _unitToString: { [key: string]: string } = {}; // tslint:disable-line
