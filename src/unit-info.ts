@@ -1,5 +1,4 @@
 import * as Unit from "./unit";
-import * as Units from "./units";
 import * as UnitRegistry from "./unit-registry";
 import { Quantity } from "./quantity";
 
@@ -41,9 +40,9 @@ export function addUnit<T extends Quantity>(
 // addUnit(Units.MegaBtu, "IP", 3);
 // addUnit(Units.Therm, "IP", 3);
 // addUnit(Units.Candela, "SI", 0);
-addUnit(Units.Celsius, "SI", 1, Units.Fahrenheit);
+// addUnit(Units.Celsius, "SI", 1, Units.Fahrenheit);
 // addUnit(Units.CelsiusDewPoint, "SI", 2, Units.FahrenheitDewPoint);
-addUnit(Units.CelsiusWet, "SI", 2, Units.FahrenheitWet);
+// addUnit(Units.CelsiusWet, "SI", 2, Units.FahrenheitWet);
 // addUnit(Units.CentiMeter, "SI", 2, Units.Inch);
 // addUnit(Units.Coulomb, "SI", 0);
 // addUnit(Units.CubicFeet, "IP", 0, Units.Liter);
@@ -63,7 +62,7 @@ addUnit(Units.CelsiusWet, "SI", 2, Units.FahrenheitWet);
 // addUnit(Units.DeltaFahrenheitDewPoint, "IP", 1, Units.DeltaCelsiusDewPoint);
 // addUnit(Units.Fahrenheit, "IP", 1, Units.Celsius);
 // addUnit(Units.FahrenheitDewPoint, "SI", 1, Units.CelsiusDewPoint);
-addUnit(Units.FahrenheitWet, "SI", 1, Units.CelsiusWet);
+// addUnit(Units.FahrenheitWet, "SI", 1, Units.CelsiusWet);
 // addUnit(Units.Farad, "SI", 0);
 // addUnit(Units.FeetOfWaterColumn, "IP", 2, Units.KiloPascal);
 // addUnit(Units.FeetPerMinute, "IP", 0, Units.CubicMeterPerHour);
@@ -88,7 +87,7 @@ addUnit(Units.FahrenheitWet, "SI", 1, Units.CelsiusWet);
 // addUnit(Units.HundredCubicFeet, "IP", 2);
 // addUnit(Units.HundredCubicFeetPerHour, "IP", 0);
 // addUnit(Units.InchOfWaterColumn, "IP", 2, Units.Pascal);
-addUnit(Units.Integer, undefined, 0);
+// addUnit(Units.Integer, undefined, 0);
 // addUnit(Units.Joule, "SI", 2);
 // addUnit(Units.Kelvin, "SI", 2);
 // addUnit(Units.KelvinDewPoint, "SI", 2);
@@ -107,14 +106,14 @@ addUnit(Units.Integer, undefined, 0);
 // addUnit(Units.KilojoulePerKilogramCelsius, "SI", 2);
 // addUnit(Units.Kilometer, "SI", 2, Units.Mile);
 // addUnit(Units.KilometerPerHour, "SI", 0, Units.MilesPerHour);
-addUnit(Units.KiloPascal, "SI", 2, Units.FeetOfWaterColumn);
+// addUnit(Units.KiloPascal, "SI", 2, Units.FeetOfWaterColumn);
 // addUnit(Units.KiloVolt, "SI", 0);
 // addUnit(Units.KiloWatt, "SI", 2);
 // addUnit(Units.KiloWattHour, "SI", 1);
-addUnit(Units.KiloWattHourPerCubicMeter, "SI", 2);
+// addUnit(Units.KiloWattHourPerCubicMeter, "SI", 2);
 // addUnit(Units.KiloWattHourPerKilogram, "SI", 2);
 // addUnit(Units.KilowattPerCelsius, "SI", 2);
-addUnit(Units.KiloWattPerCubicMeterPerSecond, "SI", 2);
+// addUnit(Units.KiloWattPerCubicMeterPerSecond, "SI", 2);
 // addUnit(Units.KiloWattPerCubicFootPerMinute, "IP", 2);
 // addUnit(Units.Liter, "SI", 2, Units.Gallon);
 // addUnit(Units.LiterPerHour, "SI", 2, Units.GallonsPerHour);
@@ -128,19 +127,19 @@ addUnit(Units.KiloWattPerCubicMeterPerSecond, "SI", 2);
 // addUnit(Units.MegaWattHour, "SI", 0);
 // addUnit(Units.Meter, "SI", 2, Units.Yard);
 // addUnit(Units.MeterPerHour, "SI", 0, Units.FeetPerMinute);
-addUnit(Units.MeterPerSecond, "SI", 2, Units.FeetPerMinute);
+// addUnit(Units.MeterPerSecond, "SI", 2, Units.FeetPerMinute);
 // addUnit(Units.MeterPerSquareSecond, "SI", 2);
 // addUnit(Units.Mile, "IP", 0, Units.Kilometer);
 // addUnit(Units.Inch, "IP", 2, Units.CentiMeter);
 // addUnit(Units.MilesPerHour, "IP", 0, Units.KilometerPerHour);
 // addUnit(Units.MilliBar, "SI", 2, Units.InchOfWaterColumn);
-addUnit(Units.MilliGram, "SI", 0, Units.Grain);
+// addUnit(Units.MilliGram, "SI", 0, Units.Grain);
 // addUnit(Units.MilliGramCalciumPerLiter, "SI", 2);
 // addUnit(Units.MilliGramHydrogenCarbonatePerLiter, "SI", 2);
 // addUnit(Units.MilliLiter, "SI", 0);
 // addUnit(Units.Millimeter, "SI", 2);
 // addUnit(Units.MilliVolt, "SI", 0);
-addUnit(Units.Minute, undefined, 2);
+// addUnit(Units.Minute, undefined, 2);
 // addUnit(Units.Mole, undefined, 2);
 // addUnit(Units.Newton, "SI", 2, Units.PoundForce);
 // addUnit(Units.NewtonMeter, "SI", 0);
@@ -162,10 +161,10 @@ addUnit(Units.Minute, undefined, 2);
 // addUnit(Units.PascalSecond, "SI", 2);
 // addUnit(Units.Percent, undefined, 2);
 // addUnit(Units.PercentHumidity, undefined, 1);
-addUnit(Units.PoundForcePerSquareInch, "IP", 2, Units.KiloPascal);
+// addUnit(Units.PoundForcePerSquareInch, "IP", 2, Units.KiloPascal);
 // addUnit(Units.PoundLb, "IP", 1, Units.Kilogram);
-addUnit(Units.PoundLbPerHour, "IP", 1, Units.KilogramPerHour);
-addUnit(Units.PoundForcePerSquareInch, "SI", 2, Units.PoundForcePerSquareInch);
+// addUnit(Units.PoundLbPerHour, "IP", 1, Units.KilogramPerHour);
+// addUnit(Units.PoundForcePerSquareInch, "SI", 2, Units.PoundForcePerSquareInch);
 // addUnit(Units.PoundForcePerSquareFoot, "SI", 2, Units.PoundForcePerSquareFoot);
 // addUnit(Units.PPM, undefined, 0);
 // addUnit(Units.Radian, undefined, 0);
@@ -179,7 +178,7 @@ addUnit(Units.PoundForcePerSquareInch, "SI", 2, Units.PoundForcePerSquareInch);
 // addUnit(Units.SlugPerHour, "IP", 2, Units.KilogramPerHour);
 // addUnit(Units.SlugPerSecond, "IP", 2, Units.KilogramPerSecond);
 // addUnit(Units.SquareCentimeter, "SI", 0, Units.SquareInch);
-addUnit(Units.SquareFeet, "IP", 0, Units.SquareDecimeter);
+// addUnit(Units.SquareFeet, "IP", 0, Units.SquareDecimeter);
 // addUnit(Units.SquareInch, "IP", 0, Units.SquareCentimeter);
 // addUnit(Units.SquareMeter, "SI", 2, Units.SquareFeet);
 // addUnit(Units.SquareMillimeter, "SI", 4);
@@ -189,15 +188,15 @@ addUnit(Units.SquareFeet, "IP", 0, Units.SquareDecimeter);
 //   0,
 //   Units.StandardCubicMeterPerHour
 // );
-addUnit(
-  Units.StandardCubicMeterPerHour,
-  "SI",
-  0,
-  Units.StandardCubicFeetPerMinute
-);
-addUnit(Units.Steradian, "SI", 2);
+// addUnit(
+//   Units.StandardCubicMeterPerHour,
+//   "SI",
+//   0,
+//   Units.StandardCubicFeetPerMinute
+// );
+// addUnit(Units.Steradian, "SI", 2);
 // addUnit(Units.Tesla, "SI", 2);
-addUnit(Units.TonCooling, "IP", 2, Units.KiloWatt);
+// addUnit(Units.TonCooling, "IP", 2, Units.KiloWatt);
 // addUnit(Units.Tonne, "SI", 0);
 // addUnit(Units.Volt, "SI", 2);
 // addUnit(Units.VoltAmpere, "SI", 2);

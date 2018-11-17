@@ -4,7 +4,12 @@ import * as Velocity from "./velocity";
 // tslint:disable:variable-name
 
 /** The metric unit for velocity quantities ( <code>m/s</code> ). */
-export const MeterPerSecond = createUnitFormat("m/s", "SI", 0);
+export const MeterPerSecond = createUnitFormat(
+  "m/s",
+  "SI",
+  2,
+  Velocity.FeetPerMinute
+);
 
 // Velocity
 export const FeetPerSecond = createUnitFormat(
@@ -18,7 +23,7 @@ export const FeetPerMinute = createUnitFormat(
   "ft/min",
   "IP",
   0,
-  Velocity.CubicMeterPerHour
+  Velocity.MeterPerHour
 );
 
 export const MilesPerHour = createUnitFormat(
