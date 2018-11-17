@@ -60,3 +60,5 @@ export const MilliBar = createUnitFormat(
   2,
   Pressure.InchOfWaterColumn
 );
+
+export const DeciPascal = createUnitFormat("dPa", "SI", 2);

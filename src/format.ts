@@ -3,8 +3,8 @@ import { Quantity } from "./quantity";
 import * as UnitsFormat from "./units-format";
 import * as Units from "./units";
 
-// const units: UnitMap = Units;
-// const unitsFormat: UnitFormatMap<typeof Units> = UnitsFormat;
+const units: UnitMap = Units;
+const unitsFormat: UnitFormatMap<typeof Units> = UnitsFormat;
 
 export type UnitMap = { readonly [key: string]: Unit.Unit };
 export type UnitFormatMap<TUnitMap> = { [P in keyof TUnitMap]: UnitFormat };
@@ -34,7 +34,7 @@ export function createUnitFormat<T extends Quantity>(
 }
 
 export function getUnitFormat(unit: Unit.Unit): UnitFormat | undefined {
-  return UnitsFormat[unit.name];
+  return unitsFormat[unit.name];
 }
 
 // const _unitToString: { [key: string]: string } = {}; // tslint:disable-line
@@ -42,14 +42,13 @@ export function getUnitFormat(unit: Unit.Unit): UnitFormat | undefined {
 const _quantityToUnits: { [key: string]: Array<Unit.Unit> } = {}; // tslint:disable-line
 
 export function isUnit(unitName: string): boolean {
-  return Units[unitName.trim().toLowerCase()] !== undefined;
+  return units[unitName.trim().toLowerCase()] !== undefined;
 }
 
 export function getUnitFromString<T extends Quantity>(
-  unitName: string,
-  onError?: (unitString: string) => Unit.Unit<T>
-): Unit.Unit<T> {
-  return Units[unitName.trim().toLowerCase()];
+  unitString: string
+): Unit.Unit<T> | undefined {
+  return units[unitString.trim().toLowerCase()] as Unit.Unit<T>;
 }
 
 export function getStringFromUnit(unit: Unit.Unit): string {
@@ -73,7 +72,7 @@ export function getUnitsForQuantity(quantityType: string): Array<Unit.Unit> {
 
 export function getAllUnits(): ReadonlyArray<Unit.Unit> {
   return Object.keys(Units).map(e => {
-    return Units[e];
+    return units[e];
   });
 }
 
@@ -90,19 +89,19 @@ export function getAllQuantities(): Array<string> {
 
 // const _formats: { [key: string]: UnitFormat } = {}; //tslint:disable-line
 
-/**
- * Used to check that both modules have the same keys
- * @param units
- * @param unitsFormat
- */
-export function registerUnits<TUnits extends UnitMap>(
-  units: TUnits,
-  unitsFormat: UnitFormatMap<TUnits>
-): void {
-  //   for (const unitKey of Object.keys(units)) {
-  //     const unit = units[unitKey];
-  //     const unitInfo = unitsFormat[unitKey];
-  //     registerUnit(unit, unitInfo.label);
-  //     registerUnitFormat(unit, unitInfo);
-  //   }
-}
+// /**
+//  * Used to check that both modules have the same keys
+//  * @param units
+//  * @param unitsFormat
+//  */
+// export function registerUnits<TUnits extends UnitMap>(
+//   units: TUnits,
+//   unitsFormat: UnitFormatMap<TUnits>
+// ): void {
+//   //   for (const unitKey of Object.keys(units)) {
+//   //     const unit = units[unitKey];
+//   //     const unitInfo = unitsFormat[unitKey];
+//   //     registerUnit(unit, unitInfo.label);
+//   //     registerUnitFormat(unit, unitInfo);
+//   //   }
+// }
