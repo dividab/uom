@@ -1,4 +1,4 @@
-import { createUnitFormat } from "../unit-registry";
+import { createUnitFormat } from "../format";
 import * as SquareRootPressre from "./square-root-pressure";
 
 // tslint:disable:variable-name

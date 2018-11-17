@@ -1,4 +1,4 @@
-import { createUnitFormat } from "../unit-registry";
+import { createUnitFormat } from "../format";
 import * as Pressure from "./pressure";
 
 // tslint:disable:variable-name

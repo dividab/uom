@@ -1,4 +1,4 @@
-import { createUnitFormat } from "../unit-registry";
+import { createUnitFormat } from "../format";
 import * as MassFlow from "./mass-flow";
 
 // tslint:disable:variable-name

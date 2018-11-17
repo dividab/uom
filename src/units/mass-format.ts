@@ -1,4 +1,4 @@
-import { createUnitFormat } from "../unit-registry";
+import { createUnitFormat } from "../format";
 import * as Mass from "./mass";
 import { Kilogram } from "./base-units";
 

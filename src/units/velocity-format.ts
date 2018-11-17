@@ -1,4 +1,4 @@
-import { createUnitFormat } from "../unit-registry";
+import { createUnitFormat } from "../format";
 import * as Velocity from "./velocity";
 
 // tslint:disable:variable-name

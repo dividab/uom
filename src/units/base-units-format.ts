@@ -1,5 +1,5 @@
 import * as Units from "../units";
-import { createUnitFormat } from "../unit-registry";
+import { createUnitFormat } from "../format";
 
 // tslint:disable:variable-name
 

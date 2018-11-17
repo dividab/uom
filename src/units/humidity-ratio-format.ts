@@ -1,4 +1,4 @@
-import { createUnitFormat } from "../unit-registry";
+import { createUnitFormat } from "../format";
 import * as HumidityRatio from "./humidity-ratio";
 
 // tslint:disable:variable-name
