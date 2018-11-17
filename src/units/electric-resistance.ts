@@ -1,6 +1,7 @@
 import * as UnitDivide from "../unit-divide";
 import { Ampere } from "./base-units";
 import { Volt } from "./electric-potential";
+import { Kilo } from "../unit-prefix";
 
 // tslint:disable:variable-name
 
@@ -15,3 +16,6 @@ export const Ohm = UnitDivide.electricalPotentialByElectricalCurrent(
   Volt,
   Ampere
 );
+
+// Electric resistance
+export const KiloOhm = Kilo("KiloOhm", Ohm);

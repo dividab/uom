@@ -2,8 +2,7 @@ import * as Unit from "./unit";
 import * as UnitDivide from "./unit-divide";
 import { registerUnit } from "./unit-registry";
 
-import { Meter, Ampere } from "./units/base-units";
-import { Kilo, Milli } from "./unit-prefix";
+import { Meter } from "./units/base-units";
 
 export * from "./units/base-units";
 export * from "./units/dimensionless";
@@ -50,6 +49,14 @@ export * from "./units/heating-value";
 export * from "./units/specific-heat-capacity";
 export * from "./units/heat-capacity-rate";
 export * from "./units/moment-of-inertia";
+export * from "./units/sound-power-level";
+export * from "./units/sound-pressure-level";
+export * from "./units/electric-current";
+export * from "./units/water-hardness";
+export * from "./units/discrete";
+export * from "./units/text";
+export * from "./units/alkalinity";
+export * from "./units/viscosity";
 
 // tslint:disable variable-name max-line-length max-file-line-count
 
@@ -65,65 +72,6 @@ export * from "./units/moment-of-inertia";
 ////////////////////////////////////////////////////////////////////////////
 /// END: System of Units - SI
 ////////////////////////////////////////////////////////////////////////////
-
-// Sound power level
-export const DecibelLw = registerUnit(
-  Unit.createBase("DecibelLw", "SoundPowerLevel", "dB"),
-  "dB"
-);
-
-// Sound pressure level
-export const Decibel = registerUnit(
-  Unit.createBase("Decibel", "SoundPressureLevel", "dB"),
-  "dB"
-);
-
-// Electric resistance
-export const KiloOhm = registerUnit(Kilo("KiloOhm", Ohm), "kOhm");
-
-// Electric current
-export const MilliAmpere = registerUnit(Milli("MilliAmpere", Ampere), "mA");
-
-// Water hardness
-export const MilliGramCalciumPerLiter = registerUnit(
-  Unit.createBase("MilliGramCalciumPerLiter", "WaterHardness", "mg Ca²⁺/l"),
-  "mg Ca²⁺/l"
-);
-export const FrenchDegree = registerUnit(
-  Unit.timesNumber("FrenchDegree", 4.0043, MilliGramCalciumPerLiter),
-  "°f"
-);
-
-// ElectricPotential
-export const MilliVolt = registerUnit(Milli("MilliVolt", Volt), "mV");
-export const KiloVolt = registerUnit(Kilo("KiloVolt", Volt), "kV");
-
-// Discrete
-// export const Integer = _register(Unit.createProductUnit<q.Discrete>("Discrete", []), " ");
-export const Integer = registerUnit(
-  Unit.createBase("Integer", "Discrete", " "),
-  " "
-);
-
-// Text
-// export const Text = _register(Unit.createProductUnit<q.Text>("Text", []), " ");
-export const Text = registerUnit(Unit.createBase("Text", "Text", " "), " ");
-
-// Alkalinity
-export const MilliGramHydrogenCarbonatePerLiter = registerUnit(
-  Unit.createBase(
-    "MilliGramHydrogenCarbonatePerLiter",
-    "Alkalinity",
-    "mg HCO₃⁻/l"
-  ),
-  "mg HCO₃⁻/l"
-);
-
-// Viscosity
-export const PascalSecond = registerUnit(
-  Unit.createBase("PascalSecond", "Viscosity", "Pa·s"),
-  "Pa·s"
-);
 
 // Thermal Transmittance
 export const WattPerSquareMeterPerKelvin = registerUnit(

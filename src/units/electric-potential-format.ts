@@ -9,3 +9,8 @@ import { createUnitFormat } from "../unit-registry";
  * It is named after the Italian physicist Count Alessandro Volta (1745-1827).
  */
 export const Volt = createUnitFormat("V", "SI", 2);
+
+// ElectricPotential
+export const MilliVolt = createUnitFormat("mV", "SI", 0);
+
+export const KiloVolt = createUnitFormat("kV", "SI", 0);

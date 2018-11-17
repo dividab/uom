@@ -1,6 +1,7 @@
 import * as UnitDivide from "../unit-divide";
 import { Ampere } from "./base-units";
 import { Watt } from "./power";
+import { Milli, Kilo } from "../unit-prefix";
 
 // tslint:disable:variable-name
 
@@ -11,3 +12,7 @@ import { Watt } from "./power";
  * It is named after the Italian physicist Count Alessandro Volta (1745-1827).
  */
 export const Volt = UnitDivide.powerByElectricalCurrent("Volt", Watt, Ampere);
+
+// ElectricPotential
+export const MilliVolt = Milli("MilliVolt", Volt);
+export const KiloVolt = Kilo("KiloVolt", Volt);
