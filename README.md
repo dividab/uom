@@ -85,6 +85,16 @@ console.log(
 );
 ```
 
+There is also the `buildDerivedSymbol()` function which will derive a symbol for a unit by looking at which base units the unit was created:
+
+```ts
+import { Amount, Units, Format } from "uom";
+
+const length = Amount.create(10, Units.MeterPerSecond);
+const label = Unit.buildDerivedSymbol(length);
+console.log(label); // m/s
+```
+
 ### Serialization
 
 This feature can be used to serialize the units for persisting to/from for example a database.
