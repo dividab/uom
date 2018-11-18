@@ -18,9 +18,11 @@ This package has functions to handle unit of measures. It works particulary well
 
 The library is compiled to ES5 and no polyfills are required.
 
-## Usage
+## Features
 
 ### Conversion
+
+This feature allows you to convert amounts into different units.
 
 ```js
 import { Amount, Units } from "uom";
@@ -31,6 +33,8 @@ const inch = Amount.valueAs(Units.Inch, amount);
 
 ### Extension (create your own unit)
 
+By using the base units you can create any unit.
+
 ```js
 import { Amount, Unit, Units } from "uom";
 
@@ -40,6 +44,8 @@ const meter = Amount.valueAs(Units.Meter, amount);
 ```
 
 ### Type safety (typescript only)
+
+By declaring your functions with a signature of typed Amount you can make sure the right type of amounts are inputs to the function.
 
 ```ts
 import { Amount, Units } from "uom";
@@ -54,6 +60,37 @@ const result = calculate(volume1, length2); // Compile error
 function calculate(Amount<Length> length1, Amount<Length> length2): Amount<Length> {
     return Amount.plus(length1, length2);
 }
+```
+
+### Formatting
+
+For the most part, formatting is application specific and therefore this feature should be implemented per application. For example your application may have air flows and water flows that both are of `VolumeFlow` quantity. In this case you may want separate labels and default units for air flow and water flow. One way to achcieve this is by your applciation tagging each field with either air_flow, or water_flow and then provide different labels and default for those tags using application specific functions.
+
+However if you are just building something smaller and want quick formatting, this package has some opinionated formatting built-in. Specifically you can get the label and number of decimals for each unit.
+
+```ts
+import { Amount, Units, Format } from "uom";
+
+const length = Amount.create(10, Units.Meter);
+const format = Format.getUnitFormat(length);
+console.log(
+  "The amount is " +
+    Amount.valueAs(Units.Inch, amount) +
+    " " +
+    Format.getUnitFormat(Units.Inch).label
+);
+```
+
+### Serialization
+
+This feature can be used to serialize the units for persisting to for example a database.
+
+```ts
+import { Amount, Units, Serialize } from "uom";
+
+const length = Amount.create(10, Units.Meter);
+const serialized = Serialize.amountToString(length);
+const deserialized = Serialize.stringToAmount(serialized);
 ```
 
 ## API

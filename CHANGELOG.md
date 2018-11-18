@@ -7,12 +7,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Format module.
+- Serialize module
+
 ### Changed
 
 - Rename `UnitName` module to `UnitLabel`
 - Rename `UnitName.getName()` to `UnitLabel.getLabel()`
 - The following functions was move from `Units` to `UnitRegistry`: getUnitFromString, isUnit, getStringFromUnit, getUnitsForQuantity, getAllUnits, getAllQuantities
 - Amount.toString() now uses buildDerivedSymbol instead of looking up label in the registry. This change was made to make Amount independent on the formatting data.
+
+## Removed
+
+- Some undocumented modules were removed (this functionality is not partly documented in the Format and Serialize modules):
+  - unit-info.ts
+  - unit-label.ts
+  - unit-registry.ts
 
 ## [1.0.0] - 2018-05-08
 
