@@ -63,3 +63,7 @@ export * from "./intensity";
 export * from "./power";
 export * from "./specific-fan-power";
 export * from "./temperature";
+export * from "./amount-of-substance";
+export * from "./data-amount";
+export * from "./dew-point-temperature";
+export * from "./luminous-intensity";

@@ -5,6 +5,8 @@ import {
   SquareRootInchOfWaterColumn
 } from "./square-root-pressure";
 
+export type VolumeFlowPerSquareRootPressure = "VolumeFlowPerSquareRootPressure";
+
 // tslint:disable:variable-name
 
 //VolumeFlowPerSquareRootPressure

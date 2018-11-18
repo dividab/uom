@@ -2,6 +2,8 @@ import * as Unit from "../unit";
 import { Second } from "./base-units";
 import { Milli } from "../unit-prefix";
 
+export type Duration = "Duration";
+
 // tslint:disable:variable-name
 
 // Duration / Time

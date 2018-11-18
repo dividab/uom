@@ -3,6 +3,8 @@ import { Kilogram } from "./base-units";
 import { CubicMeter, CubicCentiMeter, CubicFeet } from "./volume";
 import { Gram, Slug, PoundLb } from "./mass";
 
+export type Density = "Density";
+
 // tslint:disable:variable-name
 
 // Density

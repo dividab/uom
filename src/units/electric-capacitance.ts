@@ -2,6 +2,8 @@ import * as UnitDivide from "../unit-divide";
 import { Coulomb } from "./electric-charge";
 import { Volt } from "./electric-potential";
 
+export type ElectricCapacitance = "ElectricCapacitance";
+
 // tslint:disable:variable-name
 
 /**

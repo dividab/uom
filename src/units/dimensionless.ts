@@ -1,5 +1,7 @@
 import * as Unit from "../unit";
 
+export type Dimensionless = "Dimensionless";
+
 // tslint:disable:variable-name
 
 export const One = Unit.One;

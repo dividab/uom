@@ -2,6 +2,8 @@ import { Squared } from "../unit-prefix";
 import { Meter } from "./base-units";
 import { Inch, Foot, Millimeter, CentiMeter, Decimeter } from "./length";
 
+export type Area = "Area";
+
 // tslint:disable:variable-name
 
 /** The metric unit for area quantities ( <code>m²</code> ). */

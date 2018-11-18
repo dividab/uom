@@ -3,6 +3,8 @@ import { Ampere } from "./base-units";
 import { Watt } from "./power";
 import { Milli, Kilo } from "../unit-prefix";
 
+export type ElectricPotential = "ElectricPotential";
+
 // tslint:disable:variable-name
 
 /**

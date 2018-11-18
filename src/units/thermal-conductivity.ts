@@ -4,6 +4,8 @@ import { Meter } from "./base-units";
 import { DeltaCelsius } from "./delta-temperature";
 import { Foot } from "./length";
 
+export type ThermalConductivity = "ThermalConductivity";
+
 // tslint:disable:variable-name
 
 // Thermal conductivity

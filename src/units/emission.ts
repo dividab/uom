@@ -3,6 +3,8 @@ import { KiloWattHour } from "./energy2";
 import { Gram, PoundLb } from "./mass";
 import { massByEnergy } from "../unit-divide";
 
+export type Emission = "Emission";
+
 // tslint:disable:variable-name
 
 // Emission

@@ -4,6 +4,8 @@ import { Meter } from "./base-units";
 import { Newton } from "./force";
 import { Kilo, Mega } from "../unit-prefix";
 
+export type Energy = "Energy";
+
 // tslint:disable:variable-name
 
 /**

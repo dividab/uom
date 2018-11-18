@@ -9,6 +9,8 @@ import {
 } from "./volume";
 import { Hour, Minute } from "./duration";
 
+export type VolumeFlow = "VolumeFlow";
+
 // tslint:disable:variable-name
 
 // VolumeFlow

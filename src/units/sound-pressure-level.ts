@@ -1,5 +1,7 @@
 import * as Unit from "../unit";
 
+export type SoundPressureLevel = "SoundPressureLevel";
+
 // tslint:disable:variable-name
 
 // Sound pressure level

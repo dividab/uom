@@ -3,6 +3,8 @@ import { Kelvin } from "./base-units";
 import { KiloWatt } from "./power";
 import { Celsius } from "./temperature";
 
+export type HeatCapacityRate = "HeatCapacityRate";
+
 // tslint:disable:variable-name
 
 // Heat Capacity Rate

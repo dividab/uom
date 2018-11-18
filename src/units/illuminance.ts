@@ -2,6 +2,8 @@ import * as UnitDivide from "../unit-divide";
 import { Lumen } from "./luminous-flux";
 import { SquareMeter } from "./area";
 
+export type Illuminance = "Illuminance";
+
 // tslint:disable:variable-name
 
 /**

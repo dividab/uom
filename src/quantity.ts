@@ -1,142 +1,140 @@
-export type Acceleration = "Acceleration";
-export type Alkalinity = "Alkalinity";
-export type AmountOfSubstance = "AmountOfSubstance";
-export type Angle = "Angle";
-export type Area = "Area";
-export type CatalyticActivity = "CatalyticActivity";
-export type DataAmount = "DataAmount";
-export type DeltaDewPointTemperature = "DeltaDewPointTemperature";
-export type DeltaTemperature = "DeltaTemperature";
-export type Density = "Density";
-export type DewPointTemperature = "DewPointTemperature";
-export type Dimensionless = "Dimensionless";
-export type DimensionlessPerEnergy = "DimensionlessPerEnergy";
-export type DimensionlessPerMass = "DimensionlessPerMass";
-export type DimensionlessPerVolume = "DimensionlessPerVolume";
-export type DimensionlessPerDuration = "DimensionlessPerDuration";
-export type Discrete = "Discrete";
-export type Duration = "Duration";
-export type ElectricCapacitance = "ElectricCapacitance";
-export type ElectricCharge = "ElectricCharge";
-export type ElectricConductance = "ElectricConductance";
-export type ElectricInductance = "ElectricInductance";
-export type ElectricCurrent = "ElectricCurrent";
-export type ElectricPotential = "ElectricPotential";
-export type ElectricResistance = "ElectricResistance";
-export type Emission = "Emission";
-export type Energy = "Energy";
-export type Force = "Force";
-export type Frequency = "Frequency";
-export type HeatCapacityRate = "HeatCapacityRate";
-export type HeatingValue = "HeatingValue";
-export type HumidityRatio = "HumidityRatio";
-export type Illuminance = "Illuminance";
-export type Intensity = "Intensity";
-export type Length = "Length";
-export type LuminousFlux = "LuminousFlux";
-export type LuminousIntensity = "LuminousIntensity";
-export type MagneticFlux = "MagneticFlux";
-export type MagneticFluxDensity = "MagneticFluxDensity";
-export type Mass = "Mass";
-export type MassFlow = "MassFlow";
-export type MassFlowPerArea = "MassFlowPerArea";
-export type MomentOfInertia = "MomentOfInertia";
-export type Power = "Power";
-export type Pressure = "Pressure";
-export type RadiationDoseAbsorbed = "RadiationDoseAbsorbed";
-export type RadiationDoseEffective = "RadiationDoseEffective";
-export type RadioactiveActivity = "RadioactiveActivity";
-export type RelativeHumidity = "RelativeHumidity";
-export type SolidAngle = "SolidAngle";
-export type SoundPowerLevel = "SoundPowerLevel";
-export type SoundPressureLevel = "SoundPressureLevel";
-export type SpecificEnthalpy = "SpecificEnthalpy";
-export type SpecificFanPower = "SpecificFanPower";
-export type SpecificHeatCapacity = "SpecificHeatCapacity";
-export type SquareRootPressure = "SquareRootPressure";
-export type Temperature = "Temperature";
-export type Text = "Text";
-export type Velocity = "Velocity";
-export type Viscosity = "Viscosity";
-export type Volume = "Volume";
-export type VolumeFlow = "VolumeFlow";
-export type VolumeFlowPerArea = "VolumeFlowPerArea";
-export type VolumeFlowPerPower = "VolumeFlowPerPower";
-export type VolumeFlowPerSquareRootPressure = "VolumeFlowPerSquareRootPressure";
-export type WaterHardness = "WaterHardness";
-export type WaterUseEfficiency = "WaterUseEfficiency";
-export type WetTemperature = "WetTemperature";
-export type ThermalTransmittance = "ThermalTransmittance";
-export type ThermalConductivity = "ThermalConductivity";
+import * as Units from "./units";
+
+export { Acceleration } from "./units/acceleration";
+export { Alkalinity } from "./units/alkalinity";
+export { AmountOfSubstance } from "./units/amount-of-substance";
+export { Angle } from "./units/angle";
+export { Area } from "./units/area";
+export { CatalyticActivity } from "./units/catalytic-activity";
+export { DataAmount } from "./units/data-amount";
+export { DeltaDewPointTemperature } from "./units/delta-dew-point-temperature";
+export { DeltaTemperature } from "./units/delta-temperature";
+export { Density } from "./units/density";
+export { DewPointTemperature } from "./units/dew-point-temperature";
+export { Dimensionless } from "./units/dimensionless";
+export { DimensionlessPerEnergy } from "./units/dimensionless-per-energy";
+export { DimensionlessPerMass } from "./units/dimensionless-per-mass";
+export { DimensionlessPerVolume } from "./units/dimensionless-per-volume";
+export { DimensionlessPerDuration } from "./units/dimensionless-per-duration";
+export { Discrete } from "./units/discrete";
+export { Duration } from "./units/duration";
+export { ElectricCapacitance } from "./units/electric-capacitance";
+export { ElectricCharge } from "./units/electric-charge";
+export { ElectricConductance } from "./units/electric-conductance";
+export { ElectricInductance } from "./units/electric-inductance";
+export { ElectricCurrent } from "./units/electric-current";
+export { ElectricPotential } from "./units/electric-potential";
+export { ElectricResistance } from "./units/electric-resistance";
+export { Emission } from "./units/emission";
+export { Energy } from "./units/energy";
+export { Force } from "./units/force";
+export { Frequency } from "./units/frequency";
+export { HeatCapacityRate } from "./units/heat-capacity-rate";
+export { HeatingValue } from "./units/heating-value";
+export { HumidityRatio } from "./units/humidity-ratio";
+export { Illuminance } from "./units/illuminance";
+export { Intensity } from "./units/intensity";
+export { Length } from "./units/length";
+export { LuminousFlux } from "./units/luminous-flux";
+export { LuminousIntensity } from "./units/luminous-intensity";
+export { MagneticFlux } from "./units/magnetic-flux";
+export { MagneticFluxDensity } from "./units/magnetic-flux-density";
+export { Mass } from "./units/mass";
+export { MassFlow } from "./units/mass-flow";
+export { MassFlowPerArea } from "./units/mass-flow-per-area";
+export { MomentOfInertia } from "./units/moment-of-inertia";
+export { Power } from "./units/power";
+export { Pressure } from "./units/pressure";
+export { RelativeHumidity } from "./units/relative-humidity";
+export { SolidAngle } from "./units/solid-angle";
+export { SoundPowerLevel } from "./units/sound-power-level";
+export { SoundPressureLevel } from "./units/sound-pressure-level";
+export { SpecificEnthalpy } from "./units/specific-enthalpy";
+export { SpecificFanPower } from "./units/specific-fan-power";
+export { SpecificHeatCapacity } from "./units/specific-heat-capacity";
+export { SquareRootPressure } from "./units/square-root-pressure";
+export { Temperature } from "./units/temperature";
+export { Text } from "./units/text";
+export { Velocity } from "./units/velocity";
+export { Viscosity } from "./units/viscosity";
+export { Volume } from "./units/volume";
+export { VolumeFlow } from "./units/volume-flow";
+export { VolumeFlowPerArea } from "./units/volume-flow-per-area";
+export { VolumeFlowPerPower } from "./units/volume-flow-per-power";
+export {
+  VolumeFlowPerSquareRootPressure
+} from "./units/volume-flow-per-square-root-pressure";
+export { WaterHardness } from "./units/water-hardness";
+export { WaterUseEfficiency } from "./units/water-use-efficiency";
+export { WetTemperature } from "./units/wet-temperature";
+export { ThermalTransmittance } from "./units/thermal-transmittance";
+export { ThermalConductivity } from "./units/thermal-conductivity";
 
 export type Quantity =
-  | Acceleration
-  | Alkalinity
-  | AmountOfSubstance
-  | Angle
-  | Area
-  | CatalyticActivity
-  | DataAmount
-  | DeltaDewPointTemperature
-  | DeltaTemperature
-  | Density
-  | DewPointTemperature
-  | Dimensionless
-  | DimensionlessPerEnergy
-  | DimensionlessPerMass
-  | DimensionlessPerVolume
-  | DimensionlessPerDuration
-  | Discrete
-  | Duration
-  | ElectricCapacitance
-  | ElectricCharge
-  | ElectricConductance
-  | ElectricInductance
-  | ElectricCurrent
-  | ElectricPotential
-  | ElectricResistance
-  | Emission
-  | Energy
-  | Force
-  | Frequency
-  | HeatCapacityRate
-  | HeatingValue
-  | HumidityRatio
-  | Illuminance
-  | Intensity
-  | Length
-  | LuminousFlux
-  | LuminousIntensity
-  | MagneticFlux
-  | MagneticFluxDensity
-  | Mass
-  | MassFlow
-  | MassFlowPerArea
-  | MomentOfInertia
-  | Power
-  | Pressure
-  | RadiationDoseAbsorbed
-  | RadiationDoseEffective
-  | RadioactiveActivity
-  | RelativeHumidity
-  | SolidAngle
-  | SoundPowerLevel
-  | SoundPressureLevel
-  | SpecificEnthalpy
-  | SpecificFanPower
-  | SpecificHeatCapacity
-  | SquareRootPressure
-  | Temperature
-  | Text
-  | Velocity
-  | Viscosity
-  | Volume
-  | VolumeFlow
-  | VolumeFlowPerArea
-  | VolumeFlowPerPower
-  | VolumeFlowPerSquareRootPressure
-  | WaterHardness
-  | WaterUseEfficiency
-  | WetTemperature
-  | ThermalTransmittance
-  | ThermalConductivity;
+  | Units.Acceleration
+  | Units.Alkalinity
+  | Units.AmountOfSubstance
+  | Units.Angle
+  | Units.Area
+  | Units.CatalyticActivity
+  | Units.DataAmount
+  | Units.DeltaDewPointTemperature
+  | Units.DeltaTemperature
+  | Units.Density
+  | Units.DewPointTemperature
+  | Units.Dimensionless
+  | Units.DimensionlessPerEnergy
+  | Units.DimensionlessPerMass
+  | Units.DimensionlessPerVolume
+  | Units.DimensionlessPerDuration
+  | Units.Discrete
+  | Units.Duration
+  | Units.ElectricCapacitance
+  | Units.ElectricCharge
+  | Units.ElectricConductance
+  | Units.ElectricInductance
+  | Units.ElectricCurrent
+  | Units.ElectricPotential
+  | Units.ElectricResistance
+  | Units.Emission
+  | Units.Energy
+  | Units.Force
+  | Units.Frequency
+  | Units.HeatCapacityRate
+  | Units.HeatingValue
+  | Units.HumidityRatio
+  | Units.Illuminance
+  | Units.Intensity
+  | Units.Length
+  | Units.LuminousFlux
+  | Units.LuminousIntensity
+  | Units.MagneticFlux
+  | Units.MagneticFluxDensity
+  | Units.Mass
+  | Units.MassFlow
+  | Units.MassFlowPerArea
+  | Units.MomentOfInertia
+  | Units.Power
+  | Units.Pressure
+  | Units.RelativeHumidity
+  | Units.SolidAngle
+  | Units.SoundPowerLevel
+  | Units.SoundPressureLevel
+  | Units.SpecificEnthalpy
+  | Units.SpecificFanPower
+  | Units.SpecificHeatCapacity
+  | Units.SquareRootPressure
+  | Units.Temperature
+  | Units.Text
+  | Units.Velocity
+  | Units.Viscosity
+  | Units.Volume
+  | Units.VolumeFlow
+  | Units.VolumeFlowPerArea
+  | Units.VolumeFlowPerPower
+  | Units.VolumeFlowPerSquareRootPressure
+  | Units.WaterHardness
+  | Units.WaterUseEfficiency
+  | Units.WetTemperature
+  | Units.ThermalTransmittance
+  | Units.ThermalConductivity;

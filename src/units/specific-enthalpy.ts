@@ -4,6 +4,8 @@ import { Kilogram } from "./base-units";
 import { Joule, Kilojoule } from "./energy";
 import { KiloWattHour } from "./energy2";
 
+export type SpecificEnthalpy = "SpecificEnthalpy";
+
 // tslint:disable:variable-name
 
 /**

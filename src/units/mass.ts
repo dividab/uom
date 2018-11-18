@@ -2,6 +2,8 @@ import * as Unit from "../unit";
 import { Kilogram } from "./base-units";
 import { Milli } from "../unit-prefix";
 
+export type Mass = "Mass";
+
 // tslint:disable:variable-name
 
 /** The derived unit for mass quantities ( <code>g</code> ).

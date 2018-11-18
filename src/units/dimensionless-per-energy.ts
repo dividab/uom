@@ -3,6 +3,8 @@ import { One } from "../unit";
 import { Joule, Megajoule, Kilojoule, Therm, MegaBtu, Btu } from "./energy";
 import { KiloWattHour } from "./energy2";
 
+export type DimensionlessPerEnergy = "DimensionlessPerEnergy";
+
 // tslint:disable:variable-name
 
 /// http://www.wolframalpha.com/input/?i=BTU and select 'Show exact conversions'

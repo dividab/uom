@@ -1,5 +1,7 @@
 import * as Unit from "../unit";
 
+export type DewPointTemperature = "DewPointTemperature";
+
 // tslint:disable:variable-name
 
 export const CelsiusDewPoint = Unit.createBase(

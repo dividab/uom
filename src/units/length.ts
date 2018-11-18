@@ -7,6 +7,8 @@ import { Meter } from "./base-units";
 /** Equivalent to <code>KILO(METER)</code>. */
 export const Kilometer = Kilo("Kilometer", Meter);
 
+export type Length = "Length";
+
 /** Equivalent to <code>CENTI(METRE)</code>. */
 export const CentiMeter = Centi("CentiMeter", Meter);
 

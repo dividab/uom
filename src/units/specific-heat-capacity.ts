@@ -3,6 +3,8 @@ import { Kelvin } from "./base-units";
 import { Celsius } from "./temperature";
 import { KilojoulePerKilogram } from "./specific-enthalpy";
 
+export type SpecificHeatCapacity = "SpecificHeatCapacity";
+
 // tslint:disable:variable-name
 
 // Specific heat capacity of air at constant pressure (kJ/kg°C, kWs/kgK, Btu/lb°F)

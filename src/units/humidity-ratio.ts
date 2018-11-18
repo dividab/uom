@@ -2,6 +2,8 @@ import * as UnitDivide from "../unit-divide";
 import { Kilogram } from "./base-units";
 import { Gram, PoundLb, Grain } from "./mass";
 
+export type HumidityRatio = "HumidityRatio";
+
 // tslint:disable:variable-name
 
 // Humidity

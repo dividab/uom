@@ -1,6 +1,8 @@
 import * as Unit from "../unit";
 import { Kelvin } from "./base-units";
 
+export type Temperature = "Temperature";
+
 // tslint:disable:variable-name
 
 /**

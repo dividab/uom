@@ -3,6 +3,8 @@ import { Kilogram } from "./base-units";
 import { One } from "../unit";
 import { PoundLb } from "./mass";
 
+export type DimensionlessPerMass = "DimensionlessPerMass";
+
 // tslint:disable:variable-name
 
 // Per mass

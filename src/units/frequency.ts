@@ -3,6 +3,8 @@ import { Second } from "./base-units";
 import { One } from "./dimensionless";
 import { Minute, Hour } from "./duration";
 
+export type Frequency = "Frequency";
+
 // tslint:disable:variable-name
 
 /**

@@ -6,6 +6,8 @@ import {
 } from "./volume-flow";
 import { SquareMeter, SquareFeet } from "./area";
 
+export type VolumeFlowPerArea = "VolumeFlowPerArea";
+
 // tslint:disable:variable-name
 
 // VolumeFlowPerArea

@@ -4,6 +4,8 @@ import { Second, Kilogram } from "./base-units";
 import { Gram, Slug, PoundLb, Grain } from "./mass";
 import { Hour } from "./duration";
 
+export type MassFlow = "MassFlow";
+
 // tslint:disable:variable-name
 
 // MassFlow
