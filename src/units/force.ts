@@ -3,6 +3,8 @@ import * as Unit from "../unit";
 import { Kilogram } from "./base-units";
 import { MeterPerSquareSecond } from "./acceleration";
 
+export type Force = "Force";
+
 // tslint:disable:variable-name
 
 /**

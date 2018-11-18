@@ -2,6 +2,8 @@ import * as UnitDivide from "../unit-divide";
 import { Ampere } from "./base-units";
 import { Volt } from "./electric-potential";
 
+export type ElectricConductance = "ElectricConductance";
+
 // tslint:disable:variable-name
 
 /**

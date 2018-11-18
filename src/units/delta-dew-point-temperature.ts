@@ -1,5 +1,7 @@
 import * as Unit from "../unit";
 
+export type DeltaDewPointTemperature = "DeltaDewPointTemperature";
+
 // tslint:disable:variable-name
 
 // DeltaDewPointTemperature

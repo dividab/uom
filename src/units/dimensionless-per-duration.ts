@@ -3,6 +3,8 @@ import { Second } from "./base-units";
 import { One } from "../unit";
 import { Hour } from "./duration";
 
+export type DimensionlessPerDuration = "DimensionlessPerDuration";
+
 // tslint:disable:variable-name
 
 // Per Duration

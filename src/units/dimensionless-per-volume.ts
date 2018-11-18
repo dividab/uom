@@ -2,6 +2,8 @@ import * as UnitDivide from "../unit-divide";
 import { Liter, CubicMeter, Gallon, HundredCubicFeet } from "./volume";
 import { One } from "../unit";
 
+export type DimensionlessPerVolume = "DimensionlessPerVolume";
+
 // tslint:disable:variable-name
 
 // Per Volume

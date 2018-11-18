@@ -1,4 +1,5 @@
-export type Acceleration = "Acceleration";
+import { Acceleration } from "./units/acceleration";
+export { Acceleration } from "./units/acceleration";
 export type Alkalinity = "Alkalinity";
 export type AmountOfSubstance = "AmountOfSubstance";
 export type Angle = "Angle";

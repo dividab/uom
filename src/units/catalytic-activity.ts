@@ -1,6 +1,8 @@
 import * as UnitDivide from "../unit-divide";
 import { Second, Mole } from "./base-units";
 
+export type CatalyticActivity = "CatalyticActivity";
+
 // tslint:disable:variable-name
 
 /**

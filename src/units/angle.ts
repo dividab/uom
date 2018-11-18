@@ -1,5 +1,7 @@
 import * as Unit from "../unit";
 
+export type Angle = "Angle";
+
 // tslint:disable:variable-name
 
 /**

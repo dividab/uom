@@ -1,5 +1,7 @@
 import * as Unit from "../unit";
 
+export type DataAmount = "DataAmount";
+
 // tslint:disable:variable-name
 
 /**

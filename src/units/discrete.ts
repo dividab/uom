@@ -1,5 +1,7 @@
 import * as Unit from "../unit";
 
+export type Discrete = "Discrete";
+
 // tslint:disable:variable-name
 
 // Discrete

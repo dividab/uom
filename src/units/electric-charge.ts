@@ -1,6 +1,8 @@
 import * as UnitTimes from "../unit-times";
 import { Second, Ampere } from "./base-units";
 
+export type ElectricCharge = "ElectricCharge";
+
 // tslint:disable:variable-name
 
 /**

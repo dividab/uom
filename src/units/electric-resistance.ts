@@ -3,6 +3,8 @@ import { Ampere } from "./base-units";
 import { Volt } from "./electric-potential";
 import { Kilo } from "../unit-prefix";
 
+export type ElectricResistance = "ElectricResistance";
+
 // tslint:disable:variable-name
 
 /**
