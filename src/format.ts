@@ -38,11 +38,17 @@ export function getAllUnits(): ReadonlyArray<Unit.Unit> {
 const _quantityToUnits: { [key: string]: Array<Unit.Unit> } = {}; // tslint:disable-line
 
 export function getUnitsForQuantity(quantity: string): Array<Unit.Unit> {
-  const units = _quantityToUnits[quantity];
-  if (units === undefined) {
-    throw new Error("Unknown quantity type");
+  const unitsForQuantity = _quantityToUnits[quantity];
+  if (unitsForQuantity === undefined) {
+    const unitsFound = Object.keys(Units)
+      .map(e => {
+        return units[e];
+      })
+      .filter(u => u.quantity === quantity);
+    _quantityToUnits[quantity] = unitsFound;
+    return unitsFound;
   }
-  return units;
+  return unitsForQuantity;
 }
 
 export function getAllQuantities(): Array<string> {
