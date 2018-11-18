@@ -29,11 +29,11 @@ export function getUnitFormat(unit: Unit.Unit): UnitFormat | undefined {
   return (unitsFormat as { readonly [key: string]: UnitFormat })[unit.name];
 }
 
-export function getAllUnits(): ReadonlyArray<Unit.Unit> {
-  return Object.keys(Units).map(e => {
-    return units[e];
-  });
-}
+// export function getAllUnits(): ReadonlyArray<Unit.Unit> {
+//   return Object.keys(Units).map(e => {
+//     return units[e];
+//   });
+// }
 
 const _quantityToUnits: { [key: string]: Array<Unit.Unit> } = {}; // tslint:disable-line
 
@@ -51,7 +51,7 @@ export function getUnitsForQuantity(quantity: string): Array<Unit.Unit> {
   return unitsForQuantity;
 }
 
-export function getAllQuantities(): Array<string> {
-  const quantityArray = Object.keys(_quantityToUnits);
-  return quantityArray;
-}
+// export function getAllQuantities(): Array<string> {
+//   const quantityArray = Object.keys(_quantityToUnits);
+//   return quantityArray;
+// }
