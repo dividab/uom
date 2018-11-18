@@ -5,12 +5,12 @@ import { UnitMap } from "./format";
 
 const units: UnitMap = Units;
 
-export function getUnitFromString<T extends Quantity>(
+export function stringToUnit<T extends Quantity>(
   unitString: string
 ): Unit.Unit<T> | undefined {
   return units[unitString.trim().toLowerCase()] as Unit.Unit<T>;
 }
 
-export function getStringFromUnit(unit: Unit.Unit): string {
+export function unitToString(unit: Unit.Unit): string {
   return unit.name;
 }
