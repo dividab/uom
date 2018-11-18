@@ -75,7 +75,7 @@ const length = Amount.create(10, Units.Meter);
 const format = Format.getUnitFormat(length);
 console.log(
   "The amount is " +
-    Math.round(Amount.valueAs(Units.Inch, amount), format.decimals) +
+    Math.round(Amount.valueAs(Units.Inch, amount), format.decimalCount) +
     " " +
     format.label
 );
