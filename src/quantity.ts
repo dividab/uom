@@ -46,28 +46,30 @@ export { MomentOfInertia } from "./units/moment-of-inertia";
 export { Power } from "./units/power";
 export { Pressure } from "./units/pressure";
 
-export type RelativeHumidity = "RelativeHumidity";
-export type SolidAngle = "SolidAngle";
-export type SoundPowerLevel = "SoundPowerLevel";
-export type SoundPressureLevel = "SoundPressureLevel";
-export type SpecificEnthalpy = "SpecificEnthalpy";
-export type SpecificFanPower = "SpecificFanPower";
-export type SpecificHeatCapacity = "SpecificHeatCapacity";
-export type SquareRootPressure = "SquareRootPressure";
-export type Temperature = "Temperature";
-export type Text = "Text";
-export type Velocity = "Velocity";
-export type Viscosity = "Viscosity";
-export type Volume = "Volume";
-export type VolumeFlow = "VolumeFlow";
-export type VolumeFlowPerArea = "VolumeFlowPerArea";
-export type VolumeFlowPerPower = "VolumeFlowPerPower";
-export type VolumeFlowPerSquareRootPressure = "VolumeFlowPerSquareRootPressure";
-export type WaterHardness = "WaterHardness";
-export type WaterUseEfficiency = "WaterUseEfficiency";
-export type WetTemperature = "WetTemperature";
-export type ThermalTransmittance = "ThermalTransmittance";
-export type ThermalConductivity = "ThermalConductivity";
+export { RelativeHumidity } from "./units/relative-humidity";
+export { SolidAngle } from "./units/solid-angle";
+export { SoundPowerLevel } from "./units/sound-power-level";
+export { SoundPressureLevel } from "./units/sound-pressure-level";
+export { SpecificEnthalpy } from "./units/specific-enthalpy";
+export { SpecificFanPower } from "./units/specific-fan-power";
+export { SpecificHeatCapacity } from "./units/specific-heat-capacity";
+export { SquareRootPressure } from "./units/square-root-pressure";
+export { Temperature } from "./units/temperature";
+export { Text } from "./units/text";
+export { Velocity } from "./units/velocity";
+export { Viscosity } from "./units/viscosity";
+export { Volume } from "./units/volume";
+export { VolumeFlow } from "./units/volume-flow";
+export { VolumeFlowPerArea } from "./units/volume-flow-per-area";
+export { VolumeFlowPerPower } from "./units/volume-flow-per-power";
+export {
+  VolumeFlowPerSquareRootPressure
+} from "./units/volume-flow-per-square-root-pressure";
+export { WaterHardness } from "./units/water-hardness";
+export { WaterUseEfficiency } from "./units/water-use-efficiency";
+export { WetTemperature } from "./units/wet-temperature";
+export { ThermalTransmittance } from "./units/thermal-transmittance";
+export { ThermalConductivity } from "./units/thermal-conductivity";
 
 export type Quantity =
   | Units.Acceleration
@@ -115,25 +117,25 @@ export type Quantity =
   | Units.MomentOfInertia
   | Units.Power
   | Units.Pressure
-  | RelativeHumidity
-  | SolidAngle
-  | SoundPowerLevel
-  | SoundPressureLevel
-  | SpecificEnthalpy
-  | SpecificFanPower
-  | SpecificHeatCapacity
-  | SquareRootPressure
-  | Temperature
-  | Text
-  | Velocity
-  | Viscosity
-  | Volume
-  | VolumeFlow
-  | VolumeFlowPerArea
-  | VolumeFlowPerPower
-  | VolumeFlowPerSquareRootPressure
-  | WaterHardness
-  | WaterUseEfficiency
-  | WetTemperature
-  | ThermalTransmittance
-  | ThermalConductivity;
+  | Units.RelativeHumidity
+  | Units.SolidAngle
+  | Units.SoundPowerLevel
+  | Units.SoundPressureLevel
+  | Units.SpecificEnthalpy
+  | Units.SpecificFanPower
+  | Units.SpecificHeatCapacity
+  | Units.SquareRootPressure
+  | Units.Temperature
+  | Units.Text
+  | Units.Velocity
+  | Units.Viscosity
+  | Units.Volume
+  | Units.VolumeFlow
+  | Units.VolumeFlowPerArea
+  | Units.VolumeFlowPerPower
+  | Units.VolumeFlowPerSquareRootPressure
+  | Units.WaterHardness
+  | Units.WaterUseEfficiency
+  | Units.WetTemperature
+  | Units.ThermalTransmittance
+  | Units.ThermalConductivity;

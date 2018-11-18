@@ -3,6 +3,8 @@ import { Cubed, Milli } from "../unit-prefix";
 import { Meter } from "./base-units";
 import { CentiMeter, Inch, Foot } from "./length";
 
+export type Volume = "Volume";
+
 // tslint:disable:variable-name
 
 /** The metric unit for volume quantities ( <code>m³</code> ). */

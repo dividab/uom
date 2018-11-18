@@ -1,5 +1,7 @@
 import * as Unit from "../unit";
 
+export type RelativeHumidity = "RelativeHumidity";
+
 // tslint:disable:variable-name
 
 export const HumidityFactor = Unit.createBase(
