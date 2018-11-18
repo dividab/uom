@@ -45,7 +45,6 @@ export { MassFlowPerArea } from "./units/mass-flow-per-area";
 export { MomentOfInertia } from "./units/moment-of-inertia";
 export { Power } from "./units/power";
 export { Pressure } from "./units/pressure";
-
 export { RelativeHumidity } from "./units/relative-humidity";
 export { SolidAngle } from "./units/solid-angle";
 export { SoundPowerLevel } from "./units/sound-power-level";
