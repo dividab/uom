@@ -17,7 +17,12 @@ export function unitToString(unit: Unit.Unit): string {
 }
 
 export function amountToString(amount: Amount.Amount<Quantity>): string {
-  return `${amount.value}:${unitToString(amount.unit)}`;
+  if (!amount.value === null || amount.value === undefined) {
+    return "";
+  }
+  const valueString = amount.value.toFixed(amount.decimalCount);
+  const unitString = unitToString(amount.unit);
+  return `${valueString}:${unitString}`;
 }
 
 export function stringToAmount(
@@ -29,5 +34,10 @@ export function stringToAmount(
   if (!unit) {
     return undefined;
   }
-  return Amount.create(value, unit);
+  let decimalCount = 0;
+  const pointIndex = parts[0].indexOf(".");
+  if (pointIndex >= 0) {
+    decimalCount = parts[0].length - pointIndex - 1;
+  }
+  return Amount.create(value, unit, decimalCount);
 }
