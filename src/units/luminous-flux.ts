@@ -2,6 +2,8 @@ import * as UnitTimes from "../unit-times";
 import { Candela } from "./base-units";
 import { Steradian } from "./solid-angle";
 
+export type LuminousFlux = "LuminousFlux";
+
 // tslint:disable:variable-name
 
 /**

@@ -2,6 +2,8 @@ import * as UnitDivide from "../unit-divide";
 import { Weber } from "./magnetic-flux";
 import { SquareMeter } from "./area";
 
+export type MagneticFluxDensity = "MagneticFluxDensity";
+
 // tslint:disable:variable-name
 
 /**

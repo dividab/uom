@@ -4,6 +4,8 @@ import { Newton } from "./force";
 import { SquareMeter } from "./area";
 import { Kilo, Hecto, Deci, Milli } from "../unit-prefix";
 
+export type Pressure = "Pressure";
+
 // tslint:disable:variable-name
 
 /**

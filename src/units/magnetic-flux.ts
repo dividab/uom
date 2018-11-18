@@ -2,6 +2,8 @@ import * as UnitTimes from "../unit-times";
 import { Second } from "./base-units";
 import { Volt } from "./electric-potential";
 
+export type MagneticFlux = "MagneticFlux";
+
 // tslint:disable:variable-name
 
 /**

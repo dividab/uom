@@ -66,3 +66,4 @@ export * from "./temperature";
 export * from "./amount-of-substance";
 export * from "./data-amount";
 export * from "./dew-point-temperature";
+export * from "./luminous-intensity";

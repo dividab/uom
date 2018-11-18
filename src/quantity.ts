@@ -28,27 +28,24 @@ export { ElectricResistance } from "./units/electric-resistance";
 export { Emission } from "./units/emission";
 export { Energy } from "./units/energy";
 export { Force } from "./units/force";
+export { Frequency } from "./units/frequency";
+export { HeatCapacityRate } from "./units/heat-capacity-rate";
+export { HeatingValue } from "./units/heating-value";
+export { HumidityRatio } from "./units/humidity-ratio";
+export { Illuminance } from "./units/illuminance";
+export { Intensity } from "./units/intensity";
+export { Length } from "./units/length";
+export { LuminousFlux } from "./units/luminous-flux";
+export { LuminousIntensity } from "./units/luminous-intensity";
+export { MagneticFlux } from "./units/magnetic-flux";
+export { MagneticFluxDensity } from "./units/magnetic-flux-density";
+export { Mass } from "./units/mass";
+export { MassFlow } from "./units/mass-flow";
+export { MassFlowPerArea } from "./units/mass-flow-per-area";
+export { MomentOfInertia } from "./units/moment-of-inertia";
+export { Power } from "./units/power";
+export { Pressure } from "./units/pressure";
 
-export type Frequency = "Frequency";
-export type HeatCapacityRate = "HeatCapacityRate";
-export type HeatingValue = "HeatingValue";
-export type HumidityRatio = "HumidityRatio";
-export type Illuminance = "Illuminance";
-export type Intensity = "Intensity";
-export type Length = "Length";
-export type LuminousFlux = "LuminousFlux";
-export type LuminousIntensity = "LuminousIntensity";
-export type MagneticFlux = "MagneticFlux";
-export type MagneticFluxDensity = "MagneticFluxDensity";
-export type Mass = "Mass";
-export type MassFlow = "MassFlow";
-export type MassFlowPerArea = "MassFlowPerArea";
-export type MomentOfInertia = "MomentOfInertia";
-export type Power = "Power";
-export type Pressure = "Pressure";
-export type RadiationDoseAbsorbed = "RadiationDoseAbsorbed";
-export type RadiationDoseEffective = "RadiationDoseEffective";
-export type RadioactiveActivity = "RadioactiveActivity";
 export type RelativeHumidity = "RelativeHumidity";
 export type SolidAngle = "SolidAngle";
 export type SoundPowerLevel = "SoundPowerLevel";
@@ -101,26 +98,23 @@ export type Quantity =
   | Units.Emission
   | Units.Energy
   | Units.Force
-  | Frequency
-  | HeatCapacityRate
-  | HeatingValue
-  | HumidityRatio
-  | Illuminance
-  | Intensity
-  | Length
-  | LuminousFlux
-  | LuminousIntensity
-  | MagneticFlux
-  | MagneticFluxDensity
-  | Mass
-  | MassFlow
-  | MassFlowPerArea
-  | MomentOfInertia
-  | Power
-  | Pressure
-  | RadiationDoseAbsorbed
-  | RadiationDoseEffective
-  | RadioactiveActivity
+  | Units.Frequency
+  | Units.HeatCapacityRate
+  | Units.HeatingValue
+  | Units.HumidityRatio
+  | Units.Illuminance
+  | Units.Intensity
+  | Units.Length
+  | Units.LuminousFlux
+  | Units.LuminousIntensity
+  | Units.MagneticFlux
+  | Units.MagneticFluxDensity
+  | Units.Mass
+  | Units.MassFlow
+  | Units.MassFlowPerArea
+  | Units.MomentOfInertia
+  | Units.Power
+  | Units.Pressure
   | RelativeHumidity
   | SolidAngle
   | SoundPowerLevel

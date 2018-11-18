@@ -4,6 +4,8 @@ import { Second } from "./base-units";
 import { Joule } from "./energy";
 import { Kilo, Mega, Giga } from "../unit-prefix";
 
+export type Power = "Power";
+
 // tslint:disable:variable-name
 
 /**
