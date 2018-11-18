@@ -2,4 +2,4 @@ import { createUnitFormat } from "../format";
 
 // tslint:disable:variable-name
 
-export const Lux = createUnitFormat("lx", "SI", 0);
+export const Lux = createUnitFormat("lx", 0);

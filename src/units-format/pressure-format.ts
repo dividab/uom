@@ -1,64 +1,16 @@
 import { createUnitFormat } from "../format";
-import * as Pressure from "../units/pressure";
 
 // tslint:disable:variable-name
 
-export const Pascal = createUnitFormat(
-  "Pa",
-  "SI",
-  0,
-  Pressure.InchOfWaterColumn
-);
-
-// Pressure
-export const KiloPascal = createUnitFormat(
-  "kPa",
-  "SI",
-  2,
-  Pressure.FeetOfWaterColumn
-);
-
-export const HectoPascal = createUnitFormat("hPa", "SI", 2);
-
-export const NewtonPerSquareMeter = createUnitFormat("N/m²", "SI", 0);
-
-export const PoundForcePerSquareInch = createUnitFormat(
-  "psi",
-  "IP",
-  2,
-  Pressure.KiloPascal
-);
-
-export const PoundForcePerSquareFoot = createUnitFormat(
-  "psf",
-  "SI",
-  2,
-  Pressure.PoundForcePerSquareFoot
-);
-
-export const InchOfMercury = createUnitFormat("in HG", "IP", 2);
-
-export const InchOfWaterColumn = createUnitFormat(
-  "in WC",
-  "IP",
-  2,
-  Pressure.Pascal
-);
-
-export const FeetOfWaterColumn = createUnitFormat(
-  "ft WC",
-  "IP",
-  2,
-  Pressure.KiloPascal
-);
-
-export const Bar = createUnitFormat("bar", "SI", 2);
-
-export const MilliBar = createUnitFormat(
-  "mbar",
-  "SI",
-  2,
-  Pressure.InchOfWaterColumn
-);
-
-export const DeciPascal = createUnitFormat("dPa", "SI", 2);
+export const Pascal = createUnitFormat("Pa", 0);
+export const KiloPascal = createUnitFormat("kPa", 2);
+export const HectoPascal = createUnitFormat("hPa", 2);
+export const NewtonPerSquareMeter = createUnitFormat("N/m²", 0);
+export const PoundForcePerSquareInch = createUnitFormat("psi", 2);
+export const PoundForcePerSquareFoot = createUnitFormat("psf", 2);
+export const InchOfMercury = createUnitFormat("in HG", 2);
+export const InchOfWaterColumn = createUnitFormat("in WC", 2);
+export const FeetOfWaterColumn = createUnitFormat("ft WC", 2);
+export const Bar = createUnitFormat("bar", 2);
+export const MilliBar = createUnitFormat("mbar", 2);
+export const DeciPascal = createUnitFormat("dPa", 2);

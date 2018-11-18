@@ -1,19 +1,6 @@
 import { createUnitFormat } from "../format";
-import * as SquareRootPressre from "../units/square-root-pressure";
 
 // tslint:disable:variable-name
 
-//SquareRootPressure
-export const SquareRootPascal = createUnitFormat(
-  "√Pa",
-  "SI",
-  2,
-  SquareRootPressre.SquareRootInchOfWaterColumn
-);
-
-export const SquareRootInchOfWaterColumn = createUnitFormat(
-  "√in WC",
-  "IP",
-  2,
-  SquareRootPressre.SquareRootPascal
-); //sqrt(Pa/249.0889) = 0.06335029447
+export const SquareRootPascal = createUnitFormat("√Pa", 2);
+export const SquareRootInchOfWaterColumn = createUnitFormat("√in WC", 2); //sqrt(Pa/249.0889) = 0.06335029447
