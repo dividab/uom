@@ -1,5 +1,5 @@
 import * as UnitDivide from "../unit-divide";
-import { KiloWattHour } from "./energy";
+import { KiloWattHour } from "./energy2";
 import { CubicMeter } from "./volume";
 
 // tslint:disable:variable-name

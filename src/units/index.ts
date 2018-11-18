@@ -12,6 +12,7 @@ export * from "./frequency";
 export * from "./force";
 export * from "./pressure";
 export * from "./energy";
+export * from "./energy2";
 export * from "./electric-charge";
 export * from "./electric-potential";
 export * from "./electric-capacitance";

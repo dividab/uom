@@ -1,5 +1,5 @@
 import { Kilogram } from "./base-units";
-import { KiloWattHour } from "./energy";
+import { KiloWattHour } from "./energy2";
 import { Gram, PoundLb } from "./mass";
 import { massByEnergy } from "../unit-divide";
 

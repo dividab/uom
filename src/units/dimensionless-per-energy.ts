@@ -1,14 +1,8 @@
 import * as UnitDivide from "../unit-divide";
 import { One } from "../unit";
-import {
-  Joule,
-  Megajoule,
-  Kilojoule,
-  Therm,
-  MegaBtu,
-  Btu,
-  KiloWattHour
-} from "./energy";
+import { Joule, Megajoule, Kilojoule, Therm, MegaBtu, Btu } from "./energy";
+import { KiloWattHour } from "./energy2";
+
 // tslint:disable:variable-name
 
 /// http://www.wolframalpha.com/input/?i=BTU and select 'Show exact conversions'

@@ -9,7 +9,7 @@ const units: UnitMap = Units;
 export function stringToUnit<T extends Quantity>(
   unitString: string
 ): Unit.Unit<T> | undefined {
-  return units[unitString.trim().toLowerCase()] as Unit.Unit<T>;
+  return units[unitString] as Unit.Unit<T>;
 }
 
 export function unitToString(unit: Unit.Unit): string {

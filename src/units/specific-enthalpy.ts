@@ -1,7 +1,8 @@
 import * as UnitDivide from "../unit-divide";
 import * as Unit from "../unit";
 import { Kilogram } from "./base-units";
-import { Joule, Kilojoule, KiloWattHour } from "./energy";
+import { Joule, Kilojoule } from "./energy";
+import { KiloWattHour } from "./energy2";
 
 // tslint:disable:variable-name
 
