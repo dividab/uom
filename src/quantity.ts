@@ -1,32 +1,34 @@
-import { Acceleration } from "./units/acceleration";
+import * as Units from "./units";
+
 export { Acceleration } from "./units/acceleration";
-export type Alkalinity = "Alkalinity";
-export type AmountOfSubstance = "AmountOfSubstance";
-export type Angle = "Angle";
-export type Area = "Area";
-export type CatalyticActivity = "CatalyticActivity";
-export type DataAmount = "DataAmount";
-export type DeltaDewPointTemperature = "DeltaDewPointTemperature";
-export type DeltaTemperature = "DeltaTemperature";
-export type Density = "Density";
-export type DewPointTemperature = "DewPointTemperature";
-export type Dimensionless = "Dimensionless";
-export type DimensionlessPerEnergy = "DimensionlessPerEnergy";
-export type DimensionlessPerMass = "DimensionlessPerMass";
-export type DimensionlessPerVolume = "DimensionlessPerVolume";
-export type DimensionlessPerDuration = "DimensionlessPerDuration";
-export type Discrete = "Discrete";
-export type Duration = "Duration";
-export type ElectricCapacitance = "ElectricCapacitance";
-export type ElectricCharge = "ElectricCharge";
-export type ElectricConductance = "ElectricConductance";
-export type ElectricInductance = "ElectricInductance";
-export type ElectricCurrent = "ElectricCurrent";
-export type ElectricPotential = "ElectricPotential";
-export type ElectricResistance = "ElectricResistance";
-export type Emission = "Emission";
-export type Energy = "Energy";
-export type Force = "Force";
+export { Alkalinity } from "./units/alkalinity";
+export { AmountOfSubstance } from "./units/amount-of-substance";
+export { Angle } from "./units/angle";
+export { Area } from "./units/area";
+export { CatalyticActivity } from "./units/catalytic-activity";
+export { DataAmount } from "./units/data-amount";
+export { DeltaDewPointTemperature } from "./units/delta-dew-point-temperature";
+export { DeltaTemperature } from "./units/delta-temperature";
+export { Density } from "./units/density";
+export { DewPointTemperature } from "./units/dew-point-temperature";
+export { Dimensionless } from "./units/dimensionless";
+export { DimensionlessPerEnergy } from "./units/dimensionless-per-energy";
+export { DimensionlessPerMass } from "./units/dimensionless-per-mass";
+export { DimensionlessPerVolume } from "./units/dimensionless-per-volume";
+export { DimensionlessPerDuration } from "./units/dimensionless-per-duration";
+export { Discrete } from "./units/discrete";
+export { Duration } from "./units/duration";
+export { ElectricCapacitance } from "./units/electric-capacitance";
+export { ElectricCharge } from "./units/electric-charge";
+export { ElectricConductance } from "./units/electric-conductance";
+export { ElectricInductance } from "./units/electric-inductance";
+export { ElectricCurrent } from "./units/electric-current";
+export { ElectricPotential } from "./units/electric-potential";
+export { ElectricResistance } from "./units/electric-resistance";
+export { Emission } from "./units/emission";
+export { Energy } from "./units/energy";
+export { Force } from "./units/force";
+
 export type Frequency = "Frequency";
 export type HeatCapacityRate = "HeatCapacityRate";
 export type HeatingValue = "HeatingValue";
@@ -71,34 +73,34 @@ export type ThermalTransmittance = "ThermalTransmittance";
 export type ThermalConductivity = "ThermalConductivity";
 
 export type Quantity =
-  | Acceleration
-  | Alkalinity
-  | AmountOfSubstance
-  | Angle
-  | Area
-  | CatalyticActivity
-  | DataAmount
-  | DeltaDewPointTemperature
-  | DeltaTemperature
-  | Density
-  | DewPointTemperature
-  | Dimensionless
-  | DimensionlessPerEnergy
-  | DimensionlessPerMass
-  | DimensionlessPerVolume
-  | DimensionlessPerDuration
-  | Discrete
-  | Duration
-  | ElectricCapacitance
-  | ElectricCharge
-  | ElectricConductance
-  | ElectricInductance
-  | ElectricCurrent
-  | ElectricPotential
-  | ElectricResistance
-  | Emission
-  | Energy
-  | Force
+  | Units.Acceleration
+  | Units.Alkalinity
+  | Units.AmountOfSubstance
+  | Units.Angle
+  | Units.Area
+  | Units.CatalyticActivity
+  | Units.DataAmount
+  | Units.DeltaDewPointTemperature
+  | Units.DeltaTemperature
+  | Units.Density
+  | Units.DewPointTemperature
+  | Units.Dimensionless
+  | Units.DimensionlessPerEnergy
+  | Units.DimensionlessPerMass
+  | Units.DimensionlessPerVolume
+  | Units.DimensionlessPerDuration
+  | Units.Discrete
+  | Units.Duration
+  | Units.ElectricCapacitance
+  | Units.ElectricCharge
+  | Units.ElectricConductance
+  | Units.ElectricInductance
+  | Units.ElectricCurrent
+  | Units.ElectricPotential
+  | Units.ElectricResistance
+  | Units.Emission
+  | Units.Energy
+  | Units.Force
   | Frequency
   | HeatCapacityRate
   | HeatingValue

@@ -62,3 +62,5 @@ export * from "./intensity-format";
 export * from "./power-format";
 export * from "./specific-fan-power-format";
 export * from "./temperature-format";
+export * from "./data-amount-format";
+export * from "./dew-point-temperature-format";
