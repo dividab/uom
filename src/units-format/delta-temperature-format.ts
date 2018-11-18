@@ -1,17 +1,6 @@
 import { createUnitFormat } from "../format";
-import * as DeltaTemperature from "../units/delta-temperature";
 
 // tslint:disable:variable-name
 
-export const DeltaCelsius = createUnitFormat(
-  "°C",
-  "SI",
-  1,
-  DeltaTemperature.DeltaFahrenheit
-);
-export const DeltaFahrenheit = createUnitFormat(
-  "°F",
-  "IP",
-  1,
-  DeltaTemperature.DeltaCelsius
-);
+export const DeltaCelsius = createUnitFormat("°C", 1);
+export const DeltaFahrenheit = createUnitFormat("°F", 1);

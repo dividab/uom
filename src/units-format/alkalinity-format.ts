@@ -5,6 +5,5 @@ import { createUnitFormat } from "../format";
 // Alkalinity
 export const MilliGramHydrogenCarbonatePerLiter = createUnitFormat(
   "mg HCO₃⁻/l",
-  "SI",
   2
 );

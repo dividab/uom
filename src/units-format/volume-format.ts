@@ -1,20 +1,12 @@
 import { createUnitFormat } from "../format";
-import * as Volume from "../units/volume";
 
 // tslint:disable:variable-name
 
-export const CubicMeter = createUnitFormat("m³", "SI", 2, Volume.CubicFeet);
-
-// Volume
-export const CubicCentiMeter = createUnitFormat("cm³", "SI", 2);
-
-export const CubicInch = createUnitFormat("in³", "IP", 2);
-export const CubicFeet = createUnitFormat("ft³", "IP", 0, Volume.Liter);
-
-export const HundredCubicFeet = createUnitFormat("100 ft³", "IP", 2);
-
-export const Liter = createUnitFormat("L", "SI", 2, Volume.Gallon);
-
-export const MilliLiter = createUnitFormat("ml", "SI", 0);
-
-export const Gallon = createUnitFormat("gal", "IP", 1, Volume.Liter);
+export const CubicMeter = createUnitFormat("m³", 2);
+export const CubicCentiMeter = createUnitFormat("cm³", 2);
+export const CubicInch = createUnitFormat("in³", 2);
+export const CubicFeet = createUnitFormat("ft³", 0);
+export const HundredCubicFeet = createUnitFormat("100 ft³", 2);
+export const Liter = createUnitFormat("L", 2);
+export const MilliLiter = createUnitFormat("ml", 0);
+export const Gallon = createUnitFormat("gal", 1);
