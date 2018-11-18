@@ -39,16 +39,6 @@ export function getUnitFormat(unit: Unit.Unit): UnitFormat | undefined {
   return (unitsFormat as { readonly [key: string]: UnitFormat })[unit.name];
 }
 
-export function getUnitFromString<T extends Quantity>(
-  unitString: string
-): Unit.Unit<T> | undefined {
-  return units[unitString.trim().toLowerCase()] as Unit.Unit<T>;
-}
-
-export function getStringFromUnit(unit: Unit.Unit): string {
-  return unit.name;
-}
-
 export function getAllUnits(): ReadonlyArray<Unit.Unit> {
   return Object.keys(Units).map(e => {
     return units[e];
