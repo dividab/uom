@@ -2,4 +2,4 @@ import { createUnitFormat } from "../format";
 
 // tslint:disable:variable-name
 
-export const Integer = createUnitFormat(" ", undefined, 0);
+export const Integer = createUnitFormat(" ", 0);

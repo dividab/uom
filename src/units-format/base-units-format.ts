@@ -1,12 +1,11 @@
-import * as Units from "../units";
 import { createUnitFormat } from "../format";
 
 // tslint:disable:variable-name
 
-export const Ampere = createUnitFormat("A", "SI", 2);
-export const Candela = createUnitFormat("cd", "SI", 0);
-export const Kelvin = createUnitFormat("K", "SI", 2);
-export const Kilogram = createUnitFormat("kg", "SI", 2, Units.PoundLb);
-export const Meter = createUnitFormat("m", "SI", 2, Units.Yard);
-export const Mole = createUnitFormat("mol", undefined, 2);
-export const Second = createUnitFormat("s", undefined, 2);
+export const Ampere = createUnitFormat("A", 2);
+export const Candela = createUnitFormat("cd", 0);
+export const Kelvin = createUnitFormat("K", 2);
+export const Kilogram = createUnitFormat("kg", 2);
+export const Meter = createUnitFormat("m", 2);
+export const Mole = createUnitFormat("mol", 2);
+export const Second = createUnitFormat("s", 2);

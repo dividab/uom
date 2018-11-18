@@ -1,5 +1,4 @@
 import * as Unit from "./unit";
-import { Quantity } from "./quantity";
 import * as UnitsFormat from "./units-format";
 import * as Units from "./units";
 
@@ -8,30 +7,21 @@ export type UnitMap = {
 };
 export type UnitFormatMap<TUnitMap> = { [P in keyof TUnitMap]: UnitFormat };
 
-export type MeasureSystem = "SI" | "IP";
-
 export interface UnitFormat {
   readonly label: string;
-  readonly measureSystem: MeasureSystem | undefined;
   readonly decimalCount: number;
-  // The corresponding unit which is the closest unit in the other measure system (SI/IP)
-  readonly coUnit?: Unit.Unit<Quantity>;
 }
 
 const units: UnitMap = Units;
 const unitsFormat: UnitFormatMap<typeof Units> = UnitsFormat;
 
-export function createUnitFormat<T extends Quantity>(
+export function createUnitFormat(
   label: string,
-  measureSystem: MeasureSystem | undefined,
-  decimalCount: number,
-  coUnit?: Unit.Unit<T>
+  decimalCount: number
 ): UnitFormat {
   return {
     label,
-    measureSystem,
-    decimalCount,
-    coUnit
+    decimalCount
   };
 }
 

@@ -1,20 +1,7 @@
 import { createUnitFormat } from "../format";
-import * as DewPointTemperature from "../units/dew-point-temperature";
 
 // tslint:disable:variable-name
 
-export const CelsiusDewPoint = createUnitFormat(
-  "dp°C",
-  "SI",
-  2,
-  DewPointTemperature.FahrenheitDewPoint
-);
-
-export const FahrenheitDewPoint = createUnitFormat(
-  "dp°F",
-  "SI",
-  1,
-  DewPointTemperature.CelsiusDewPoint
-);
-
-export const KelvinDewPoint = createUnitFormat("dp°K", "SI", 2);
+export const CelsiusDewPoint = createUnitFormat("dp°C", 2);
+export const FahrenheitDewPoint = createUnitFormat("dp°F", 1);
+export const KelvinDewPoint = createUnitFormat("dp°K", 2);
