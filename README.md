@@ -64,7 +64,7 @@ function calculate(Amount<Length> length1, Amount<Length> length2): Amount<Lengt
 
 ### Formatting
 
-For the most part, formatting is application specific and therefore this feature should be implemented per application. For example your application may have air flows and water flows that both are of `VolumeFlow` quantity. In this case you may want separate labels and default units for air flow and water flow. One way to achcieve this is by your applciation tagging each field with either air_flow, or water_flow and then provide different labels and default for those tags using application specific functions.
+Formatting is application specific and should be implemented per application. For example, an application may have air flows and water flows that both are of `VolumeFlow` quantity. In this case you may want separate labels and default units for air flow and water flow. So assosicating formatting with `VolumeFlow` or any of its units is not a good idea. Instead, the applciation can include tagging of each field with either air_flow, or water_flow and then provide different labels and default for those tags using application specific functions.
 
 However if you are just building something smaller and want quick formatting, this package has some opinionated formatting built-in. Specifically you can get the label and number of decimals for each unit.
 
@@ -75,9 +75,9 @@ const length = Amount.create(10, Units.Meter);
 const format = Format.getUnitFormat(length);
 console.log(
   "The amount is " +
-    Amount.valueAs(Units.Inch, amount) +
+    Math.round(Amount.valueAs(Units.Inch, amount), format.decimals) +
     " " +
-    Format.getUnitFormat(Units.Inch).label
+    format.label
 );
 ```
 
