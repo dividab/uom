@@ -6,6 +6,7 @@ import * as Units from "./units";
 import * as UnitDivide from "./unit-divide";
 import * as UnitTimes from "./unit-times";
 import * as Format from "./format";
+import * as Serialize from "./serialize";
 
 export {
   Amount,
@@ -15,5 +16,6 @@ export {
   Units,
   UnitDivide,
   UnitTimes,
-  Format
+  Format,
+  Serialize
 };
