@@ -17,4 +17,4 @@ export const BTUPerHourPerSquareFeet = UnitDivide.powerByArea(
   "BtuPerHourPerSquareFeet",
   BtuPerHour,
   SquareFeet
-)
+);
