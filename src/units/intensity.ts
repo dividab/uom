@@ -1,6 +1,6 @@
 import * as UnitDivide from "../unit-divide";
-import { Watt } from "./power";
-import { SquareMeter } from "./area";
+import { Watt, BtuPerHour } from "./power";
+import { SquareMeter, SquareFeet } from "./area";
 
 export type Intensity = "Intensity";
 
@@ -12,3 +12,9 @@ export const WattPerSquareMeter = UnitDivide.powerByArea(
   Watt,
   SquareMeter
 );
+
+export const BTUPerHourPerSquareFeet = UnitDivide.powerByArea(
+  "BtuPerHourPerSquareFeet",
+  BtuPerHour,
+  SquareFeet
+)
