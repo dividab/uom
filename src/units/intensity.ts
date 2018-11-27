@@ -13,7 +13,7 @@ export const WattPerSquareMeter = UnitDivide.powerByArea(
   SquareMeter
 );
 
-export const BTUPerHourPerSquareFeet = UnitDivide.powerByArea(
+export const BtuPerHourPerSquareFeet = UnitDivide.powerByArea(
   "BtuPerHourPerSquareFeet",
   BtuPerHour,
   SquareFeet
