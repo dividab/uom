@@ -119,8 +119,8 @@ This library was inspired by [JSR-275](http://download.oracle.com/otn-pub/jcp/un
 
 [version-image]: https://img.shields.io/npm/v/uom.svg?style=flat
 [version-url]: https://www.npmjs.com/package/uom
-[travis-image]: https://travis-ci.org/dividab/uom.svg?branch=master&style=flat
-[travis-url]: https://travis-ci.org/dividab/uom
+[travis-image]: https://travis-ci.com/dividab/uom.svg?branch=master&style=flat
+[travis-url]: https://travis-ci.com/dividab/uom
 [coveralls-image]: https://coveralls.io/repos/github/dividab/uom/badge.svg?branch=master
 [coveralls-url]: https://coveralls.io/github/dividab/uom?branch=master
 [license-image]: https://img.shields.io/github/license/dividab/uom.svg?style=flat
