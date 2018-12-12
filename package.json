@@ -11,7 +11,7 @@
   "devDependencies": {
     "@types/node": "^10.3.0",
     "@types/tape": "^4.2.32",
-    "coveralls": "^3.0.1",
+    "codecov": "^3.1.0",
     "husky": "^0.14.3",
     "jsdoc-to-markdown": "^4.0.1",
     "lint-staged": "^7.2.0",
@@ -38,7 +38,7 @@
     "verify": "yarn lint && yarn build && yarn coverage",
     "precommit": "lint-staged",
     "coverage": "rimraf coverage .nyc_output && nyc yarn test",
-    "report-coverage": "cat ./coverage/lcov.info | coveralls",
+    "report-coverage": "codecov -f coverage/*.json",
     "gen-docs": "jsdoc2md --partial docs/scope.hbs --files lib-esm/amount.js lib-esm/unit.js >docs/api.md",
     "publish-npm": "yarn test && yarn build && yarn publish"
   },

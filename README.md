@@ -2,7 +2,7 @@
 
 [![npm version][version-image]][version-url]
 [![travis build][travis-image]][travis-url]
-[![Coverage Status][coveralls-image]][coveralls-url]
+[![Coverage Status][codecov-image]][codecov-url]
 [![code style: prettier][prettier-image]][prettier-url]
 [![MIT license][license-image]][license-url]
 
@@ -121,8 +121,8 @@ This library was inspired by [JSR-275](http://download.oracle.com/otn-pub/jcp/un
 [version-url]: https://www.npmjs.com/package/uom
 [travis-image]: https://travis-ci.com/dividab/uom.svg?branch=master&style=flat
 [travis-url]: https://travis-ci.com/dividab/uom
-[coveralls-image]: https://coveralls.io/repos/github/dividab/uom/badge.svg?branch=master
-[coveralls-url]: https://coveralls.io/github/dividab/uom?branch=master
+[codecov-image]: https://codecov.io/gh/dividab/uom/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/dividab/uom
 [license-image]: https://img.shields.io/github/license/dividab/uom.svg?style=flat
 [license-url]: https://opensource.org/licenses/MIT
 [prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat
