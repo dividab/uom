@@ -1,29 +1,15 @@
 import * as Unit from "./unit";
 import * as UnitsFormat from "./units-format";
 import * as Units from "./units";
+import { UnitFormat } from "./unit-format";
 
 export type UnitMap = {
   readonly [key: string]: Unit.Unit;
 };
 export type UnitFormatMap<TUnitMap> = { [P in keyof TUnitMap]: UnitFormat };
 
-export interface UnitFormat {
-  readonly label: string;
-  readonly decimalCount: number;
-}
-
 const units: UnitMap = Units;
 const unitsFormat: UnitFormatMap<typeof Units> = UnitsFormat;
-
-export function createUnitFormat(
-  label: string,
-  decimalCount: number
-): UnitFormat {
-  return {
-    label,
-    decimalCount
-  };
-}
 
 export function getUnitFormat(unit: Unit.Unit): UnitFormat | undefined {
   return (unitsFormat as { readonly [key: string]: UnitFormat })[unit.name];

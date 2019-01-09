@@ -1,4 +1,4 @@
-import { createUnitFormat } from "../format";
+import { createUnitFormat } from "../unit-format";
 
 // tslint:disable:variable-name
 
