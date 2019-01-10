@@ -4,12 +4,24 @@ import * as Units from "./units";
 import { UnitMap } from "./format";
 import * as Amount from "./amount";
 
-const units: UnitMap = Units;
+const units: UnitMap = toLowerCaseMap(Units);
+
+function toLowerCaseMap(mixedCaseUnits: UnitMap): UnitMap {
+  type MutableUnitMap = {
+    // tslint:disable-next-line:readonly-keyword
+    [key: string]: Unit.Unit;
+  };
+  const lowerCaseMap: MutableUnitMap = {};
+  for (const key of Object.keys(mixedCaseUnits)) {
+    lowerCaseMap[key.toLowerCase()] = mixedCaseUnits[key];
+  }
+  return lowerCaseMap;
+}
 
 export function stringToUnit<T extends Quantity>(
   unitString: string
 ): Unit.Unit<T> | undefined {
-  return units[unitString] as Unit.Unit<T>;
+  return units[unitString.toLowerCase()] as Unit.Unit<T>;
 }
 
 export function unitToString(unit: Unit.Unit): string {

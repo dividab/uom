@@ -30,7 +30,7 @@ export function getUnitsForQuantity(quantity: string): Array<Unit.Unit> {
       .map(e => {
         return units[e];
       })
-      .filter(u => u.quantity === quantity);
+      .filter(u => u.quantity.toLowerCase() === quantity.toLowerCase());
     _quantityToUnits[quantity] = unitsFound;
     return unitsFound;
   }
