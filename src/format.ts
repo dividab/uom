@@ -8,9 +8,17 @@ export type UnitMap = {
 };
 export type UnitFormatMap<TUnitMap> = { [P in keyof TUnitMap]: UnitFormat };
 
+/**
+ * @module Format
+ */
+
 const units: UnitMap = Units;
 const unitsFormat: UnitFormatMap<typeof Units> = UnitsFormat;
 
+/**
+ * Get formatting info from unit
+ * @param unit 
+ */
 export function getUnitFormat(unit: Unit.Unit): UnitFormat | undefined {
   return (unitsFormat as { readonly [key: string]: UnitFormat })[unit.name];
 }
@@ -23,6 +31,10 @@ export function getUnitFormat(unit: Unit.Unit): UnitFormat | undefined {
 
 const _quantityToUnits: { [key: string]: Array<Unit.Unit> } = {}; // tslint:disable-line
 
+/**
+ * Get all units registered for quantity
+ * @param quantity 
+ */
 export function getUnitsForQuantity(quantity: string): Array<Unit.Unit> {
   const unitsForQuantity = _quantityToUnits[quantity];
   if (unitsForQuantity === undefined) {

@@ -3,6 +3,8 @@
 <dl>
 <dt><a href="#module_Serialize">Serialize</a></dt>
 <dd></dd>
+<dt><a href="#module_Format">Format</a></dt>
+<dd></dd>
 <dt><a href="#module_Amount">Amount</a></dt>
 <dd></dd>
 <dt><a href="#module_Unit">Unit</a></dt>
@@ -58,6 +60,34 @@ Convert a serialized amount to it's deserialized representation
 | Param |
 | --- |
 | amountString | 
+
+<a name="module_Format"></a>
+
+## Format
+
+* [Format](#module_Format)
+    * [.getUnitFormat(unit)](#module_Format.getUnitFormat)
+    * [.getUnitsForQuantity(quantity)](#module_Format.getUnitsForQuantity)
+
+<a name="module_Format.getUnitFormat"></a>
+
+### Format.getUnitFormat(unit)
+Get formatting info from unit
+
+
+| Param |
+| --- |
+| unit | 
+
+<a name="module_Format.getUnitsForQuantity"></a>
+
+### Format.getUnitsForQuantity(quantity)
+Get all units registered for quantity
+
+
+| Param |
+| --- |
+| quantity | 
 
 <a name="module_Amount"></a>
 
