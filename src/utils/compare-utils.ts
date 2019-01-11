@@ -33,35 +33,3 @@ export function compareNumbers(
     return 1;
   }
 }
-
-export function compareIgnoreCase(a: string, b: string): number {
-  return a.toLowerCase().localeCompare(b.toLowerCase());
-}
-
-export function arraysEqual<T>(array1: Array<T>, array2: Array<T>): boolean {
-  // if the other array is a falsy value, return
-  if (!array2) {
-    return false;
-  }
-
-  // compare lengths - can save a lot of time
-  if (array1.length !== array2.length) {
-    return false;
-  }
-  let l = array1.length;
-  for (let i = 0; i < l; i++) {
-    // Check if we have nested arrays
-    if (array1[i] instanceof Array && array2[i] instanceof Array) {
-      // recurse into the nested arrays
-      // tslint:disable-next-line:no-any
-      if (!arraysEqual<any>(array1[i] as any, array2[i] as any)) {
-        //tslint:disable-line
-        return false;
-      }
-    } else if (array1[i] !== array2[i]) {
-      // Warning - two different object instances will never be equal: {x:20} != {x:20}
-      return false;
-    }
-  }
-  return true;
-}

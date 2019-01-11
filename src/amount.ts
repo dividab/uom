@@ -3,7 +3,6 @@
  */
 
 import * as Unit from "./unit";
-import * as UnitName from "./unit-name";
 import * as Units from "./units";
 import * as CompareUtils from "./utils/compare-utils";
 import { Quantity, Dimensionless } from "./quantity";
@@ -46,7 +45,7 @@ export function create<T extends Quantity>(
  * @returns {string} String representation of the Amount.
  */
 export function toString<T extends Quantity>(amount: Amount<T>): string {
-  const unitname = UnitName.getName(amount.unit);
+  const unitname = Unit.buildDerivedSymbol(amount.unit);
   if (unitname.length > 0) {
     return amount.value.toString() + " " + unitname;
   }

@@ -1,5 +1,6 @@
 import * as test from "tape";
 import * as Unit from "../src/unit";
+import * as Serialize from "../src/serialize";
 import * as Units from "../src/units";
 // import * as Quantity from "../src/quantity";
 
@@ -10,19 +11,19 @@ import * as Units from "../src/units";
 test("units_test_equals", t => {
   t.test("Base unit One should be equal", st => {
     const unit = Units.One;
-    const unit2 = Units.getUnitFromString("One");
+    const unit2 = Serialize.stringToUnit("One")!;
     st.true(Unit.equals(unit, unit2));
     st.end();
   });
   t.test("Base unit One should be equal. Order should not matter", st => {
-    const unit = Units.getStringFromUnit(Unit.One);
-    const unit2 = Units.getStringFromUnit(Unit.One);
+    const unit = Serialize.unitToString(Unit.One);
+    const unit2 = Serialize.unitToString(Unit.One);
     st.equal(unit, unit2);
     st.end();
   });
   t.test("Alternate unit Radian should be equal", st => {
     const unit = Units.Radian;
-    const unit2 = Units.getUnitFromString("Radian");
+    const unit2 = Serialize.stringToUnit("Radian")!;
     st.true(Unit.equals(unit, unit2));
     st.end();
   });
