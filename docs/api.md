@@ -1,11 +1,63 @@
 ## Modules
 
 <dl>
+<dt><a href="#module_Serialize">Serialize</a></dt>
+<dd></dd>
 <dt><a href="#module_Amount">Amount</a></dt>
 <dd></dd>
 <dt><a href="#module_Unit">Unit</a></dt>
 <dd></dd>
 </dl>
+
+<a name="module_Serialize"></a>
+
+## Serialize
+
+* [Serialize](#module_Serialize)
+    * [.stringToUnit(unitString)](#module_Serialize.stringToUnit)
+    * [.unitToString(unit)](#module_Serialize.unitToString)
+    * [.amountToString(amount)](#module_Serialize.amountToString)
+    * [.stringToAmount(amountString)](#module_Serialize.stringToAmount)
+
+<a name="module_Serialize.stringToUnit"></a>
+
+### Serialize.stringToUnit(unitString)
+Converts a units serialized representation to it's deserialized representation
+
+
+| Param |
+| --- |
+| unitString | 
+
+<a name="module_Serialize.unitToString"></a>
+
+### Serialize.unitToString(unit)
+Converts a unit to it's serialized representation
+
+
+| Param |
+| --- |
+| unit | 
+
+<a name="module_Serialize.amountToString"></a>
+
+### Serialize.amountToString(amount)
+Convert an amount to it's serialized representation
+
+
+| Param |
+| --- |
+| amount | 
+
+<a name="module_Serialize.stringToAmount"></a>
+
+### Serialize.stringToAmount(amountString)
+Convert a serialized amount to it's deserialized representation
+
+
+| Param |
+| --- |
+| amountString | 
 
 <a name="module_Amount"></a>
 

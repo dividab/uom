@@ -4,6 +4,11 @@ import * as Units from "./units";
 import { UnitMap } from "./format";
 import * as Amount from "./amount";
 
+/**
+ * @module Serialize
+ */
+
+
 const units: UnitMap = toLowerCaseMap(Units);
 
 function toLowerCaseMap(mixedCaseUnits: UnitMap): UnitMap {
@@ -18,16 +23,28 @@ function toLowerCaseMap(mixedCaseUnits: UnitMap): UnitMap {
   return lowerCaseMap;
 }
 
+/**
+ * Converts a units serialized representation to it's deserialized representation
+ * @param unitString
+ */
 export function stringToUnit<T extends Quantity>(
   unitString: string
 ): Unit.Unit<T> | undefined {
   return units[unitString.toLowerCase()] as Unit.Unit<T>;
 }
 
+/**
+ * Converts a unit to it's serialized representation
+ * @param unit
+ */
 export function unitToString(unit: Unit.Unit): string {
   return unit.name;
 }
 
+/**
+ * Convert an amount to it's serialized representation
+ * @param amount
+ */
 export function amountToString(amount: Amount.Amount<Quantity>): string {
   if (!amount.value === null || amount.value === undefined) {
     return "";
@@ -37,6 +54,10 @@ export function amountToString(amount: Amount.Amount<Quantity>): string {
   return `${valueString}:${unitString}`;
 }
 
+/**
+ * Convert a serialized amount to it's deserialized representation
+ * @param amountString
+ */
 export function stringToAmount(
   amountString: string
 ): Amount.Amount<Quantity> | undefined {
