@@ -41,7 +41,6 @@ for (const unitKey of Object.keys(Units)) {
     unit
   );
 }
-console.dir(_quantityToUnits["Length"]);
 
 /**
  * Get all units registered for quantity
