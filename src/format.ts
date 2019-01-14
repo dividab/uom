@@ -13,14 +13,17 @@ export type UnitFormatMap<TUnitMap> = { [P in keyof TUnitMap]: UnitFormat };
  */
 
 const units: UnitMap = Units;
-const unitsFormat: UnitFormatMap<typeof Units> = UnitsFormat;
+const unitsFormatMap: UnitFormatMap<typeof Units> = UnitsFormat;
 
 /**
  * Get formatting info from unit
- * @param unit 
+ * @param unit
  */
-export function getUnitFormat(unit: Unit.Unit): UnitFormat | undefined {
-  return (unitsFormat as { readonly [key: string]: UnitFormat })[unit.name];
+export function getUnitFormat(
+  unit: Unit.Unit,
+  unitsFormat: { readonly [key: string]: UnitFormat } = unitsFormatMap
+): UnitFormat | undefined {
+  return unitsFormat[unit.name];
 }
 
 // export function getAllUnits(): ReadonlyArray<Unit.Unit> {
@@ -31,25 +34,25 @@ export function getUnitFormat(unit: Unit.Unit): UnitFormat | undefined {
 
 const _quantityToUnits: { [key: string]: Array<Unit.Unit> } = {}; // tslint:disable-line
 
+for (const unitKey of Object.keys(Units)) {
+  const unit = units[unitKey];
+  const quantityKey = unit.quantity.toLowerCase();
+  _quantityToUnits[quantityKey] = (_quantityToUnits[quantityKey] || []).concat(
+    unit
+  );
+}
+console.dir(_quantityToUnits["Length"]);
+
 /**
  * Get all units registered for quantity
- * @param quantity 
+ * @param quantity
  */
-export function getUnitsForQuantity(quantity: string): Array<Unit.Unit> {
-  const unitsForQuantity = _quantityToUnits[quantity];
-  if (unitsForQuantity === undefined) {
-    const unitsFound = Object.keys(Units)
-      .map(e => {
-        return units[e];
-      })
-      .filter(u => u.quantity.toLowerCase() === quantity.toLowerCase());
-    _quantityToUnits[quantity] = unitsFound;
-    return unitsFound;
-  }
-  return unitsForQuantity;
+export function getUnitsForQuantity(
+  quantity: string,
+  quantityToUnits: {
+    readonly [key: string]: Array<Unit.Unit>;
+  } = _quantityToUnits
+): Array<Unit.Unit> {
+  const unitsForQuantity = quantityToUnits[quantity.toLowerCase()];
+  return unitsForQuantity || [];
 }
-
-// export function getAllQuantities(): Array<string> {
-//   const quantityArray = Object.keys(_quantityToUnits);
-//   return quantityArray;
-// }
