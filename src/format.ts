@@ -55,7 +55,6 @@ function getUnitsPerQuantity(unitsFormat: {
   readonly [key: string]: UnitFormat;
 }): { readonly [key: string]: Array<Unit.Unit> } {
   if (cache.input === unitsFormat && cache.output !== undefined) {
-    console.log("cache hit");
     return cache.output;
   }
   const quantityToUnits: { [key: string]: Array<Unit.Unit> } = {}; // tslint:disable-line
