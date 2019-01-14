@@ -7,7 +7,7 @@ const containsAll = <T>(arr1: ReadonlyArray<T>, arr2: ReadonlyArray<T>) =>
 const sameMembers = <T>(arr1: ReadonlyArray<T>, arr2: ReadonlyArray<T>) =>
   containsAll(arr1, arr2) && containsAll(arr2, arr1);
 
-test.only("format_test", t => {
+test("format_test", t => {
   t.test("should get label for Pascal", st => {
     const format = Format.getUnitFormat(Units.Pascal);
     if (!format) {
