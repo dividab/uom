@@ -13,7 +13,6 @@ export type UnitFormatMap<TUnitMap> = { [P in keyof TUnitMap]: UnitFormat };
  */
 
 const units: UnitMap = Units;
-const unitsFormatMap: UnitFormatMap<typeof Units> = UnitsFormat;
 
 /**
  * Get formatting info from unit
@@ -21,25 +20,9 @@ const unitsFormatMap: UnitFormatMap<typeof Units> = UnitsFormat;
  */
 export function getUnitFormat(
   unit: Unit.Unit,
-  unitsFormat: { readonly [key: string]: UnitFormat } = unitsFormatMap
+  unitsFormat: { readonly [key: string]: UnitFormat } = UnitsFormat
 ): UnitFormat | undefined {
   return unitsFormat[unit.name];
-}
-
-// export function getAllUnits(): ReadonlyArray<Unit.Unit> {
-//   return Object.keys(Units).map(e => {
-//     return units[e];
-//   });
-// }
-
-const _quantityToUnits: { [key: string]: Array<Unit.Unit> } = {}; // tslint:disable-line
-
-for (const unitKey of Object.keys(Units)) {
-  const unit = units[unitKey];
-  const quantityKey = unit.quantity.toLowerCase();
-  _quantityToUnits[quantityKey] = (_quantityToUnits[quantityKey] || []).concat(
-    unit
-  );
 }
 
 /**
@@ -48,10 +31,46 @@ for (const unitKey of Object.keys(Units)) {
  */
 export function getUnitsForQuantity(
   quantity: string,
-  quantityToUnits: {
-    readonly [key: string]: Array<Unit.Unit>;
-  } = _quantityToUnits
+  unitsFormat: { readonly [key: string]: UnitFormat } = UnitsFormat
 ): Array<Unit.Unit> {
+  const quantityToUnits = getUnitsPerQuantity(unitsFormat);
   const unitsForQuantity = quantityToUnits[quantity.toLowerCase()];
   return unitsForQuantity || [];
+}
+
+interface LocalCache {
+  readonly input:
+    | {
+        readonly [key: string]: UnitFormat;
+      }
+    | undefined;
+  readonly output: { readonly [key: string]: Array<Unit.Unit> } | undefined;
+}
+
+let cache: LocalCache = {
+  input: undefined,
+  output: undefined
+};
+function getUnitsPerQuantity(unitsFormat: {
+  readonly [key: string]: UnitFormat;
+}): { readonly [key: string]: Array<Unit.Unit> } {
+  if (cache.input === unitsFormat && cache.output !== undefined) {
+    console.log("cache hit");
+    return cache.output;
+  }
+  const quantityToUnits: { [key: string]: Array<Unit.Unit> } = {}; // tslint:disable-line
+
+  for (const unitKey of Object.keys(Units)) {
+    const unit = units[unitKey];
+    const quantityKey = unit.quantity.toLowerCase();
+    quantityToUnits[quantityKey] = (quantityToUnits[quantityKey] || []).concat(
+      unit
+    );
+  }
+
+  cache = {
+    input: unitsFormat,
+    output: quantityToUnits
+  };
+  return quantityToUnits;
 }
