@@ -2,6 +2,7 @@ import * as Amount from "./amount";
 import * as Quantity from "./quantity";
 import * as Unit from "./unit";
 import * as Units from "./units";
+import * as UnitFormat from "./unit-format";
 import * as UnitsFormat from "./units-format";
 import * as UnitDivide from "./unit-divide";
 import * as UnitTimes from "./unit-times";
@@ -13,6 +14,7 @@ export {
   Quantity,
   Unit,
   Units,
+  UnitFormat,
   UnitsFormat,
   UnitDivide,
   UnitTimes,
