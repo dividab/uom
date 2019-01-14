@@ -22,7 +22,6 @@ test("derived units", t => {
       Units.Second
     );
     if (newUnit.unitInfo.type === "product") {
-      console.log(newUnit.unitInfo.elements);
       st.deepEqual(
         newUnit.unitInfo.elements,
         [
