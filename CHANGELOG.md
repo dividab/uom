@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.1.0] - 2019-01-10
+
+### Changed
+
+- Format module functions now takes an optional argument units map for application specific subset of units.
+
+## [2.0.0] - 2019-01-10
+
 ### Added
 
 - `Format` module, see readme.
