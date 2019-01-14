@@ -13,43 +13,63 @@ export type UnitFormatMap<TUnitMap> = { [P in keyof TUnitMap]: UnitFormat };
  */
 
 const units: UnitMap = Units;
-const unitsFormat: UnitFormatMap<typeof Units> = UnitsFormat;
 
 /**
  * Get formatting info from unit
- * @param unit 
+ * @param unit
  */
-export function getUnitFormat(unit: Unit.Unit): UnitFormat | undefined {
-  return (unitsFormat as { readonly [key: string]: UnitFormat })[unit.name];
+export function getUnitFormat(
+  unit: Unit.Unit,
+  unitsFormat: { readonly [key: string]: UnitFormat } = UnitsFormat
+): UnitFormat | undefined {
+  return unitsFormat[unit.name];
 }
-
-// export function getAllUnits(): ReadonlyArray<Unit.Unit> {
-//   return Object.keys(Units).map(e => {
-//     return units[e];
-//   });
-// }
-
-const _quantityToUnits: { [key: string]: Array<Unit.Unit> } = {}; // tslint:disable-line
 
 /**
  * Get all units registered for quantity
- * @param quantity 
+ * @param quantity
  */
-export function getUnitsForQuantity(quantity: string): Array<Unit.Unit> {
-  const unitsForQuantity = _quantityToUnits[quantity];
-  if (unitsForQuantity === undefined) {
-    const unitsFound = Object.keys(Units)
-      .map(e => {
-        return units[e];
-      })
-      .filter(u => u.quantity.toLowerCase() === quantity.toLowerCase());
-    _quantityToUnits[quantity] = unitsFound;
-    return unitsFound;
-  }
-  return unitsForQuantity;
+export function getUnitsForQuantity(
+  quantity: string,
+  unitsFormat: { readonly [key: string]: UnitFormat } = UnitsFormat
+): Array<Unit.Unit> {
+  const quantityToUnits = getUnitsPerQuantity(unitsFormat);
+  const unitsForQuantity = quantityToUnits[quantity.toLowerCase()];
+  return unitsForQuantity || [];
 }
 
-// export function getAllQuantities(): Array<string> {
-//   const quantityArray = Object.keys(_quantityToUnits);
-//   return quantityArray;
-// }
+interface LocalCache {
+  readonly input:
+    | {
+        readonly [key: string]: UnitFormat;
+      }
+    | undefined;
+  readonly output: { readonly [key: string]: Array<Unit.Unit> } | undefined;
+}
+
+let cache: LocalCache = {
+  input: undefined,
+  output: undefined
+};
+function getUnitsPerQuantity(unitsFormat: {
+  readonly [key: string]: UnitFormat;
+}): { readonly [key: string]: Array<Unit.Unit> } {
+  if (cache.input === unitsFormat && cache.output !== undefined) {
+    return cache.output;
+  }
+  const quantityToUnits: { [key: string]: Array<Unit.Unit> } = {}; // tslint:disable-line
+
+  for (const unitKey of Object.keys(Units)) {
+    const unit = units[unitKey];
+    const quantityKey = unit.quantity.toLowerCase();
+    quantityToUnits[quantityKey] = (quantityToUnits[quantityKey] || []).concat(
+      unit
+    );
+  }
+
+  cache = {
+    input: unitsFormat,
+    output: quantityToUnits
+  };
+  return quantityToUnits;
+}
