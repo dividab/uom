@@ -1,5 +1,6 @@
 import * as test from "tape";
 import * as Units from "../src/units";
+import * as UnitsFormat from "../src/units-format";
 import * as Format from "../src/format";
 
 const containsAll = <T>(arr1: ReadonlyArray<T>, arr2: ReadonlyArray<T>) =>
@@ -49,6 +50,17 @@ test("format_test", t => {
     ];
     const actual = Format.getUnitsForQuantity("length");
     st.equal(actual.length, expected.length);
+    st.true(sameMembers(actual, expected));
+    st.end();
+  });
+
+  t.test("Should get units for length subset", st => {
+    const expected = [Units.Meter];
+    const actual = Format.getUnitsForQuantity("length", {
+      Meter: UnitsFormat.Meter
+    });
+    st.equal(actual.length, expected.length);
+    console.dir(actual);
     st.true(sameMembers(actual, expected));
     st.end();
   });

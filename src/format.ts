@@ -59,7 +59,7 @@ function getUnitsPerQuantity(unitsFormat: {
   }
   const quantityToUnits: { [key: string]: Array<Unit.Unit> } = {}; // tslint:disable-line
 
-  for (const unitKey of Object.keys(Units)) {
+  for (const unitKey of Object.keys(unitsFormat)) {
     const unit = units[unitKey];
     const quantityKey = unit.quantity.toLowerCase();
     quantityToUnits[quantityKey] = (quantityToUnits[quantityKey] || []).concat(
@@ -71,5 +71,6 @@ function getUnitsPerQuantity(unitsFormat: {
     input: unitsFormat,
     output: quantityToUnits
   };
+
   return quantityToUnits;
 }
