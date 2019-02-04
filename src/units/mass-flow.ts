@@ -58,6 +58,6 @@ export const StandardCubicMeterPerSecond = Unit.timesNumber(
 );
 export const StandardLiterPerSecond = Unit.timesNumber(
   "StandardLiterPerSecond",
-  3600.0 * 1000,
+  1000 / 3600,
   StandardCubicMeterPerHour
 );
