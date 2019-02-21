@@ -6,6 +6,7 @@ import * as Unit from "./unit";
 import * as Units from "./units";
 import * as CompareUtils from "./utils/compare-utils";
 import { Quantity, Dimensionless } from "./quantity";
+import * as FloatN from "./utils/floatN";
 
 export interface Amount<T extends Quantity> {
   readonly value: number;
@@ -176,50 +177,58 @@ export function divide<T extends Quantity>(
  * Compares to amounts for equality
  * @param left {Amount} The left-hand Amount.
  * @param right {Amount} The right-hand Amount.
+ * @param precision {FloatN | undefined} The bit precision.
  * @returns {boolean} True if the amounts are equal, false otherwise.
  */
 export function equals<T1 extends Quantity, T2 extends T1>(
   left: Amount<T1>,
-  right: Amount<T2>
+  right: Amount<T2>,
+  precision?: FloatN.FloatN
 ): boolean {
-  return _comparison(left, right, true) === 0;
+  return _comparison(left, right, true, precision) === 0;
 }
 
 /**
  * Checks if one Amount is less than another.
  * @param left {Amount} The left-hand Amount.
  * @param right {Amount} The right-hand Amount.
+ * @param precision {FloatN | undefined} The bit precision.
  * @returns {boolean} True if the left-hand is less than the right-hand, false otherwise.
  */
 export function lessThan<T1 extends Quantity, T2 extends T1>(
   left: Amount<T1>,
-  right: Amount<T2>
+  right: Amount<T2>,
+  precision?: FloatN.FloatN
 ): boolean {
-  return _comparison(left, right, false) < 0;
+  return _comparison(left, right, false, precision) < 0;
 }
 
 /**
  * Checks if one Amount is greater than another.
  * @param left {Amount} The left-hand Amount.
  * @param right {Amount} The right-hand Amount.
+ * @param precision {FloatN | undefined} The bit precision.
  * @returns {boolean} True if the left-hand is less than the right-hand, false otherwise.
  */
 export function greaterThan<T1 extends Quantity, T2 extends T1>(
   left: Amount<T1>,
-  right: Amount<T2>
+  right: Amount<T2>,
+  precision?: FloatN.FloatN
 ): boolean {
-  return _comparison(left, right, false) > 0;
+  return _comparison(left, right, false, precision) > 0;
 }
 
 export const lessOrEqualTo = <T1 extends Quantity, T2 extends T1>(
   left: Amount<T1>,
-  right: Amount<T2>
-): boolean => _comparison(left, right, false) <= 0;
+  right: Amount<T2>,
+  precision?: FloatN.FloatN
+): boolean => _comparison(left, right, false, precision) <= 0;
 
 export const greaterOrEqualTo = <T1 extends Quantity, T2 extends T1>(
   left: Amount<T1>,
-  right: Amount<T2>
-): boolean => _comparison(left, right, false) >= 0;
+  right: Amount<T2>,
+  precision?: FloatN.FloatN
+): boolean => _comparison(left, right, false, precision) >= 0;
 
 export function clamp<T1 extends Quantity, T2 extends T1>(
   minAmount: Amount<T1>,
@@ -289,9 +298,10 @@ export function roundUp<T1 extends Quantity, T2 extends T1>(
 
 export function compareTo<T1 extends Quantity, T2 extends T1>(
   left: Amount<T1>,
-  right: Amount<T2>
+  right: Amount<T2>,
+  precision?: FloatN.FloatN
 ): number {
-  return _comparison(left, right, true);
+  return _comparison(left, right, true, precision);
 }
 
 /**
@@ -346,7 +356,8 @@ function _factory<T extends Quantity>(
 function _comparison<T extends Quantity>(
   left: Amount<T>,
   right: Amount<T>,
-  allowNullOrUndefined: boolean
+  allowNullOrUndefined: boolean,
+  precision?: FloatN.FloatN
 ): number {
   if (!allowNullOrUndefined) {
     // We don't allow nulls for < and > because it would cause strange behavior, e.g. 1 < null would work which it shouldn't
@@ -378,7 +389,8 @@ function _comparison<T extends Quantity>(
       left.value,
       right.value,
       left.decimalCount,
-      right.decimalCount
+      right.decimalCount,
+      precision
     );
   }
 
@@ -394,7 +406,8 @@ function _comparison<T extends Quantity>(
     leftValue,
     rightValue,
     decimalCount,
-    decimalCount
+    decimalCount,
+    precision
   );
 }
 
