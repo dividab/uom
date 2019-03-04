@@ -7,13 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [2.1.0] - 2019-01-10
+## [v2.1.0] - 2019-01-10
 
 ### Changed
 
 - Format module functions now takes an optional argument units map for application specific subset of units.
 
-## [2.0.0] - 2019-01-10
+## [v2.0.0] - 2019-01-10
 
 ### Added
 
@@ -32,11 +32,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   - unit-label.ts
   - unit-registry.ts
 
-## [1.0.0] - 2018-05-08
+## [v1.0.0] - 2018-05-08
 
 ### Added
 
 - Initial Release
 
-[unreleased]: https://github.com/jonaskello/tslint-immutable/compare/v1.0.0...master
+[unreleased]: https://github.com/jonaskello/tslint-immutable/compare/v2.1.0...master
+[v2.1.0]: https://github.com/jonaskello/tslint-immutable/compare/v2.0.0...v2.1.0
+[v2.0.0]: https://github.com/jonaskello/tslint-immutable/compare/v1.0.0...v2.0.0
 [v1.0.0]: https://github.com/jonaskello/tslint-immutable/compare/v0.0.0...v1.0.0
