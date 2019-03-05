@@ -4,7 +4,6 @@
 
 import * as Unit from "./unit";
 import * as Units from "./units";
-import * as CompareUtils from "./utils/compare-utils";
 import { Quantity, Dimensionless } from "./quantity";
 
 export interface Amount<T extends Quantity> {
@@ -12,6 +11,18 @@ export interface Amount<T extends Quantity> {
   readonly unit: Unit.Unit<T>;
   readonly decimalCount: number;
 }
+
+export type Comparer = <T1 extends Quantity, T2 extends T1>(
+  left: Amount<T1>,
+  right: Amount<T2>,
+  allowNullOrUndefined: boolean
+) => number;
+
+export const defaultComparer: Comparer = <T1 extends Quantity, T2 extends T1>(
+  left: Amount<T1>,
+  right: Amount<T2>,
+  allowNullOrUndefined: boolean
+) => _comparison(left, right, allowNullOrUndefined);
 
 /**
  * Creates an amount that represents the an exact/absolute value in the specified
@@ -180,9 +191,10 @@ export function divide<T extends Quantity>(
  */
 export function equals<T1 extends Quantity, T2 extends T1>(
   left: Amount<T1>,
-  right: Amount<T2>
+  right: Amount<T2>,
+  comparer: Comparer = defaultComparer
 ): boolean {
-  return _comparison(left, right, true) === 0;
+  return comparer(left, right, true) === 0;
 }
 
 /**
@@ -193,9 +205,10 @@ export function equals<T1 extends Quantity, T2 extends T1>(
  */
 export function lessThan<T1 extends Quantity, T2 extends T1>(
   left: Amount<T1>,
-  right: Amount<T2>
+  right: Amount<T2>,
+  comparer: Comparer = defaultComparer
 ): boolean {
-  return _comparison(left, right, false) < 0;
+  return comparer(left, right, false) < 0;
 }
 
 /**
@@ -206,20 +219,23 @@ export function lessThan<T1 extends Quantity, T2 extends T1>(
  */
 export function greaterThan<T1 extends Quantity, T2 extends T1>(
   left: Amount<T1>,
-  right: Amount<T2>
+  right: Amount<T2>,
+  comparer: Comparer = defaultComparer
 ): boolean {
-  return _comparison(left, right, false) > 0;
+  return comparer(left, right, false) > 0;
 }
 
 export const lessOrEqualTo = <T1 extends Quantity, T2 extends T1>(
   left: Amount<T1>,
-  right: Amount<T2>
-): boolean => _comparison(left, right, false) <= 0;
+  right: Amount<T2>,
+  comparer: Comparer = defaultComparer
+): boolean => comparer(left, right, false) <= 0;
 
 export const greaterOrEqualTo = <T1 extends Quantity, T2 extends T1>(
   left: Amount<T1>,
-  right: Amount<T2>
-): boolean => _comparison(left, right, false) >= 0;
+  right: Amount<T2>,
+  comparer: Comparer = defaultComparer
+): boolean => comparer(left, right, false) >= 0;
 
 export function clamp<T1 extends Quantity, T2 extends T1>(
   minAmount: Amount<T1>,
@@ -289,9 +305,10 @@ export function roundUp<T1 extends Quantity, T2 extends T1>(
 
 export function compareTo<T1 extends Quantity, T2 extends T1>(
   left: Amount<T1>,
-  right: Amount<T2>
+  right: Amount<T2>,
+  comparer: Comparer = defaultComparer
 ): number {
-  return _comparison(left, right, true);
+  return comparer(left, right, true);
 }
 
 /**
@@ -315,6 +332,36 @@ export function valueAs<T1 extends Quantity, T2 extends T1>(
     return amount.value;
   }
   return Unit.convert(amount.value, amount.unit, toUnit);
+}
+
+/**
+ * Gets the most granular unit
+ * For example Millimeter is more granular than Meter so in that case
+ * both units should be converted to millimeter before being compared and
+ * we should use the decimal count of the amount which was specified in Millimeter
+ * To find which is the most granular unit, we find the difference between 1 and 2
+ * in the units. The one with the highest difference is the most granular.
+ * @param leftUnit
+ * @param rightUnit
+ * @returns The most granular unit.
+ * @private
+ */
+export function getMostGranularUnit<T extends Quantity>(
+  leftUnit: Unit.Unit<T>,
+  rightUnit: Unit.Unit<T>
+): Unit.Unit<T> {
+  if (Unit.equals(leftUnit, rightUnit)) {
+    return leftUnit;
+  }
+  const rightDelta = valueAs(
+    leftUnit,
+    minus(create(2, rightUnit), create(1, rightUnit))
+  );
+  if (rightDelta > 1) {
+    return leftUnit;
+  } else {
+    return rightUnit;
+  }
 }
 
 ///////////////////////////////
@@ -372,16 +419,6 @@ function _comparison<T extends Quantity>(
     }
   }
 
-  // If the units are the same we can just use the highest decimal count
-  if (Unit.equals(left.unit, right.unit)) {
-    return CompareUtils.compareNumbers(
-      left.value,
-      right.value,
-      left.decimalCount,
-      right.decimalCount
-    );
-  }
-
   // To handle decimals correctly when the units are different
   // we need to know which unit is the most granular.
   // Eg. when comparing 0:CubicMeterPerSecond with 36:CubicMeterPerHour,
@@ -390,12 +427,18 @@ function _comparison<T extends Quantity>(
   const decimalCount = Math.max(left.decimalCount, right.decimalCount);
   const leftValue = valueAs(mostGranularUnit, left);
   const rightValue = valueAs(mostGranularUnit, right);
-  return CompareUtils.compareNumbers(
-    leftValue,
-    rightValue,
-    decimalCount,
-    decimalCount
-  );
+
+  const f = Math.round(leftValue * Math.pow(10, decimalCount));
+  const s = Math.round(rightValue * Math.pow(10, decimalCount));
+
+  if (f === s) {
+    return 0;
+  }
+  if (f < s) {
+    return -1;
+  } else {
+    return 1;
+  }
 }
 
 /**
@@ -416,31 +459,4 @@ function getMostGranularAmount<T extends Quantity>(
     return left;
   }
   return right;
-}
-
-/**
- * Gets the most granular unit
- * For example Millimeter is more granular than Meter so in that case
- * both units should be converted to millimeter before being compared and
- * we should use the decimal count of the amount which was specified in Millimeter
- * To find which is the most granular unit, we find the difference between 1 and 2
- * in the units. The one with the highest difference is the most granular.
- * @param leftUnit
- * @param rightUnit
- * @returns The most granular unit.
- * @private
- */
-function getMostGranularUnit<T extends Quantity>(
-  leftUnit: Unit.Unit<T>,
-  rightUnit: Unit.Unit<T>
-): Unit.Unit<T> {
-  const rightDelta = valueAs(
-    leftUnit,
-    minus(create(2, rightUnit), create(1, rightUnit))
-  );
-  if (rightDelta > 1) {
-    return leftUnit;
-  } else {
-    return rightUnit;
-  }
 }
