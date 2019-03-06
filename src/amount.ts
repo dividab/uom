@@ -14,15 +14,13 @@ export interface Amount<T extends Quantity> {
 
 export type Comparer = <T1 extends Quantity, T2 extends T1>(
   left: Amount<T1>,
-  right: Amount<T2>,
-  allowNullOrUndefined: boolean
+  right: Amount<T2>
 ) => number;
 
 export const defaultComparer: Comparer = <T1 extends Quantity, T2 extends T1>(
   left: Amount<T1>,
-  right: Amount<T2>,
-  allowNullOrUndefined: boolean
-) => _comparison(left, right, allowNullOrUndefined);
+  right: Amount<T2>
+) => _comparison(left, right);
 
 /**
  * Creates an amount that represents the an exact/absolute value in the specified
@@ -194,7 +192,7 @@ export function equals<T1 extends Quantity, T2 extends T1>(
   right: Amount<T2>,
   comparer: Comparer = defaultComparer
 ): boolean {
-  return comparer(left, right, true) === 0;
+  return compareAfterNullAndUndefinedCheck(left, right, true, comparer) === 0;
 }
 
 /**
@@ -208,7 +206,7 @@ export function lessThan<T1 extends Quantity, T2 extends T1>(
   right: Amount<T2>,
   comparer: Comparer = defaultComparer
 ): boolean {
-  return comparer(left, right, false) < 0;
+  return compareAfterNullAndUndefinedCheck(left, right, false, comparer) < 0;
 }
 
 /**
@@ -222,20 +220,22 @@ export function greaterThan<T1 extends Quantity, T2 extends T1>(
   right: Amount<T2>,
   comparer: Comparer = defaultComparer
 ): boolean {
-  return comparer(left, right, false) > 0;
+  return compareAfterNullAndUndefinedCheck(left, right, false, comparer) > 0;
 }
 
 export const lessOrEqualTo = <T1 extends Quantity, T2 extends T1>(
   left: Amount<T1>,
   right: Amount<T2>,
   comparer: Comparer = defaultComparer
-): boolean => comparer(left, right, false) <= 0;
+): boolean =>
+  compareAfterNullAndUndefinedCheck(left, right, false, comparer) <= 0;
 
 export const greaterOrEqualTo = <T1 extends Quantity, T2 extends T1>(
   left: Amount<T1>,
   right: Amount<T2>,
   comparer: Comparer = defaultComparer
-): boolean => comparer(left, right, false) >= 0;
+): boolean =>
+  compareAfterNullAndUndefinedCheck(left, right, false, comparer) >= 0;
 
 export function clamp<T1 extends Quantity, T2 extends T1>(
   minAmount: Amount<T1>,
@@ -308,7 +308,7 @@ export function compareTo<T1 extends Quantity, T2 extends T1>(
   right: Amount<T2>,
   comparer: Comparer = defaultComparer
 ): number {
-  return comparer(left, right, true);
+  return compareAfterNullAndUndefinedCheck(left, right, true, comparer);
 }
 
 /**
@@ -392,33 +392,8 @@ function _factory<T extends Quantity>(
 
 function _comparison<T extends Quantity>(
   left: Amount<T>,
-  right: Amount<T>,
-  allowNullOrUndefined: boolean
+  right: Amount<T>
 ): number {
-  if (!allowNullOrUndefined) {
-    // We don't allow nulls for < and > because it would cause strange behavior, e.g. 1 < null would work which it shouldn't
-    if (left === null || left === undefined) {
-      throw new Error("ArgumentNull: left");
-    }
-    if (right === null || right === undefined) {
-      throw new Error("ArgumentNull: right");
-    }
-  } else {
-    // Handle nulls
-    if (
-      (left === null && right === null) ||
-      (left === undefined && right === undefined)
-    ) {
-      return 0;
-    }
-    if (left === null || left === undefined) {
-      return 1;
-    }
-    if (right === null || right === undefined) {
-      return 2;
-    }
-  }
-
   // To handle decimals correctly when the units are different
   // we need to know which unit is the most granular.
   // Eg. when comparing 0:CubicMeterPerSecond with 36:CubicMeterPerHour,
@@ -459,4 +434,37 @@ function getMostGranularAmount<T extends Quantity>(
     return left;
   }
   return right;
+}
+
+function compareAfterNullAndUndefinedCheck<T1 extends Quantity, T2 extends T1>(
+  left: Amount<T1>,
+  right: Amount<T2>,
+  allowNullOrUndefined: boolean,
+  comparer: Comparer
+): number {
+  if (!allowNullOrUndefined) {
+    // We don't allow nulls for < and > because it would cause strange behavior, e.g. 1 < null would work which it shouldn't
+    if (left === null || left === undefined) {
+      throw new Error("ArgumentNull: left");
+    }
+    if (right === null || right === undefined) {
+      throw new Error("ArgumentNull: right");
+    }
+  } else {
+    // Handle nulls
+    if (
+      (left === null && right === null) ||
+      (left === undefined && right === undefined)
+    ) {
+      return 0;
+    }
+    if (left === null || left === undefined) {
+      return 1;
+    }
+    if (right === null || right === undefined) {
+      return 2;
+    }
+  }
+
+  return comparer(left, right);
 }
