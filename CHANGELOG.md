@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [v2.2.0] - 2019-03-06
+
 ### Changed
 
 - All `Amount` compare functions now accepts a custom compare function as parameter.
@@ -42,7 +44,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Initial Release
 
-[unreleased]: https://github.com/dividab/uom/compare/v2.1.0...master
+[unreleased]: https://github.com/dividab/uom/compare/v2.2.0...master
+[v2.2.0]: https://github.com/dividab/uom/compare/v2.1.0...v2.2.0
 [v2.1.0]: https://github.com/dividab/uom/compare/v2.0.0...v2.1.0
 [v2.0.0]: https://github.com/dividab/uom/compare/v1.0.0...v2.0.0
 [v1.0.0]: https://github.com/dividab/uom/compare/v0.0.0...v1.0.0
