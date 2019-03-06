@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [v2.2.1] - 2019-03-06
+
+### Changed
+
+- Republish package because tags were out of sync.
+
 ## [v2.2.0] - 2019-03-06
 
 ### Changed
