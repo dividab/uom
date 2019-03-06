@@ -4,7 +4,6 @@
 
 import * as Unit from "./unit";
 import * as Units from "./units";
-import * as CompareUtils from "./utils/compare-utils";
 import { Quantity, Dimensionless } from "./quantity";
 
 export interface Amount<T extends Quantity> {
@@ -12,6 +11,22 @@ export interface Amount<T extends Quantity> {
   readonly unit: Unit.Unit<T>;
   readonly decimalCount: number;
 }
+
+export type Comparer = <T1 extends Quantity, T2 extends T1>(
+  left: Amount<T1>,
+  right: Amount<T2>
+) => number;
+
+/**
+ * Default comparer
+ * @param left {Amount} The left-hand amount
+ * @param right {Amount} The right-hand amount
+ * @returns {number} Comparer value
+ */
+export const defaultComparer: Comparer = <T1 extends Quantity, T2 extends T1>(
+  left: Amount<T1>,
+  right: Amount<T2>
+) => _comparison(left, right);
 
 /**
  * Creates an amount that represents the an exact/absolute value in the specified
@@ -180,9 +195,10 @@ export function divide<T extends Quantity>(
  */
 export function equals<T1 extends Quantity, T2 extends T1>(
   left: Amount<T1>,
-  right: Amount<T2>
+  right: Amount<T2>,
+  comparer: Comparer = defaultComparer
 ): boolean {
-  return _comparison(left, right, true) === 0;
+  return compareAfterNullAndUndefinedCheck(left, right, true, comparer) === 0;
 }
 
 /**
@@ -193,9 +209,10 @@ export function equals<T1 extends Quantity, T2 extends T1>(
  */
 export function lessThan<T1 extends Quantity, T2 extends T1>(
   left: Amount<T1>,
-  right: Amount<T2>
+  right: Amount<T2>,
+  comparer: Comparer = defaultComparer
 ): boolean {
-  return _comparison(left, right, false) < 0;
+  return compareAfterNullAndUndefinedCheck(left, right, false, comparer) < 0;
 }
 
 /**
@@ -206,32 +223,39 @@ export function lessThan<T1 extends Quantity, T2 extends T1>(
  */
 export function greaterThan<T1 extends Quantity, T2 extends T1>(
   left: Amount<T1>,
-  right: Amount<T2>
+  right: Amount<T2>,
+  comparer: Comparer = defaultComparer
 ): boolean {
-  return _comparison(left, right, false) > 0;
+  return compareAfterNullAndUndefinedCheck(left, right, false, comparer) > 0;
 }
 
 export const lessOrEqualTo = <T1 extends Quantity, T2 extends T1>(
   left: Amount<T1>,
-  right: Amount<T2>
-): boolean => _comparison(left, right, false) <= 0;
+  right: Amount<T2>,
+  comparer: Comparer = defaultComparer
+): boolean =>
+  compareAfterNullAndUndefinedCheck(left, right, false, comparer) <= 0;
 
 export const greaterOrEqualTo = <T1 extends Quantity, T2 extends T1>(
   left: Amount<T1>,
-  right: Amount<T2>
-): boolean => _comparison(left, right, false) >= 0;
+  right: Amount<T2>,
+  comparer: Comparer = defaultComparer
+): boolean =>
+  compareAfterNullAndUndefinedCheck(left, right, false, comparer) >= 0;
 
 export function clamp<T1 extends Quantity, T2 extends T1>(
   minAmount: Amount<T1>,
   maxAmount: Amount<T1>,
-  amount: Amount<T2>
+  amount: Amount<T2>,
+  comparer: Comparer = defaultComparer
 ): Amount<T1> {
-  return min(maxAmount, max(minAmount, amount));
+  return min(maxAmount, max(minAmount, amount, comparer), comparer);
 }
 
 export function max<T1 extends Quantity, T2 extends T1>(
   a1: Amount<T1>,
-  a2: Amount<T2>
+  a2: Amount<T2>,
+  comparer: Comparer = defaultComparer
 ): Amount<T1> {
   if (!a2) {
     return a1;
@@ -239,12 +263,13 @@ export function max<T1 extends Quantity, T2 extends T1>(
   if (!a1) {
     return a2;
   }
-  return greaterThan(a1, a2) ? a1 : a2;
+  return greaterThan(a1, a2, comparer) ? a1 : a2;
 }
 
 export function min<T1 extends Quantity, T2 extends T1>(
   a1: Amount<T1>,
-  a2: Amount<T2>
+  a2: Amount<T2>,
+  comparer: Comparer = defaultComparer
 ): Amount<T1> {
   if (!a2) {
     return a1;
@@ -252,7 +277,7 @@ export function min<T1 extends Quantity, T2 extends T1>(
   if (!a1) {
     return a2;
   }
-  return lessThan(a1, a2) ? a1 : a2;
+  return lessThan(a1, a2, comparer) ? a1 : a2;
 }
 
 /**
@@ -289,9 +314,10 @@ export function roundUp<T1 extends Quantity, T2 extends T1>(
 
 export function compareTo<T1 extends Quantity, T2 extends T1>(
   left: Amount<T1>,
-  right: Amount<T2>
+  right: Amount<T2>,
+  comparer: Comparer = defaultComparer
 ): number {
-  return _comparison(left, right, true);
+  return compareAfterNullAndUndefinedCheck(left, right, true, comparer);
 }
 
 /**
@@ -315,6 +341,36 @@ export function valueAs<T1 extends Quantity, T2 extends T1>(
     return amount.value;
   }
   return Unit.convert(amount.value, amount.unit, toUnit);
+}
+
+/**
+ * Gets the most granular unit
+ * For example Millimeter is more granular than Meter so in that case
+ * both units should be converted to millimeter before being compared and
+ * we should use the decimal count of the amount which was specified in Millimeter
+ * To find which is the most granular unit, we find the difference between 1 and 2
+ * in the units. The one with the highest difference is the most granular.
+ * @param leftUnit
+ * @param rightUnit
+ * @returns The most granular unit.
+ * @private
+ */
+export function getMostGranularUnit<T extends Quantity>(
+  leftUnit: Unit.Unit<T>,
+  rightUnit: Unit.Unit<T>
+): Unit.Unit<T> {
+  if (Unit.equals(leftUnit, rightUnit)) {
+    return leftUnit;
+  }
+  const rightDelta = valueAs(
+    leftUnit,
+    minus(create(2, rightUnit), create(1, rightUnit))
+  );
+  if (rightDelta > 1) {
+    return leftUnit;
+  } else {
+    return rightUnit;
+  }
 }
 
 ///////////////////////////////
@@ -345,8 +401,55 @@ function _factory<T extends Quantity>(
 
 function _comparison<T extends Quantity>(
   left: Amount<T>,
-  right: Amount<T>,
-  allowNullOrUndefined: boolean
+  right: Amount<T>
+): number {
+  // To handle decimals correctly when the units are different
+  // we need to know which unit is the most granular.
+  // Eg. when comparing 0:CubicMeterPerSecond with 36:CubicMeterPerHour,
+  // both with 0 decimal places.
+  const mostGranularUnit = getMostGranularUnit(left.unit, right.unit);
+  const decimalCount = Math.max(left.decimalCount, right.decimalCount);
+  const leftValue = valueAs(mostGranularUnit, left);
+  const rightValue = valueAs(mostGranularUnit, right);
+
+  const f = Math.round(leftValue * Math.pow(10, decimalCount));
+  const s = Math.round(rightValue * Math.pow(10, decimalCount));
+
+  if (f === s) {
+    return 0;
+  }
+  if (f < s) {
+    return -1;
+  } else {
+    return 1;
+  }
+}
+
+/**
+ * Gets the most granular amount
+ * Takes into account both the unit and the decimalCount.
+ * @param leftUnit
+ * @param rightUnit
+ * @private
+ */
+function getMostGranularAmount<T extends Quantity>(
+  left: Amount<T>,
+  right: Amount<T>
+): Amount<T> {
+  const rightSmallest = create(Math.pow(10, -right.decimalCount), right.unit);
+  const rightSmallestInLeftUnit = valueAs(left.unit, rightSmallest);
+  const leftSmallestInLeftUnit = Math.pow(10, -left.decimalCount);
+  if (leftSmallestInLeftUnit < rightSmallestInLeftUnit) {
+    return left;
+  }
+  return right;
+}
+
+function compareAfterNullAndUndefinedCheck<T1 extends Quantity, T2 extends T1>(
+  left: Amount<T1>,
+  right: Amount<T2>,
+  allowNullOrUndefined: boolean,
+  comparer: Comparer
 ): number {
   if (!allowNullOrUndefined) {
     // We don't allow nulls for < and > because it would cause strange behavior, e.g. 1 < null would work which it shouldn't
@@ -372,75 +475,5 @@ function _comparison<T extends Quantity>(
     }
   }
 
-  // If the units are the same we can just use the highest decimal count
-  if (Unit.equals(left.unit, right.unit)) {
-    return CompareUtils.compareNumbers(
-      left.value,
-      right.value,
-      left.decimalCount,
-      right.decimalCount
-    );
-  }
-
-  // To handle decimals correctly when the units are different
-  // we need to know which unit is the most granular.
-  // Eg. when comparing 0:CubicMeterPerSecond with 36:CubicMeterPerHour,
-  // both with 0 decimal places.
-  const mostGranularUnit = getMostGranularUnit(left.unit, right.unit);
-  const decimalCount = Math.max(left.decimalCount, right.decimalCount);
-  const leftValue = valueAs(mostGranularUnit, left);
-  const rightValue = valueAs(mostGranularUnit, right);
-  return CompareUtils.compareNumbers(
-    leftValue,
-    rightValue,
-    decimalCount,
-    decimalCount
-  );
-}
-
-/**
- * Gets the most granular amount
- * Takes into account both the unit and the decimalCount.
- * @param leftUnit
- * @param rightUnit
- * @private
- */
-function getMostGranularAmount<T extends Quantity>(
-  left: Amount<T>,
-  right: Amount<T>
-): Amount<T> {
-  const rightSmallest = create(Math.pow(10, -right.decimalCount), right.unit);
-  const rightSmallestInLeftUnit = valueAs(left.unit, rightSmallest);
-  const leftSmallestInLeftUnit = Math.pow(10, -left.decimalCount);
-  if (leftSmallestInLeftUnit < rightSmallestInLeftUnit) {
-    return left;
-  }
-  return right;
-}
-
-/**
- * Gets the most granular unit
- * For example Millimeter is more granular than Meter so in that case
- * both units should be converted to millimeter before being compared and
- * we should use the decimal count of the amount which was specified in Millimeter
- * To find which is the most granular unit, we find the difference between 1 and 2
- * in the units. The one with the highest difference is the most granular.
- * @param leftUnit
- * @param rightUnit
- * @returns The most granular unit.
- * @private
- */
-function getMostGranularUnit<T extends Quantity>(
-  leftUnit: Unit.Unit<T>,
-  rightUnit: Unit.Unit<T>
-): Unit.Unit<T> {
-  const rightDelta = valueAs(
-    leftUnit,
-    minus(create(2, rightUnit), create(1, rightUnit))
-  );
-  if (rightDelta > 1) {
-    return leftUnit;
-  } else {
-    return rightUnit;
-  }
+  return comparer(left, right);
 }

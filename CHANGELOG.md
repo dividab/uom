@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- All `Amount` compare functions now accepts a custom compare function as parameter.
+
 ## [v2.1.0] - 2019-01-10
 
 ### Changed
