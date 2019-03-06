@@ -246,14 +246,16 @@ export const greaterOrEqualTo = <T1 extends Quantity, T2 extends T1>(
 export function clamp<T1 extends Quantity, T2 extends T1>(
   minAmount: Amount<T1>,
   maxAmount: Amount<T1>,
-  amount: Amount<T2>
+  amount: Amount<T2>,
+  comparer: Comparer = defaultComparer
 ): Amount<T1> {
-  return min(maxAmount, max(minAmount, amount));
+  return min(maxAmount, max(minAmount, amount, comparer), comparer);
 }
 
 export function max<T1 extends Quantity, T2 extends T1>(
   a1: Amount<T1>,
-  a2: Amount<T2>
+  a2: Amount<T2>,
+  comparer: Comparer = defaultComparer
 ): Amount<T1> {
   if (!a2) {
     return a1;
@@ -261,12 +263,13 @@ export function max<T1 extends Quantity, T2 extends T1>(
   if (!a1) {
     return a2;
   }
-  return greaterThan(a1, a2) ? a1 : a2;
+  return greaterThan(a1, a2, comparer) ? a1 : a2;
 }
 
 export function min<T1 extends Quantity, T2 extends T1>(
   a1: Amount<T1>,
-  a2: Amount<T2>
+  a2: Amount<T2>,
+  comparer: Comparer = defaultComparer
 ): Amount<T1> {
   if (!a2) {
     return a1;
@@ -274,7 +277,7 @@ export function min<T1 extends Quantity, T2 extends T1>(
   if (!a1) {
     return a2;
   }
-  return lessThan(a1, a2) ? a1 : a2;
+  return lessThan(a1, a2, comparer) ? a1 : a2;
 }
 
 /**
