@@ -94,6 +94,7 @@ Get all units registered for quantity
 ## Amount
 
 * [Amount](#module_Amount)
+    * [.defaultComparer](#module_Amount.defaultComparer) ⇒ <code>number</code>
     * [.create(value, unit, decimalCount)](#module_Amount.create) ⇒ <code>Amount.&lt;T&gt;</code>
     * [.toString(amount)](#module_Amount.toString) ⇒ <code>string</code>
     * [.neg(amount)](#module_Amount.neg)
@@ -109,6 +110,18 @@ Get all units registered for quantity
     * [.roundUp(step, amount)](#module_Amount.roundUp)
     * [.abs(amount)](#module_Amount.abs)
     * [.valueAs(toUnit, amount)](#module_Amount.valueAs)
+
+<a name="module_Amount.defaultComparer"></a>
+
+### Amount.defaultComparer ⇒ <code>number</code>
+Default comparer
+
+**Returns**: <code>number</code> - Comparer value  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| left | <code>Amount</code> | The left-hand amount |
+| right | <code>Amount</code> | The right-hand amount |
 
 <a name="module_Amount.create"></a>
 
