@@ -17,6 +17,12 @@ export type Comparer = <T1 extends Quantity, T2 extends T1>(
   right: Amount<T2>
 ) => number;
 
+/**
+ * Default comparer
+ * @param left {Amount} The left-hand amount
+ * @param right {Amount} The right-hand amount
+ * @returns {number} Comparer value
+ */
 export const defaultComparer: Comparer = <T1 extends Quantity, T2 extends T1>(
   left: Amount<T1>,
   right: Amount<T2>
