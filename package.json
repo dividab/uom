@@ -40,7 +40,7 @@
     "coverage": "rimraf coverage .nyc_output && nyc yarn test",
     "report-coverage": "codecov -f coverage/*.json",
     "gen-docs": "jsdoc2md --partial docs/scope.hbs --files lib-esm/serialize.js lib-esm/format.js lib-esm/amount.js lib-esm/unit.js > docs/api.md",
-    "publish-npm": "yarn test && yarn build && yarn publish"
+    "publish-npm": "git checkout master && git pull && yarn test && yarn build && yarn publish && git push --follow-tags"
   },
   "lint-staged": {
     "*.{ts,tsx}": "tslint",
