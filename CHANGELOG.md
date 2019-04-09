@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Added Units `StandardCubicFeetPerMinutePerSquareFeet` and `StandardCubicMeterPerHourPerSquareMeter`.
+
 ## [v2.2.1] - 2019-03-06
 
 ### Changed
