@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+- Capitalize ACFM and ACFH labels
+
 ## [v2.2.1] - 2019-03-06
 
 ### Changed
