@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- Capitalize ACFM and ACFH labels
+
 ### Added
 
 - Added Units `StandardCubicFeetPerMinutePerSquareFeet` and `StandardCubicMeterPerHourPerSquareMeter`.
