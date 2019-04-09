@@ -1,6 +1,10 @@
 import * as UnitDivide from "../unit-divide";
-import { KilogramPerSecond } from "./mass-flow";
-import { SquareMeter } from "./area";
+import {
+  KilogramPerSecond,
+  StandardCubicMeterPerHour,
+  StandardCubicFeetPerMinute
+} from "./mass-flow";
+import { SquareMeter, SquareFeet } from "./area";
 
 export type MassFlowPerArea = "MassFlowPerArea";
 
@@ -10,4 +14,16 @@ export const KilogramPerSquareMeterSecond = UnitDivide.massFlowByArea(
   "KilogramPerSquareMeterSecond",
   KilogramPerSecond,
   SquareMeter
+);
+
+export const StandardCubicMeterPerHourPerSquareMeter = UnitDivide.massFlowByArea(
+  "StandardCubicMeterPerHourPerSquareMeter",
+  StandardCubicMeterPerHour,
+  SquareMeter
+);
+
+export const StandardCubicFootPerMinutePerSquareFeet = UnitDivide.massFlowByArea(
+  "StandardCubicFootPerMinutePerSquareFeet",
+  StandardCubicFeetPerMinute,
+  SquareFeet
 );
