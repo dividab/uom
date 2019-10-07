@@ -1,4 +1,3 @@
-import * as test from "tape";
 import * as Amount from "../src/amount";
 import { onlySkip, closeTo } from "./test-utils";
 import * as ConversionDuration from "./data/conversion-duration";
@@ -27,10 +26,20 @@ const all = [
   ConversionMassFlowPerArea
 ];
 
-test("amount_conversion_test", t => {
+// describe("denormalize() with shared test data", () => {
+//   onlySkip(SharedTests.tests).forEach(item => {
+//     test(item.name, done => {
+//       const actual = denormalize(item.query, item.variables, item.normMap);
+//       expect(actual.data).toEqual(item.data);
+//       done();
+//     });
+//   });
+// });
+
+describe("amount_conversion_test", () => {
   all.forEach(a => {
     onlySkip(a.tests).forEach(item => {
-      t.test(item.name, st => {
+      test(item.name, done => {
         const amountToTest = Amount.create(item.fromValue, item.fromUnit);
         const actualToValue: number = Amount.valueAs(item.toUnit, amountToTest);
         if (item.delta) {
@@ -38,16 +47,17 @@ test("amount_conversion_test", t => {
             actualToValue,
             item.toValue,
             item.delta,
-            st
+            done
             // `Conversion valid, expected: ${
             //   item.toValue
             // }, actual: ${actualToValue}, delta: ${item.delta}`,
             // "Conversion valid"
           );
         } else {
-          st.equal(actualToValue, item.toValue, "Conversion valid");
+          // st.equal(actualToValue, item.toValue, "Conversion valid");
+          expect(actualToValue).toEqual(item.toValue);
         }
-        st.end();
+        done();
       });
     });
   });

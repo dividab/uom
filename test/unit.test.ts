@@ -1,20 +1,19 @@
-import * as test from "tape";
 import * as Unit from "../src/unit";
 import * as Units from "../src/units";
 import { closeTo } from "./test-utils";
 
-test("derived units", t => {
-  t.test("Meter times Meter should return unit with 1 element of pow 2", st => {
+describe("derived units", () => {
+  test("Meter times Meter should return unit with 1 element of pow 2", done => {
     const newUnit = Unit.times("", "Length", Units.Meter, Units.Meter);
     if (newUnit.unitInfo.type === "product") {
-      st.equal(newUnit.unitInfo.elements.length, 1, "Correct elements length");
-      st.equal(newUnit.unitInfo.elements[0].pow, 2, "Correct pow");
+      expect(newUnit.unitInfo.elements.length).toEqual(1); //, "Correct elements length");
+      expect(newUnit.unitInfo.elements[0].pow).toEqual(2); //, "Correct pow");
     } else {
-      st.fail("Expected the type of unit to be 'product'");
+      done.fail("Expected the type of unit to be 'product'");
     }
-    st.end();
+    done();
   });
-  t.test("CubicMeter by Second should return correct product unit", st => {
+  test("CubicMeter by Second should return correct product unit", done => {
     const newUnit = Unit.divide(
       "",
       "VolumeFlow",
@@ -22,8 +21,7 @@ test("derived units", t => {
       Units.Second
     );
     if (newUnit.unitInfo.type === "product") {
-      st.deepEqual(
-        newUnit.unitInfo.elements,
+      expect(newUnit.unitInfo.elements).toEqual(
         [
           {
             pow: 3,
@@ -41,19 +39,18 @@ test("derived units", t => {
               unitInfo: { quantity: "Duration", type: "base", symbol: "s" }
             }
           }
-        ],
-        "Correct elements"
+        ]
+        //"Correct elements"
       );
     } else {
-      st.fail("Expected the type of unit to be 'product'");
+      done.fail("Expected the type of unit to be 'product'");
     }
-    st.end();
+    done();
   });
-  t.test("CubicMeter by Hour should return correct product unit", st => {
+  test("CubicMeter by Hour should return correct product unit", done => {
     const newUnit = Unit.divide("", "VolumeFlow", Units.CubicMeter, Units.Hour);
     if (newUnit.unitInfo.type === "product") {
-      st.deepEqual(
-        newUnit.unitInfo.elements,
+      expect(newUnit.unitInfo.elements).toEqual(
         [
           {
             pow: 3,
@@ -99,25 +96,25 @@ test("derived units", t => {
               }
             }
           }
-        ],
-        "Correct elements"
+        ]
+        // "Correct elements"
       );
     } else {
-      st.fail("Expected the type of unit to be 'product'");
+      done.fail("Expected the type of unit to be 'product'");
     }
-    st.end();
+    done();
   });
 });
 
-test("unit conversions", t => {
-  t.test("2CubicMeterPerSecond_7200CubicMeterPerHour", st => {
+describe("unit conversions", () => {
+  test("2CubicMeterPerSecond_7200CubicMeterPerHour", done => {
     const value = 2.0;
     const convertedValue: number = Unit.convert(
       value,
       Units.CubicMeterPerSecond,
       Units.CubicMeterPerHour
     );
-    closeTo(convertedValue, 7200.0, 0.00001, st);
-    st.end();
+    closeTo(convertedValue, 7200.0, 0.00001, done);
+    done();
   });
 });

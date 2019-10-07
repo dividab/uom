@@ -1,53 +1,47 @@
-import * as test from "tape";
 import * as Amount from "../src/amount";
 import * as Units from "../src/units";
 
-test("amount_compare_test", t => {
-  t.test("default_comparer_true", st => {
+describe("amount_compare_test", () => {
+  test("default_comparer_true", () => {
     const a = Amount.create(100, Units.Watt);
     const b = Amount.create(100, Units.Watt);
 
     const c = Amount.equals(a, b);
-    st.true(c);
-    st.end();
+    expect(c).toBeTruthy();
   });
 
-  t.test("default_comparer_false", st => {
+  test("default_comparer_false", () => {
     const a = Amount.create(100, Units.Watt);
     const b = Amount.create(1234, Units.Watt);
 
     const c = Amount.equals(a, b);
-    st.false(c);
-    st.end();
+    expect(c).toBeFalsy();
   });
 
-  t.test("custom_comparer_equals", st => {
+  test("custom_comparer_equals", () => {
     const a = Amount.create(100, Units.Watt);
     const b = Amount.create(1234, Units.Watt);
     const comparer: Amount.Comparer = () => 0;
 
     const c = Amount.equals(a, b, comparer);
-    st.true(c);
-    st.end();
+    expect(c).toBeTruthy();
   });
 
-  t.test("custom_comparer_less_than", st => {
+  test("custom_comparer_less_than", () => {
     const a = Amount.create(100, Units.Watt);
     const b = Amount.create(100, Units.Watt);
     const comparer: Amount.Comparer = () => -1;
 
     const c = Amount.lessThan(a, b, comparer);
-    st.true(c);
-    st.end();
+    expect(c).toBeTruthy();
   });
 
-  t.test("custom_comparer_greater_than", st => {
+  test("custom_comparer_greater_than", () => {
     const a = Amount.create(100, Units.Watt);
     const b = Amount.create(100, Units.Watt);
     const comparer: Amount.Comparer = () => 1;
 
     const c = Amount.greaterThan(a, b, comparer);
-    st.true(c);
-    st.end();
+    expect(c).toBeTruthy();
   });
 });

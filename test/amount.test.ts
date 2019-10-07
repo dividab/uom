@@ -1,4 +1,3 @@
-import * as test from "tape";
 import * as Amount from "../src/amount";
 import * as Units from "../src/units";
 import { closeTo } from "./test-utils";
@@ -10,23 +9,20 @@ import { closeTo } from "./test-utils";
 // );
 // export const fail: Amount.Amount<"Mass"> = Amount.create(184, Units.CentiMeter);
 
-test("amount_test", t => {
-  t.test("should_not_accept_a_string_as_value", st => {
+describe("amount_test", () => {
+  test("should_not_accept_a_string_as_value", () => {
     const a: any = "12.3"; //tslint:disable-line
-    st.throws(() => Amount.create(a, Units.Celsius));
-    st.end();
+    expect(() => Amount.create(a, Units.Celsius)).toThrow();
   });
-  t.test("should_not_accept_a_string_as_unit", st => {
+  test("should_not_accept_a_string_as_unit", () => {
     const a: any = "Celsius"; //tslint:disable-line
-    st.throws(() => Amount.create(12.3, a));
-    st.end();
+    expect(() => Amount.create(12.3, a)).toThrow();
   });
-  t.test("should_not_accept_a_string_as_decimalCount", st => {
+  test("should_not_accept_a_string_as_decimalCount", () => {
     const a: any = "12"; //tslint:disable-line
-    st.throws(() => Amount.create(12.3, Units.Celsius, a));
-    st.end();
+    expect(() => Amount.create(12.3, Units.Celsius, a)).toThrow();
   });
-  t.test("Multiply_double_to_amount", st => {
+  test("Multiply_double_to_amount", done => {
     const valueLeft: number = 2.0;
     const valueRight: number = 5.5;
     const amountLeft = Amount.create(valueLeft, Units.Gram);
@@ -35,11 +31,11 @@ test("amount_test", t => {
       valueLeft * valueRight,
       Amount.valueAs(Units.Gram, res1),
       0.000001,
-      st
+      done
     );
-    st.end();
+    done();
   });
-  t.test("Divide_amount_by_double", st => {
+  test("Divide_amount_by_double", done => {
     const valueLeft: number = 55.39;
     const valueRight: number = 58.456;
     const amountLeft = Amount.create(valueLeft, Units.Inch);
@@ -48,11 +44,11 @@ test("amount_test", t => {
       valueLeft / valueRight,
       Amount.valueAs(Units.Inch, res1),
       0.00001,
-      st
+      done
     );
-    st.end();
+    done();
   });
-  t.test("Subtract_amounts_with_same_unit", st => {
+  test("Subtract_amounts_with_same_unit", done => {
     const valueLeft: number = 0.8;
     const valueRight: number = 99.56;
     const amountLeft = Amount.create(valueLeft, Units.Kilojoule);
@@ -62,9 +58,9 @@ test("amount_test", t => {
       valueLeft - valueRight,
       Amount.valueAs(Units.Kilojoule, res1),
       0.00001,
-      st
+      done
     );
-    st.end();
+    done();
   });
 });
 
