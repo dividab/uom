@@ -29,7 +29,6 @@
     "build:clean": "rm -rf ./lib-cjs ./lib-esm",
     "build:cjs": "tsc -p src",
     "build:esm": "tsc -p src --module es2015 --moduleResolution node --outDir ./lib-esm",
-    "testjs": "yarn test:build && tape \"lib-test/**/*.js\"",
     "test:build": "tsc -p test",
     "test:build:clean": "rm -rf test/lib",
     "test-coverage": "jest",
