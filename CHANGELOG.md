@@ -7,9 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Added Units `KiloJoulePerCubicMeter` and `BtuPerCubicFeet`.
+
 ## [v2.3.0] - 2019-04-09
 
 ### Changed
+
 - Capitalize ACFM and ACFH labels
 
 ### Added
