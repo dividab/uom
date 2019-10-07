@@ -1,4 +1,3 @@
-import * as test from "tape";
 import * as Units from "../src/units";
 import * as UnitsFormat from "../src/units-format";
 import * as Format from "../src/format";
@@ -8,18 +7,18 @@ const containsAll = <T>(arr1: ReadonlyArray<T>, arr2: ReadonlyArray<T>) =>
 const sameMembers = <T>(arr1: ReadonlyArray<T>, arr2: ReadonlyArray<T>) =>
   containsAll(arr1, arr2) && containsAll(arr2, arr1);
 
-test("format_test", t => {
-  t.test("should get label for Pascal", st => {
+describe("format_test", () => {
+  test("should get label for Pascal", done => {
     const format = Format.getUnitFormat(Units.Pascal);
     if (!format) {
-      st.fail();
-      st.end();
+      done.fail();
+      done();
     } else {
-      st.equal(format.label, "Pa");
-      st.end();
+      expect(format.label).toEqual("Pa");
+      done();
     }
   });
-  t.test("Should get units for Length", st => {
+  test("Should get units for Length", () => {
     const expected = [
       Units.Meter,
       Units.Kilometer,
@@ -32,11 +31,10 @@ test("format_test", t => {
       Units.Mile
     ];
     const actual = Format.getUnitsForQuantity("Length");
-    st.equal(actual.length, expected.length);
-    st.true(sameMembers(actual, expected));
-    st.end();
+    expect(actual.length).toEqual(expected.length);
+    expect(sameMembers(actual, expected)).toBeTruthy();
   });
-  t.test("Should get units for length", st => {
+  test("Should get units for length", () => {
     const expected = [
       Units.Meter,
       Units.Kilometer,
@@ -49,19 +47,17 @@ test("format_test", t => {
       Units.Mile
     ];
     const actual = Format.getUnitsForQuantity("length");
-    st.equal(actual.length, expected.length);
-    st.true(sameMembers(actual, expected));
-    st.end();
+    expect(actual.length).toEqual(expected.length);
+    expect(sameMembers(actual, expected)).toBeTruthy();
   });
 
-  t.test("Should get units for length subset", st => {
+  test("Should get units for length subset", () => {
     const expected = [Units.Meter];
     const actual = Format.getUnitsForQuantity("length", {
       Meter: UnitsFormat.Meter
     });
-    st.equal(actual.length, expected.length);
+    expect(actual.length).toEqual(expected.length);
     console.dir(actual);
-    st.true(sameMembers(actual, expected));
-    st.end();
+    expect(sameMembers(actual, expected)).toBeTruthy();
   });
 });

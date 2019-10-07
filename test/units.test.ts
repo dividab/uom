@@ -1,4 +1,3 @@
-import * as test from "tape";
 import * as Unit from "../src/unit";
 import * as Serialize from "../src/serialize";
 import * as Units from "../src/units";
@@ -8,56 +7,45 @@ import * as Units from "../src/units";
 // export const pass: Quantity.Length = Units.CentiMeter;
 // export const fail: Quantity.Mass = Units.CentiMeter;
 
-test("units_test_equals", t => {
-  t.test("Base unit One should be equal", st => {
+describe("units_test_equals", () => {
+  test("Base unit One should be equal", () => {
     const unit = Units.One;
     const unit2 = Serialize.stringToUnit("One")!;
-    st.true(Unit.equals(unit, unit2));
-    st.end();
+    expect(Unit.equals(unit, unit2)).toBeTruthy();
   });
-  t.test("Base unit One should be equal. Order should not matter", st => {
+  test("Base unit One should be equal. Order should not matter", () => {
     const unit = Serialize.unitToString(Unit.One);
     const unit2 = Serialize.unitToString(Unit.One);
-    st.equal(unit, unit2);
-    st.end();
+    expect(unit).toEqual(unit2);
   });
-  t.test("Alternate unit Radian should be equal", st => {
+  test("Alternate unit Radian should be equal", () => {
     const unit = Units.Radian;
     const unit2 = Serialize.stringToUnit("Radian")!;
-    st.true(Unit.equals(unit, unit2));
-    st.end();
+    expect(Unit.equals(unit, unit2)).toBeTruthy();
   });
-  t.test("Alternate unit compare different object references", st => {
+  test("Alternate unit compare different object references", () => {
     const unit1 = Units.Watt;
     const unit2 = JSON.parse(JSON.stringify(unit1));
 
-    st.true(Unit.equals(unit1, unit2));
-    st.end();
+    expect(Unit.equals(unit1, unit2)).toBeTruthy();
   });
-  t.test("Product unit should be equal", st => {
+  test("Product unit should be equal", () => {
     const unit = Unit.divide("u", "Length", Units.Meter, Units.CentiMeter);
     const unit2 = Unit.divide("u", "Length", Units.Meter, Units.CentiMeter);
-    st.true(Unit.equals(unit, unit2));
-    st.end();
+    expect(Unit.equals(unit, unit2)).toBeTruthy();
   });
-  t.test("Product unit should not be equal", st => {
+  test("Product unit should not be equal", () => {
     const unit = Unit.divide("u1", "Length", Units.Meter, Units.CentiMeter);
     const unit2 = Unit.divide("u2", "Length", Units.Meter, Units.Millimeter);
-    st.false(Unit.equals(unit, unit2));
-    st.end();
+    expect(Unit.equals(unit, unit2)).toBeFalsy();
   });
-  t.test(
-    "SquareRootPascal and SquareRootInchOfWaterColumn should not be equal",
-    st => {
-      const unit1 = Units.SquareRootPascal;
-      const unit2 = Units.SquareRootInchOfWaterColumn;
-      st.false(Unit.equals(unit1, unit2));
-      st.end();
-    }
-  );
-  t.test("Degrees should be quantity Angle", st => {
-    st.true(Units.Degrees.quantity === "Angle");
-    st.end();
+  test("SquareRootPascal and SquareRootInchOfWaterColumn should not be equal", () => {
+    const unit1 = Units.SquareRootPascal;
+    const unit2 = Units.SquareRootInchOfWaterColumn;
+    expect(Unit.equals(unit1, unit2)).toBeFalsy();
+  });
+  test("Degrees should be quantity Angle", () => {
+    expect(Units.Degrees.quantity === "Angle").toBeTruthy();
   });
 });
 

@@ -1,4 +1,3 @@
-import * as test from "tape";
 import { ConversionTest } from "./data/conversion-test";
 
 /**
@@ -20,15 +19,15 @@ export function closeTo(
   actual: number,
   expected: number,
   delta: number,
-  theTest: test.Test,
-  failMsg: string = `closeTo, expected: ${expected}, actual: ${actual}, delta: ${delta}`,
-  passMsg: string = "closeTo"
+  theTest: jest.DoneCallback,
+  failMsg: string = `closeTo, expected: ${expected}, actual: ${actual}, delta: ${delta}`
+  // passMsg: string = "closeTo"
 ) {
   const actualDelta = Math.abs(actual - expected);
   if (actualDelta > delta) {
     theTest.fail(failMsg);
   } else {
-    theTest.pass(passMsg);
+    // theTest.pass(passMsg);
   }
   return false;
 }
