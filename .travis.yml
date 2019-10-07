@@ -5,10 +5,8 @@ cache:
 notifications:
   email: false
 node_js:
-  - "7"
-  - "6"
-before_install:
-before_script:
+  - "lts/*"
+  - "12"
 script:
   - yarn verify
 after_success:
