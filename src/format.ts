@@ -12,8 +12,6 @@ export type UnitFormatMap<TUnitMap> = { [P in keyof TUnitMap]: UnitFormat };
  * @module Format
  */
 
-const units: UnitMap = Units;
-
 /**
  * Get formatting info from unit
  * @param unit
@@ -31,9 +29,10 @@ export function getUnitFormat(
  */
 export function getUnitsForQuantity(
   quantity: string,
-  unitsFormat: { readonly [key: string]: UnitFormat } = UnitsFormat
+  unitsFormat: { readonly [key: string]: UnitFormat } = UnitsFormat,
+  units: UnitMap = Units
 ): Array<Unit.Unit> {
-  const quantityToUnits = getUnitsPerQuantity(unitsFormat);
+  const quantityToUnits = getUnitsPerQuantity(unitsFormat, units);
   const unitsForQuantity = quantityToUnits[quantity.toLowerCase()];
   return unitsForQuantity || [];
 }
@@ -51,9 +50,12 @@ let cache: LocalCache = {
   input: undefined,
   output: undefined
 };
-function getUnitsPerQuantity(unitsFormat: {
-  readonly [key: string]: UnitFormat;
-}): { readonly [key: string]: Array<Unit.Unit> } {
+function getUnitsPerQuantity(
+  unitsFormat: {
+    readonly [key: string]: UnitFormat;
+  },
+  units: UnitMap
+): { readonly [key: string]: Array<Unit.Unit> } {
   if (cache.input === unitsFormat && cache.output !== undefined) {
     return cache.output;
   }
