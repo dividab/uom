@@ -68,7 +68,7 @@ function calculate(Amount<Length> length1, Amount<Length> length2): Amount<Lengt
 
 ### Formatting
 
-Asosciating formatting directly with an `Unit` or `Quantity` is generally not a good idea. Formatting is application specific and should be implemented within application code. For example, an application may have air flows and water flows that both are of `VolumeFlow` quantity. In this case you may want separate labels and default units for air flow and water flow. Assosicating formatting directly with `VolumeFlow` or its units will not solve this. Instead, try tagging each `VolumeFlow` field within the application with either `air_flow`, or `water_flow` and provide different labels and default units per tag.
+Asosciating formatting directly with an `Unit` or `Quantity` is generally not a good idea. Formatting is application specific and should be implemented within application code. For example, an application may have air flows and water flows that both are of `VolumeFlow` quantity. In this case you may want separate labels and default units for air flow and water flow. Associating formatting directly with `VolumeFlow` or its units will not solve this. Instead, try tagging each `VolumeFlow` field within the application with either `air_flow`, or `water_flow` and provide different labels and default units per tag.
 
 However if you are just building something smaller and want quick formatting, this package has some opinionated formatting that is directly associated with each `Unit` built-in. Specifically you can get the label and number of decimals for each unit.
 
