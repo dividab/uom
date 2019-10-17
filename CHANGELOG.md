@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [v2.4.0] - 2019-10-17
+
 ### Added
 
 - Added Units `KiloJoulePerCubicMeter` and `BtuPerCubicFeet`.
