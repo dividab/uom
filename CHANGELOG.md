@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Added Units `KiloJoulePerCubicMeter` and `BtuPerCubicFeet`.
 
+### Changed
+
+- `Format.getUnitsForQuantity()` now accepts parameter for units. Default value is the registred units in this library.
+
 ## [v2.3.0] - 2019-04-09
 
 ### Changed
