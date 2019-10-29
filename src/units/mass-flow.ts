@@ -36,11 +36,24 @@ export const PoundLbPerHour = UnitDivide.massByDuration(
   PoundLb,
   Hour
 );
+export const PoundLbPerSecond = UnitDivide.massByDuration(
+  "PoundLbPerSecond",
+  PoundLb,
+  Second
+);
+
 export const GrainPerHour = UnitDivide.massByDuration(
   "GrainPerHour",
   Grain,
   Hour
 );
+
+export const GrainPerSecond = UnitDivide.massByDuration(
+  "GrainPerSecond",
+  Grain,
+  Second
+);
+
 export const StandardCubicMeterPerHour = Unit.timesNumber(
   "StandardCubicMeterPerHour",
   1.2041,
