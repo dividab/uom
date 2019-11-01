@@ -5,9 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [Unreleased](https://github.com/dividab/uom/compare/v2.4.0...master)
 
-## [v2.4.0] - 2019-10-17
+## [v2.4.0](https://github.com/dividab/uom/compare/v2.3.0...v2.4.0) - 2019-10-17
 
 ### Added
 
@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - `Format.getUnitsForQuantity()` now accepts parameter for units. Default value is the registred units in this library.
 
-## [v2.3.0] - 2019-04-09
+## [v2.3.0](https://github.com/dividab/uom/compare/v2.2.1...v2.3.0) - 2019-04-09
 
 ### Changed
 
@@ -27,25 +27,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Added Units `StandardCubicFeetPerMinutePerSquareFeet` and `StandardCubicMeterPerHourPerSquareMeter`.
 
-## [v2.2.1] - 2019-03-06
+## [v2.2.1](https://github.com/dividab/uom/compare/v2.2.0...v2.2.1) - 2019-03-06
 
 ### Changed
 
 - Republish package because tags were out of sync.
 
-## [v2.2.0] - 2019-03-06
+## [v2.2.0](https://github.com/dividab/uom/compare/v2.1.0...v2.2.0) - 2019-03-06
 
 ### Changed
 
 - All `Amount` compare functions now accepts a custom compare function as parameter.
 
-## [v2.1.0] - 2019-01-10
+## [v2.1.0](https://github.com/dividab/uom/compare/v2.0.0...v2.1.0) - 2019-01-10
 
 ### Changed
 
 - Format module functions now takes an optional argument units map for application specific subset of units.
 
-## [v2.0.0] - 2019-01-10
+## [v2.0.0](https://github.com/dividab/uom/compare/v1.0.0...v2.0.0) - 2019-01-10
 
 ### Added
 
@@ -64,15 +64,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   - unit-label.ts
   - unit-registry.ts
 
-## [v1.0.0] - 2018-05-08
+## [v1.0.0](https://github.com/dividab/uom/compare/v0.0.0...v1.0.0) - 2018-05-08
 
 ### Added
 
 - Initial Release
-
-[unreleased]: https://github.com/dividab/uom/compare/v2.2.1...master
-[v2.2.1]: https://github.com/dividab/uom/compare/v2.2.0...v2.2.1
-[v2.2.0]: https://github.com/dividab/uom/compare/v2.1.0...v2.2.0
-[v2.1.0]: https://github.com/dividab/uom/compare/v2.0.0...v2.1.0
-[v2.0.0]: https://github.com/dividab/uom/compare/v1.0.0...v2.0.0
-[v1.0.0]: https://github.com/dividab/uom/compare/v0.0.0...v1.0.0
