@@ -115,6 +115,8 @@ For more information, see the [full API docs](docs/api.md).
 
 ## How to publish
 
+Don't forget to update the changelog before publishing. Then run:
+
 ```
 yarn publish-npm
 ```
