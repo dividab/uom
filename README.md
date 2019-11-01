@@ -113,6 +113,12 @@ The API is divided into modules, where each module contains functions that opera
 
 For more information, see the [full API docs](docs/api.md).
 
+## How to publish
+
+```
+yarn publish-npm
+```
+
 ## Prior art
 
 This library was inspired by [JSR-275](http://download.oracle.com/otn-pub/jcp/untis-0.6-edr-oth-JSpec/Units-v0.6_edr.pdf?AuthParam=1527941513_89b45d975b743c799d22105ff16f961b). See also this [repo](http://code.google.com/p/unitsofmeasure/), this [article](https://www.javaworld.com/article/2077770/core-java/introduction-to-jsr-275--measures-and-units.html). Altough JSR-275 was not accepted it evolved into [JSR-363](http://www.baeldung.com/javax-measure) which is now accepted.
