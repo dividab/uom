@@ -113,12 +113,18 @@ The API is divided into modules, where each module contains functions that opera
 
 For more information, see the [full API docs](docs/api.md).
 
+## How to develop
+
+Create a PR for addition or changes. Please update the changelog's "unreleased" section with your changes in your PR.
+
 ## How to publish
 
 Don't forget to update the changelog before publishing. Then run:
 
 ```
-yarn publish-npm
+yarn version --patch
+yarn version --minor
+yarn version --major
 ```
 
 ## Prior art

@@ -37,7 +37,8 @@
     "precommit": "lint-staged",
     "report-coverage": "codecov -f coverage/lcov.info",
     "gen-docs": "jsdoc2md --partial docs/scope.hbs --files lib-esm/serialize.js lib-esm/format.js lib-esm/amount.js lib-esm/unit.js > docs/api.md",
-    "publish-npm": "git checkout master && git pull && yarn test && yarn build && yarn publish && git push --follow-tags"
+    "preversion": "git checkout master && git pull && yarn test && yarn build",
+    "postversion": "git push --tags && yarn publish --new-version $npm_package_version && git push --follow-tags && echo \"Successfully released version $npm_package_version!\""
   },
   "lint-staged": {
     "*.{ts,tsx}": "tslint",
