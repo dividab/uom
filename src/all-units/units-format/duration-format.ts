@@ -1,8 +1,8 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const Minute = createUnitFormat("min", 2);
-export const Hour = createUnitFormat("h", 2);
-export const Day = createUnitFormat("days", 0);
-export const Week = createUnitFormat("weeks", 0);
-export const Year = createUnitFormat("year", 0);
-export const MilliSecond = createUnitFormat("ms", 0);
+export const Minute = UnitFormat.createUnitFormat("min", 2);
+export const Hour = UnitFormat.createUnitFormat("h", 2);
+export const Day = UnitFormat.createUnitFormat("days", 0);
+export const Week = UnitFormat.createUnitFormat("weeks", 0);
+export const Year = UnitFormat.createUnitFormat("year", 0);
+export const MilliSecond = UnitFormat.createUnitFormat("ms", 0);

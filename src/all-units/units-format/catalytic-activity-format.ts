@@ -1,3 +1,3 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const Katal = createUnitFormat("kat", 2);
+export const Katal = UnitFormat.createUnitFormat("kat", 2);

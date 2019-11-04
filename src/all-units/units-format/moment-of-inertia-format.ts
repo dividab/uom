@@ -1,3 +1,3 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const KilogramSquareMeter = createUnitFormat("kg·m²", 2);
+export const KilogramSquareMeter = UnitFormat.createUnitFormat("kg·m²", 2);

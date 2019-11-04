@@ -1,3 +1,3 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const DecibelLw = createUnitFormat("dB", 1);
+export const DecibelLw = UnitFormat.createUnitFormat("dB", 1);

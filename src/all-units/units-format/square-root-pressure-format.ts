@@ -1,4 +1,7 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const SquareRootPascal = createUnitFormat("√Pa", 2);
-export const SquareRootInchOfWaterColumn = createUnitFormat("√in WC", 2); //sqrt(Pa/249.0889) = 0.06335029447
+export const SquareRootPascal = UnitFormat.createUnitFormat("√Pa", 2);
+export const SquareRootInchOfWaterColumn = UnitFormat.createUnitFormat(
+  "√in WC",
+  2
+); //sqrt(Pa/249.0889) = 0.06335029447

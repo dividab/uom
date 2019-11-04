@@ -1,3 +1,3 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const Coulomb = createUnitFormat("C", 0);
+export const Coulomb = UnitFormat.createUnitFormat("C", 0);

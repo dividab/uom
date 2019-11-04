@@ -1,3 +1,3 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const PascalSecond = createUnitFormat("Pa·s", 2);
+export const PascalSecond = UnitFormat.createUnitFormat("Pa·s", 2);

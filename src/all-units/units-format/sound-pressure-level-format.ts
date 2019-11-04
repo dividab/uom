@@ -1,4 +1,4 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
 // Sound pressure level
-export const Decibel = createUnitFormat("dB", 1);
+export const Decibel = UnitFormat.createUnitFormat("dB", 1);

@@ -1,3 +1,3 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const Text = createUnitFormat(" ", 2);
+export const Text = UnitFormat.createUnitFormat(" ", 2);

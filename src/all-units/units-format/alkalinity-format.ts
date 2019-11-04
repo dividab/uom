@@ -1,7 +1,7 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
 // Alkalinity
-export const MilliGramHydrogenCarbonatePerLiter = createUnitFormat(
+export const MilliGramHydrogenCarbonatePerLiter = UnitFormat.createUnitFormat(
   "mg HCO₃⁻/l",
   2
 );

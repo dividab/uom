@@ -1,8 +1,8 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const MeterPerSecond = createUnitFormat("m/s", 2);
-export const FeetPerSecond = createUnitFormat("ft/s", 0);
-export const FeetPerMinute = createUnitFormat("ft/min", 0);
-export const MilesPerHour = createUnitFormat("mph", 0);
-export const KilometerPerHour = createUnitFormat("km/h", 0);
-export const MeterPerHour = createUnitFormat("m/h", 0);
+export const MeterPerSecond = UnitFormat.createUnitFormat("m/s", 2);
+export const FeetPerSecond = UnitFormat.createUnitFormat("ft/s", 0);
+export const FeetPerMinute = UnitFormat.createUnitFormat("ft/min", 0);
+export const MilesPerHour = UnitFormat.createUnitFormat("mph", 0);
+export const KilometerPerHour = UnitFormat.createUnitFormat("km/h", 0);
+export const MeterPerHour = UnitFormat.createUnitFormat("m/h", 0);

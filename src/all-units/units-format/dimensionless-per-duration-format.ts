@@ -1,5 +1,5 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
 // Per Duration
-export const OnePerHour = createUnitFormat("/h", 2);
-export const OnePerSecond = createUnitFormat("/s", 2);
+export const OnePerHour = UnitFormat.createUnitFormat("/h", 2);
+export const OnePerSecond = UnitFormat.createUnitFormat("/s", 2);

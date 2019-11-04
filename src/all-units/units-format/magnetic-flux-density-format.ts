@@ -1,3 +1,3 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const Tesla = createUnitFormat("T", 2);
+export const Tesla = UnitFormat.createUnitFormat("T", 2);

@@ -1,6 +1,6 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const Hertz = createUnitFormat("Hz", 2);
-export const Becquerel = createUnitFormat("Bq", 0);
-export const RevolutionsPerMinute = createUnitFormat("rpm", 2);
-export const RevolutionsPerHour = createUnitFormat("rph", 1);
+export const Hertz = UnitFormat.createUnitFormat("Hz", 2);
+export const Becquerel = UnitFormat.createUnitFormat("Bq", 0);
+export const RevolutionsPerMinute = UnitFormat.createUnitFormat("rpm", 2);
+export const RevolutionsPerHour = UnitFormat.createUnitFormat("rph", 1);

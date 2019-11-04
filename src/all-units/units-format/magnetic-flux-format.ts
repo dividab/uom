@@ -1,3 +1,3 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const Weber = createUnitFormat("Wb", 2);
+export const Weber = UnitFormat.createUnitFormat("Wb", 2);

@@ -1,3 +1,3 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const Integer = createUnitFormat(" ", 0);
+export const Integer = UnitFormat.createUnitFormat(" ", 0);

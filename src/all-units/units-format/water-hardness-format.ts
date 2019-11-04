@@ -1,4 +1,7 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const MilliGramCalciumPerLiter = createUnitFormat("mg Ca²⁺/l", 2);
-export const FrenchDegree = createUnitFormat("°f", 2);
+export const MilliGramCalciumPerLiter = UnitFormat.createUnitFormat(
+  "mg Ca²⁺/l",
+  2
+);
+export const FrenchDegree = UnitFormat.createUnitFormat("°f", 2);

@@ -1,4 +1,4 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const DeltaCelsiusDewPoint = createUnitFormat("dp°C", 1);
-export const DeltaFahrenheitDewPoint = createUnitFormat("dp°F", 1);
+export const DeltaCelsiusDewPoint = UnitFormat.createUnitFormat("dp°C", 1);
+export const DeltaFahrenheitDewPoint = UnitFormat.createUnitFormat("dp°F", 1);

@@ -1,8 +1,8 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
 // Thermal conductivity
-export const WattPerMeterPerKelvin = createUnitFormat("W/m/°K", 2);
-export const BtuPerHourPerFeetPerFahrenheit = createUnitFormat(
+export const WattPerMeterPerKelvin = UnitFormat.createUnitFormat("W/m/°K", 2);
+export const BtuPerHourPerFeetPerFahrenheit = UnitFormat.createUnitFormat(
   "BTU/h/ft/°F",
   2
 );

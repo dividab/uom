@@ -1,4 +1,4 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const Ohm = createUnitFormat("Ω", 0);
-export const KiloOhm = createUnitFormat("kOhm", 2);
+export const Ohm = UnitFormat.createUnitFormat("Ω", 0);
+export const KiloOhm = UnitFormat.createUnitFormat("kOhm", 2);

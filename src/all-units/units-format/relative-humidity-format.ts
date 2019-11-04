@@ -1,4 +1,4 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const HumidityFactor = createUnitFormat("r.H. factor", 2);
-export const PercentHumidity = createUnitFormat("% r.H.", 1);
+export const HumidityFactor = UnitFormat.createUnitFormat("r.H. factor", 2);
+export const PercentHumidity = UnitFormat.createUnitFormat("% r.H.", 1);

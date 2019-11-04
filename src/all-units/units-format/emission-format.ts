@@ -1,5 +1,5 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const KilogramPerKiloWattHour = createUnitFormat("kg/kWh", 2);
-export const GramPerKiloWattHour = createUnitFormat("g/kWh", 1);
-export const PoundLbPerKiloWattHour = createUnitFormat("lb/kWh", 2);
+export const KilogramPerKiloWattHour = UnitFormat.createUnitFormat("kg/kWh", 2);
+export const GramPerKiloWattHour = UnitFormat.createUnitFormat("g/kWh", 1);
+export const PoundLbPerKiloWattHour = UnitFormat.createUnitFormat("lb/kWh", 2);

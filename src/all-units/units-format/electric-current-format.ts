@@ -1,4 +1,4 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
 // Electric current
-export const MilliAmpere = createUnitFormat("mA", 2);
+export const MilliAmpere = UnitFormat.createUnitFormat("mA", 2);

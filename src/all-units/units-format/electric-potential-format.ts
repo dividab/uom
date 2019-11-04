@@ -1,5 +1,5 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const Volt = createUnitFormat("V", 2);
-export const MilliVolt = createUnitFormat("mV", 0);
-export const KiloVolt = createUnitFormat("kV", 0);
+export const Volt = UnitFormat.createUnitFormat("V", 2);
+export const MilliVolt = UnitFormat.createUnitFormat("mV", 0);
+export const KiloVolt = UnitFormat.createUnitFormat("kV", 0);

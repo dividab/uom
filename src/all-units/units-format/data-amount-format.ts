@@ -1,3 +1,3 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const Bit = createUnitFormat("bit", 0);
+export const Bit = UnitFormat.createUnitFormat("bit", 0);

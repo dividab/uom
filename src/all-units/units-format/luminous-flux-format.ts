@@ -1,3 +1,3 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const Lumen = createUnitFormat("lm", 0);
+export const Lumen = UnitFormat.createUnitFormat("lm", 0);

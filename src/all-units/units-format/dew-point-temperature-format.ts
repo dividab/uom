@@ -1,5 +1,5 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const CelsiusDewPoint = createUnitFormat("dp°C", 2);
-export const FahrenheitDewPoint = createUnitFormat("dp°F", 1);
-export const KelvinDewPoint = createUnitFormat("dp°K", 2);
+export const CelsiusDewPoint = UnitFormat.createUnitFormat("dp°C", 2);
+export const FahrenheitDewPoint = UnitFormat.createUnitFormat("dp°F", 1);
+export const KelvinDewPoint = UnitFormat.createUnitFormat("dp°K", 2);

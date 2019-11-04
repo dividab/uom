@@ -1,8 +1,11 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
 //VolumeFlowPerSquareRootPressure
-export const LiterPerSecondPerSquareRootPascal = createUnitFormat("l/s/√Pa", 2);
-export const CubicFeetPerMinutePerSquareRootInchOfWaterColumn = createUnitFormat(
+export const LiterPerSecondPerSquareRootPascal = UnitFormat.createUnitFormat(
+  "l/s/√Pa",
+  2
+);
+export const CubicFeetPerMinutePerSquareRootInchOfWaterColumn = UnitFormat.createUnitFormat(
   "ft³/min/√in WC",
   2
 );

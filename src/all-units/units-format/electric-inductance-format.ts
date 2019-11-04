@@ -1,3 +1,3 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const Henry = createUnitFormat("H", 2);
+export const Henry = UnitFormat.createUnitFormat("H", 2);

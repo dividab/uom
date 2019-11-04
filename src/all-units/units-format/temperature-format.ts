@@ -1,5 +1,5 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const Celsius = createUnitFormat("°C", 1);
-export const Rankine = createUnitFormat("Rankine", 2);
-export const Fahrenheit = createUnitFormat("°F", 1);
+export const Celsius = UnitFormat.createUnitFormat("°C", 1);
+export const Rankine = UnitFormat.createUnitFormat("Rankine", 2);
+export const Fahrenheit = UnitFormat.createUnitFormat("°F", 1);

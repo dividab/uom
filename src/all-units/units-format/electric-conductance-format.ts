@@ -1,3 +1,3 @@
-import { createUnitFormat } from "../unit-format";
+import { UnitFormat } from "../../core";
 
-export const Siemens = createUnitFormat("S", 1);
+export const Siemens = UnitFormat.createUnitFormat("S", 1);
