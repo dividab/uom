@@ -99,7 +99,7 @@ export function electricalPotentialByElectricalCurrent(
 
 export function dimentionlessByDuration(
   name: string,
-  left: Unit.Unit<q.Dimensionless>,
+  left: Unit.Unit<Unit.Dimensionless>,
   right: Unit.Unit<q.Duration>
 ): Unit.Unit<q.Frequency> {
   return Unit.divide(name, "Frequency", left, right);
@@ -171,7 +171,7 @@ export function massByMass(
 
 export function dimensionlessByVolume(
   name: string,
-  left: Unit.Unit<q.Dimensionless>,
+  left: Unit.Unit<Unit.Dimensionless>,
   right: Unit.Unit<q.Volume>
 ): Unit.Unit<q.DimensionlessPerVolume> {
   return Unit.divide(name, "DimensionlessPerVolume", left, right);
@@ -179,7 +179,7 @@ export function dimensionlessByVolume(
 
 export function dimensionlessByEnergy(
   name: string,
-  left: Unit.Unit<q.Dimensionless>,
+  left: Unit.Unit<Unit.Dimensionless>,
   right: Unit.Unit<q.Energy>
 ): Unit.Unit<q.DimensionlessPerEnergy> {
   return Unit.divide(name, "DimensionlessPerEnergy", left, right);
@@ -187,7 +187,7 @@ export function dimensionlessByEnergy(
 
 export function dimensionlessByDuration(
   name: string,
-  left: Unit.Unit<q.Dimensionless>,
+  left: Unit.Unit<Unit.Dimensionless>,
   right: Unit.Unit<q.Duration>
 ): Unit.Unit<q.DimensionlessPerDuration> {
   return Unit.divide(name, "DimensionlessPerDuration", left, right);
@@ -251,7 +251,7 @@ export function volumeFlowByArea(
 
 export function dimensionlessByMass(
   name: string,
-  left: Unit.Unit<q.Dimensionless>,
+  left: Unit.Unit<Unit.Dimensionless>,
   right: Unit.Unit<q.Mass>
 ): Unit.Unit<q.DimensionlessPerMass> {
   return Unit.divide(name, "DimensionlessPerMass", left, right);

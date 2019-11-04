@@ -70,8 +70,8 @@ export function massByArea(
 
 export function dimensionlessByDimensionless(
   name: string,
-  left: Unit.Unit<q.Dimensionless>,
-  right: Unit.Unit<q.Dimensionless>
+  left: Unit.Unit<Unit.Dimensionless>,
+  right: Unit.Unit<Unit.Dimensionless>
 ): Unit.Unit<q.SoundPressureLevel> {
   return Unit.times(name, "SoundPressureLevel", left, right);
 }
