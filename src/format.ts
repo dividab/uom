@@ -43,9 +43,11 @@ interface LocalCache {
         readonly [key: string]: UnitFormat;
       }
     | undefined;
+  // eslint-disable-next-line functional/prefer-readonly-type
   readonly output: { readonly [key: string]: Array<Unit.Unit> } | undefined;
 }
 
+// eslint-disable-next-line functional/no-let
 let cache: LocalCache = {
   input: undefined,
   output: undefined
