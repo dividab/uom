@@ -3,7 +3,6 @@
  * @module Unit
  */
 
-import { exhaustiveCheck } from "../utils/exhaustive-check";
 import { Dimensionless, Quantity } from "../all-units/quantity";
 
 export interface Unit<TQuantityName extends Quantity = Quantity> {
@@ -803,4 +802,21 @@ function productUnitBuildNameFromElements(
   }
 
   return name;
+}
+
+// See https://basarat.gitbooks.io/typescript/content/docs/types/discriminated-unions.html
+// and https://github.com/Microsoft/TypeScript/issues/6155
+export function exhaustiveCheck(
+  x: never,
+  throwError: boolean = false,
+  match: string = ""
+): never {
+  if (throwError) {
+    throw new Error(
+      `ERROR! Trying to match '${match}', the value ${JSON.stringify(
+        x
+      )} should be of type never.`
+    );
+  }
+  return x;
 }
