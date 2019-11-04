@@ -1,4 +1,7 @@
 import * as Units from "./units";
+import { Unit } from "../core";
+
+// export { Dimensionless } from "./units/dimensionless";
 
 export { Acceleration } from "./units/acceleration";
 export { Alkalinity } from "./units/alkalinity";
@@ -11,7 +14,6 @@ export { DeltaDewPointTemperature } from "./units/delta-dew-point-temperature";
 export { DeltaTemperature } from "./units/delta-temperature";
 export { Density } from "./units/density";
 export { DewPointTemperature } from "./units/dew-point-temperature";
-export { Dimensionless } from "./units/dimensionless";
 export { DimensionlessPerEnergy } from "./units/dimensionless-per-energy";
 export { DimensionlessPerMass } from "./units/dimensionless-per-mass";
 export { DimensionlessPerVolume } from "./units/dimensionless-per-volume";
@@ -71,6 +73,7 @@ export { ThermalTransmittance } from "./units/thermal-transmittance";
 export { ThermalConductivity } from "./units/thermal-conductivity";
 
 export type Quantity =
+  | Unit.Dimensionless
   | Units.Acceleration
   | Units.Alkalinity
   | Units.AmountOfSubstance
@@ -82,7 +85,6 @@ export type Quantity =
   | Units.DeltaTemperature
   | Units.Density
   | Units.DewPointTemperature
-  | Units.Dimensionless
   | Units.DimensionlessPerEnergy
   | Units.DimensionlessPerMass
   | Units.DimensionlessPerVolume
