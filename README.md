@@ -18,6 +18,10 @@ This package has functions to handle unit of measures. It works particulary well
 
 The library is compiled to ES5 and no polyfills are required.
 
+> NOTE: The base package `uom` does only contain the base SI units. In order to get more units to convert between you also need to install the `uom-units` package:
+
+`npm install --save uom-units`
+
 ## Features
 
 ### Conversion
