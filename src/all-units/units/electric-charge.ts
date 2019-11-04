@@ -1,5 +1,5 @@
+import { BaseUnits } from "../../core";
 import * as UnitTimes from "../unit-times";
-import { Second, Ampere } from "./base-units";
 
 export type ElectricCharge = "ElectricCharge";
 
@@ -10,6 +10,6 @@ export type ElectricCharge = "ElectricCharge";
  */
 export const Coulomb = UnitTimes.durationByElectricCurrent(
   "Coulomb",
-  Second,
-  Ampere
+  BaseUnits.Second,
+  BaseUnits.Ampere
 );

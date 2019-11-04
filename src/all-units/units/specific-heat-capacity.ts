@@ -1,5 +1,6 @@
+// import { Kelvin } from "./base-units";
+import { BaseUnits } from "../../core";
 import * as UnitTimes from "../unit-times";
-import { Kelvin } from "./base-units";
 import { Celsius } from "./temperature";
 import { KilojoulePerKilogram } from "./specific-enthalpy";
 
@@ -11,7 +12,7 @@ export type SpecificHeatCapacity = "SpecificHeatCapacity";
 export const KilojoulePerKilogramKelvin = UnitTimes.specificEnthalpyByTemperature(
   "KilojoulePerKilogramKelvin",
   KilojoulePerKilogram,
-  Kelvin
+  BaseUnits.Kelvin
 );
 export const KilojoulePerKilogramCelsius = UnitTimes.specificEnthalpyByTemperature(
   "KilojoulePerKilogramCelsius",

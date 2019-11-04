@@ -1,5 +1,5 @@
+import { BaseUnits } from "../../core";
 import * as UnitTimes from "../unit-times";
-import { Second } from "./base-units";
 import { KiloWatt, MegaWatt, GigaWatt, Watt } from "./power";
 import { Hour } from "./duration";
 
@@ -21,4 +21,8 @@ export const GigaWattHour = UnitTimes.powerByDuration(
   Hour
 );
 export const WattHour = UnitTimes.powerByDuration("WattHour", Watt, Hour);
-export const WattSecond = UnitTimes.powerByDuration("WattSecond", Watt, Second);
+export const WattSecond = UnitTimes.powerByDuration(
+  "WattSecond",
+  Watt,
+  BaseUnits.Second
+);

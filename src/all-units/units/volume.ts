@@ -1,11 +1,10 @@
-import { Unit, UnitPrefix } from "../../core";
-import { Meter } from "./base-units";
+import { Unit, UnitPrefix, BaseUnits } from "../../core";
 import { CentiMeter, Inch, Foot } from "./length";
 
 export type Volume = "Volume";
 
 /** The metric unit for volume quantities ( <code>m³</code> ). */
-export const CubicMeter = UnitPrefix.Cubed("CubicMeter", Meter);
+export const CubicMeter = UnitPrefix.Cubed("CubicMeter", BaseUnits.Meter);
 
 // Volume
 export const CubicCentiMeter = UnitPrefix.Cubed("CubicCentiMeter", CentiMeter);

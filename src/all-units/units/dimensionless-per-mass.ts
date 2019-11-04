@@ -1,6 +1,5 @@
-import { Unit } from "../../core";
+import { Unit, BaseUnits } from "../../core";
 import * as UnitDivide from "../unit-divide";
-import { Kilogram } from "./base-units";
 import { PoundLb } from "./mass";
 
 export type DimensionlessPerMass = "DimensionlessPerMass";
@@ -9,7 +8,7 @@ export type DimensionlessPerMass = "DimensionlessPerMass";
 export const OnePerKilogram = UnitDivide.dimensionlessByMass(
   "OnePerKilogram",
   Unit.One,
-  Kilogram
+  BaseUnits.Kilogram
 );
 
 export const OnePerPoundLb = UnitDivide.dimensionlessByMass(

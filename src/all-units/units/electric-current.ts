@@ -1,7 +1,6 @@
-import { Ampere } from "./base-units";
-import { UnitPrefix } from "../../core";
+import { UnitPrefix, BaseUnits } from "../../core";
 
 export type ElectricCurrent = "ElectricCurrent";
 
 // Electric current
-export const MilliAmpere = UnitPrefix.Milli("MilliAmpere", Ampere);
+export const MilliAmpere = UnitPrefix.Milli("MilliAmpere", BaseUnits.Ampere);

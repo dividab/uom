@@ -1,5 +1,5 @@
+import { BaseUnits } from "../../core";
 import * as UnitDivide from "../unit-divide";
-import { Ampere } from "./base-units";
 import { Volt } from "./electric-potential";
 
 export type ElectricConductance = "ElectricConductance";
@@ -11,6 +11,6 @@ export type ElectricConductance = "ElectricConductance";
  */
 export const Siemens = UnitDivide.electricalCurrentByElectricalPotential(
   "Siemens",
-  Ampere,
+  BaseUnits.Ampere,
   Volt
 );

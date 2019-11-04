@@ -1,5 +1,5 @@
+import { BaseUnits } from "../../core";
 import * as UnitDivide from "../unit-divide";
-import { Second } from "./base-units";
 import {
   CubicMeter,
   CubicFeet,
@@ -15,7 +15,7 @@ export type VolumeFlow = "VolumeFlow";
 export const CubicMeterPerSecond = UnitDivide.volumeByDuration(
   "CubicMeterPerSecond",
   CubicMeter,
-  Second
+  BaseUnits.Second
 );
 export const CubicMeterPerHour = UnitDivide.volumeByDuration(
   "CubicMeterPerHour",
@@ -40,7 +40,7 @@ export const HundredCubicFeetPerHour = UnitDivide.volumeByDuration(
 export const LiterPerSecond = UnitDivide.volumeByDuration(
   "LiterPerSecond",
   Liter,
-  Second
+  BaseUnits.Second
 );
 export const LiterPerMinute = UnitDivide.volumeByDuration(
   "LiterPerMinute",

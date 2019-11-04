@@ -1,5 +1,5 @@
+import { BaseUnits } from "../../core";
 import * as UnitDivide from "../unit-divide";
-import { Kelvin } from "./base-units";
 import { KiloWatt } from "./power";
 import { Celsius } from "./temperature";
 
@@ -14,5 +14,5 @@ export const KilowattPerCelsius = UnitDivide.powerByTemperature(
 export const KilowattPerKelvin = UnitDivide.powerByTemperature(
   "KilowattPerKelvin",
   KiloWatt,
-  Kelvin
+  BaseUnits.Kelvin
 );

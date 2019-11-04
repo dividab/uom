@@ -1,6 +1,6 @@
+import { Unit, BaseUnits } from "../../core";
+// import { Kilogram } from "./base-units";
 import * as UnitTimes from "../unit-times";
-import { Unit } from "../../core";
-import { Kilogram } from "./base-units";
 import { MeterPerSquareSecond } from "./acceleration";
 
 export type Force = "Force";
@@ -12,7 +12,7 @@ export type Force = "Force";
  */
 export const Newton = UnitTimes.massByAcceleration(
   "Newton",
-  Kilogram,
+  BaseUnits.Kilogram,
   MeterPerSquareSecond
 );
 

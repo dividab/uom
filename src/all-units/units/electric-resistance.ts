@@ -1,6 +1,5 @@
-import { UnitPrefix } from "../../core";
+import { UnitPrefix, BaseUnits } from "../../core";
 import * as UnitDivide from "../unit-divide";
-import { Ampere } from "./base-units";
 import { Volt } from "./electric-potential";
 
 export type ElectricResistance = "ElectricResistance";
@@ -14,7 +13,7 @@ export type ElectricResistance = "ElectricResistance";
 export const Ohm = UnitDivide.electricalPotentialByElectricalCurrent(
   "Ohm",
   Volt,
-  Ampere
+  BaseUnits.Ampere
 );
 
 // Electric resistance

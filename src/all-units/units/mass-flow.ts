@@ -1,6 +1,6 @@
+import { Unit, BaseUnits } from "../../core";
 import * as UnitDivide from "../unit-divide";
-import { Unit } from "../../core";
-import { Second, Kilogram } from "./base-units";
+// import { Second, Kilogram } from "./base-units";
 import { Gram, Slug, PoundLb, Grain } from "./mass";
 import { Hour } from "./duration";
 
@@ -9,24 +9,24 @@ export type MassFlow = "MassFlow";
 // MassFlow
 export const KilogramPerSecond = UnitDivide.massByDuration(
   "KilogramPerSecond",
-  Kilogram,
-  Second
+  BaseUnits.Kilogram,
+  BaseUnits.Second
 );
 export const GramPerSecond = UnitDivide.massByDuration(
   "GramPerSecond",
   Gram,
-  Second
+  BaseUnits.Second
 );
 export const GramPerHour = UnitDivide.massByDuration("GramPerHour", Gram, Hour);
 export const KilogramPerHour = UnitDivide.massByDuration(
   "KilogramPerHour",
-  Kilogram,
+  BaseUnits.Kilogram,
   Hour
 );
 export const SlugPerSecond = UnitDivide.massByDuration(
   "SlugPerSecond",
   Slug,
-  Second
+  BaseUnits.Second
 );
 export const SlugPerHour = UnitDivide.massByDuration("SlugPerHour", Slug, Hour);
 export const PoundLbPerHour = UnitDivide.massByDuration(
@@ -37,7 +37,7 @@ export const PoundLbPerHour = UnitDivide.massByDuration(
 export const PoundLbPerSecond = UnitDivide.massByDuration(
   "PoundLbPerSecond",
   PoundLb,
-  Second
+  BaseUnits.Second
 );
 
 export const GrainPerHour = UnitDivide.massByDuration(
@@ -49,7 +49,7 @@ export const GrainPerHour = UnitDivide.massByDuration(
 export const GrainPerSecond = UnitDivide.massByDuration(
   "GrainPerSecond",
   Grain,
-  Second
+  BaseUnits.Second
 );
 
 export const StandardCubicMeterPerHour = Unit.timesNumber(

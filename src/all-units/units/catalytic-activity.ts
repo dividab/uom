@@ -1,5 +1,5 @@
+import { BaseUnits } from "../../core";
 import * as UnitDivide from "../unit-divide";
-import { Second, Mole } from "./base-units";
 
 export type CatalyticActivity = "CatalyticActivity";
 
@@ -8,6 +8,6 @@ export type CatalyticActivity = "CatalyticActivity";
  */
 export const Katal = UnitDivide.amountOfSubstanceByDuration(
   "Katal",
-  Mole,
-  Second
+  BaseUnits.Mole,
+  BaseUnits.Second
 );

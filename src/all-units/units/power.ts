@@ -1,6 +1,5 @@
 import * as UnitDivide from "../unit-divide";
-import { Unit, UnitPrefix } from "../../core";
-import { Second } from "./base-units";
+import { Unit, UnitPrefix, BaseUnits } from "../../core";
 import { Joule } from "./energy";
 
 export type Power = "Power";
@@ -10,7 +9,11 @@ export type Power = "Power";
  * One watt is equal to one joule per second.
  * It is named after the British scientist James Watt (1736-1819).
  */
-export const Watt = UnitDivide.energyByDuration("Watt", Joule, Second);
+export const Watt = UnitDivide.energyByDuration(
+  "Watt",
+  Joule,
+  BaseUnits.Second
+);
 
 // Power
 export const KiloWatt = UnitPrefix.Kilo("KiloWatt", Watt);

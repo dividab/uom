@@ -1,11 +1,10 @@
-import { UnitPrefix } from "../../core";
-import { Meter } from "./base-units";
+import { UnitPrefix, BaseUnits } from "../../core";
 import { Inch, Foot, Millimeter, CentiMeter, Decimeter } from "./length";
 
 export type Area = "Area";
 
 /** The metric unit for area quantities ( <code>m²</code> ). */
-export const SquareMeter = UnitPrefix.Squared("SquareMeter", Meter);
+export const SquareMeter = UnitPrefix.Squared("SquareMeter", BaseUnits.Meter);
 
 /// Area
 export const SquareInch = UnitPrefix.Squared("SquareInch", Inch);

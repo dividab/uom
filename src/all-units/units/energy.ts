@@ -1,6 +1,5 @@
-import { Unit, UnitPrefix } from "../../core";
+import { Unit, UnitPrefix, BaseUnits } from "../../core";
 import * as UnitTimes from "../unit-times";
-import { Meter } from "./base-units";
 import { Newton } from "./force";
 
 export type Energy = "Energy";
@@ -11,13 +10,13 @@ export type Energy = "Energy";
  * through a distance of 1 metre in the direction of the force.
  * It is named after the English physicist James Prescott Joule (1818-1889).
  */
-export const Joule = UnitTimes.forceByLength("Joule", Newton, Meter);
+export const Joule = UnitTimes.forceByLength("Joule", Newton, BaseUnits.Meter);
 
 // Energy
 export const NewtonMeter = UnitTimes.forceByLength(
   "NewtonMeter",
   Newton,
-  Meter
+  BaseUnits.Meter
 );
 export const Kilojoule = UnitPrefix.Kilo("Kilojoule", Joule);
 export const Megajoule = UnitPrefix.Mega("Megajoule", Joule);

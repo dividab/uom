@@ -1,6 +1,6 @@
+import { BaseUnits } from "../../core";
 import * as UnitDivide from "../unit-divide";
 import { MeterPerSecond } from "./velocity";
-import { Second } from "./base-units";
 
 export type Acceleration = "Acceleration";
 
@@ -8,5 +8,5 @@ export type Acceleration = "Acceleration";
 export const MeterPerSquareSecond = UnitDivide.velocityBySecond(
   "MeterPerSquareSecond",
   MeterPerSecond,
-  Second
+  BaseUnits.Second
 );

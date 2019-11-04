@@ -1,6 +1,5 @@
-import { UnitPrefix } from "../../core";
+import { UnitPrefix, BaseUnits } from "../../core";
 import * as UnitDivide from "../unit-divide";
-import { Ampere } from "./base-units";
 import { Watt } from "./power";
 
 export type ElectricPotential = "ElectricPotential";
@@ -11,7 +10,11 @@ export type ElectricPotential = "ElectricPotential";
  * wire carrying a export constant current of one ampere when the power dissipated between the points is one watt.
  * It is named after the Italian physicist Count Alessandro Volta (1745-1827).
  */
-export const Volt = UnitDivide.powerByElectricalCurrent("Volt", Watt, Ampere);
+export const Volt = UnitDivide.powerByElectricalCurrent(
+  "Volt",
+  Watt,
+  BaseUnits.Ampere
+);
 
 // ElectricPotential
 export const MilliVolt = UnitPrefix.Milli("MilliVolt", Volt);

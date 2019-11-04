@@ -1,5 +1,5 @@
 import * as UnitDivide from "../unit-divide";
-import { Ampere } from "./base-units";
+import { BaseUnits } from "../../core";
 import { Weber } from "./magnetic-flux";
 
 export type ElectricInductance = "ElectricInductance";
@@ -7,5 +7,5 @@ export type ElectricInductance = "ElectricInductance";
 export const Henry = UnitDivide.magneticFluxByElectricalCurrent(
   "Henry",
   Weber,
-  Ampere
+  BaseUnits.Ampere
 );

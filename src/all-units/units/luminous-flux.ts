@@ -1,5 +1,5 @@
+import { BaseUnits } from "../../core";
 import * as UnitTimes from "../unit-times";
-import { Candela } from "./base-units";
 import { Steradian } from "./solid-angle";
 
 export type LuminousFlux = "LuminousFlux";
@@ -11,6 +11,6 @@ export type LuminousFlux = "LuminousFlux";
  */
 export const Lumen = UnitTimes.luminousIntensityBySolidAngle(
   "Lumen",
-  Candela,
+  BaseUnits.Candela,
   Steradian
 );

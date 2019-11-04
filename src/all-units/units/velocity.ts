@@ -1,5 +1,6 @@
+// import { Meter, Second } from "./base-units";
+import { BaseUnits } from "../../core";
 import * as UnitDivide from "../unit-divide";
-import { Meter, Second } from "./base-units";
 import { Foot, Mile, Kilometer } from "./length";
 import { Minute, Hour } from "./duration";
 
@@ -8,15 +9,15 @@ export type Velocity = "Velocity";
 /** The metric unit for velocity quantities ( <code>m/s</code> ). */
 export const MeterPerSecond = UnitDivide.lengthByDuration(
   "MeterPerSecond",
-  Meter,
-  Second
+  BaseUnits.Meter,
+  BaseUnits.Second
 );
 
 // Velocity
 export const FeetPerSecond = UnitDivide.lengthByDuration(
   "FeetPerSecond",
   Foot,
-  Second
+  BaseUnits.Second
 );
 export const FeetPerMinute = UnitDivide.lengthByDuration(
   "FeetPerMinute",
@@ -35,6 +36,6 @@ export const KilometerPerHour = UnitDivide.lengthByDuration(
 );
 export const MeterPerHour = UnitDivide.lengthByDuration(
   "MeterPerHour",
-  Meter,
+  BaseUnits.Meter,
   Hour
 );

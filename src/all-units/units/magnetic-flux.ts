@@ -1,5 +1,5 @@
+import { BaseUnits } from "../../core";
 import * as UnitTimes from "../unit-times";
-import { Second } from "./base-units";
 import { Volt } from "./electric-potential";
 
 export type MagneticFlux = "MagneticFlux";
@@ -13,5 +13,5 @@ export type MagneticFlux = "MagneticFlux";
 export const Weber = UnitTimes.electricalPotentialByDuration(
   "Weber",
   Volt,
-  Second
+  BaseUnits.Second
 );

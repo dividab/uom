@@ -1,5 +1,5 @@
+import { BaseUnits } from "../../core";
 import * as UnitDivide from "../unit-divide";
-import { Second } from "./base-units";
 import { One } from "./dimensionless";
 import { Minute, Hour } from "./duration";
 
@@ -10,7 +10,11 @@ export type Frequency = "Frequency";
  * A unit of frequency equal to one cycle per second. After Heinrich Rudolf Hertz (1857-1894),
  * German physicist who was the first to produce radio waves artificially.
  */
-export const Hertz = UnitDivide.dimentionlessByDuration("Hertz", One, Second);
+export const Hertz = UnitDivide.dimentionlessByDuration(
+  "Hertz",
+  One,
+  BaseUnits.Second
+);
 
 /**
  * The derived unit for activity of a radionuclide ( <code>Bq</code> ).
@@ -20,7 +24,7 @@ export const Hertz = UnitDivide.dimentionlessByDuration("Hertz", One, Second);
 export const Becquerel = UnitDivide.dimentionlessByDuration(
   "Becquerel",
   One,
-  Second
+  BaseUnits.Second
 );
 
 // Frequency
