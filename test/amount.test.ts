@@ -1,5 +1,5 @@
-import { Amount } from "../src/core";
-import { Units } from "../src/all-units";
+import { Amount, BaseUnits } from "../src/core";
+// import { Units } from "../src/all-units";
 import { closeTo } from "./test-utils";
 
 // TODO: Add typing tests:
@@ -13,7 +13,7 @@ describe("amount_test", () => {
   test("should_not_accept_a_string_as_value", () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const a: any = "12.3";
-    expect(() => Amount.create(a, Units.Celsius)).toThrow();
+    expect(() => Amount.create(a, BaseUnits.Kelvin)).toThrow();
   });
   test("should_not_accept_a_string_as_unit", () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -23,16 +23,16 @@ describe("amount_test", () => {
   test("should_not_accept_a_string_as_decimalCount", () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const a: any = "12";
-    expect(() => Amount.create(12.3, Units.Celsius, a)).toThrow();
+    expect(() => Amount.create(12.3, BaseUnits.Kelvin, a)).toThrow();
   });
   test("Multiply_double_to_amount", done => {
     const valueLeft: number = 2.0;
     const valueRight: number = 5.5;
-    const amountLeft = Amount.create(valueLeft, Units.Gram);
+    const amountLeft = Amount.create(valueLeft, BaseUnits.Kelvin);
     const res1 = Amount.times(amountLeft, valueRight);
     closeTo(
       valueLeft * valueRight,
-      Amount.valueAs(Units.Gram, res1),
+      Amount.valueAs(BaseUnits.Kelvin, res1),
       0.000001,
       done
     );
@@ -41,11 +41,11 @@ describe("amount_test", () => {
   test("Divide_amount_by_double", done => {
     const valueLeft: number = 55.39;
     const valueRight: number = 58.456;
-    const amountLeft = Amount.create(valueLeft, Units.Inch);
+    const amountLeft = Amount.create(valueLeft, BaseUnits.Kelvin);
     const res1 = Amount.divide(amountLeft, valueRight);
     closeTo(
       valueLeft / valueRight,
-      Amount.valueAs(Units.Inch, res1),
+      Amount.valueAs(BaseUnits.Kelvin, res1),
       0.00001,
       done
     );
@@ -54,12 +54,12 @@ describe("amount_test", () => {
   test("Subtract_amounts_with_same_unit", done => {
     const valueLeft: number = 0.8;
     const valueRight: number = 99.56;
-    const amountLeft = Amount.create(valueLeft, Units.Kilojoule);
-    const amountRight = Amount.create(valueRight, Units.Kilojoule);
+    const amountLeft = Amount.create(valueLeft, BaseUnits.Kelvin);
+    const amountRight = Amount.create(valueRight, BaseUnits.Kelvin);
     const res1 = Amount.minus(amountLeft, amountRight);
     closeTo(
       valueLeft - valueRight,
-      Amount.valueAs(Units.Kilojoule, res1),
+      Amount.valueAs(BaseUnits.Kelvin, res1),
       0.00001,
       done
     );

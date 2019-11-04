@@ -1,13 +1,13 @@
-import { Units } from "../src/all-units";
-import { Serialize } from "../src/core";
+// import { Units } from "../src/all-units";
+import { Serialize, BaseUnits } from "../src/core";
 
 describe("serialize_test", () => {
-  test("For PPM should return Units.PPM", () => {
-    const unit = Serialize.stringToUnit("PPM", Units);
-    expect(unit).toEqual(Units.PPM);
+  test("For Kelvin should return BaseUnits.Kelvin", () => {
+    const unit = Serialize.stringToUnit("Kelvin", BaseUnits);
+    expect(unit).toEqual(BaseUnits.Kelvin);
   });
-  test("For ppm should return Units.PPM", () => {
-    const unit = Serialize.stringToUnit("ppm", Units);
-    expect(unit).toEqual(Units.PPM);
+  test("For kelvin should return BaseUnits.Kelvin", () => {
+    const unit = Serialize.stringToUnit("kelvin", BaseUnits);
+    expect(unit).toEqual(BaseUnits.Kelvin);
   });
 });
