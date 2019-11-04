@@ -7,6 +7,8 @@ export interface UnitFormat {
   readonly decimalCount: number;
 }
 
+export type UnitFormatMap = { readonly [key: string]: UnitFormat };
+
 /**
  * Creates a unit format
  * @param label

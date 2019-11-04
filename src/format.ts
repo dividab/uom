@@ -1,10 +1,7 @@
 import * as Unit from "./unit";
-import { UnitFormat } from "./unit-format";
+import { UnitFormat, UnitFormatMap } from "./unit-format";
 
-export type UnitMap = {
-  readonly [key: string]: Unit.Unit<unknown>;
-};
-export type UnitFormatMap<TUnitMap> = { [P in keyof TUnitMap]: UnitFormat };
+// export type UnitFormatMap<TUnitMap> = { [P in keyof TUnitMap]: UnitFormat };
 
 /**
  * @module Format
@@ -16,7 +13,7 @@ export type UnitFormatMap<TUnitMap> = { [P in keyof TUnitMap]: UnitFormat };
  */
 export function getUnitFormat(
   unit: Unit.Unit<unknown>,
-  unitsFormat: { readonly [key: string]: UnitFormat } /*= UnitsFormat*/
+  unitsFormat: UnitFormatMap
 ): UnitFormat | undefined {
   return unitsFormat[unit.name];
 }
@@ -27,8 +24,8 @@ export function getUnitFormat(
  */
 export function getUnitsForQuantity(
   quantity: string,
-  unitsFormat: { readonly [key: string]: UnitFormat } /*= UnitsFormat*/,
-  units: UnitMap /*= Units*/
+  unitsFormat: UnitFormatMap,
+  units: Unit.UnitMap
 ): Array<Unit.Unit<unknown>> {
   const quantityToUnits = getUnitsPerQuantity(unitsFormat, units);
   const unitsForQuantity = quantityToUnits[quantity.toLowerCase()];
@@ -54,7 +51,7 @@ function getUnitsPerQuantity(
   unitsFormat: {
     readonly [key: string]: UnitFormat;
   },
-  units: UnitMap
+  units: Unit.UnitMap
 ): { readonly [key: string]: Array<Unit.Unit<unknown>> } {
   if (cache.input === unitsFormat && cache.output !== undefined) {
     return cache.output;
