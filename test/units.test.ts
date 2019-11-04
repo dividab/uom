@@ -1,4 +1,4 @@
-import { Unit, Serialize, BaseUnits } from "../src/core";
+import { Unit, Serialize, BaseUnits } from "../src";
 // import { Units } from "../src/all-units";
 // import * as Quantity from "../src/quantity";
 

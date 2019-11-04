@@ -1,5 +1,5 @@
-import { Format, BaseUnits } from "../src/core";
-import { createUnitFormat } from "../src/core/unit-format";
+import { Format, BaseUnits } from "../src";
+import { createUnitFormat } from "../src/unit-format";
 // import { Units, UnitsFormat } from "../src/all-units";
 
 const containsAll = <T>(

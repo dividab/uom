@@ -1,5 +1,5 @@
 // import { Units } from "../src/all-units";
-import { Serialize, BaseUnits } from "../src/core";
+import { Serialize, BaseUnits } from "../src";
 
 describe("serialize_test", () => {
   test("For Kelvin should return BaseUnits.Kelvin", () => {

@@ -1,4 +1,4 @@
-import { Unit, BaseUnits } from "../src/core";
+import { Unit, BaseUnits } from "../src";
 // import { Units } from "../src/all-units";
 // import { closeTo } from "./test-utils";
 

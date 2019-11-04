@@ -1,4 +1,4 @@
-import { Amount, BaseUnits } from "../src/core";
+import { Amount, BaseUnits } from "../src";
 // import { Units } from "../src/all-units";
 
 describe("amount_compare_test", () => {
