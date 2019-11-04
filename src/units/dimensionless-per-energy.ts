@@ -5,8 +5,6 @@ import { KiloWattHour } from "./energy2";
 
 export type DimensionlessPerEnergy = "DimensionlessPerEnergy";
 
-// tslint:disable:variable-name
-
 /// http://www.wolframalpha.com/input/?i=BTU and select 'Show exact conversions'
 // Per Energy
 export const OnePerKiloWattHour = UnitDivide.dimensionlessByEnergy(

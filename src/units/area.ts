@@ -4,8 +4,6 @@ import { Inch, Foot, Millimeter, CentiMeter, Decimeter } from "./length";
 
 export type Area = "Area";
 
-// tslint:disable:variable-name
-
 /** The metric unit for area quantities ( <code>m²</code> ). */
 export const SquareMeter = Squared("SquareMeter", Meter);
 

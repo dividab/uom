@@ -5,8 +5,6 @@ import { Celsius } from "./temperature";
 
 export type HeatCapacityRate = "HeatCapacityRate";
 
-// tslint:disable:variable-name
-
 // Heat Capacity Rate
 export const KilowattPerCelsius = UnitDivide.powerByTemperature(
   "KilowattPerCelsius",

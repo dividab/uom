@@ -1,7 +1,5 @@
 import { createUnitFormat } from "../unit-format";
 
-// tslint:disable:variable-name
-
 export const Joule = createUnitFormat("J", 2);
 export const NewtonMeter = createUnitFormat("Nm", 0);
 export const Kilojoule = createUnitFormat("kJ", 2);

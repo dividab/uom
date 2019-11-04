@@ -6,8 +6,6 @@ import { Hour } from "./duration";
 
 export type MassFlow = "MassFlow";
 
-// tslint:disable:variable-name
-
 // MassFlow
 export const KilogramPerSecond = UnitDivide.massByDuration(
   "KilogramPerSecond",

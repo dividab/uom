@@ -26,12 +26,9 @@
     "prettier": "^1.13.5",
     "rimraf": "^2.6.2",
     "ts-jest": "^24.1.0",
-    "tslint": "^5.10.0",
-    "tslint-immutable": "^4.6.0",
     "typescript": "^3.6.3"
   },
   "scripts": {
-    "lint2": "tslint -p src --config ./tslint.json -- './{src,test}/**/*.ts{,x}'",
     "lint": "eslint './{src,tests}/**/*.ts' --ext .ts -f visualstudio ",
     "build": "yarn build:clean && yarn build:cjs && yarn build:esm && yarn gen-docs",
     "build:clean": "rm -rf ./lib-cjs ./lib-esm",
@@ -49,7 +46,7 @@
     "postversion": "git push --tags && yarn publish --new-version $npm_package_version && git push --follow-tags && echo \"Successfully released version $npm_package_version!\""
   },
   "lint-staged": {
-    "*.{ts,tsx}": "tslint",
+    "*.{ts,tsx}": "eslint --ext .ts -f visualstudio",
     "*.{ts,tsx,json,css}": [
       "prettier --write",
       "git add"

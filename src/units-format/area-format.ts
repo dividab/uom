@@ -1,7 +1,5 @@
 import { createUnitFormat } from "../unit-format";
 
-// tslint:disable:variable-name
-
 /** The metric unit for area quantities ( <code>m²</code> ). */
 export const SquareMeter = createUnitFormat("m²", 2);
 export const SquareInch = createUnitFormat("in²", 0);

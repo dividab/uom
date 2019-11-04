@@ -1,7 +1,5 @@
 import { createUnitFormat } from "../unit-format";
 
-// tslint:disable:variable-name
-
 export const Pascal = createUnitFormat("Pa", 0);
 export const KiloPascal = createUnitFormat("kPa", 2);
 export const HectoPascal = createUnitFormat("hPa", 2);

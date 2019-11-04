@@ -4,8 +4,6 @@ import { One } from "../unit";
 
 export type DimensionlessPerVolume = "DimensionlessPerVolume";
 
-// tslint:disable:variable-name
-
 // Per Volume
 export const OnePerLiter = UnitDivide.dimensionlessByVolume(
   "OnePerLiter",

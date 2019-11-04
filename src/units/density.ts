@@ -5,8 +5,6 @@ import { Gram, Slug, PoundLb } from "./mass";
 
 export type Density = "Density";
 
-// tslint:disable:variable-name
-
 // Density
 export const KilogramPerCubicMeter = UnitDivide.massByVolume(
   "KilogramPerCubicMeter",

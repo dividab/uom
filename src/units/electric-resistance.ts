@@ -5,8 +5,6 @@ import { Kilo } from "../unit-prefix";
 
 export type ElectricResistance = "ElectricResistance";
 
-// tslint:disable:variable-name
-
 /**
  * The derived unit for electric resistance ( <code>Ω</code> or <code>Ohm</code> ).
  * One Ohm is equal to the resistance of a conductor in which a current of one ampere is produced

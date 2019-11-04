@@ -1,7 +1,5 @@
 import * as Unit from "../unit";
 
-// tslint:disable:variable-name
-
 ///////////////////
 /// SI BASE UNITS //
 ///////////////////

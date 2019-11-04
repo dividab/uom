@@ -5,8 +5,6 @@ import { PoundLb } from "./mass";
 
 export type DimensionlessPerMass = "DimensionlessPerMass";
 
-// tslint:disable:variable-name
-
 // Per mass
 export const OnePerKilogram = UnitDivide.dimensionlessByMass(
   "OnePerKilogram",

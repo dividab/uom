@@ -1,7 +1,5 @@
 import { createUnitFormat } from "../unit-format";
 
-// tslint:disable:variable-name
-
 export const MeterPerSecond = createUnitFormat("m/s", 2);
 export const FeetPerSecond = createUnitFormat("ft/s", 0);
 export const FeetPerMinute = createUnitFormat("ft/min", 0);

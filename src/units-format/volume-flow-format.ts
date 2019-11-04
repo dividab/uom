@@ -1,7 +1,5 @@
 import { createUnitFormat } from "../unit-format";
 
-// tslint:disable:variable-name
-
 // VolumeFlow
 export const CubicMeterPerSecond = createUnitFormat("m³/s", 2);
 export const CubicMeterPerHour = createUnitFormat("m³/h", 1);

@@ -5,8 +5,6 @@ import { Milli, Kilo } from "../unit-prefix";
 
 export type ElectricPotential = "ElectricPotential";
 
-// tslint:disable:variable-name
-
 /**
  * The derived unit for electric potential difference, electromotive force ( <code>V</code> ).
  * One Volt is equal to the difference of electric potential between two points on a conducting

@@ -5,8 +5,6 @@ import { CentiMeter, Inch, Foot } from "./length";
 
 export type Volume = "Volume";
 
-// tslint:disable:variable-name
-
 /** The metric unit for volume quantities ( <code>m³</code> ). */
 export const CubicMeter = Cubed("CubicMeter", Meter);
 

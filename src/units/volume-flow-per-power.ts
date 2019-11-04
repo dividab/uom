@@ -4,8 +4,6 @@ import { TonCooling, KiloWatt } from "./power";
 
 export type VolumeFlowPerPower = "VolumeFlowPerPower";
 
-// tslint:disable:variable-name
-
 // Volume flow per cooling power
 export const GallonsPerMinutePerTonCooling = UnitDivide.volumeFlowByPower(
   "GallonsPerMinutePerTonCooling",

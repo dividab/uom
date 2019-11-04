@@ -5,8 +5,6 @@ import { Hour } from "./duration";
 
 export type DimensionlessPerDuration = "DimensionlessPerDuration";
 
-// tslint:disable:variable-name
-
 // Per Duration
 export const OnePerHour = UnitDivide.dimensionlessByDuration(
   "OnePerHour",

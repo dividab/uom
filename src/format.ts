@@ -61,7 +61,7 @@ function getUnitsPerQuantity(
   if (cache.input === unitsFormat && cache.output !== undefined) {
     return cache.output;
   }
-  const quantityToUnits: { [key: string]: Array<Unit.Unit> } = {}; // tslint:disable-line
+  const quantityToUnits: { [key: string]: Array<Unit.Unit> } = {};
 
   for (const unitKey of Object.keys(unitsFormat)) {
     const unit = units[unitKey];

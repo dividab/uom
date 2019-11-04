@@ -4,8 +4,6 @@ import { Volt } from "./electric-potential";
 
 export type ElectricConductance = "ElectricConductance";
 
-// tslint:disable:variable-name
-
 /**
  * The derived unit for electric conductance ( <code>S</code> ).
  * One Siemens is equal to one ampere per volt.

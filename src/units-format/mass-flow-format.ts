@@ -1,7 +1,5 @@
 import { createUnitFormat } from "../unit-format";
 
-// tslint:disable:variable-name
-
 export const KilogramPerSecond = createUnitFormat("kg/s", 2);
 export const GramPerSecond = createUnitFormat("g/s", 2);
 export const GramPerHour = createUnitFormat("g/h", 2);

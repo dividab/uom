@@ -3,8 +3,6 @@ import { Kelvin } from "./base-units";
 
 export type Temperature = "Temperature";
 
-// tslint:disable:variable-name
-
 /**
  * The derived unit for Celsius temperature ( <code>℃</code> ).
  * This is a unit of temperature such as the freezing point of water (at one atmosphere of pressure)

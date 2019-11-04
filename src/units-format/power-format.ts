@@ -1,7 +1,5 @@
 import { createUnitFormat } from "../unit-format";
 
-// tslint:disable:variable-name
-
 export const Watt = createUnitFormat("W", 2);
 export const KiloWatt = createUnitFormat("kW", 2);
 export const MegaWatt = createUnitFormat("MW", 0);

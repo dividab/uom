@@ -4,8 +4,6 @@ import { CubicMeterPerSecond, CubicFeetPerMinute } from "./volume-flow";
 
 export type SpecificFanPower = "SpecificFanPower";
 
-// tslint:disable:variable-name
-
 // Specific Fan Power
 export const KiloWattPerCubicMeterPerSecond = UnitDivide.powerByVolumeFlow(
   "KiloWattPerCubicMeterPerSecond",

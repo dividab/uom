@@ -3,8 +3,6 @@
  * @module Unit
  */
 
-// tslint:disable:max-file-line-count
-
 import { exhaustiveCheck } from "./utils/exhaustive-check";
 import { Dimensionless, Quantity } from "./quantity";
 
@@ -158,7 +156,7 @@ export interface OffsetConverter {
  * Holds the dimensionless unit ONE
  * @type {Unit}
  */
-export const One: Unit<Dimensionless> = createOne(); //tslint:disable-line
+export const One: Unit<Dimensionless> = createOne();
 
 /**
  * Holds the identity converter (unique). This converter does nothing (ONE.convert(x) == x).
@@ -470,7 +468,7 @@ function fromProduct<T extends Quantity>(
   //   }
   // });
 
-  const unitGroups: { [key: string]: Array<Element> } = {}; // tslint:disable-line
+  const unitGroups: { [key: string]: Array<Element> } = {};
   for (const v of allElements) {
     const group = unitGroups[JSON.stringify(v.unit)];
     if (group === undefined) {
