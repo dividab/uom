@@ -1,12 +1,10 @@
+/* eslint-disable max-lines */
 /**
  * @module Unit
  */
 
-// tslint:disable:max-file-line-count
-
 import { exhaustiveCheck } from "./utils/exhaustive-check";
-import { Dimensionless } from "./quantity";
-import { Quantity } from "./quantity";
+import { Dimensionless, Quantity } from "./quantity";
 
 export interface Unit<TQuantityName extends Quantity = Quantity> {
   readonly name: string;
@@ -106,7 +104,7 @@ export interface ProductUnit<T extends Quantity> {
   readonly type: "product";
   readonly quantity: T;
   /// Holds the units composing this product unit.
-  readonly elements: Array<Element>;
+  readonly elements: ReadonlyArray<Element>;
 }
 
 /** Represents a rational power of a single unit. */
@@ -158,7 +156,7 @@ export interface OffsetConverter {
  * Holds the dimensionless unit ONE
  * @type {Unit}
  */
-export const One: Unit<Dimensionless> = createOne(); //tslint:disable-line
+export const One: Unit<Dimensionless> = createOne();
 
 /**
  * Holds the identity converter (unique). This converter does nothing (ONE.convert(x) == x).
@@ -445,14 +443,14 @@ function createTransformedUnit<T extends Quantity>(
  */
 function fromProduct<T extends Quantity>(
   quantity: T,
-  leftElems: Array<Element>,
-  rightElems: Array<Element>
+  leftElems: ReadonlyArray<Element>,
+  rightElems: ReadonlyArray<Element>
 ): ProductUnit<T> {
   // If we have several elements of the same unit then we can merge them by summing their power
-  let allElements: Array<Element> = [];
+  const allElements: Array<Element> = [];
   allElements.push(...leftElems);
   allElements.push(...rightElems);
-  let resultElements: Array<Element> = [];
+  const resultElements: Array<Element> = [];
 
   // let unitGroups: Map<Unit<any>, Array<Element>> = new Map<Unit<any>, Array<Element>>();
   // allElements.forEach((v: Element) => {
@@ -470,8 +468,8 @@ function fromProduct<T extends Quantity>(
   //   }
   // });
 
-  let unitGroups: { [key: string]: Array<Element> } = {}; // tslint:disable-line
-  for (let v of allElements) {
+  const unitGroups: { [key: string]: Array<Element> } = {};
+  for (const v of allElements) {
     const group = unitGroups[JSON.stringify(v.unit)];
     if (group === undefined) {
       unitGroups[JSON.stringify(v.unit)] = [v];
@@ -483,7 +481,7 @@ function fromProduct<T extends Quantity>(
   Object.keys(unitGroups).forEach((unitJson: string) => {
     const unit: Unit<T> = JSON.parse(unitJson);
     const unitGroup: Array<Element> = unitGroups[unitJson];
-    let sumpow: number = unitGroup.reduce(
+    const sumpow: number = unitGroup.reduce(
       (prev: number, element: Element) => prev + element.pow,
       0
     );
@@ -524,8 +522,8 @@ function quotient<T extends Quantity>(
   right: Unit<Quantity>
 ): ProductUnit<T> {
   const leftelements = getElements(left);
-  let invertedRightelements: Array<Element> = [];
-  for (let element of getElements(right)) {
+  const invertedRightelements: Array<Element> = [];
+  for (const element of getElements(right)) {
     invertedRightelements.push(createElement(element.unit, -element.pow));
   }
   return fromProduct<T>(quantity, leftelements, invertedRightelements);
@@ -539,8 +537,8 @@ function pow<T extends Quantity>(
   unit: Unit,
   exponent: number
 ): ProductUnit<T> {
-  let squareRootedRightelements: Array<Element> = [];
-  for (let element of getElements(unit)) {
+  const squareRootedRightelements: Array<Element> = [];
+  for (const element of getElements(unit)) {
     squareRootedRightelements.push(
       createElement(element.unit, element.pow * exponent)
     );
@@ -551,7 +549,7 @@ function pow<T extends Quantity>(
 /**
  * @private
  */
-function getElements(unit: Unit): Array<Element> {
+function getElements(unit: Unit): ReadonlyArray<Element> {
   if (unit.unitInfo.type === "product") {
     return unit.unitInfo.elements;
   } else if (
@@ -573,7 +571,7 @@ function productUnitToStandardUnit<T extends Quantity>(
   unit: Unit<T>
 ): UnitConverter {
   let converter = identityConverter;
-  for (let element of getElements(unit)) {
+  for (const element of getElements(unit)) {
     let conv = toStandardUnitConverter(element.unit);
     let power = element.pow;
     if (power < 0) {
@@ -745,7 +743,7 @@ function productUnitBuildDerivedName<T extends Quantity>(
   unit: Unit<T>,
   getSymbol: GetSymbolFn
 ): string {
-  const comparePow = (a: Element, b: Element) => {
+  const comparePow = (a: Element, b: Element): number => {
     if (a.pow > b.pow) {
       return 1;
     } else if (a.pow < b.pow) {
@@ -774,7 +772,7 @@ function productUnitBuildDerivedName<T extends Quantity>(
   return name;
 }
 
-function getElements2(unit: Unit): Array<Element> {
+function getElements2(unit: Unit): ReadonlyArray<Element> {
   if (unit.unitInfo.type === "product") {
     return unit.unitInfo.elements;
   }
@@ -786,7 +784,7 @@ function productUnitBuildNameFromElements(
   getSymbol: GetSymbolFn
 ): string {
   let name: string = "";
-  for (let e of elements) {
+  for (const e of elements) {
     name += getSymbol(e.unit);
 
     switch (Math.abs(e.pow)) {

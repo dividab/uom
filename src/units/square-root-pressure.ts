@@ -2,8 +2,6 @@ import * as Unit from "../unit";
 
 export type SquareRootPressure = "SquareRootPressure";
 
-// tslint:disable:variable-name
-
 //SquareRootPressure
 export const SquareRootPascal = Unit.createBase(
   "SquareRootPascal",

@@ -2,8 +2,6 @@ import * as Unit from "../unit";
 
 export type SolidAngle = "SolidAngle";
 
-// tslint:disable:variable-name
-
 /**
  * The unit for solid angle quantities ( <code>sr</code> ).
  * One steradian is the solid angle subtended at the center of a sphere by an area on the

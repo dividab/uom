@@ -2,8 +2,6 @@ import { Kilo, Centi, Milli, Deci } from "../unit-prefix";
 import * as Unit from "../unit";
 import { Meter } from "./base-units";
 
-// tslint:disable:variable-name
-
 /** Equivalent to <code>KILO(METER)</code>. */
 export const Kilometer = Kilo("Kilometer", Meter);
 

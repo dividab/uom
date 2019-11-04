@@ -5,8 +5,6 @@ import { CubicMeter, CubicFeet } from "./volume";
 
 export type HeatingValue = "HeatingValue";
 
-// tslint:disable:variable-name
-
 // Energy per volume
 export const KiloWattHourPerCubicMeter = UnitDivide.energyByVolume(
   "KiloWattHourPerCubicMeter",

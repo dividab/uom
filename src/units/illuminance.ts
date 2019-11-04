@@ -4,8 +4,6 @@ import { SquareMeter } from "./area";
 
 export type Illuminance = "Illuminance";
 
-// tslint:disable:variable-name
-
 /**
  * The derived unit for illuminance ( <code>lx</code> ).
  * One Lux is equal to one lumen per square meter.

@@ -5,8 +5,6 @@ import { massByEnergy } from "../unit-divide";
 
 export type Emission = "Emission";
 
-// tslint:disable:variable-name
-
 // Emission
 export const KilogramPerKiloWattHour = massByEnergy(
   "KilogramPerKiloWattHour",

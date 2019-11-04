@@ -4,8 +4,6 @@ import { Milli } from "../unit-prefix";
 
 export type Duration = "Duration";
 
-// tslint:disable:variable-name
-
 // Duration / Time
 export const Minute = Unit.timesNumber("Minute", 60.0, Second);
 export const Hour = Unit.timesNumber("Hour", 60.0, Minute);

@@ -5,8 +5,6 @@ import { Minute, Hour } from "./duration";
 
 export type Frequency = "Frequency";
 
-// tslint:disable:variable-name
-
 /**
  * The derived unit for frequency ( <code>Hz</code> ).
  * A unit of frequency equal to one cycle per second. After Heinrich Rudolf Hertz (1857-1894),

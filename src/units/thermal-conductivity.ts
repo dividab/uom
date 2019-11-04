@@ -6,8 +6,6 @@ import { Foot } from "./length";
 
 export type ThermalConductivity = "ThermalConductivity";
 
-// tslint:disable:variable-name
-
 // Thermal conductivity
 export const WattPerMeterPerKelvin = UnitDivide.heatCapacityRateByLength(
   "WattPerMeterPerKelvin",

@@ -1,7 +1,5 @@
 import { createUnitFormat } from "../unit-format";
 
-// tslint:disable:variable-name
-
 export const OnePerKiloWattHour = createUnitFormat("/kWh", 2);
 export const OnePerBtu = createUnitFormat("/BTU", 2);
 export const OnePerMegaBtu = createUnitFormat("/MMBTU", 2);

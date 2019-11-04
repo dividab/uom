@@ -6,8 +6,6 @@ import { Kilo, Mega, Giga } from "../unit-prefix";
 
 export type Power = "Power";
 
-// tslint:disable:variable-name
-
 /**
  * The derived unit for power, radiant, flux ( <code>W</code> ).
  * One watt is equal to one joule per second.

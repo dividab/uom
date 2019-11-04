@@ -4,8 +4,6 @@ import { SquareMeter } from "./area";
 
 export type MagneticFluxDensity = "MagneticFluxDensity";
 
-// tslint:disable:variable-name
-
 /**
  * The derived unit for magnetic flux density ( <code>T</code> ).
  * One Tesla is equal equal to one weber per square meter.

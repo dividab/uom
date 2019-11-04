@@ -4,8 +4,6 @@ import { Weber } from "./magnetic-flux";
 
 export type ElectricInductance = "ElectricInductance";
 
-// tslint:disable:variable-name
-
 export const Henry = UnitDivide.magneticFluxByElectricalCurrent(
   "Henry",
   Weber,

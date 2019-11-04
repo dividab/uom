@@ -1,5 +1,4 @@
-// tslint:disable:max-file-line-count
-
+/* eslint-disable max-lines */
 import { ConversionTest } from "./conversion-test";
 import * as Units from "../../src/units";
 

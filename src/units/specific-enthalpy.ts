@@ -6,8 +6,6 @@ import { KiloWattHour } from "./energy2";
 
 export type SpecificEnthalpy = "SpecificEnthalpy";
 
-// tslint:disable:variable-name
-
 /**
  * The derived unit for absorbed dose, specific energy (imparted), kerma ( <code>Gy</code> ).
  * One gray is equal to the dose of one joule of energy absorbed per one kilogram of matter.

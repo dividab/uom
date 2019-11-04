@@ -1,7 +1,5 @@
 import { createUnitFormat } from "../unit-format";
 
-// tslint:disable:variable-name
-
 export const Kilometer = createUnitFormat("km", 2);
 export const Decimeter = createUnitFormat("dm", 0);
 export const CentiMeter = createUnitFormat("cm", 2);

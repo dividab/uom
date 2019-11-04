@@ -7,8 +7,6 @@ import {
 
 export type VolumeFlowPerSquareRootPressure = "VolumeFlowPerSquareRootPressure";
 
-// tslint:disable:variable-name
-
 //VolumeFlowPerSquareRootPressure
 export const LiterPerSecondPerSquareRootPascal = UnitDivide.volumeFlowBySquareRootPressure(
   "LiterPerSecondPerSquareRootPascal",

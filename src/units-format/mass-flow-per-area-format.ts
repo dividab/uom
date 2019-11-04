@@ -1,7 +1,5 @@
 import { createUnitFormat } from "../unit-format";
 
-// tslint:disable:variable-name
-
 export const KilogramPerSquareMeterSecond = createUnitFormat("kg/m²s", 2);
 export const KilogramPerSquareMeterHour = createUnitFormat("kg/m²h", 2);
 export const GramPerSquareMeterHour = createUnitFormat("g/m²h", 2);

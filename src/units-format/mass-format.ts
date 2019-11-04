@@ -1,7 +1,5 @@
 import { createUnitFormat } from "../unit-format";
 
-// tslint:disable:variable-name
-
 export const Gram = createUnitFormat("g", 2);
 export const PoundLb = createUnitFormat("lb", 1);
 export const Grain = createUnitFormat("gr", 2);

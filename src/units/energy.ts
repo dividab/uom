@@ -6,8 +6,6 @@ import { Kilo, Mega } from "../unit-prefix";
 
 export type Energy = "Energy";
 
-// tslint:disable:variable-name
-
 /**
  * The derived unit for energy, work, quantity of heat ( <code>J</code> ).
  * One joule is the amount of work done when an applied force of 1 newton moves

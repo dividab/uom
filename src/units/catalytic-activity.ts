@@ -3,8 +3,6 @@ import { Second, Mole } from "./base-units";
 
 export type CatalyticActivity = "CatalyticActivity";
 
-// tslint:disable:variable-name
-
 /**
  * The derived unit for catalytic activity ( <code>kat</code> ).
  */

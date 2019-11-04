@@ -11,8 +11,6 @@ import { Hour, Minute } from "./duration";
 
 export type VolumeFlow = "VolumeFlow";
 
-// tslint:disable:variable-name
-
 // VolumeFlow
 export const CubicMeterPerSecond = UnitDivide.volumeByDuration(
   "CubicMeterPerSecond",

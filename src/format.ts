@@ -43,9 +43,11 @@ interface LocalCache {
         readonly [key: string]: UnitFormat;
       }
     | undefined;
+  // eslint-disable-next-line functional/prefer-readonly-type
   readonly output: { readonly [key: string]: Array<Unit.Unit> } | undefined;
 }
 
+// eslint-disable-next-line functional/no-let
 let cache: LocalCache = {
   input: undefined,
   output: undefined
@@ -59,7 +61,7 @@ function getUnitsPerQuantity(
   if (cache.input === unitsFormat && cache.output !== undefined) {
     return cache.output;
   }
-  const quantityToUnits: { [key: string]: Array<Unit.Unit> } = {}; // tslint:disable-line
+  const quantityToUnits: { [key: string]: Array<Unit.Unit> } = {};
 
   for (const unitKey of Object.keys(unitsFormat)) {
     const unit = units[unitKey];

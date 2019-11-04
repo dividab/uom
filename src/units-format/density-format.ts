@@ -1,7 +1,5 @@
 import { createUnitFormat } from "../unit-format";
 
-// tslint:disable:variable-name
-
 // Density
 export const KilogramPerCubicMeter = createUnitFormat("kg/m³", 2);
 export const GramPerCubicCentiMeter = createUnitFormat("g/cm³", 2);

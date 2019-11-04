@@ -11,15 +11,18 @@ import { closeTo } from "./test-utils";
 
 describe("amount_test", () => {
   test("should_not_accept_a_string_as_value", () => {
-    const a: any = "12.3"; //tslint:disable-line
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const a: any = "12.3";
     expect(() => Amount.create(a, Units.Celsius)).toThrow();
   });
   test("should_not_accept_a_string_as_unit", () => {
-    const a: any = "Celsius"; //tslint:disable-line
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const a: any = "Celsius";
     expect(() => Amount.create(12.3, a)).toThrow();
   });
   test("should_not_accept_a_string_as_decimalCount", () => {
-    const a: any = "12"; //tslint:disable-line
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const a: any = "12";
     expect(() => Amount.create(12.3, Units.Celsius, a)).toThrow();
   });
   test("Multiply_double_to_amount", done => {

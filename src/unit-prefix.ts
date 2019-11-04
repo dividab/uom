@@ -1,20 +1,20 @@
+/* eslint-disable no-restricted-properties */
 import * as Unit from "./unit";
 import * as UnitTimes from "./unit-times";
 import * as q from "./quantity";
-import { Quantity } from "./quantity";
 
 /////////////////
 /// SI PREFIXES //
 /////////////////
 
-export function Giga<T extends Quantity>(
+export function Giga<T extends q.Quantity>(
   name: string,
   u: Unit.Unit<T>
 ): Unit.Unit<T> {
   return Unit.timesNumber(name, Math.pow(10, 9), u);
 }
 
-export function Mega<T extends Quantity>(
+export function Mega<T extends q.Quantity>(
   name: string,
   u: Unit.Unit<T>
 ): Unit.Unit<T> {
@@ -26,7 +26,7 @@ export function Mega<T extends Quantity>(
  * @param unit Any unit.
  * @returns <code>unit.multiply(1e3)</code> .
  */
-export function Kilo<T extends Quantity>(
+export function Kilo<T extends q.Quantity>(
   name: string,
   unit: Unit.Unit<T>
 ): Unit.Unit<T> {
@@ -38,7 +38,7 @@ export function Kilo<T extends Quantity>(
  * @param unit any unit.
  * @returns <code>unit.multiply(1e2)</code> .
  */
-export function Hecto<T extends Quantity>(
+export function Hecto<T extends q.Quantity>(
   name: string,
   unit: Unit.Unit<T>
 ): Unit.Unit<T> {
@@ -50,7 +50,7 @@ export function Hecto<T extends Quantity>(
  * @param unit any unit.
  * @return <code>unit.multiply(1e-1)</code>.
  */
-export function Deci<T extends Quantity>(
+export function Deci<T extends q.Quantity>(
   name: string,
   unit: Unit.Unit<T>
 ): Unit.Unit<T> {
@@ -62,7 +62,7 @@ export function Deci<T extends Quantity>(
  * @param unit any unit.
  * @returns <code>unit.multiply(1e-2)</code> .
  */
-export function Centi<T extends Quantity>(
+export function Centi<T extends q.Quantity>(
   name: string,
   unit: Unit.Unit<T>
 ): Unit.Unit<T> {
@@ -73,7 +73,7 @@ export function Centi<T extends Quantity>(
  * Returns the specified unit multiplied by the factor <code>10<sup>-3</sup></code>.
  * @param unit any unit. @return <code>unit.multiply(1e-3)</code> .
  */
-export function Milli<T extends Quantity>(
+export function Milli<T extends q.Quantity>(
   name: string,
   unit: Unit.Unit<T>
 ): Unit.Unit<T> {

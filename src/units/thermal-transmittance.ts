@@ -5,8 +5,6 @@ import { DeltaCelsius, DeltaFahrenheit } from "./delta-temperature";
 
 export type ThermalTransmittance = "ThermalTransmittance";
 
-// tslint:disable:variable-name
-
 // Thermal Transmittance
 export const WattPerSquareMeterPerKelvin = UnitDivide.intensityByDeltaTemperature(
   "WattPerSquareMeterPerKelvin",

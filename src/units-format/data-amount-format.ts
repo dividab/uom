@@ -1,5 +1,3 @@
 import { createUnitFormat } from "../unit-format";
 
-// tslint:disable:variable-name
-
 export const Bit = createUnitFormat("bit", 0);

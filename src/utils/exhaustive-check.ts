@@ -5,13 +5,12 @@ export function exhaustiveCheck(
   throwError: boolean = false,
   match: string = ""
 ): never {
-  //tslint:disable-line
   if (throwError) {
     throw new Error(
       `ERROR! Trying to match '${match}', the value ${JSON.stringify(
         x
       )} should be of type never.`
-    ); //tslint:disable-line
+    );
   }
   return x;
 }

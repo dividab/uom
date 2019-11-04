@@ -15,8 +15,6 @@ import { SquareMeter, SquareFeet } from "./area";
 
 export type MassFlowPerArea = "MassFlowPerArea";
 
-// tslint:disable:variable-name
-
 export const KilogramPerSquareMeterHour = UnitDivide.massFlowByArea(
   "KilogramPerSquareMeterHour",
   KilogramPerHour,

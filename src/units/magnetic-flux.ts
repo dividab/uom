@@ -4,8 +4,6 @@ import { Volt } from "./electric-potential";
 
 export type MagneticFlux = "MagneticFlux";
 
-// tslint:disable:variable-name
-
 /**
  * The derived unit for magnetic flux ( <code>Wb</code> ).
  * One Weber is equal to the magnetic flux that in linking a circuit of one turn produces in it an

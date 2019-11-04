@@ -1,7 +1,5 @@
 import { createUnitFormat } from "../unit-format";
 
-// tslint:disable:variable-name
-
 export const CubicMeter = createUnitFormat("m³", 2);
 export const CubicCentiMeter = createUnitFormat("cm³", 2);
 export const CubicInch = createUnitFormat("in³", 2);

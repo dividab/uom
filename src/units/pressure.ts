@@ -6,8 +6,6 @@ import { Kilo, Hecto, Deci, Milli } from "../unit-prefix";
 
 export type Pressure = "Pressure";
 
-// tslint:disable:variable-name
-
 /**
  * The derived unit for pressure, stress ( <code>Pa</code> ).
  * One pascal is equal to one newton per square meter.

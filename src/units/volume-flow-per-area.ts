@@ -8,8 +8,6 @@ import { SquareMeter, SquareFeet } from "./area";
 
 export type VolumeFlowPerArea = "VolumeFlowPerArea";
 
-// tslint:disable:variable-name
-
 // VolumeFlowPerArea
 export const CubicMeterPerSecondPerSquareMeter = UnitDivide.volumeFlowByArea(
   "CubicMeterPerSecondPerSquareMeter",

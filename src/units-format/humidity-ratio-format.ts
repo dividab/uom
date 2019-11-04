@@ -1,7 +1,5 @@
 import { createUnitFormat } from "../unit-format";
 
-// tslint:disable:variable-name
-
 export const KilogramPerKilogram = createUnitFormat("kg/kg", 2);
 export const GramPerKilogram = createUnitFormat("g/kg", 2);
 export const PoundLbPerPoundLb = createUnitFormat("lb/lb", 2);

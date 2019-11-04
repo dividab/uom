@@ -3,8 +3,6 @@ import { Second, Ampere } from "./base-units";
 
 export type ElectricCharge = "ElectricCharge";
 
-// tslint:disable:variable-name
-
 /**
  * The derived unit for electric charge, quantity of electricity ( <code>C</code> ).
  * One Coulomb is equal to the quantity of charge transferred in one second by a steady current of one ampere.
