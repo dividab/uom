@@ -3,7 +3,8 @@
  * @module Unit
  */
 
-import { Dimensionless, Quantity } from "../all-units/quantity";
+import { Dimensionless } from "./base-units";
+import { Quantity } from "../all-units/quantity";
 
 export interface Unit<TQuantityName extends Quantity = Quantity> {
   readonly name: string;

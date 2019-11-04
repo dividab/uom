@@ -5,7 +5,8 @@
 
 import * as Unit from "./unit";
 import * as Units from "../all-units/units";
-import { Quantity, Dimensionless } from "../all-units/quantity";
+import { Quantity } from "../all-units/quantity";
+import { Dimensionless } from "./base-units";
 
 export interface Amount<T extends Quantity> {
   readonly value: number;

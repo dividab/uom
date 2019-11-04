@@ -1,5 +1,5 @@
 import { ConversionTest } from "./conversion-test";
-import * as Units from "../../src/units";
+import { Units } from "../../src/all-units";
 
 export const tests: ReadonlyArray<ConversionTest> = [
   {

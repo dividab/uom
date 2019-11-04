@@ -1,5 +1,5 @@
-import * as Unit from "../../src/unit";
-import { Quantity } from "../../src/quantity";
+import { Unit } from "../../src/core";
+import { Quantity } from "../../src/all-units/quantity";
 
 export interface ConversionTest<TQuantity extends Quantity = Quantity> {
   readonly name: string;

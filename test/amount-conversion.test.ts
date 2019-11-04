@@ -1,4 +1,4 @@
-import * as Amount from "../src/amount";
+import { Amount } from "../src/core";
 import { onlySkip, closeTo } from "./test-utils";
 import * as ConversionDuration from "./data/conversion-duration";
 import * as ConversionDeltaTemperature from "./data/conversion-delta-temperature";

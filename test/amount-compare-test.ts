@@ -1,5 +1,5 @@
-import * as Amount from "../src/amount";
-import * as Units from "../src/units";
+import { Amount } from "../src/core";
+import { Units } from "../src/all-units";
 
 describe("amount_compare_test", () => {
   test("default_comparer_true", () => {

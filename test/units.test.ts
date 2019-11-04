@@ -1,6 +1,5 @@
-import * as Unit from "../src/unit";
-import * as Serialize from "../src/serialize";
-import * as Units from "../src/units";
+import { Unit, Serialize } from "../src/core";
+import { Units } from "../src/all-units";
 // import * as Quantity from "../src/quantity";
 
 // TODO: Add typing tests:

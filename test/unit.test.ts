@@ -1,5 +1,5 @@
-import * as Unit from "../src/unit";
-import * as Units from "../src/units";
+import { Unit } from "../src/core";
+import { Units } from "../src/all-units";
 import { closeTo } from "./test-utils";
 
 describe("derived units", () => {
