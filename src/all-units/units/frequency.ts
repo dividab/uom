@@ -1,6 +1,5 @@
-import { BaseUnits } from "../../core";
+import { BaseUnits, Unit } from "../../core";
 import * as UnitDivide from "../unit-divide";
-import { One } from "./dimensionless";
 import { Minute, Hour } from "./duration";
 
 export type Frequency = "Frequency";
@@ -12,7 +11,7 @@ export type Frequency = "Frequency";
  */
 export const Hertz = UnitDivide.dimentionlessByDuration(
   "Hertz",
-  One,
+  Unit.One,
   BaseUnits.Second
 );
 
@@ -23,19 +22,19 @@ export const Hertz = UnitDivide.dimentionlessByDuration(
  */
 export const Becquerel = UnitDivide.dimentionlessByDuration(
   "Becquerel",
-  One,
+  Unit.One,
   BaseUnits.Second
 );
 
 // Frequency
 export const RevolutionsPerMinute = UnitDivide.dimentionlessByDuration(
   "RevolutionsPerMinute",
-  One,
+  Unit.One,
   Minute
 );
 
 export const RevolutionsPerHour = UnitDivide.dimentionlessByDuration(
   "RevolutionsPerHour",
-  One,
+  Unit.One,
   Hour
 );

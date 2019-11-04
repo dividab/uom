@@ -3,7 +3,7 @@ import { Unit } from "../../core";
 export type SquareRootPressure = "SquareRootPressure";
 
 //SquareRootPressure
-export const SquareRootPascal = Unit.createBase(
+export const SquareRootPascal = Unit.createBase<"SquareRootPressure">(
   "SquareRootPascal",
   "SquareRootPressure",
   "√Pa"

@@ -1,4 +1,4 @@
-import { BaseUnits } from "../../core";
+import * as BaseUnits from "../../core/base-units";
 import * as UnitDivide from "../unit-divide";
 import { MeterPerSecond } from "./velocity";
 

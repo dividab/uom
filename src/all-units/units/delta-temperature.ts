@@ -3,7 +3,7 @@ import { Unit } from "../../core";
 export type DeltaTemperature = "DeltaTemperature";
 
 // Delta temperature
-export const DeltaCelsius = Unit.createBase(
+export const DeltaCelsius = Unit.createBase<"DeltaTemperature">(
   "DeltaCelsius",
   "DeltaTemperature",
   "°C"

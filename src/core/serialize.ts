@@ -12,7 +12,7 @@ const units: UnitMap = toLowerCaseMap(Units);
 
 function toLowerCaseMap(mixedCaseUnits: UnitMap): UnitMap {
   type MutableUnitMap = {
-    [key: string]: Unit.Unit;
+    [key: string]: Unit.Unit<unknown>;
   };
   const lowerCaseMap: MutableUnitMap = {};
   for (const key of Object.keys(mixedCaseUnits)) {
@@ -35,7 +35,7 @@ export function stringToUnit<T extends Quantity>(
  * Converts a unit to it's serialized representation
  * @param unit
  */
-export function unitToString(unit: Unit.Unit): string {
+export function unitToString(unit: Unit.Unit<unknown>): string {
   return unit.name;
 }
 
