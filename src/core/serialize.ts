@@ -6,8 +6,6 @@ import * as Amount from "./amount";
  * @module Serialize
  */
 
-// const units: UnitMap = toLowerCaseMap(Units);
-
 function toLowerCaseMap(mixedCaseUnits: UnitMap): UnitMap {
   type MutableUnitMap = {
     [key: string]: Unit.Unit<unknown>;

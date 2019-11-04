@@ -3,9 +3,6 @@
  * @module Unit
  */
 
-// import { Dimensionless } from "./base-units";
-// import { Quantity } from "../all-units/quantity";
-
 export interface Unit<TQuantityName> {
   readonly name: string;
   readonly quantity: TQuantityName;
