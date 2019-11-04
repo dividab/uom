@@ -1,4 +1,4 @@
-import { Unit, Serialize } from "../src/core";
+import { Unit, Serialize, BaseUnits } from "../src/core";
 import { Units } from "../src/all-units";
 // import * as Quantity from "../src/quantity";
 
@@ -8,8 +8,8 @@ import { Units } from "../src/all-units";
 
 describe("units_test_equals", () => {
   test("Base unit One should be equal", () => {
-    const unit = Units.One;
-    const unit2 = Serialize.stringToUnit("One")!;
+    const unit = Unit.One;
+    const unit2 = Serialize.stringToUnit("One", Units)!;
     expect(Unit.equals(unit, unit2)).toBeTruthy();
   });
   test("Base unit One should be equal. Order should not matter", () => {
@@ -19,7 +19,7 @@ describe("units_test_equals", () => {
   });
   test("Alternate unit Radian should be equal", () => {
     const unit = Units.Radian;
-    const unit2 = Serialize.stringToUnit("Radian")!;
+    const unit2 = Serialize.stringToUnit("Radian", Units)!;
     expect(Unit.equals(unit, unit2)).toBeTruthy();
   });
   test("Alternate unit compare different object references", () => {
@@ -29,13 +29,18 @@ describe("units_test_equals", () => {
     expect(Unit.equals(unit1, unit2)).toBeTruthy();
   });
   test("Product unit should be equal", () => {
-    const unit = Unit.divide("u", "Length", Units.Meter, Units.CentiMeter);
-    const unit2 = Unit.divide("u", "Length", Units.Meter, Units.CentiMeter);
+    const unit = Unit.divide("u", "Length", BaseUnits.Meter, Units.CentiMeter);
+    const unit2 = Unit.divide("u", "Length", BaseUnits.Meter, Units.CentiMeter);
     expect(Unit.equals(unit, unit2)).toBeTruthy();
   });
   test("Product unit should not be equal", () => {
-    const unit = Unit.divide("u1", "Length", Units.Meter, Units.CentiMeter);
-    const unit2 = Unit.divide("u2", "Length", Units.Meter, Units.Millimeter);
+    const unit = Unit.divide("u1", "Length", BaseUnits.Meter, Units.CentiMeter);
+    const unit2 = Unit.divide(
+      "u2",
+      "Length",
+      BaseUnits.Meter,
+      Units.Millimeter
+    );
     expect(Unit.equals(unit, unit2)).toBeFalsy();
   });
   test("SquareRootPascal and SquareRootInchOfWaterColumn should not be equal", () => {

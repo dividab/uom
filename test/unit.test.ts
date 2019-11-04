@@ -1,10 +1,10 @@
-import { Unit } from "../src/core";
+import { Unit, BaseUnits } from "../src/core";
 import { Units } from "../src/all-units";
 import { closeTo } from "./test-utils";
 
 describe("derived units", () => {
   test("Meter times Meter should return unit with 1 element of pow 2", done => {
-    const newUnit = Unit.times("", "Length", Units.Meter, Units.Meter);
+    const newUnit = Unit.times("", "Length", BaseUnits.Meter, BaseUnits.Meter);
     if (newUnit.unitInfo.type === "product") {
       expect(newUnit.unitInfo.elements.length).toEqual(1); //, "Correct elements length");
       expect(newUnit.unitInfo.elements[0].pow).toEqual(2); //, "Correct pow");
@@ -18,7 +18,7 @@ describe("derived units", () => {
       "",
       "VolumeFlow",
       Units.CubicMeter,
-      Units.Second
+      BaseUnits.Second
     );
     if (newUnit.unitInfo.type === "product") {
       expect(newUnit.unitInfo.elements).toEqual(

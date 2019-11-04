@@ -1,4 +1,5 @@
 /* eslint-disable max-lines */
+import { BaseUnits } from "../../src/core";
 import { ConversionTest } from "./conversion-test";
 import { Units } from "../../src/all-units";
 
@@ -21,28 +22,28 @@ export const tests: ReadonlyArray<ConversionTest> = [
     name: "0centimeters_0meters",
     fromUnit: Units.CentiMeter,
     fromValue: 0.0,
-    toUnit: Units.Meter,
+    toUnit: BaseUnits.Meter,
     toValue: 0.0
   },
   {
     name: "1centimeter_0_01_meter",
     fromUnit: Units.CentiMeter,
     fromValue: 1.0,
-    toUnit: Units.Meter,
+    toUnit: BaseUnits.Meter,
     toValue: 0.01
   },
   {
     name: "12centimeters_0_12_meters",
     fromUnit: Units.CentiMeter,
     fromValue: 12.0,
-    toUnit: Units.Meter,
+    toUnit: BaseUnits.Meter,
     toValue: 0.12
   },
   {
     name: "357centimeter_3_57meter",
     fromUnit: Units.CentiMeter,
     fromValue: 357.0,
-    toUnit: Units.Meter,
+    toUnit: BaseUnits.Meter,
     toValue: 3.57,
     delta: 0.00000001
   },
@@ -50,7 +51,7 @@ export const tests: ReadonlyArray<ConversionTest> = [
     name: "0_56centimeters_0_0056meters",
     fromUnit: Units.CentiMeter,
     fromValue: 0.56,
-    toUnit: Units.Meter,
+    toUnit: BaseUnits.Meter,
     toValue: 0.0056,
     delta: 0.00000001
   },

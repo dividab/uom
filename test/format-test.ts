@@ -1,5 +1,5 @@
+import { Format, BaseUnits } from "../src/core";
 import { Units, UnitsFormat } from "../src/all-units";
-import { Format } from "../src/core";
 
 const containsAll = <T>(
   arr1: ReadonlyArray<T>,
@@ -12,7 +12,7 @@ const sameMembers = <T>(
 
 describe("format_test", () => {
   test("should get label for Pascal", done => {
-    const format = Format.getUnitFormat(Units.Pascal);
+    const format = Format.getUnitFormat(Units.Pascal, UnitsFormat);
     if (!format) {
       done.fail();
       done();
@@ -23,7 +23,7 @@ describe("format_test", () => {
   });
   test("Should get units for Length", () => {
     const expected = [
-      Units.Meter,
+      BaseUnits.Meter,
       Units.Kilometer,
       Units.Decimeter,
       Units.CentiMeter,
@@ -33,13 +33,13 @@ describe("format_test", () => {
       Units.Inch,
       Units.Mile
     ];
-    const actual = Format.getUnitsForQuantity("Length");
+    const actual = Format.getUnitsForQuantity("Length", UnitsFormat, Units);
     expect(actual.length).toEqual(expected.length);
     expect(sameMembers(actual, expected)).toBeTruthy();
   });
   test("Should get units for length", () => {
     const expected = [
-      Units.Meter,
+      BaseUnits.Meter,
       Units.Kilometer,
       Units.Decimeter,
       Units.CentiMeter,
@@ -49,16 +49,20 @@ describe("format_test", () => {
       Units.Inch,
       Units.Mile
     ];
-    const actual = Format.getUnitsForQuantity("length");
+    const actual = Format.getUnitsForQuantity("length", UnitsFormat, Units);
     expect(actual.length).toEqual(expected.length);
     expect(sameMembers(actual, expected)).toBeTruthy();
   });
 
   test("Should get units for length subset", () => {
-    const expected = [Units.Meter];
-    const actual = Format.getUnitsForQuantity("length", {
-      Meter: UnitsFormat.Meter
-    });
+    const expected = [BaseUnits.Meter];
+    const actual = Format.getUnitsForQuantity(
+      "length",
+      {
+        Meter: UnitsFormat.Meter
+      },
+      Units
+    );
     expect(actual.length).toEqual(expected.length);
     console.dir(actual);
     expect(sameMembers(actual, expected)).toBeTruthy();

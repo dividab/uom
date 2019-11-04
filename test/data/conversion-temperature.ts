@@ -1,3 +1,4 @@
+import { BaseUnits } from "../../src/core";
 import { ConversionTest } from "./conversion-test";
 import { Units } from "../../src/all-units";
 
@@ -6,61 +7,61 @@ export const tests: ReadonlyArray<ConversionTest> = [
     name: "0Celsius_273_15Kelvin",
     fromUnit: Units.Celsius,
     fromValue: 0.0,
-    toUnit: Units.Kelvin,
+    toUnit: BaseUnits.Kelvin,
     toValue: 273.15
   },
   {
     name: "1Celsius_274_15Kelvin",
     fromUnit: Units.Celsius,
     fromValue: 1.0,
-    toUnit: Units.Kelvin,
+    toUnit: BaseUnits.Kelvin,
     toValue: 274.15
   },
   {
     name: "-1Celsius_272_15Kelvin",
     fromUnit: Units.Celsius,
     fromValue: -1.0,
-    toUnit: Units.Kelvin,
+    toUnit: BaseUnits.Kelvin,
     toValue: 272.15
   },
   {
     name: "0_kelvin_0_kelvin",
-    fromUnit: Units.Kelvin,
+    fromUnit: BaseUnits.Kelvin,
     fromValue: 0.0,
-    toUnit: Units.Kelvin,
+    toUnit: BaseUnits.Kelvin,
     toValue: 0.0
   },
   {
     name: "10_kelvin_10_kelvin",
-    fromUnit: Units.Kelvin,
+    fromUnit: BaseUnits.Kelvin,
     fromValue: 10.0,
-    toUnit: Units.Kelvin,
+    toUnit: BaseUnits.Kelvin,
     toValue: 10.0
   },
   {
     name: "-5kelvin_-5kelvin",
-    fromUnit: Units.Kelvin,
+    fromUnit: BaseUnits.Kelvin,
     fromValue: -5.0,
-    toUnit: Units.Kelvin,
+    toUnit: BaseUnits.Kelvin,
     toValue: -5.0
   },
   {
     name: "87_1kelvin_87_1kelvin",
-    fromUnit: Units.Kelvin,
+    fromUnit: BaseUnits.Kelvin,
     fromValue: 87.1,
-    toUnit: Units.Kelvin,
+    toUnit: BaseUnits.Kelvin,
     toValue: 87.1
   },
   {
     name: "0kelvin_-273_15celsius",
-    fromUnit: Units.Kelvin,
+    fromUnit: BaseUnits.Kelvin,
     fromValue: 0.0,
     toUnit: Units.Celsius,
     toValue: -273.15
   },
   {
     name: "354kelvin_80_85celsius",
-    fromUnit: Units.Kelvin,
+    fromUnit: BaseUnits.Kelvin,
     fromValue: 354.0,
     toUnit: Units.Celsius,
     toValue: 80.85,
@@ -68,21 +69,21 @@ export const tests: ReadonlyArray<ConversionTest> = [
   },
   {
     name: "-56kelvin_-329_15celsius",
-    fromUnit: Units.Kelvin,
+    fromUnit: BaseUnits.Kelvin,
     fromValue: -56.0,
     toUnit: Units.Celsius,
     toValue: -329.15
   },
   {
     name: "0kelvin_0rankine",
-    fromUnit: Units.Kelvin,
+    fromUnit: BaseUnits.Kelvin,
     fromValue: 0.0,
     toUnit: Units.Rankine,
     toValue: 0.0
   },
   {
     name: "245kelvin_441rankine",
-    fromUnit: Units.Kelvin,
+    fromUnit: BaseUnits.Kelvin,
     fromValue: 245.0,
     toUnit: Units.Rankine,
     toValue: 441.0
