@@ -2,7 +2,7 @@ import { Unit } from "../../core";
 
 //export type Dimensionless = "Dimensionless";
 
-export { Dimensionless } from "../../core/base-units";
+export { Dimensionless } from "../../core/unit";
 
 export const One = Unit.One;
 export const Percent = Unit.divideNumber("Percent", 100.0, Unit.One);

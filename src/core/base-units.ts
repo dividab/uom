@@ -1,7 +1,5 @@
 import * as Unit from "./unit";
 
-export type Dimensionless = "Dimensionless";
-
 ///////////////////
 /// SI BASE UNITS //
 ///////////////////

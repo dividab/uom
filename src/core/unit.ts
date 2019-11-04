@@ -3,7 +3,7 @@
  * @module Unit
  */
 
-import { Dimensionless } from "./base-units";
+// import { Dimensionless } from "./base-units";
 import { Quantity } from "../all-units/quantity";
 
 export interface Unit<TQuantityName extends Quantity = Quantity> {
@@ -151,6 +151,8 @@ export interface OffsetConverter {
   readonly type: "offset";
   readonly offset: number;
 }
+
+export type Dimensionless = "Dimensionless";
 
 /**
  * Holds the dimensionless unit ONE
