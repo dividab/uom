@@ -7,7 +7,7 @@ import { ConversionTest } from "./data/conversion-test";
 export function onlySkip(
   tests: ReadonlyArray<ConversionTest>
 ): ReadonlyArray<ConversionTest> {
-  const skips = tests.filter(t => !!!t.skip);
+  const skips = tests.filter(t => !t.skip);
   const onlys = skips.filter(t => t.only === true);
   if (onlys.length > 0) {
     return onlys;
@@ -22,7 +22,7 @@ export function closeTo(
   theTest: jest.DoneCallback,
   failMsg: string = `closeTo, expected: ${expected}, actual: ${actual}, delta: ${delta}`
   // passMsg: string = "closeTo"
-) {
+): boolean {
   const actualDelta = Math.abs(actual - expected);
   if (actualDelta > delta) {
     theTest.fail(failMsg);

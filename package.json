@@ -29,13 +29,13 @@
     "typescript": "^3.6.3"
   },
   "scripts": {
-    "lint": "eslint './{src,tests}/**/*.ts' --ext .ts -f visualstudio ",
+    "lint": "eslint './{src,test}/**/*.ts' --ext .ts -f visualstudio ",
     "build": "yarn build:clean && yarn build:cjs && yarn build:esm && yarn gen-docs",
     "build:clean": "rm -rf ./lib-cjs ./lib-esm",
     "build:cjs": "tsc -p src",
     "build:esm": "tsc -p src --module es2015 --moduleResolution node --outDir ./lib-esm",
     "test:build": "tsc -p test",
-    "test:build:clean": "rm -rf test/lib",
+    "test:build:clean": "rm -rf ./lib-test",
     "test-coverage": "jest",
     "test": "jest --no-coverage",
     "verify": "yarn lint && yarn build && yarn test-coverage",

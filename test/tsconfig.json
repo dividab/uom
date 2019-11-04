@@ -9,7 +9,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strictNullChecks": true,
-    "outDir": "./lib",
+    "outDir": "../lib-test",
     "sourceMap": true,
     "declaration": true,
     "target": "es5",

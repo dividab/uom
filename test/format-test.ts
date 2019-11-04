@@ -2,10 +2,14 @@ import * as Units from "../src/units";
 import * as UnitsFormat from "../src/units-format";
 import * as Format from "../src/format";
 
-const containsAll = <T>(arr1: ReadonlyArray<T>, arr2: ReadonlyArray<T>) =>
-  arr2.every(arr2Item => arr1.indexOf(arr2Item) !== -1);
-const sameMembers = <T>(arr1: ReadonlyArray<T>, arr2: ReadonlyArray<T>) =>
-  containsAll(arr1, arr2) && containsAll(arr2, arr1);
+const containsAll = <T>(
+  arr1: ReadonlyArray<T>,
+  arr2: ReadonlyArray<T>
+): boolean => arr2.every(arr2Item => arr1.indexOf(arr2Item) !== -1);
+const sameMembers = <T>(
+  arr1: ReadonlyArray<T>,
+  arr2: ReadonlyArray<T>
+): boolean => containsAll(arr1, arr2) && containsAll(arr2, arr1);
 
 describe("format_test", () => {
   test("should get label for Pascal", done => {
