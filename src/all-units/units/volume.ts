@@ -1,15 +1,16 @@
 import { Unit, UnitPrefix, BaseUnits } from "../../core";
 import { CentiMeter, Inch, Foot } from "./length";
+import { Cubed } from "../unit-cubed";
 
 export type Volume = "Volume";
 
 /** The metric unit for volume quantities ( <code>m³</code> ). */
-export const CubicMeter = UnitPrefix.Cubed("CubicMeter", BaseUnits.Meter);
+export const CubicMeter = Cubed("CubicMeter", BaseUnits.Meter);
 
 // Volume
-export const CubicCentiMeter = UnitPrefix.Cubed("CubicCentiMeter", CentiMeter);
-export const CubicInch = UnitPrefix.Cubed("CubicInch", Inch);
-export const CubicFeet = UnitPrefix.Cubed("CubicFeet", Foot);
+export const CubicCentiMeter = Cubed("CubicCentiMeter", CentiMeter);
+export const CubicInch = Cubed("CubicInch", Inch);
+export const CubicFeet = Cubed("CubicFeet", Foot);
 export const HundredCubicFeet = Unit.timesNumber(
   "HundredCubicFeet",
   100.0,

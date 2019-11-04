@@ -1,9 +1,9 @@
 import { Unit } from "../core";
-import * as q from "./quantity";
+import * as Units from "./units";
 
 export function squareRootPressure(
   name: string,
-  unit: Unit.Unit<q.Pressure>
-): Unit.Unit<q.SquareRootPressure> {
+  unit: Unit.Unit<Units.Pressure>
+): Unit.Unit<Units.SquareRootPressure> {
   return Unit.squareRoot(name, "SquareRootPressure", unit);
 }

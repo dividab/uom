@@ -4,7 +4,6 @@
  */
 
 import * as Unit from "./unit";
-// import { Quantity } from "../all-units/quantity";
 
 export interface Amount<T> {
   readonly value: number;

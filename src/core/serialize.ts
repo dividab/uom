@@ -1,6 +1,4 @@
 import * as Unit from "./unit";
-import * as Units from "../all-units/units";
-import { Quantity } from "../all-units/quantity";
 import { UnitMap } from "./format";
 import * as Amount from "./amount";
 
@@ -8,25 +6,26 @@ import * as Amount from "./amount";
  * @module Serialize
  */
 
-const units: UnitMap = toLowerCaseMap(Units);
+// const units: UnitMap = toLowerCaseMap(Units);
 
-function toLowerCaseMap(mixedCaseUnits: UnitMap): UnitMap {
-  type MutableUnitMap = {
-    [key: string]: Unit.Unit<unknown>;
-  };
-  const lowerCaseMap: MutableUnitMap = {};
-  for (const key of Object.keys(mixedCaseUnits)) {
-    lowerCaseMap[key.toLowerCase()] = mixedCaseUnits[key];
-  }
-  return lowerCaseMap;
-}
+// function toLowerCaseMap(mixedCaseUnits: UnitMap): UnitMap {
+//   type MutableUnitMap = {
+//     [key: string]: Unit.Unit<unknown>;
+//   };
+//   const lowerCaseMap: MutableUnitMap = {};
+//   for (const key of Object.keys(mixedCaseUnits)) {
+//     lowerCaseMap[key.toLowerCase()] = mixedCaseUnits[key];
+//   }
+//   return lowerCaseMap;
+// }
 
 /**
  * Converts a units serialized representation to it's deserialized representation
  * @param unitString
  */
-export function stringToUnit<T extends Quantity>(
-  unitString: string
+export function stringToUnit<T>(
+  unitString: string,
+  units: UnitMap
 ): Unit.Unit<T> | undefined {
   return units[unitString.toLowerCase()] as Unit.Unit<T>;
 }
@@ -43,7 +42,7 @@ export function unitToString(unit: Unit.Unit<unknown>): string {
  * Convert an amount to it's serialized representation
  * @param amount
  */
-export function amountToString(amount: Amount.Amount<Quantity>): string {
+export function amountToString(amount: Amount.Amount<unknown>): string {
   if (!amount.value === null || amount.value === undefined) {
     return "";
   }
@@ -57,11 +56,12 @@ export function amountToString(amount: Amount.Amount<Quantity>): string {
  * @param amountString
  */
 export function stringToAmount(
-  amountString: string
-): Amount.Amount<Quantity> | undefined {
+  amountString: string,
+  units: UnitMap
+): Amount.Amount<unknown> | undefined {
   const parts = amountString.split(":");
   const value = parseFloat(parts[0]);
-  const unit = stringToUnit(parts[1]);
+  const unit = stringToUnit(parts[1], units);
   if (!unit) {
     return undefined;
   }

@@ -1,6 +1,4 @@
 import * as Unit from "./unit";
-// import * as UnitsFormat from "../all-units/units-format";
-// import * as Units from "../all-units/units";
 import { UnitFormat } from "./unit-format";
 
 export type UnitMap = {
