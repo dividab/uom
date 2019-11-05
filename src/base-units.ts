@@ -1,4 +1,4 @@
-import * as Unit from "../unit";
+import * as Unit from "./unit";
 
 ///////////////////
 /// SI BASE UNITS //
@@ -24,7 +24,11 @@ import * as Unit from "../unit";
  * would produce between these conductors a force equal to 2 × 10-7 newton per metre of length.
  * It is named after the French physicist Andre Ampere (1775-1836).
  */
-export const Ampere = Unit.createBase("Ampere", "ElectricCurrent", "A");
+export const Ampere = Unit.createBase<"ElectricCurrent">(
+  "Ampere",
+  "ElectricCurrent",
+  "A"
+);
 
 /**
  * The base unit for luminous intensity quantities ( <code>cd</code> ).
@@ -33,14 +37,22 @@ export const Ampere = Unit.createBase("Ampere", "ElectricCurrent", "A");
  * has a radiant intensity in that direction of 1/683 watt per steradian.
  * @see <a href="http://en.wikipedia.org/wiki/Candela">Wikipedia: Candela</a>
  */
-export const Candela = Unit.createBase("Candela", "LuminousIntensity", "cd");
+export const Candela = Unit.createBase<"LuminousIntensity">(
+  "Candela",
+  "LuminousIntensity",
+  "cd"
+);
 
 /**
  * The base unit for thermodynamic temperature quantities ( <code>K</code> ).
  * The kelvin is the 1/273.16th of the thermodynamic temperature of the triple point of water.
  * It is named after the Scottish mathematician and physicist William Thomson 1st Lord Kelvin (1824-1907).
  */
-export const Kelvin = Unit.createBase("Kelvin", "Temperature", "K");
+export const Kelvin = Unit.createBase<"Temperature">(
+  "Kelvin",
+  "Temperature",
+  "K"
+);
 
 /**
  * The base unit for mass quantities ( <code>kg</code> ).
@@ -49,22 +61,26 @@ export const Kelvin = Unit.createBase("Kelvin", "Temperature", "K");
  * of a platinum-iridium cylinder kept at Sevres in France.
  * @see #Gram
  */
-export const Kilogram = Unit.createBase("Kilogram", "Mass", "kg");
+export const Kilogram = Unit.createBase<"Mass">("Kilogram", "Mass", "kg");
 
 /**
  * The base unit for length quantities ( <code>m</code> ).
  * One meter was redefined in 1983 as the distance traveled by light in a vacuum in 1/299,792,458 of a second.
  */
-export const Meter = Unit.createBase("Meter", "Length", "m");
+export const Meter = Unit.createBase<"Length">("Meter", "Length", "m");
 
 /**
  * The base unit for amount of substance quantities ( <code>mol</code> ).
  * The mole is the amount of substance of a system which contains as many elementary
  * entities as there are atoms in 0.012 kilogram of carbon 12.
  */
-export const Mole = Unit.createBase("Mole", "AmountOfSubstance", "mol");
+export const Mole = Unit.createBase<"AmountOfSubstance">(
+  "Mole",
+  "AmountOfSubstance",
+  "mol"
+);
 
 /**
  * The base unit for duration quantities ( <code>s</code> ). It is defined as the duration of 9,192,631,770 cycles of radiation corresponding to the transition between two hyperfine levels of the ground state of cesium (1967 Standard).
  */
-export const Second = Unit.createBase("Second", "Duration", "s");
+export const Second = Unit.createBase<"Duration">("Second", "Duration", "s");

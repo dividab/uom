@@ -3,14 +3,15 @@
  * @module Unit
  */
 
-import { exhaustiveCheck } from "./utils/exhaustive-check";
-import { Dimensionless, Quantity } from "./quantity";
-
-export interface Unit<TQuantityName extends Quantity = Quantity> {
+export interface Unit<TQuantityName> {
   readonly name: string;
   readonly quantity: TQuantityName;
   readonly unitInfo: UnitInfo<TQuantityName>;
 }
+
+export type UnitMap = {
+  readonly [key: string]: Unit<unknown>;
+};
 
 /**
  * This record represents a determinate quantity (as of length, time, heat, or value)
@@ -34,7 +35,7 @@ export interface Unit<TQuantityName extends Quantity = Quantity> {
 //   readonly innerUnit: InnerUnit<T>,
 // }
 
-export type UnitInfo<T extends Quantity> =
+export type UnitInfo<T> =
   | AlternateUnit<T>
   | BaseUnit<T>
   | ProductUnit<T>
@@ -48,7 +49,7 @@ export type UnitInfo<T extends Quantity> =
  * the base units of any specific System Of Units (they would have
  * be base units accross all possible systems otherwise).
  */
-export interface BaseUnit<T extends Quantity> {
+export interface BaseUnit<T> {
   readonly type: "base";
   readonly quantity: T;
   /** Holds the unique symbol for this base unit. */
@@ -59,7 +60,7 @@ export interface BaseUnit<T extends Quantity> {
  * This record represents the units used in expressions to distinguish
  * between quantities of a different nature but of the same dimensions.
  */
-export interface AlternateUnit<T extends Quantity> {
+export interface AlternateUnit<T> {
   readonly type: "alternate";
   readonly quantity: T;
   readonly symbol: string;
@@ -84,7 +85,7 @@ export interface AlternateUnit<T extends Quantity> {
  *       UnitFormat.getStandardInstance().alias(CENTI(METER)), "centimeter");
  *       UnitFormat.getStandardInstance().alias(CENTI(METER)), "centimetre");
  */
-export interface TransformedUnit<T extends Quantity> {
+export interface TransformedUnit<T> {
   readonly type: "transformed";
   readonly quantity: T;
   /** Holds the parent unit (not a transformed unit). */
@@ -100,7 +101,7 @@ export interface TransformedUnit<T extends Quantity> {
  * form after factorization). For example:
  * METER.pow(2).divide(METER) returns METER.
  */
-export interface ProductUnit<T extends Quantity> {
+export interface ProductUnit<T> {
   readonly type: "product";
   readonly quantity: T;
   /// Holds the units composing this product unit.
@@ -110,7 +111,7 @@ export interface ProductUnit<T extends Quantity> {
 /** Represents a rational power of a single unit. */
 export interface Element {
   /** Holds the single unit. */
-  readonly unit: Unit<Quantity>;
+  readonly unit: Unit<unknown>;
   /** Holds the power exponent. */
   readonly pow: number;
 }
@@ -152,6 +153,8 @@ export interface OffsetConverter {
   readonly offset: number;
 }
 
+export type Dimensionless = "Dimensionless";
+
 /**
  * Holds the dimensionless unit ONE
  * @type {Unit}
@@ -169,7 +172,7 @@ const identityConverter: UnitConverter = createIdentityConverter();
  * @param quantity The quantity of the resulting unit.
  * @param symbol The symbol of this base unit.
  */
-export function createBase<T extends Quantity>(
+export function createBase<T>(
   name: string,
   quantity: T,
   symbol: string
@@ -183,7 +186,7 @@ export function createBase<T extends Quantity>(
  * @param symbol The symbol for this alternate unit.
  * @param parent Parent the system unit from which this alternate unit is derived.
  */
-export function createAlternate<T extends Quantity>(
+export function createAlternate<T>(
   name: string,
   symbol: string,
   parent: Unit<T>
@@ -202,11 +205,11 @@ export function createAlternate<T extends Quantity>(
  * @param right The right unit operand.</param>
  * @returns left * right
  */
-export function times<T extends Quantity>(
+export function times<T>(
   name: string,
   quantity: T,
-  left: Unit<Quantity>,
-  right: Unit<Quantity>
+  left: Unit<unknown>,
+  right: Unit<unknown>
 ): Unit<T> {
   return { name, quantity, unitInfo: product(quantity, left, right) };
 }
@@ -218,24 +221,24 @@ export function times<T extends Quantity>(
  * @param right The divisor unit operand.
  * @returns left / right
  */
-export function divide<T extends Quantity>(
+export function divide<T>(
   name: string,
   quantity: T,
-  left: Unit<Quantity>,
-  right: Unit<Quantity>
+  left: Unit<unknown>,
+  right: Unit<unknown>
 ): Unit<T> {
   return { name, quantity, unitInfo: quotient(quantity, left, right) };
 }
 
-export function squareRoot<T extends Quantity>(
+export function squareRoot<T>(
   name: string,
   quantity: T,
-  unit: Unit<Quantity>
+  unit: Unit<unknown>
 ): Unit<T> {
   return { name, quantity, unitInfo: pow(quantity, unit, 0.5) };
 }
 
-export function timesNumber<T extends Quantity>(
+export function timesNumber<T>(
   name: string,
   factor: number,
   unit: Unit<T>
@@ -243,7 +246,7 @@ export function timesNumber<T extends Quantity>(
   return transform(name, createFactorConverter(factor), unit);
 }
 
-export function divideNumber<T extends Quantity>(
+export function divideNumber<T>(
   name: string,
   factor: number,
   unit: Unit<T>
@@ -251,19 +254,11 @@ export function divideNumber<T extends Quantity>(
   return transform(name, createFactorConverter(1.0 / factor), unit);
 }
 
-export function plus<T extends Quantity>(
-  name: string,
-  offset: number,
-  unit: Unit<T>
-): Unit<T> {
+export function plus<T>(name: string, offset: number, unit: Unit<T>): Unit<T> {
   return transform(name, createOffsetConverter(offset), unit);
 }
 
-export function minus<T extends Quantity>(
-  name: string,
-  offset: number,
-  unit: Unit<T>
-): Unit<T> {
+export function minus<T>(name: string, offset: number, unit: Unit<T>): Unit<T> {
   return transform(name, createOffsetConverter(-offset), unit);
 }
 
@@ -276,14 +271,14 @@ export function minus<T extends Quantity>(
  */
 export function convert(
   value: number,
-  fromUnit: Unit<Quantity>,
-  toUnit: Unit<Quantity>
+  fromUnit: Unit<unknown>,
+  toUnit: Unit<unknown>
 ): number {
   const converter = getConverter(fromUnit, toUnit);
   return convertWithConverter(value, converter);
 }
 
-export function equals(left: Unit<Quantity>, right: Unit<Quantity>): boolean {
+export function equals(left: Unit<unknown>, right: Unit<unknown>): boolean {
   return left.name === right.name;
   // if (left.unitInfo.type !== right.unitInfo.type || left.quantity !== right.quantity) {
   //   return false;
@@ -346,10 +341,7 @@ export function equals(left: Unit<Quantity>, right: Unit<Quantity>): boolean {
 /**
  * @private
  */
-function getConverter<T extends Quantity>(
-  fromUnit: Unit<T>,
-  toUnit: Unit<T>
-): UnitConverter {
+function getConverter<T>(fromUnit: Unit<T>, toUnit: Unit<T>): UnitConverter {
   if (equals(fromUnit, toUnit)) {
     return identityConverter;
   }
@@ -365,9 +357,7 @@ function getConverter<T extends Quantity>(
  * Returns the converter from this unit to its system unit.
  * @private
  */
-function toStandardUnitConverter<T extends Quantity>(
-  unit: Unit<T>
-): UnitConverter {
+function toStandardUnitConverter<T>(unit: Unit<T>): UnitConverter {
   switch (unit.unitInfo.type) {
     case "alternate":
       return toStandardUnitConverter(unit.unitInfo.parent);
@@ -394,7 +384,7 @@ function toStandardUnitConverter<T extends Quantity>(
  * @returns The unit after the specified transformation.
  * @private
  */
-function transform<T extends Quantity>(
+function transform<T>(
   name: string,
   operation: UnitConverter,
   unit: Unit<T>
@@ -415,7 +405,7 @@ function transform<T extends Quantity>(
  * @param toParentUnitConverter {UnitConverter} The converter to the parent units.
  * @private
  */
-function createTransformedUnit<T extends Quantity>(
+function createTransformedUnit<T>(
   parentUnit: Unit<T>,
   toParentUnitConverter: UnitConverter
 ): TransformedUnit<T> {
@@ -441,7 +431,7 @@ function createTransformedUnit<T extends Quantity>(
  * @param rightElems Right multiplicand elements.
  * @private
  */
-function fromProduct<T extends Quantity>(
+function fromProduct<T>(
   quantity: T,
   leftElems: ReadonlyArray<Element>,
   rightElems: ReadonlyArray<Element>
@@ -496,17 +486,17 @@ function fromProduct<T extends Quantity>(
 /**
  * @private
  */
-function createElement(unit: Unit, power: number): Element {
+function createElement(unit: Unit<unknown>, power: number): Element {
   return { unit, pow: power };
 }
 
 /**
  * @private
  */
-function product<T extends Quantity>(
+function product<T>(
   quantity: T,
-  left: Unit<Quantity>,
-  right: Unit<Quantity>
+  left: Unit<unknown>,
+  right: Unit<unknown>
 ): ProductUnit<T> {
   const leftelements = getElements(left);
   const rightelements = getElements(right);
@@ -516,10 +506,10 @@ function product<T extends Quantity>(
 /**
  * @private
  */
-function quotient<T extends Quantity>(
+function quotient<T>(
   quantity: T,
-  left: Unit<Quantity>,
-  right: Unit<Quantity>
+  left: Unit<unknown>,
+  right: Unit<unknown>
 ): ProductUnit<T> {
   const leftelements = getElements(left);
   const invertedRightelements: Array<Element> = [];
@@ -532,9 +522,9 @@ function quotient<T extends Quantity>(
 /**
  * @private
  */
-function pow<T extends Quantity>(
+function pow<T>(
   quantity: T,
-  unit: Unit,
+  unit: Unit<unknown>,
   exponent: number
 ): ProductUnit<T> {
   const squareRootedRightelements: Array<Element> = [];
@@ -549,7 +539,7 @@ function pow<T extends Quantity>(
 /**
  * @private
  */
-function getElements(unit: Unit): ReadonlyArray<Element> {
+function getElements(unit: Unit<unknown>): ReadonlyArray<Element> {
   if (unit.unitInfo.type === "product") {
     return unit.unitInfo.elements;
   } else if (
@@ -567,9 +557,7 @@ function getElements(unit: Unit): ReadonlyArray<Element> {
 /**
  * @private
  */
-function productUnitToStandardUnit<T extends Quantity>(
-  unit: Unit<T>
-): UnitConverter {
+function productUnitToStandardUnit<T>(unit: Unit<T>): UnitConverter {
   let converter = identityConverter;
   for (const element of getElements(unit)) {
     let conv = toStandardUnitConverter(element.unit);
@@ -588,7 +576,7 @@ function productUnitToStandardUnit<T extends Quantity>(
 /**
  * @private
  */
-function createProductUnit<T extends Quantity>(
+function createProductUnit<T>(
   quantity: T,
   elements: Array<Element>
 ): ProductUnit<T> {
@@ -718,9 +706,9 @@ function createOne(): Unit<Dimensionless> {
   };
 }
 
-export type GetSymbolFn = (unit: Unit) => string;
+export type GetSymbolFn = (unit: Unit<unknown>) => string;
 
-export function buildDerivedSymbol<T extends Quantity>(
+export function buildDerivedSymbol<T>(
   unit: Unit<T>,
   getSymbol: GetSymbolFn = buildDerivedSymbol
 ): string {
@@ -739,7 +727,7 @@ export function buildDerivedSymbol<T extends Quantity>(
   // throw new Error(`Unknown innerUnit ${JSON.stringify(unit)}`);
 }
 
-function productUnitBuildDerivedName<T extends Quantity>(
+function productUnitBuildDerivedName<T>(
   unit: Unit<T>,
   getSymbol: GetSymbolFn
 ): string {
@@ -772,7 +760,7 @@ function productUnitBuildDerivedName<T extends Quantity>(
   return name;
 }
 
-function getElements2(unit: Unit): ReadonlyArray<Element> {
+function getElements2(unit: Unit<unknown>): ReadonlyArray<Element> {
   if (unit.unitInfo.type === "product") {
     return unit.unitInfo.elements;
   }
@@ -803,4 +791,21 @@ function productUnitBuildNameFromElements(
   }
 
   return name;
+}
+
+// See https://basarat.gitbooks.io/typescript/content/docs/types/discriminated-unions.html
+// and https://github.com/Microsoft/TypeScript/issues/6155
+export function exhaustiveCheck(
+  x: never,
+  throwError: boolean = false,
+  match: string = ""
+): never {
+  if (throwError) {
+    throw new Error(
+      `ERROR! Trying to match '${match}', the value ${JSON.stringify(
+        x
+      )} should be of type never.`
+    );
+  }
+  return x;
 }

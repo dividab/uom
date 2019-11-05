@@ -4,16 +4,14 @@
  */
 
 import * as Unit from "./unit";
-import * as Units from "./units";
-import { Quantity, Dimensionless } from "./quantity";
 
-export interface Amount<T extends Quantity> {
+export interface Amount<T> {
   readonly value: number;
   readonly unit: Unit.Unit<T>;
   readonly decimalCount: number;
 }
 
-export type Comparer = <T1 extends Quantity, T2 extends T1>(
+export type Comparer = <T1, T2 extends T1>(
   left: Amount<T1>,
   right: Amount<T2>
 ) => number;
@@ -24,7 +22,7 @@ export type Comparer = <T1 extends Quantity, T2 extends T1>(
  * @param right {Amount} The right-hand amount
  * @returns {number} Comparer value
  */
-export const defaultComparer: Comparer = <T1 extends Quantity, T2 extends T1>(
+export const defaultComparer: Comparer = <T1, T2 extends T1>(
   left: Amount<T1>,
   right: Amount<T2>
 ) => _comparison(left, right);
@@ -38,7 +36,7 @@ export const defaultComparer: Comparer = <T1 extends Quantity, T2 extends T1>(
  * @param decimalCount {number | undefined} The decimalCount of the amount.
  * @returns {Amount<T>} The created amount.
  */
-export function create<T extends Quantity>(
+export function create<T>(
   value: number,
   unit: Unit.Unit<T>,
   decimalCount: number | undefined = undefined
@@ -60,7 +58,7 @@ export function create<T extends Quantity>(
  * @param amount {Amount} The amount.
  * @returns {string} String representation of the Amount.
  */
-export function toString<T extends Quantity>(amount: Amount<T>): string {
+export function toString<T>(amount: Amount<T>): string {
   const unitname = Unit.buildDerivedSymbol(amount.unit);
   if (unitname.length > 0) {
     return amount.value.toString() + " " + unitname;
@@ -72,7 +70,7 @@ export function toString<T extends Quantity>(amount: Amount<T>): string {
  * Negation unary operator.
  * @param amount {Amount<T>} The amount.
  */
-export function neg<T extends Quantity>(amount: Amount<T>): Amount<T> {
+export function neg<T>(amount: Amount<T>): Amount<T> {
   return create<T>(-amount.value, amount.unit);
 }
 
@@ -81,10 +79,7 @@ export function neg<T extends Quantity>(amount: Amount<T>): Amount<T> {
  * @param quantity {Quantity} Quantity to check for.
  * @param amount {Amount<T>} The amount to check.
  */
-export function isQuantity<T extends Quantity>(
-  quantity: T,
-  amount: Amount<T>
-): boolean {
+export function isQuantity<T>(quantity: T, amount: Amount<T>): boolean {
   // Amount does not store the quanitty but Unit does
   // return Unit.getQuantityType(amount.unit) === quantityType;
   return amount.unit.quantity === quantity;
@@ -100,7 +95,7 @@ export function isQuantity<T extends Quantity>(
  * @param right The right-hand
  * @returns left + right
  */
-export function plus<T1 extends Quantity, T2 extends T1>(
+export function plus<T1, T2 extends T1>(
   left: Amount<T1>,
   right: Amount<T2>
 ): Amount<T1> {
@@ -123,7 +118,7 @@ export function plus<T1 extends Quantity, T2 extends T1>(
  * @param right The right-hand
  * @returns left + right
  */
-export function minus<T1 extends Quantity, T2 extends T1>(
+export function minus<T1, T2 extends T1>(
   left: Amount<T1>,
   right: Amount<T2>
 ): Amount<T1> {
@@ -142,15 +137,15 @@ export function minus<T1 extends Quantity, T2 extends T1>(
  * @param left The amount to multiply
  * @param right The number to multiply with
  */
-export function times<T extends Quantity>(
+export function times<T>(
   left: Amount<T>,
-  right: number | Amount<Dimensionless>
+  right: number | Amount<Unit.Dimensionless>
 ): Amount<T> {
   if (typeof right === "number") {
     return _factory<T>(left.value * right, left.unit, left.decimalCount);
   } else if (right.unit.quantity === "Dimensionless") {
     return _factory<T>(
-      left.value * valueAs(Units.One, right),
+      left.value * valueAs(Unit.One, right),
       left.unit,
       left.decimalCount
     );
@@ -167,15 +162,15 @@ export function times<T extends Quantity>(
  * @param left The amount to divide
  * @param right The number to divide by
  */
-export function divide<T extends Quantity>(
+export function divide<T>(
   left: Amount<T>,
-  right: number | Amount<Dimensionless>
+  right: number | Amount<Unit.Dimensionless>
 ): Amount<T> {
   if (typeof right === "number") {
     return _factory<T>(left.value / right, left.unit, left.decimalCount);
   } else if (right.unit.quantity === "Dimensionless") {
     return _factory<T>(
-      left.value / valueAs(Units.One, right),
+      left.value / valueAs(Unit.One, right),
       left.unit,
       left.decimalCount
     );
@@ -194,7 +189,7 @@ export function divide<T extends Quantity>(
  * @param right {Amount} The right-hand Amount.
  * @returns {boolean} True if the amounts are equal, false otherwise.
  */
-export function equals<T1 extends Quantity, T2 extends T1>(
+export function equals<T1, T2 extends T1>(
   left: Amount<T1>,
   right: Amount<T2>,
   comparer: Comparer = defaultComparer
@@ -208,7 +203,7 @@ export function equals<T1 extends Quantity, T2 extends T1>(
  * @param right {Amount} The right-hand Amount.
  * @returns {boolean} True if the left-hand is less than the right-hand, false otherwise.
  */
-export function lessThan<T1 extends Quantity, T2 extends T1>(
+export function lessThan<T1, T2 extends T1>(
   left: Amount<T1>,
   right: Amount<T2>,
   comparer: Comparer = defaultComparer
@@ -222,7 +217,7 @@ export function lessThan<T1 extends Quantity, T2 extends T1>(
  * @param right {Amount} The right-hand Amount.
  * @returns {boolean} True if the left-hand is less than the right-hand, false otherwise.
  */
-export function greaterThan<T1 extends Quantity, T2 extends T1>(
+export function greaterThan<T1, T2 extends T1>(
   left: Amount<T1>,
   right: Amount<T2>,
   comparer: Comparer = defaultComparer
@@ -230,21 +225,21 @@ export function greaterThan<T1 extends Quantity, T2 extends T1>(
   return compareAfterNullAndUndefinedCheck(left, right, false, comparer) > 0;
 }
 
-export const lessOrEqualTo = <T1 extends Quantity, T2 extends T1>(
+export const lessOrEqualTo = <T1, T2 extends T1>(
   left: Amount<T1>,
   right: Amount<T2>,
   comparer: Comparer = defaultComparer
 ): boolean =>
   compareAfterNullAndUndefinedCheck(left, right, false, comparer) <= 0;
 
-export const greaterOrEqualTo = <T1 extends Quantity, T2 extends T1>(
+export const greaterOrEqualTo = <T1, T2 extends T1>(
   left: Amount<T1>,
   right: Amount<T2>,
   comparer: Comparer = defaultComparer
 ): boolean =>
   compareAfterNullAndUndefinedCheck(left, right, false, comparer) >= 0;
 
-export function clamp<T1 extends Quantity, T2 extends T1>(
+export function clamp<T1, T2 extends T1>(
   minAmount: Amount<T1>,
   maxAmount: Amount<T1>,
   amount: Amount<T2>,
@@ -253,7 +248,7 @@ export function clamp<T1 extends Quantity, T2 extends T1>(
   return min(maxAmount, max(minAmount, amount, comparer), comparer);
 }
 
-export function max<T1 extends Quantity, T2 extends T1>(
+export function max<T1, T2 extends T1>(
   a1: Amount<T1>,
   a2: Amount<T2>,
   comparer: Comparer = defaultComparer
@@ -267,7 +262,7 @@ export function max<T1 extends Quantity, T2 extends T1>(
   return greaterThan(a1, a2, comparer) ? a1 : a2;
 }
 
-export function min<T1 extends Quantity, T2 extends T1>(
+export function min<T1, T2 extends T1>(
   a1: Amount<T1>,
   a2: Amount<T2>,
   comparer: Comparer = defaultComparer
@@ -285,7 +280,7 @@ export function min<T1 extends Quantity, T2 extends T1>(
  * @param step Rounding step, for example 5.0 Celsius will round 23 to 20.
  * @param amount  Amount to round.
  */
-export function roundDown<T1 extends Quantity, T2 extends T1>(
+export function roundDown<T1, T2 extends T1>(
   step: Amount<T1>,
   amount: Amount<T2>
 ): Amount<T1> {
@@ -301,7 +296,7 @@ export function roundDown<T1 extends Quantity, T2 extends T1>(
  * @param step Rounding step, for example 5.0 Celsius will round 23 to 25.
  * @param amount  Amount to round.
  */
-export function roundUp<T1 extends Quantity, T2 extends T1>(
+export function roundUp<T1, T2 extends T1>(
   step: Amount<T1>,
   amount: Amount<T2>
 ): Amount<T1> {
@@ -313,7 +308,7 @@ export function roundUp<T1 extends Quantity, T2 extends T1>(
   );
 }
 
-export function compareTo<T1 extends Quantity, T2 extends T1>(
+export function compareTo<T1, T2 extends T1>(
   left: Amount<T1>,
   right: Amount<T2>,
   comparer: Comparer = defaultComparer
@@ -325,7 +320,7 @@ export function compareTo<T1 extends Quantity, T2 extends T1>(
  * Gets the absolute amount (equivalent of Math.Abs())
  * @param amount The amount to get the aboslute amount from.
  */
-export function abs<T extends Quantity>(amount: Amount<T>): Amount<T> {
+export function abs<T>(amount: Amount<T>): Amount<T> {
   return _factory<T>(Math.abs(amount.value), amount.unit, amount.decimalCount);
 }
 
@@ -334,7 +329,7 @@ export function abs<T extends Quantity>(amount: Amount<T>): Amount<T> {
  * @param toUnit The unit to get the amount in.
  * @param amount The amount to get the value from.
  */
-export function valueAs<T1 extends Quantity, T2 extends T1>(
+export function valueAs<T1, T2 extends T1>(
   toUnit: Unit.Unit<T1>,
   amount: Amount<T2>
 ): number {
@@ -356,7 +351,7 @@ export function valueAs<T1 extends Quantity, T2 extends T1>(
  * @returns The most granular unit.
  * @private
  */
-export function getMostGranularUnit<T extends Quantity>(
+export function getMostGranularUnit<T>(
   leftUnit: Unit.Unit<T>,
   rightUnit: Unit.Unit<T>
 ): Unit.Unit<T> {
@@ -378,7 +373,7 @@ export function getMostGranularUnit<T extends Quantity>(
 /// BEGIN PRIVATE DECLARATIONS
 ///////////////////////////////
 
-function _factory<T extends Quantity>(
+function _factory<T>(
   value: number,
   unit: Unit.Unit<T>,
   decimalCount: number
@@ -400,10 +395,7 @@ function _factory<T extends Quantity>(
   };
 }
 
-function _comparison<T extends Quantity>(
-  left: Amount<T>,
-  right: Amount<T>
-): number {
+function _comparison<T>(left: Amount<T>, right: Amount<T>): number {
   // To handle decimals correctly when the units are different
   // we need to know which unit is the most granular.
   // Eg. when comparing 0:CubicMeterPerSecond with 36:CubicMeterPerHour,
@@ -433,7 +425,7 @@ function _comparison<T extends Quantity>(
  * @param rightUnit
  * @private
  */
-function getMostGranularAmount<T extends Quantity>(
+function getMostGranularAmount<T>(
   left: Amount<T>,
   right: Amount<T>
 ): Amount<T> {
@@ -446,7 +438,7 @@ function getMostGranularAmount<T extends Quantity>(
   return right;
 }
 
-function compareAfterNullAndUndefinedCheck<T1 extends Quantity, T2 extends T1>(
+function compareAfterNullAndUndefinedCheck<T1, T2 extends T1>(
   left: Amount<T1>,
   right: Amount<T2>,
   allowNullOrUndefined: boolean,

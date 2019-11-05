@@ -1,18 +1,13 @@
 import * as Unit from "./unit";
-import { Quantity } from "./quantity";
-import * as Units from "./units";
-import { UnitMap } from "./format";
 import * as Amount from "./amount";
 
 /**
  * @module Serialize
  */
 
-const units: UnitMap = toLowerCaseMap(Units);
-
-function toLowerCaseMap(mixedCaseUnits: UnitMap): UnitMap {
+function toLowerCaseMap(mixedCaseUnits: Unit.UnitMap): Unit.UnitMap {
   type MutableUnitMap = {
-    [key: string]: Unit.Unit;
+    [key: string]: Unit.Unit<unknown>;
   };
   const lowerCaseMap: MutableUnitMap = {};
   for (const key of Object.keys(mixedCaseUnits)) {
@@ -25,17 +20,19 @@ function toLowerCaseMap(mixedCaseUnits: UnitMap): UnitMap {
  * Converts a units serialized representation to it's deserialized representation
  * @param unitString
  */
-export function stringToUnit<T extends Quantity>(
-  unitString: string
+export function stringToUnit<T>(
+  unitString: string,
+  units: Unit.UnitMap
 ): Unit.Unit<T> | undefined {
-  return units[unitString.toLowerCase()] as Unit.Unit<T>;
+  const lowerCaseMap = toLowerCaseMap(units);
+  return lowerCaseMap[unitString.toLowerCase()] as Unit.Unit<T>;
 }
 
 /**
  * Converts a unit to it's serialized representation
  * @param unit
  */
-export function unitToString(unit: Unit.Unit): string {
+export function unitToString(unit: Unit.Unit<unknown>): string {
   return unit.name;
 }
 
@@ -43,7 +40,7 @@ export function unitToString(unit: Unit.Unit): string {
  * Convert an amount to it's serialized representation
  * @param amount
  */
-export function amountToString(amount: Amount.Amount<Quantity>): string {
+export function amountToString(amount: Amount.Amount<unknown>): string {
   if (!amount.value === null || amount.value === undefined) {
     return "";
   }
@@ -57,11 +54,12 @@ export function amountToString(amount: Amount.Amount<Quantity>): string {
  * @param amountString
  */
 export function stringToAmount(
-  amountString: string
-): Amount.Amount<Quantity> | undefined {
+  amountString: string,
+  units: Unit.UnitMap
+): Amount.Amount<unknown> | undefined {
   const parts = amountString.split(":");
   const value = parseFloat(parts[0]);
-  const unit = stringToUnit(parts[1]);
+  const unit = stringToUnit(parts[1], units);
   if (!unit) {
     return undefined;
   }

@@ -18,6 +18,10 @@ This package has functions to handle unit of measures. It works particulary well
 
 The library is compiled to ES5 and no polyfills are required.
 
+> NOTE: The base package `uom` does only contain the base SI units. In order to get more units to convert between you also need to install the `uom-units` package:
+
+`npm install --save uom-units`
+
 ## Features
 
 ### Conversion
@@ -25,7 +29,8 @@ The library is compiled to ES5 and no polyfills are required.
 This feature allows you to convert amounts into different units.
 
 ```js
-import { Amount, Units } from "uom";
+import { Amount } from "uom";
+import { Units } from "uom-units";
 
 const amount = Amount.create(10, Units.Meter);
 const inch = Amount.valueAs(Units.Inch, amount);
@@ -40,7 +45,8 @@ In the case that a derived unit can be known by a different name, an `AlternateU
 By using the base units you can create any unit.
 
 ```js
-import { Amount, Unit, Units } from "uom";
+import { Amount, Unit } from "uom";
+import { Units } from "uom-units";
 
 const myInchUnit = Unit.divideNumber(12.0, Units.Foot);
 const amount = Amount.create(10, myInchUnit);
@@ -52,7 +58,8 @@ const meter = Amount.valueAs(Units.Meter, amount);
 By declaring your functions with a signature of typed Amount you can make sure the right type of amounts are inputs to the function.
 
 ```ts
-import { Amount, Units } from "uom";
+import { Amount } from "uom";
+import { Units } from "uom-units";
 
 const length1 = Amount.create(10, Units.Meter);
 const length2 = Amount.create(10, Units.Inch);
@@ -73,7 +80,8 @@ Asosciating formatting directly with an `Unit` or `Quantity` is generally not a 
 However if you are just building something smaller and want quick formatting, this package has some opinionated formatting that is directly associated with each `Unit` built-in. Specifically you can get the label and number of decimals for each unit.
 
 ```ts
-import { Amount, Units, Format } from "uom";
+import { Amount, Format } from "uom";
+import { Units } from "uom-units";
 
 const length = Amount.create(10, Units.Meter);
 const format = Format.getUnitFormat(length);
@@ -88,7 +96,8 @@ console.log(
 There is also the `buildDerivedSymbol()` function which will derive a symbol for a unit by looking at which base units the unit was created:
 
 ```ts
-import { Amount, Units, Format } from "uom";
+import { Amount, Format } from "uom";
+import { Units } from "uom-units";
 
 const length = Amount.create(10, Units.MeterPerSecond);
 const label = Unit.buildDerivedSymbol(length);
@@ -100,7 +109,8 @@ console.log(label); // m/s
 This feature can be used to serialize the units for persisting to/from for example a database.
 
 ```ts
-import { Amount, Units, Serialize } from "uom";
+import { Amount, Serialize } from "uom";
+import { Units } from "uom-units";
 
 const length = Amount.create(10, Units.Meter);
 const serialized = Serialize.amountToString(length);

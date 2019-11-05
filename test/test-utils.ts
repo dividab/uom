@@ -1,19 +1,19 @@
-import { ConversionTest } from "./data/conversion-test";
+// import { ConversionTest } from "./data/conversion-test";
 
-/**
- * Helper function to enable only one test to be run
- * in an array of test data
- */
-export function onlySkip(
-  tests: ReadonlyArray<ConversionTest>
-): ReadonlyArray<ConversionTest> {
-  const skips = tests.filter(t => !t.skip);
-  const onlys = skips.filter(t => t.only === true);
-  if (onlys.length > 0) {
-    return onlys;
-  }
-  return skips;
-}
+// /**
+//  * Helper function to enable only one test to be run
+//  * in an array of test data
+//  */
+// export function onlySkip(
+//   tests: ReadonlyArray<ConversionTest>
+// ): ReadonlyArray<ConversionTest> {
+//   const skips = tests.filter(t => !t.skip);
+//   const onlys = skips.filter(t => t.only === true);
+//   if (onlys.length > 0) {
+//     return onlys;
+//   }
+//   return skips;
+// }
 
 export function closeTo(
   actual: number,
