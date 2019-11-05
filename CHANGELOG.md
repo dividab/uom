@@ -7,10 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [v3.0.0] - 2019-11-05
+
 ### Changed
 
-- All unit definitions (expect base SI units) moved to separate package uom-units.
-- Passing an explicit `UnitMap` is now required in Format and Serialize module functions.
+- All unit definitions (expect base SI units) moved to separate package [uom-units](https://www.npmjs.com/package/uom-units).
+- Passing explicit `UnitMap` and `UnitFormatMap` is now required in Format and Serialize module functions.
 
 ## [v2.5.0] - 2019-11-01
 
