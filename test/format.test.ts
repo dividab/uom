@@ -11,7 +11,10 @@ const sameMembers = <T>(
   arr2: ReadonlyArray<T>
 ): boolean => containsAll(arr1, arr2) && containsAll(arr2, arr1);
 
-const UnitsFormat = { Meter: createUnitFormat("Meter", 2) };
+const UnitsFormat = {
+  Meter: createUnitFormat("m", 2),
+  Kelvin: createUnitFormat("°K", 2)
+};
 
 describe("format_test", () => {
   test("should get label for Kelvin", done => {
@@ -20,7 +23,7 @@ describe("format_test", () => {
       done.fail();
       done();
     } else {
-      expect(format.label).toEqual("Pa");
+      expect(format.label).toEqual("°K");
       done();
     }
   });
