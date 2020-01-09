@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+- The consumer of the package is responsible for sending in units with the correct case.
+
 ## [v3.0.0] - 2019-11-05
 
 ### Changed

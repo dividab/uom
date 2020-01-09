@@ -5,17 +5,6 @@ import * as Amount from "./amount";
  * @module Serialize
  */
 
-function toLowerCaseMap(mixedCaseUnits: Unit.UnitMap): Unit.UnitMap {
-  type MutableUnitMap = {
-    [key: string]: Unit.Unit<unknown>;
-  };
-  const lowerCaseMap: MutableUnitMap = {};
-  for (const key of Object.keys(mixedCaseUnits)) {
-    lowerCaseMap[key.toLowerCase()] = mixedCaseUnits[key];
-  }
-  return lowerCaseMap;
-}
-
 /**
  * Converts a units serialized representation to it's deserialized representation
  * @param unitString
@@ -24,8 +13,7 @@ export function stringToUnit<T>(
   unitString: string,
   units: Unit.UnitMap
 ): Unit.Unit<T> | undefined {
-  const lowerCaseMap = toLowerCaseMap(units);
-  return lowerCaseMap[unitString.toLowerCase()] as Unit.Unit<T>;
+  return units[unitString] as Unit.Unit<T>;
 }
 
 /**
