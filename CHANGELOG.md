@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased](https://github.com/dividab/uom/compare/v4.1.0...master)
 
-## [v4.0.0](https://github.com/dividab/uom/compare/v4.0.0...v4.1.0) - 2020-03-29
+## [v4.1.0](https://github.com/dividab/uom/compare/v4.0.0...v4.1.0) - 2020-03-29
 
 ### Added
 
