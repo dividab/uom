@@ -5,7 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased](https://github.com/dividab/uom/compare/v4.0.0...master)
+## [Unreleased](https://github.com/dividab/uom/compare/v4.1.0...master)
+
+## [v4.1.0](https://github.com/dividab/uom/compare/v4.0.0...v4.1.0) - 2020-03-29
+
+### Added
+
+- Include typescript source from `src/` in published npm package. See PR [#XX](https://github.com/dividab/uom/pull/XX) for more info.
 
 ## [v4.0.0](https://github.com/dividab/uom/compare/v3.0.0...v4.0.0) - 2020-01-09
 

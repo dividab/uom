@@ -8,6 +8,15 @@
   "author": "jonas.kello@divid.se",
   "repository": "https://github.com/dividab/uom",
   "license": "MIT",
+  "files": [
+    "/lib-cjs",
+    "/lib-esm",
+    "/src",
+    "package.json",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md"
+  ],
   "devDependencies": {
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.11",
