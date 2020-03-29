@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Include typescript source from `src/` in published npm package. See PR [#XX](https://github.com/dividab/uom/pull/XX) for more info.
+- Include typescript source from `src/` in published npm package. See PR [#50](https://github.com/dividab/uom/pull/50) for more info.
 
 ## [v4.0.0](https://github.com/dividab/uom/compare/v3.0.0...v4.0.0) - 2020-01-09
 
