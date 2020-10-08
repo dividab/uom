@@ -9,6 +9,8 @@ export interface Unit<TQuantityName> {
   readonly unitInfo: UnitInfo<TQuantityName>;
 }
 
+export type UnitLookup = (unitString: string) => Unit<unknown> | undefined;
+
 export type UnitMap = {
   readonly [key: string]: Unit<unknown>;
 };
