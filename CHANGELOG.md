@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased](https://github.com/dividab/uom/compare/v5.0.0...master)
 
-## [Unreleased](https://github.com/dividab/uom/compare/v5.0.0...v6.0.0)
+## [v6.0.0](https://github.com/dividab/uom/compare/v5.0.0...v6.0.0)
 
 - Moved `Format.getUnitsForQuantity` to `UnitMap.getUnitsForQuantity`.
 - Moved `Format.getUnitFormat` to `UnitFormat.getUnitFormat`.
