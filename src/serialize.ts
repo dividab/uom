@@ -1,4 +1,5 @@
 import * as Unit from "./unit";
+import * as UnitMap from "./unit-map";
 import * as Amount from "./amount";
 
 /**
@@ -11,7 +12,7 @@ import * as Amount from "./amount";
  */
 export function stringToUnit<T>(
   unitString: string,
-  unitLookup: Unit.UnitLookup
+  unitLookup: UnitMap.UnitLookup
 ): Unit.Unit<T> | undefined {
   return unitLookup(unitString) as Unit.Unit<T>;
 }
@@ -43,7 +44,7 @@ export function amountToString(amount: Amount.Amount<unknown>): string {
  */
 export function stringToAmount(
   amountString: string,
-  unitLookup: Unit.UnitLookup
+  unitLookup: UnitMap.UnitLookup
 ): Amount.Amount<unknown> | undefined {
   const parts = amountString.split(":");
   const value = parseFloat(parts[0]);

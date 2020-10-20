@@ -1,3 +1,5 @@
+import * as Unit from "./unit";
+
 /**
  * @module UnitFormat
  */
@@ -8,6 +10,17 @@ export interface UnitFormat {
 }
 
 export type UnitFormatMap = { readonly [key: string]: UnitFormat };
+
+/**
+ * Get formatting info from unit
+ * @param unit
+ */
+export function getUnitFormat(
+  unit: Unit.Unit<unknown>,
+  unitsFormat: UnitFormatMap
+): UnitFormat | undefined {
+  return unitsFormat[unit.name];
+}
 
 /**
  * Creates a unit format

@@ -1,22 +1,14 @@
 import * as Unit from "./unit";
-import { UnitFormat, UnitFormatMap } from "./unit-format";
-
-// export type UnitFormatMap<TUnitMap> = { [P in keyof TUnitMap]: UnitFormat };
 
 /**
- * @module Format
+ * @module UnitMap
  */
 
-/**
- * Get formatting info from unit
- * @param unit
- */
-export function getUnitFormat(
-  unit: Unit.Unit<unknown>,
-  unitsFormat: UnitFormatMap
-): UnitFormat | undefined {
-  return unitsFormat[unit.name];
-}
+export type UnitLookup = (unitString: string) => Unit.Unit<unknown> | undefined;
+
+export type UnitMap = {
+  readonly [key: string]: Unit.Unit<unknown>;
+};
 
 /**
  * Get all units registered for quantity
@@ -24,20 +16,15 @@ export function getUnitFormat(
  */
 export function getUnitsForQuantity(
   quantity: string,
-  unitsFormat: UnitFormatMap,
-  units: Unit.UnitMap
+  units: UnitMap
 ): ReadonlyArray<Unit.Unit<unknown>> {
-  const quantityToUnits = getUnitsPerQuantity(unitsFormat, units);
+  const quantityToUnits = getUnitsPerQuantity(units);
   const unitsForQuantity = quantityToUnits[quantity.toLowerCase()];
   return unitsForQuantity || [];
 }
 
 interface LocalCache {
-  readonly input:
-    | {
-        readonly [key: string]: UnitFormat;
-      }
-    | undefined;
+  readonly input: UnitMap | undefined;
   readonly output: // eslint-disable-next-line functional/prefer-readonly-type
   { readonly [key: string]: Array<Unit.Unit<unknown>> } | undefined;
 }
@@ -48,17 +35,14 @@ let cache: LocalCache = {
   output: undefined,
 };
 function getUnitsPerQuantity(
-  unitsFormat: {
-    readonly [key: string]: UnitFormat;
-  },
-  units: Unit.UnitMap
+  units: UnitMap
 ): { readonly [key: string]: ReadonlyArray<Unit.Unit<unknown>> } {
-  if (cache.input === unitsFormat && cache.output !== undefined) {
+  if (cache.input === units && cache.output !== undefined) {
     return cache.output;
   }
   const quantityToUnits: { [key: string]: Array<Unit.Unit<unknown>> } = {};
 
-  for (const unitKey of Object.keys(unitsFormat)) {
+  for (const unitKey of Object.keys(units)) {
     const unit = units[unitKey];
     const quantityKey = (unit.quantity as string).toLowerCase();
     quantityToUnits[quantityKey] = (quantityToUnits[quantityKey] || []).concat(
@@ -67,7 +51,7 @@ function getUnitsPerQuantity(
   }
 
   cache = {
-    input: unitsFormat,
+    input: units,
     output: quantityToUnits,
   };
 
