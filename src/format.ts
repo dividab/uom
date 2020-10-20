@@ -26,7 +26,7 @@ export function getUnitsForQuantity(
   quantity: string,
   unitsFormat: UnitFormatMap,
   units: Unit.UnitMap
-): Array<Unit.Unit<unknown>> {
+): ReadonlyArray<Unit.Unit<unknown>> {
   const quantityToUnits = getUnitsPerQuantity(unitsFormat, units);
   const unitsForQuantity = quantityToUnits[quantity.toLowerCase()];
   return unitsForQuantity || [];
@@ -45,14 +45,14 @@ interface LocalCache {
 // eslint-disable-next-line functional/no-let
 let cache: LocalCache = {
   input: undefined,
-  output: undefined
+  output: undefined,
 };
 function getUnitsPerQuantity(
   unitsFormat: {
     readonly [key: string]: UnitFormat;
   },
   units: Unit.UnitMap
-): { readonly [key: string]: Array<Unit.Unit<unknown>> } {
+): { readonly [key: string]: ReadonlyArray<Unit.Unit<unknown>> } {
   if (cache.input === unitsFormat && cache.output !== undefined) {
     return cache.output;
   }
@@ -68,7 +68,7 @@ function getUnitsPerQuantity(
 
   cache = {
     input: unitsFormat,
-    output: quantityToUnits
+    output: quantityToUnits,
   };
 
   return quantityToUnits;

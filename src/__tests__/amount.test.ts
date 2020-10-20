@@ -25,7 +25,7 @@ describe("amount_test", () => {
     const a: any = "12";
     expect(() => Amount.create(12.3, BaseUnits.Kelvin, a)).toThrow();
   });
-  test("Multiply_double_to_amount", done => {
+  test("Multiply_double_to_amount", (done) => {
     const valueLeft: number = 2.0;
     const valueRight: number = 5.5;
     const amountLeft = Amount.create(valueLeft, BaseUnits.Kelvin);
@@ -38,7 +38,7 @@ describe("amount_test", () => {
     );
     done();
   });
-  test("Divide_amount_by_double", done => {
+  test("Divide_amount_by_double", (done) => {
     const valueLeft: number = 55.39;
     const valueRight: number = 58.456;
     const amountLeft = Amount.create(valueLeft, BaseUnits.Kelvin);
@@ -51,7 +51,7 @@ describe("amount_test", () => {
     );
     done();
   });
-  test("Subtract_amounts_with_same_unit", done => {
+  test("Subtract_amounts_with_same_unit", (done) => {
     const valueLeft: number = 0.8;
     const valueRight: number = 99.56;
     const amountLeft = Amount.create(valueLeft, BaseUnits.Kelvin);

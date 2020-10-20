@@ -20,6 +20,6 @@ export function createUnitFormat(
 ): UnitFormat {
   return {
     label,
-    decimalCount
+    decimalCount,
   };
 }

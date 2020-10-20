@@ -196,7 +196,7 @@ export function createAlternate<T>(
   return {
     name,
     quantity: parent.quantity,
-    unitInfo: { quantity: parent.quantity, type: "alternate", symbol, parent }
+    unitInfo: { quantity: parent.quantity, type: "alternate", symbol, parent },
   };
 }
 
@@ -397,7 +397,7 @@ function transform<T>(
   return {
     name,
     quantity: unit.quantity,
-    unitInfo: createTransformedUnit(unit, operation)
+    unitInfo: createTransformedUnit(unit, operation),
   };
 }
 
@@ -415,7 +415,7 @@ function createTransformedUnit<T>(
     quantity: parentUnit.quantity,
     type: "transformed",
     parentUnit,
-    toParentUnitConverter
+    toParentUnitConverter,
   };
 }
 
@@ -471,7 +471,7 @@ function fromProduct<T>(
   }
 
   Object.keys(unitGroups).forEach((unitJson: string) => {
-    const unit: Unit<T> = JSON.parse(unitJson);
+    const unit: Unit<T> = JSON.parse(unitJson) as Unit<T>;
     const unitGroup: Array<Element> = unitGroups[unitJson];
     const sumpow: number = unitGroup.reduce(
       (prev: number, element: Element) => prev + element.pow,
@@ -580,7 +580,7 @@ function productUnitToStandardUnit<T>(unit: Unit<T>): UnitConverter {
  */
 function createProductUnit<T>(
   quantity: T,
-  elements: Array<Element>
+  elements: ReadonlyArray<Element>
 ): ProductUnit<T> {
   return { quantity, type: "product", elements };
 }
@@ -703,8 +703,8 @@ function createOne(): Unit<Dimensionless> {
     unitInfo: {
       quantity: "Dimensionless",
       type: "product",
-      elements: []
-    }
+      elements: [],
+    },
   };
 }
 
@@ -743,10 +743,10 @@ function productUnitBuildDerivedName<T>(
     }
   };
 
-  const pospow = getElements2(unit).filter(e => e.pow > 0);
+  const pospow = getElements2(unit).filter((e) => e.pow > 0);
   pospow.sort(comparePow); // orderby e.Pow descending select e;
   const posname = productUnitBuildNameFromElements(pospow, getSymbol);
-  const negpow = getElements2(unit).filter(e => e.pow < 0);
+  const negpow = getElements2(unit).filter((e) => e.pow < 0);
   negpow.sort(comparePow); // orderby e.Pow ascending select e;
   const negname = productUnitBuildNameFromElements(negpow, getSymbol);
 
@@ -770,7 +770,7 @@ function getElements2(unit: Unit<unknown>): ReadonlyArray<Element> {
 }
 
 function productUnitBuildNameFromElements(
-  elements: Array<Element>,
+  elements: ReadonlyArray<Element>,
   getSymbol: GetSymbolFn
 ): string {
   let name: string = "";

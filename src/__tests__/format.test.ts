@@ -5,7 +5,7 @@ import { createUnitFormat } from "../unit-format";
 const containsAll = <T>(
   arr1: ReadonlyArray<T>,
   arr2: ReadonlyArray<T>
-): boolean => arr2.every(arr2Item => arr1.indexOf(arr2Item) !== -1);
+): boolean => arr2.every((arr2Item) => arr1.indexOf(arr2Item) !== -1);
 const sameMembers = <T>(
   arr1: ReadonlyArray<T>,
   arr2: ReadonlyArray<T>
@@ -13,11 +13,11 @@ const sameMembers = <T>(
 
 const UnitsFormat = {
   Meter: createUnitFormat("m", 2),
-  Kelvin: createUnitFormat("°K", 2)
+  Kelvin: createUnitFormat("°K", 2),
 };
 
 describe("format_test", () => {
-  test("should get label for Kelvin", done => {
+  test("should get label for Kelvin", (done) => {
     const format = Format.getUnitFormat(BaseUnits.Kelvin, UnitsFormat);
     if (!format) {
       done.fail();
@@ -29,7 +29,7 @@ describe("format_test", () => {
   });
   test("Should get units for Length", () => {
     const expected = [
-      BaseUnits.Meter
+      BaseUnits.Meter,
       // Units.Kilometer,
       // Units.Decimeter,
       // Units.CentiMeter,
@@ -45,7 +45,7 @@ describe("format_test", () => {
   });
   test("Should get units for length", () => {
     const expected = [
-      BaseUnits.Meter
+      BaseUnits.Meter,
       // Units.Kilometer,
       // Units.Decimeter,
       // Units.CentiMeter,

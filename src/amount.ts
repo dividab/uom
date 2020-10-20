@@ -391,7 +391,7 @@ function _factory<T>(
   return {
     value: value,
     unit: unit,
-    decimalCount: decimalCount
+    decimalCount: decimalCount,
   };
 }
 

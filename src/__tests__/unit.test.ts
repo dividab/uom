@@ -2,7 +2,7 @@ import * as Unit from "../unit";
 import * as BaseUnits from "../base-units";
 
 describe("derived units", () => {
-  test("Meter times Meter should return unit with 1 element of pow 2", done => {
+  test("Meter times Meter should return unit with 1 element of pow 2", (done) => {
     const newUnit = Unit.times("", "Length", BaseUnits.Meter, BaseUnits.Meter);
     if (newUnit.unitInfo.type === "product") {
       expect(newUnit.unitInfo.elements.length).toEqual(1); //, "Correct elements length");
@@ -12,7 +12,7 @@ describe("derived units", () => {
     }
     done();
   });
-  test("Meter by Second should return correct product unit", done => {
+  test("Meter by Second should return correct product unit", (done) => {
     const newUnit = Unit.divide(
       "",
       "VolumeFlow",
@@ -27,17 +27,17 @@ describe("derived units", () => {
             unit: {
               name: "Meter",
               quantity: "Length",
-              unitInfo: { quantity: "Length", type: "base", symbol: "m" }
-            }
+              unitInfo: { quantity: "Length", type: "base", symbol: "m" },
+            },
           },
           {
             pow: -1,
             unit: {
               name: "Second",
               quantity: "Duration",
-              unitInfo: { quantity: "Duration", type: "base", symbol: "s" }
-            }
-          }
+              unitInfo: { quantity: "Duration", type: "base", symbol: "s" },
+            },
+          },
         ]
         //"Correct elements"
       );
