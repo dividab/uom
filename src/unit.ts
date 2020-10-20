@@ -9,12 +9,6 @@ export interface Unit<TQuantityName> {
   readonly unitInfo: UnitInfo<TQuantityName>;
 }
 
-export type UnitLookup = (unitString: string) => Unit<unknown> | undefined;
-
-export type UnitMap = {
-  readonly [key: string]: Unit<unknown>;
-};
-
 /**
  * This record represents a determinate quantity (as of length, time, heat, or value)
  * adopted as a standard of measurement.

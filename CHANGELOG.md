@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased](https://github.com/dividab/uom/compare/v5.0.0...master)
 
+- Moved `Format.getUnitsForQuantity` to `UnitMap.getUnitsForQuantity`.
+- Moved `Format.getUnitFormat` to `UnitFormat.getUnitFormat`.
+- Removed extra paramter in `UnitMap.getUnitsForQuantity`.
+- Remove `Format` module.
 - Refactor tests, move to `__tests__` folder
 
 ## [v5.0.0](https://github.com/dividab/uom/compare/v4.1.0...v5.0.0) - 2020-10-08

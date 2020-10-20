@@ -3,12 +3,18 @@
 <dl>
 <dt><a href="#module_Serialize">Serialize</a></dt>
 <dd></dd>
-<dt><a href="#module_Format">Format</a></dt>
-<dd></dd>
 <dt><a href="#module_Amount">Amount</a></dt>
 <dd></dd>
 <dt><a href="#module_Unit">Unit</a></dt>
 <dd></dd>
+</dl>
+
+## Functions
+
+<dl>
+<dt><a href="#getUnitsForQuantity">getUnitsForQuantity(quantity)</a></dt>
+<dd><p>Get all units registered for quantity</p>
+</dd>
 </dl>
 
 <a name="module_Serialize"></a>
@@ -60,34 +66,6 @@ Convert a serialized amount to it's deserialized representation
 | Param |
 | --- |
 | amountString | 
-
-<a name="module_Format"></a>
-
-## Format
-
-* [Format](#module_Format)
-    * [.getUnitFormat(unit)](#module_Format.getUnitFormat)
-    * [.getUnitsForQuantity(quantity)](#module_Format.getUnitsForQuantity)
-
-<a name="module_Format.getUnitFormat"></a>
-
-### Format.getUnitFormat(unit)
-Get formatting info from unit
-
-
-| Param |
-| --- |
-| unit | 
-
-<a name="module_Format.getUnitsForQuantity"></a>
-
-### Format.getUnitsForQuantity(quantity)
-Get all units registered for quantity
-
-
-| Param |
-| --- |
-| quantity | 
 
 <a name="module_Amount"></a>
 
@@ -379,4 +357,14 @@ Converts numeric values from a unit to another unit.
 | value | The numeric value to convert. |
 | fromUnit | The unit from which to convert the numeric value. |
 | toUnit | The unit to which to convert the numeric value. |
+
+<a name="getUnitsForQuantity"></a>
+
+## getUnitsForQuantity(quantity)
+Get all units registered for quantity
+
+
+| Param |
+| --- |
+| quantity | 
 

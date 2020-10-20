@@ -1,6 +1,5 @@
-import * as Format from "../format";
+import * as UnitMap from "../unit-map";
 import * as BaseUnits from "../base-units";
-import { createUnitFormat } from "../unit-format";
 
 const containsAll = <T>(
   arr1: ReadonlyArray<T>,
@@ -11,22 +10,7 @@ const sameMembers = <T>(
   arr2: ReadonlyArray<T>
 ): boolean => containsAll(arr1, arr2) && containsAll(arr2, arr1);
 
-const UnitsFormat = {
-  Meter: createUnitFormat("m", 2),
-  Kelvin: createUnitFormat("°K", 2),
-};
-
 describe("format_test", () => {
-  test("should get label for Kelvin", (done) => {
-    const format = Format.getUnitFormat(BaseUnits.Kelvin, UnitsFormat);
-    if (!format) {
-      done.fail();
-      done();
-    } else {
-      expect(format.label).toEqual("°K");
-      done();
-    }
-  });
   test("Should get units for Length", () => {
     const expected = [
       BaseUnits.Meter,
@@ -39,7 +23,7 @@ describe("format_test", () => {
       // Units.Inch,
       // Units.Mile
     ];
-    const actual = Format.getUnitsForQuantity("Length", UnitsFormat, BaseUnits);
+    const actual = UnitMap.getUnitsForQuantity("Length", BaseUnits);
     expect(actual.length).toEqual(expected.length);
     expect(sameMembers(actual, expected)).toBeTruthy();
   });
@@ -55,7 +39,7 @@ describe("format_test", () => {
       // Units.Inch,
       // Units.Mile
     ];
-    const actual = Format.getUnitsForQuantity("length", UnitsFormat, BaseUnits);
+    const actual = UnitMap.getUnitsForQuantity("length", BaseUnits);
     expect(actual.length).toEqual(expected.length);
     expect(sameMembers(actual, expected)).toBeTruthy();
   });

@@ -47,7 +47,7 @@
     "verify": "yarn lint && yarn build && yarn test-coverage",
     "test-coverage": "jest",
     "report-coverage": "codecov -f coverage/lcov.info",
-    "gen-docs": "jsdoc2md --partial docs/scope.hbs --files lib-esm/serialize.js lib-esm/format.js lib-esm/amount.js lib-esm/unit.js > docs/api.md",
+    "gen-docs": "jsdoc2md --partial docs/scope.hbs --files lib-esm/serialize.js lib-esm/unit-map.js lib-esm/amount.js lib-esm/unit.js > docs/api.md",
     "preversion": "git checkout master && git pull && yarn test && yarn build",
     "postversion": "git push --tags && yarn publish --new-version $npm_package_version && git push --follow-tags && echo \"Successfully released version $npm_package_version!\""
   },
