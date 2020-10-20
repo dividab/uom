@@ -1,5 +1,5 @@
-import { Amount, BaseUnits } from "../src";
-// import { Units } from "../src/all-units";
+import * as Amount from "../amount";
+import * as BaseUnits from "../base-units";
 
 describe("amount_compare_test", () => {
   test("default_comparer_true", () => {

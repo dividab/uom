@@ -1,6 +1,6 @@
-import { Format, BaseUnits } from "../src";
-import { createUnitFormat } from "../src/unit-format";
-// import { Units, UnitsFormat } from "../src/all-units";
+import * as Format from "../format";
+import * as BaseUnits from "../base-units";
+import { createUnitFormat } from "../unit-format";
 
 const containsAll = <T>(
   arr1: ReadonlyArray<T>,

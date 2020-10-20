@@ -1,6 +1,6 @@
-// import { Units } from "../src/all-units";
-import { Serialize, BaseUnits } from "../src";
-import { UnitMap } from "../src/unit";
+import * as Serialize from "../serialize";
+import * as BaseUnits from "../base-units";
+import { UnitMap } from "../unit";
 
 const baseUnitsLower = Object.keys(BaseUnits).reduce(
   (soFar, current) => {

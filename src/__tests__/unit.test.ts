@@ -1,6 +1,5 @@
-import { Unit, BaseUnits } from "../src";
-// import { Units } from "../src/all-units";
-// import { closeTo } from "./test-utils";
+import * as Unit from "../unit";
+import * as BaseUnits from "../base-units";
 
 describe("derived units", () => {
   test("Meter times Meter should return unit with 1 element of pow 2", done => {

@@ -1,6 +1,6 @@
-import { Unit, Serialize, BaseUnits } from "../src";
-// import { Units } from "../src/all-units";
-// import * as Quantity from "../src/quantity";
+import * as Unit from "../unit";
+import * as Serialize from "../serialize";
+import * as BaseUnits from "../base-units";
 
 // TODO: Add typing tests:
 // export const pass: Quantity.Length = Units.CentiMeter;

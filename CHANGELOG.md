@@ -7,9 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased](https://github.com/dividab/uom/compare/v5.0.0...master)
 
+- Refactor tests, move to `__tests__` folder
+
 ## [v5.0.0](https://github.com/dividab/uom/compare/v4.1.0...v5.0.0) - 2020-10-08
 
 ### Changed
+
 - The consumer of the package is responsible for sending in a unit lookup function. See PR [#51](https://github.com/dividab/uom/pull/51).
 
 ## [v4.1.0](https://github.com/dividab/uom/compare/v4.0.0...v4.1.0) - 2020-03-29

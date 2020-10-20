@@ -1,5 +1,5 @@
-import { Amount, BaseUnits } from "../src";
-// import { Units } from "../src/all-units";
+import * as Amount from "../amount";
+import * as BaseUnits from "../base-units";
 import { closeTo } from "./test-utils";
 
 // TODO: Add typing tests:
