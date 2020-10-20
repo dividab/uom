@@ -49,8 +49,12 @@
     "report-coverage": "codecov -f coverage/lcov.info",
     "gen-docs": "jsdoc2md --partial docs/scope.hbs --files lib-esm/serialize.js lib-esm/format.js lib-esm/amount.js lib-esm/unit.js > docs/api.md",
     "preversion": "git checkout master && git pull && yarn test && yarn build",
-    "postversion": "git push --tags && yarn publish --new-version $npm_package_version && git push --follow-tags && echo \"Successfully released version $npm_package_version!\"",
-    "precommit": "lint-staged"
+    "postversion": "git push --tags && yarn publish --new-version $npm_package_version && git push --follow-tags && echo \"Successfully released version $npm_package_version!\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "*.{ts,tsx}": "eslint --ext .ts -f visualstudio",
