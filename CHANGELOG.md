@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased](https://github.com/dividab/uom/compare/v5.0.0...master)
 
+## [v6.1.0](https://github.com/dividab/uom/compare/v4.0.0...v4.1.0) - 2026-02-17
+
+### Added
+
+- Added unit prefix Micro 
+
 ## [v6.0.0](https://github.com/dividab/uom/compare/v5.0.0...v6.0.0)
 
 - Moved `Format.getUnitsForQuantity` to `UnitMap.getUnitsForQuantity`.
