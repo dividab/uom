@@ -57,6 +57,14 @@ export function Milli<T>(name: string, unit: Unit.Unit<T>): Unit.Unit<T> {
   return Unit.timesNumber(name, Math.pow(10, -3), unit);
 }
 
+/**
+ * Returns the specified unit multiplied by the factor <code>10<sup>-6</sup></code>.
+ * @param unit any unit. @return <code>unit.multiply(1e-6)</code> .
+ */
+export function Micro<T>(name: string, unit: Unit.Unit<T>): Unit.Unit<T> {
+  return Unit.timesNumber(name, Math.pow(10, -6), unit);
+}
+
 // export function Si<T extends Quantity>(toAdd: Unit.Unit<T>): Unit.Unit<T> {
 //   // TODO
 //   return toAdd;
